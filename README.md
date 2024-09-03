@@ -1,2 +1,2 @@
-# dr.jjupjjup
+# Dr.jjupjjup
 쩝쩝 박사들의 사이드 프로잭트 레포입니다. 😊✌️
