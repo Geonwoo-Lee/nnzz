@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/vercel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +16,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="PerforceDirect.Settings">
-    <option name="CHARSET" value="없음" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -38,7 +37,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.build.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/igeon-u/Desktop/dr.jjupjjup/node_modules/typescript/lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/igeon-u/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -81,6 +80,11 @@
       <option name="presentableId" value="Default" />
       <updated>1725686570841</updated>
       <workItem from="1725686572947" duration="3000000" />
+      <workItem from="1725694394151" duration="29000" />
+      <workItem from="1725694425418" duration="44000" />
+      <workItem from="1725694471821" duration="17000" />
+      <workItem from="1725694497677" duration="32000" />
+      <workItem from="1725694551023" duration="99000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -111,6 +115,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project build error clear" />
