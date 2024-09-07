@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
+    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[deploy] Project Setting last">
       <change afterPath="$PROJECT_DIR$/public/app-icon.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -98,6 +98,7 @@
       <workItem from="1725698497746" duration="273000" />
       <workItem from="1725698774714" duration="12000" />
       <workItem from="1725698794628" duration="107000" />
+      <workItem from="1725698980994" duration="71000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
