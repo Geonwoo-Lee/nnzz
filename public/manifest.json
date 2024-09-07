@@ -1,0 +1,20 @@
+{
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "id": "/",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "nnzz",
+  "short_name": "nnzz",
+  "description": "맛있는 솔루션",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/app-icon.png",
+      "sizes": "76x76",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
         description: "배고픈 여러분!🤗 냠냠쩝쩝은 여러분의 점심 고민을 해결해 줄 쩝쩝 박사들의 사이드 프로젝트에요 !",
         url: "https://www.nnzz.today",
         siteName: "nnzz",
-    }
+    },
+    manifest: "/manifest.json",
 };
 
 export default function RootLayout({
