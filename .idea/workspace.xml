@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
       <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +82,7 @@
       <workItem from="1725694425418" duration="44000" />
       <workItem from="1725694471821" duration="17000" />
       <workItem from="1725694497677" duration="32000" />
-      <workItem from="1725694551023" duration="99000" />
+      <workItem from="1725694551023" duration="419000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -110,7 +108,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725690879663</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="[deploy]">
+      <option name="closed" value="true" />
+      <created>1725694664529</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725694664529</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[deploy]">
+      <option name="closed" value="true" />
+      <created>1725694688442</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725694688442</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +143,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project build error clear" />
-    <option name="LAST_COMMIT_MESSAGE" value="Project build error clear" />
+    <MESSAGE value="[deploy]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy]" />
   </component>
 </project>
