@@ -12,6 +12,15 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'translateX(-2px)' },
+          '50%': { transform: 'translateX(2px)' },
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 0.15s linear infinite',
+      }
     },
   },
   plugins: [],
