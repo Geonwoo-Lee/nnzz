@@ -29,6 +29,9 @@ const nextConfig = withPWA({
     // images: {
     //   domains: ['example.com'],
     // },
+    images: {
+        domains: ['images.unsplash.com'],
+    },
 });
 
 export default nextConfig;
