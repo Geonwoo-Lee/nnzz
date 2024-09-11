@@ -1,13 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
-interface ResultCardProps {
-    image: string;
-    category: string;
-    name: string;
-    priceRange: string;
-    index: number; // Pass index for delay
-}
+import {ResultCardProps} from "@/src/app/types/component/card";
 
 const ResultCard: React.FC<ResultCardProps> = ({ image, category, name, priceRange, index }) => {
     const [isVisible, setIsVisible] = useState(false);

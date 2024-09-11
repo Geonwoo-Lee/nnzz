@@ -1,4 +1,4 @@
-import { FoodItem } from "@/src/app/component/deck/Deck";
+import {FoodItem} from "@/src/app/types/common/food";
 
 const freeFoodData: FoodItem[] = [
     {
