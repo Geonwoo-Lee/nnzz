@@ -25,3 +25,8 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.card-size {
+  aspect-ratio: 640 / 800;
+}
