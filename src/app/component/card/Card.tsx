@@ -1,45 +1,25 @@
-'use client'
-import React, {useEffect} from 'react'
+// Card.tsx
+import React from 'react'
 import Image from 'next/image'
-import {DragStatus} from "@/src/app/hooks/useCardSwipe";
+import {BindType, DragStatus} from "@/src/app/hooks/useCardSwipe";
 
 interface CardProps {
     image: string;
     category: string;
     name: string;
     priceRange: string;
-    bind: () => any;
+    bind: BindType | undefined;
     dragStatus: DragStatus;
+    className?: string;
 }
 
-const Card: React.FC<CardProps> = ({ image, category, name, priceRange, bind, dragStatus }) => {
-    const preventDefault = (e: React.MouseEvent | React.TouchEvent) => {
-        e.preventDefault();
-    };
-
-
-    useEffect(() => {
-        console.log(dragStatus, 'card');
-    }, [dragStatus]);
+const Card: React.FC<CardProps> = ({ image, category, name, priceRange, bind, dragStatus, className }) => {
     return (
         <div
-            {...bind()}
-            style={{
-                width: '300px',
-                height: '400px',
-                borderRadius: '10px',
-                overflow: 'hidden',
-                position: 'relative',
-                boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                cursor: 'grab',
-                touchAction: 'none',
-            }}
+            {...(bind || {})}
+            className={`overflow-hidden relative shadow-lg cursor-grab touch-none ${className}`}
         >
-            <div
-                style={{ width: '100%', height: '100%', position: 'relative' }}
-                onMouseDown={preventDefault}
-                onTouchStart={preventDefault as any}
-            >
+            <div className="w-full h-full relative">
                 <Image
                     src={image}
                     alt={name}
@@ -48,29 +28,19 @@ const Card: React.FC<CardProps> = ({ image, category, name, priceRange, bind, dr
                     draggable={false}
                 />
             </div>
-            <div
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    background: 'rgba(0,0,0,0.7)',
-                    color: 'white',
-                    padding: '20px',
-                }}
-            >
-                <h2 style={{ margin: '0 0 10px 0', fontSize: '1.2rem' }}>{name}</h2>
-                <p style={{ margin: '5px 0', fontSize: '0.9rem', backgroundColor: 'rgba(255,255,255,0.2)', display: 'inline-block', padding: '2px 5px', borderRadius: '3px' }}>
+            <div className="absolute bottom-0 pb-20 left-0 right-0 bg-black bg-opacity-70 text-white p-5">
+                <h2 className="text-xl mb-2">{name}</h2>
+                <p className="text-sm mb-1 bg-white bg-opacity-20 inline-block px-2 py-1 rounded">
                     Category: {category}
                 </p>
-                <p style={{ margin: '5px 0', fontSize: '0.9rem', backgroundColor: 'rgba(255,255,255,0.2)', display: 'inline-block', padding: '2px 5px', borderRadius: '3px' }}>
+                <p className="text-sm bg-white bg-opacity-20 inline-block px-2 py-1 rounded">
                     Price: {priceRange}
                 </p>
             </div>
             {dragStatus !== 'neutral' && (
                 dragStatus === 'like'
-                    ? <img src='/like.png' alt='like' className='absolute w-[40px] h-[40px]  top-2 right-4 animate-wiggle'/>
-                    : <img  src='/dislike.png' alt='dislike' className='w-[40px] h-[40px]  absolute top-2 left-4 animate-wiggle'/>
+                    ? <img src='/like.png' alt='like' className='absolute w-[40px] h-[40px] top-4 right-1/2 animate-wiggle'/>
+                    : <img src='/dislike.png' alt='dislike' className='w-[40px] h-[40px] absolute top-4 left-1/2 animate-wiggle'/>
             )}
         </div>
     )
