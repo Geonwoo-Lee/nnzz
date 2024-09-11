@@ -1,17 +1,9 @@
 // Card.tsx
 import React from 'react'
 import Image from 'next/image'
-import {BindType, DragStatus} from "@/src/app/hooks/useCardSwipe";
+import {CardProps} from "@/src/app/types/component/card";
 
-interface CardProps {
-    image: string;
-    category: string;
-    name: string;
-    priceRange: string;
-    bind: BindType | undefined;
-    dragStatus: DragStatus;
-    className?: string;
-}
+
 
 const Card: React.FC<CardProps> = ({ image, category, name, priceRange, bind, dragStatus, className }) => {
     return (

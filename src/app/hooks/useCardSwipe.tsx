@@ -1,13 +1,10 @@
 import { useState, useCallback, useEffect  } from 'react'
 import { useSpring } from '@react-spring/web'
-import { FoodItem } from '../component/deck/Deck'
+import {FoodItem} from "@/src/app/types/common/food";
+import {BindType} from "@/src/app/types/hook/cardSwipte";
 
 export type DragStatus = 'like' | 'dislike' | 'neutral';
 
-export type BindType = {
-    onMouseDown: (e: React.MouseEvent) => void;
-    onTouchStart: (e: React.TouchEvent) => void;
-};
 
 export function useCardSwipe(cards: FoodItem[],) {
     const [currentIndex, setCurrentIndex] = useState(0)

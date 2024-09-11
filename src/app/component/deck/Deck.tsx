@@ -4,18 +4,9 @@ import Card from "@/src/app/component/card/Card";
 import { useCardSwipe } from "@/src/app/hooks/useCardSwipe";
 import { animated, to } from '@react-spring/web'
 import ResultCard from "@/src/app/component/card/ResultCard";
+import {DeckProps} from "@/src/app/types/component/deck";
 
-export interface FoodItem {
-    id: number;
-    imageUrl: string;
-    category: string;
-    name: string;
-    priceRange: string;
-}
 
-interface DeckProps {
-    cards: FoodItem[];
-}
 
 const Deck: React.FC<DeckProps> = ({ cards }) => {
     const deckRef = useRef<HTMLDivElement>(null);
