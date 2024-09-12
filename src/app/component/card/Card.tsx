@@ -31,8 +31,8 @@ const Card: React.FC<CardProps> = ({ image, category, name, priceRange, bind, dr
             </div>
             {dragStatus !== 'neutral' && (
                 dragStatus === 'like'
-                    ? <img src='/like.png' alt='like' className='absolute w-[40px] h-[40px] top-4 right-1/2 animate-wiggle'/>
-                    : <img src='/dislike.png' alt='dislike' className='w-[40px] h-[40px] absolute top-4 left-1/2 animate-wiggle'/>
+                    ? <img src='/assets/like.png' alt='like' className='absolute w-[40px] h-[40px] top-4 right-1/2 animate-wiggle'/>
+                    : <img src='/assets/dislike.png' alt='dislike' className='w-[40px] h-[40px] absolute top-4 left-1/2 animate-wiggle'/>
             )}
         </div>
     )

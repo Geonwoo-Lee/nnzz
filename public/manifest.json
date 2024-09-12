@@ -11,8 +11,32 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/app-icon.png",
-      "sizes": "76x76",
+      "src": "/icon/app-icon-84x108.png",
+      "sizes": "84x108",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon/app-icon-124x162.png",
+      "sizes": "124x162",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon/app-icon-248x323.png",
+      "sizes": "248x323",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon/app-icon-329x429.png",
+      "sizes": "329x429",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon/app-icon-330x430.png",
+      "sizes": "330x430",
       "type": "image/png",
       "purpose": "any maskable"
     }
