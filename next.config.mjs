@@ -5,7 +5,8 @@ const withPWA = nextPWA({
     dest: "public",
     register: true,
     skipWaiting: true,
-    sw: "/sw.js", // 앞에 슬래시 추가
+    disable: process.env.NODE_ENV === "dev",
+    sw: "/sw.js",
     buildExcludes: [/app-build-manifest.json$/, /middleware-manifest.json$/],
     runtimeCaching: [
         {
@@ -26,6 +27,19 @@ const nextConfig = withPWA({
     images: {
         domains: ['images.unsplash.com'],
     },
+    compiler: {
+        removeConsole: process.env.NODE_ENV === "production",
+    },
+    productionBrowserSourceMaps: true,
+    reactStrictMode: false,
+    webpack(config) {
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: ['@svgr/webpack'],
+        });
+
+        return config;
+    }
 });
 
 export default nextConfig;
