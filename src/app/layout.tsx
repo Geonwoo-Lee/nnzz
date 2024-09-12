@@ -20,12 +20,14 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
+            { url: "/favicon.ico", sizes: "any" },
             { url: "/icon/app-icon-84x108.png", sizes: "84x108", type: "image/png" },
             { url: "/icon/app-icon-124x162.png", sizes: "124x162", type: "image/png" },
             { url: "/icon/app-icon-248x323.png", sizes: "248x323", type: "image/png" },
             { url: "/icon/app-icon-329x429.png", sizes: "329x429", type: "image/png" },
             { url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png" },
         ],
+        shortcut: ["/favicon.ico"],
         apple: [
             { url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png" },
         ],
@@ -45,6 +47,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko">
+        <head>
+            <link rel="icon" href="/favicon.ico" sizes="any" />
+        </head>
         <body data-theme="light" className="font-poppins w-full max-w-[640px] mx-auto overflow-hidden">
         {children}
         </body>
