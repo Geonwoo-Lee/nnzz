@@ -18,7 +18,7 @@ export default function Login() {
     const loginWithKakao = () => {
         if (window.Kakao && window.Kakao.Auth) {
             window.Kakao.Auth.authorize({
-                redirectUri: 'http://localhost:3000/swap'
+                redirectUri: `${process.env.NEXT_PUBLIC_SITE_URL}/swap`!
             });
         } else {
             console.error('Kakao SDK not loaded');
