@@ -8,11 +8,16 @@ import {DeckProps} from "@/src/app/types/component/deck";
 
 
 
-const Deck: React.FC<DeckProps> = ({ cards }) => {
+const Deck: React.FC<DeckProps> = ({ cards, setStep }) => {
     const deckRef = useRef<HTMLDivElement>(null);
     const { currentIndex, props, bind, isFinished, likedCards, dragStatus, handleButtonSwipe } = useCardSwipe(cards);
 
     if (isFinished) {
+        if(setStep) {
+            setTimeout(() => {
+                setStep('2')
+            }, 10)
+        }
         return (
             <div className='flex flex-col gap-4 w-full overflow-y-scroll'>
                 <div className='text-xl font-normal text-black text-center'>

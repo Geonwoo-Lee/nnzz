@@ -1,8 +1,10 @@
-import type {Metadata} from "next";
+// src/app/layout.tsx
+import type { Metadata } from "next";
 import "./globals.css";
-import Head from "next/head";
+import Script from "next/script";
 
 export const metadata: Metadata = {
+    manifest: "/manifest.json",
     title: "nnzz",
     description: "배고픈 여러분!🤗 냠냠쩝쩝은 여러분의 점심 고민을 해결해 줄 쩝쩝 박사들의 사이드 프로젝트에요 !",
     openGraph: {
@@ -21,18 +23,17 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
-            {url: "/favicon.ico", sizes: "32x32", type: "image/png"},
-            {url: "/icon/app-icon-84x108.png", sizes: "84x108", type: "image/png"},
-            {url: "/icon/app-icon-124x162.png", sizes: "124x162", type: "image/png"},
-            {url: "/icon/app-icon-248x323.png", sizes: "248x323", type: "image/png"},
-            {url: "/icon/app-icon-329x429.png", sizes: "329x429", type: "image/png"},
-            {url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png"},
+            { url: "/favicon.ico", sizes: "32x32", type: "image/png" },
+            { url: "/icon/app-icon-84x108.png", sizes: "84x108", type: "image/png" },
+            { url: "/icon/app-icon-124x162.png", sizes: "124x162", type: "image/png" },
+            { url: "/icon/app-icon-248x323.png", sizes: "248x323", type: "image/png" },
+            { url: "/icon/app-icon-329x429.png", sizes: "329x429", type: "image/png" },
+            { url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png" },
         ],
         apple: [
-            {url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png"},
+            { url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png" },
         ],
     },
-    manifest: "/manifest.json",
     appleWebApp: {
         title: "nnzz",
         statusBarStyle: "default",
@@ -47,12 +48,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko">
-        <Head>
-            <link rel="icon" href="/favicon.ico" type="image/png"/>
-        </Head>
         <body data-theme="light" className="font-poppins w-full max-w-[640px] mx-auto overflow-hidden">
-                 {children}
-            </body>
+        {children}
+        <Script
+            src="https://developers.kakao.com/sdk/js/kakao.js"
+            strategy="beforeInteractive"
+        />
+        </body>
         </html>
     );
 }

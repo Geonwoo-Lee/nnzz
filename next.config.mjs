@@ -39,7 +39,10 @@ const nextConfig = withPWA({
         });
 
         return config;
-    }
+    },
+    env: {
+        NEXT_PUBLIC_KAKAO_JS_KEY: process.env.NEXT_PUBLIC_KAKAO_JS_KEY,
+    },
 });
 
 export default nextConfig;

@@ -57,15 +57,18 @@ export function useCardSwipe(cards: FoodItem[],) {
 
 
     const updateDragStatus = useCallback((x: number) => {
-        const threshold = 50;
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        const threshold = isMobile ? 30 : 50;
+
         if (x > threshold) {
-            setDragStatus('like')
+            setDragStatus('like');
         } else if (x < -threshold) {
-            setDragStatus('dislike')
+            setDragStatus('dislike');
         } else {
-            setDragStatus('neutral')
+            setDragStatus('neutral');
         }
-    }, [])
+    }, []);
 
     const bind = useCallback((): BindType => ({
         onMouseDown: (e: React.MouseEvent) => {
