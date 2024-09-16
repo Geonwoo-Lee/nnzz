@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/button/KakaoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/button/KakaoButton.tsx" afterDir="false" />
+    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[deploy] site Url 업데이트+">
+      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +120,7 @@
       <workItem from="1726040690361" duration="4045000" />
       <workItem from="1726108995112" duration="184000" />
       <workItem from="1726124988466" duration="4461000" />
-      <workItem from="1726468949661" duration="7713000" />
+      <workItem from="1726468949661" duration="7860000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -325,7 +322,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726476201378</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="[deploy] site Url 업데이트+">
+      <option name="closed" value="true" />
+      <created>1726476705179</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1726476705179</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,6 +360,7 @@
     <MESSAGE value="[deploy] pwa logo, seo 로고 추가" />
     <MESSAGE value="[deploy] favicon 추가" />
     <MESSAGE value="[deploy] 카카오톡 로그인 추가, 스왑 개수 추가 , 데이터 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 카카오톡 로그인 추가, 스왑 개수 추가 , 데이터 추가" />
+    <MESSAGE value="[deploy] site Url 업데이트+" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] site Url 업데이트+" />
   </component>
 </project>
