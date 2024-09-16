@@ -5,32 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/svg/logo/KakaoLogo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/svg/logo/Nnzzsvg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/workbox-e43f5367.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/workbox-e43f5367.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/button/KakaoButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/hooks/useFunnel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/swap/component/ButtonSellect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/swap/component/Comple.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/swap/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/types/common/user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/types/global.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/workbox-cb477421.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/workbox-cb477421.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/deck/Deck.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/deck/Deck.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dummy/dummy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dummy/dummy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/hooks/useCardSwipe.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hooks/useCardSwipe.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/types/component/deck.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/component/deck.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/button/KakaoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/button/KakaoButton.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +123,7 @@
       <workItem from="1726040690361" duration="4045000" />
       <workItem from="1726108995112" duration="184000" />
       <workItem from="1726124988466" duration="4461000" />
-      <workItem from="1726468949661" duration="7173000" />
+      <workItem from="1726468949661" duration="7713000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -339,7 +317,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726129273953</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="[deploy] 카카오톡 로그인 추가, 스왑 개수 추가 , 데이터 추가">
+      <option name="closed" value="true" />
+      <created>1726476201378</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1726476201378</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,6 +354,7 @@
     <MESSAGE value="[push] Type 정리" />
     <MESSAGE value="[deploy] pwa logo, seo 로고 추가" />
     <MESSAGE value="[deploy] favicon 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] favicon 추가" />
+    <MESSAGE value="[deploy] 카카오톡 로그인 추가, 스왑 개수 추가 , 데이터 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 카카오톡 로그인 추가, 스왑 개수 추가 , 데이터 추가" />
   </component>
 </project>
