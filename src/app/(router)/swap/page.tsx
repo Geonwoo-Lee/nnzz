@@ -1,10 +1,10 @@
 'use client'
-import Deck from "@/src/app/component/deck/Deck";
+import Deck from "@/src/app/component/client/deck/Deck";
 import freeFoodData from "@/src/app/dummy/dummy";
 import {useFunnel} from "@/src/app/hooks/useFunnel";
-import ButtonSellect from "@/src/app/swap/component/ButtonSellect";
-import CompletePage from "@/src/app/swap/component/Comple";
 import {useState} from "react";
+import ButtonSellect from "@/src/app/(router)/swap/component/ButtonSellect";
+import CompletePage from "@/src/app/(router)/swap/component/Comple";
 
 // <Deck cards={freeFoodData}/>
 const SwapPage = () => {

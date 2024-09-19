@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from 'react'
-import KakaoLogo from '../../../../public/svg/logo/KakaoLogo.svg'
+import KakaoLogo from '../../../../../public/svg/logo/KakaoLogo.svg'
 import {useRouter} from "next/navigation";
 
 export default function Login() {

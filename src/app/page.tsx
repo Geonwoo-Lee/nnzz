@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 
 export default function Home() {
 
-    const KakaoButton = dynamic(() => import('@/src/app/component/button/KakaoButton'), { ssr: false });
+    const KakaoButton = dynamic(() => import('@/src/app/component/client/button/KakaoButton'), { ssr: false });
 
   return (
     <div className="flex flex-col gap-10 bg-white w-full justify-center items-center ">
