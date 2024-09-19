@@ -4,23 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[deploy] site Url 업데이트+">
-      <change afterPath="$PROJECT_DIR$/src/app/lib/reactQuery.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/provider/ReactQueryProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/quries/quries.ts" afterDir="false" />
+    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[push] react-query 설정, 폴더 구조 변경">
+      <change afterPath="$PROJECT_DIR$/public/workbox-e43f5367.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/workbox-e43f5367.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/button/KakaoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/card/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/card/Card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/card/ResultCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/card/ResultCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/deck/Deck.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/deck/Deck.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/workbox-cb477421.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/workbox-cb477421.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/swap/component/ButtonSellect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/component/ButtonSellect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/swap/component/Comple.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/component/Comple.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/swap/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,14 +64,14 @@
       <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/src/app/component/client/deck" />
       <recent name="$PROJECT_DIR$/src/app/component/client/card" />
       <recent name="$PROJECT_DIR$/src/app/component/client/button" />
       <recent name="$PROJECT_DIR$/public/svg/logo" />
-      <recent name="$PROJECT_DIR$/src/app/login/component" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -99,8 +94,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -136,7 +131,7 @@
       <workItem from="1726040690361" duration="4045000" />
       <workItem from="1726108995112" duration="184000" />
       <workItem from="1726124988466" duration="4461000" />
-      <workItem from="1726468949661" duration="10686000" />
+      <workItem from="1726468949661" duration="11128000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -354,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726476842624</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="[push] react-query 설정, 폴더 구조 변경">
+      <option name="closed" value="true" />
+      <created>1726712139306</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1726712139306</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,6 +388,7 @@
     <MESSAGE value="[deploy] favicon 추가" />
     <MESSAGE value="[deploy] 카카오톡 로그인 추가, 스왑 개수 추가 , 데이터 추가" />
     <MESSAGE value="[deploy] site Url 업데이트+" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] site Url 업데이트+" />
+    <MESSAGE value="[push] react-query 설정, 폴더 구조 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="[push] react-query 설정, 폴더 구조 변경" />
   </component>
 </project>
