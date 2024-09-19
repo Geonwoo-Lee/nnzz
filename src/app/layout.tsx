@@ -1,7 +1,8 @@
 // src/app/layout.tsx
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import "./globals.css";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
     manifest: "/manifest.json",
@@ -23,15 +24,15 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
-            { url: "/favicon.ico", sizes: "32x32", type: "image/png" },
-            { url: "/icon/app-icon-84x108.png", sizes: "84x108", type: "image/png" },
-            { url: "/icon/app-icon-124x162.png", sizes: "124x162", type: "image/png" },
-            { url: "/icon/app-icon-248x323.png", sizes: "248x323", type: "image/png" },
-            { url: "/icon/app-icon-329x429.png", sizes: "329x429", type: "image/png" },
-            { url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png" },
+            {url: "/favicon.ico", sizes: "32x32", type: "image/png"},
+            {url: "/icon/app-icon-84x108.png", sizes: "84x108", type: "image/png"},
+            {url: "/icon/app-icon-124x162.png", sizes: "124x162", type: "image/png"},
+            {url: "/icon/app-icon-248x323.png", sizes: "248x323", type: "image/png"},
+            {url: "/icon/app-icon-329x429.png", sizes: "329x429", type: "image/png"},
+            {url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png"},
         ],
         apple: [
-            { url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png" },
+            {url: "/icon/app-icon-330x430.png", sizes: "330x430", type: "image/png"},
         ],
     },
     appleWebApp: {
@@ -46,10 +47,13 @@ export default function RootLayout({
                                    }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const ReactQueryProvider = dynamic(() => import('../app/provider/ReactQueryProvider'), {ssr: false});
     return (
         <html lang="ko">
         <body data-theme="light" className="font-poppins w-full max-w-[640px] mx-auto overflow-hidden">
-        {children}
+        <ReactQueryProvider>
+            {children}
+        </ReactQueryProvider>
         <Script
             src="https://developers.kakao.com/sdk/js/kakao.js"
             strategy="beforeInteractive"
