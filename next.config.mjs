@@ -5,7 +5,7 @@ const withPWA = nextPWA({
     dest: "public",
     register: true,
     skipWaiting: true,
-    disable: process.env.NODE_ENV === "dev",
+    disable: process.env.NODE_ENV === 'development',
     sw: "/sw.js",
     buildExcludes: [/app-build-manifest.json$/, /middleware-manifest.json$/],
     runtimeCaching: [
