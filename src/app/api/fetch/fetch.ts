@@ -44,6 +44,7 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
 
     try {
         const initialResponse = await fetch(fullUrl, mergedOptions);
+        console.log(fullUrl, mergedOptions, '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
 
         if (initialResponse.status === 401 && !isServer && useToken) {
             if (isRefreshing) {
@@ -105,7 +106,7 @@ async function refreshTokenIfNeeded(): Promise<string> {
     }
 }
 
-async function getSendRefreshToken(): Promise<string> {
+export async function getSendRefreshToken(): Promise<string> {
     //todo api key 수정
     const response = await customFetch('/api/v1/auth/refresh-token', {
         method: 'GET',
@@ -118,6 +119,7 @@ async function getSendRefreshToken(): Promise<string> {
     }
 
     const data = await response.json();
+    console.log(data)
     return data.result.token.token;
 }
 
