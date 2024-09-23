@@ -4,17 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[deploy] api fetch 코드,">
-      <change afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/fetch/fetch.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/test/apiTest.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/test/mockApi.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/func/common/auth.utills.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[deploy] 주소 검색, 위치기반 데이터 패칭">
+      <change afterPath="$PROJECT_DIR$/public/workbox-cb477421.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/workbox-cb477421.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/func/common/geo.utills.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/hooks/useGeoloaction.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/types/common/geo.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/types/common/kakao.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/types/common/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/common/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/workbox-e43f5367.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/workbox-e43f5367.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(router)/swap/component/ButtonSellect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/component/ButtonSellect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/fetch/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/fetch/fetch.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/test/apiTest.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/test/apiTest.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +32,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="PerforceDirect.Settings">
-    <option name="CHARSET" value="없음" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -38,25 +44,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/igeon-u/Desktop/nnzz/src/app/(router)",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/igeon-u/Desktop/nnzz/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/igeon-u/Desktop/nnzz/src/app/(router)&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/igeon-u/Desktop/nnzz/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/(router)" />
@@ -130,7 +136,9 @@
       <workItem from="1726040690361" duration="4045000" />
       <workItem from="1726108995112" duration="184000" />
       <workItem from="1726124988466" duration="4461000" />
-      <workItem from="1726468949661" duration="23458000" />
+      <workItem from="1726468949661" duration="24251000" />
+      <workItem from="1726735866330" duration="1627000" />
+      <workItem from="1727081344255" duration="2462000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -364,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726712598711</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="[push] api fetch 코드, 로그인 테스트 완료">
+      <option name="closed" value="true" />
+      <created>1726734673821</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1726734673821</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +413,9 @@
     <MESSAGE value="[deploy] site Url 업데이트+" />
     <MESSAGE value="[push] react-query 설정, 폴더 구조 변경" />
     <MESSAGE value="[deploy] Project Setting favicon 이동 layout.tsx 수정, config 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] Project Setting favicon 이동 layout.tsx 수정, config 수정" />
+    <MESSAGE value="[deploy] api fetch 코드," />
+    <MESSAGE value="[push] api fetch 코드, 로그인 테스트 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="[push] api fetch 코드, 로그인 테스트 완료" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -405,7 +423,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/api/fetch/fetch.ts</url>
           <line>44</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
