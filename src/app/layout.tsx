@@ -3,6 +3,7 @@ import type {Metadata} from "next";
 import "./globals.css";
 import Script from "next/script";
 import dynamic from "next/dynamic";
+import React from "react";
 
 export const metadata: Metadata = {
     manifest: "/manifest.json",
@@ -56,7 +57,7 @@ export default function RootLayout({
         </ReactQueryProvider>
         <Script
             src="https://developers.kakao.com/sdk/js/kakao.js"
-            strategy="beforeInteractive"
+            strategy="lazyOnload"
         />
         </body>
         </html>
