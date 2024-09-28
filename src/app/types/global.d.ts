@@ -1,4 +1,64 @@
 // global.d.ts
+interface KakaoMouseEvent {
+    latLng: KakaoLatLng;
+    point: { x: number; y: number };
+}
+
+interface KakaoEventMap {
+    // 지도 이벤트
+    'center_changed': () => void;
+    'zoom_start': () => void;
+    'zoom_changed': () => void;
+    'bounds_changed': () => void;
+    'click': (mouseEvent: KakaoMouseEvent) => void;
+    'dblclick': (mouseEvent: KakaoMouseEvent) => void;
+    'rightclick': (mouseEvent: KakaoMouseEvent) => void;
+    'mousemove': (mouseEvent: KakaoMouseEvent) => void;
+    'dragstart': () => void;
+    'drag': () => void;
+    'dragend': () => void;
+    'idle': () => void;
+    'tilesloaded': () => void;
+    'maptypeid_changed': () => void;
+
+    // 마커 이벤트
+    'marker_click': (marker: KakaoMarker) => void;
+    'marker_mouseover': (marker: KakaoMarker) => void;
+    'marker_mouseout': (marker: KakaoMarker) => void;
+    'marker_rightclick': (marker: KakaoMarker) => void;
+
+    // 인포윈도우 이벤트
+    'infowindow_domready': () => void;
+    'infowindow_close': () => void;
+
+    // 폴리곤 이벤트
+    'polygon_click': (polygon: any) => void;
+    'polygon_mouseover': (polygon: any) => void;
+    'polygon_mouseout': (polygon: any) => void;
+
+    // 폴리라인 이벤트
+    'polyline_click': (polyline: any) => void;
+    'polyline_mouseover': (polyline: any) => void;
+    'polyline_mouseout': (polyline: any) => void;
+
+    // 원 이벤트
+    'circle_click': (circle: any) => void;
+    'circle_mouseover': (circle: any) => void;
+    'circle_mouseout': (circle: any) => void;
+
+    // 사각형 이벤트
+    'rectangle_click': (rectangle: any) => void;
+    'rectangle_mouseover': (rectangle: any) => void;
+    'rectangle_mouseout': (rectangle: any) => void;
+
+    // 커스텀 오버레이 이벤트
+    'custom_click': (customOverlay: any) => void;
+    'custom_mouseover': (customOverlay: any) => void;
+    'custom_mouseout': (customOverlay: any) => void;
+
+    // 그 외 모든 문자열 키에 대한 기본 이벤트 핸들러 타입
+    [key: string]: (...args: any[]) => void;
+}
 
 interface KakaoMapStatic {
     maps: {
@@ -16,7 +76,11 @@ interface KakaoMapStatic {
             new (options: KakaoInfoWindowOptions): KakaoInfoWindow;
         };
         event: {
-            addListener(target: any, type: string, callback: Function): void;
+            addListener<T extends keyof KakaoEventMap>(
+                target: any,
+                type: T,
+                callback: KakaoEventMap[T]
+            ): void;
         };
         LatLngBounds: {
             new (): KakaoLatLngBounds;
@@ -66,6 +130,19 @@ interface KakaoLatLngBounds {
     extend(latlng: KakaoLatLng): void;
 }
 
+// global.d.ts
+interface KakaoStatic {
+    init(appKey: string): void;
+    isInitialized(): boolean;
+    maps: any
+    Auth: {
+        authorize(options: { redirectUri: string }): void;
+        getStatusInfo(): Promise<{ status: string }>;
+        setAccessToken(token: string): void;
+    };
+}
+
 interface Window {
     kakao: KakaoMapStatic;
+    Kakao: KakaoStatic;
 }

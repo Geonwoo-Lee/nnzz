@@ -83,7 +83,7 @@ const KakaoMap: React.FC<Props> = ({ places }) => {
             <Script
                 src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}&autoload=false`}
                 onLoad={handleScriptLoad}
-                onError={(e) => {
+                onError={() => {
                     setMapError('Failed to load Kakao Maps script');
                 }}
             />
