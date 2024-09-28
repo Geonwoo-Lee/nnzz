@@ -7,7 +7,7 @@ export async function getAddressFromCoords(latitude: number, longitude: number):
             `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${longitude}&y=${latitude}`,
             {
                 headers: {
-                    Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}`
+                    Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}`
                 }
             }
         );
@@ -66,7 +66,7 @@ export async function searchAddressToCoords(address: string): Promise<{ latitude
             `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(address)}`,
             {
                 headers: {
-                    Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}`
+                    Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}`
                 }
             }
         );
