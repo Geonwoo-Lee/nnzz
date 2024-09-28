@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/component/client/map/KakaoMap.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/func/common/geo.utills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/func/common/geo.utills.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/map/KakaoMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/map/KakaoMap.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/global.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +65,7 @@
       <recent name="$PROJECT_DIR$/public/svg/logo" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -93,8 +88,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +127,7 @@
       <workItem from="1726124988466" duration="4461000" />
       <workItem from="1726468949661" duration="24251000" />
       <workItem from="1726735866330" duration="1627000" />
-      <workItem from="1727081344255" duration="15774000" />
+      <workItem from="1727081344255" duration="16741000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -382,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727084134135</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="[deploy] 여러개의 위치 카카오 지도 pinned">
+      <option name="closed" value="true" />
+      <created>1727511886959</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1727511886959</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,7 +421,8 @@
     <MESSAGE value="[deploy] api fetch 코드," />
     <MESSAGE value="[push] api fetch 코드, 로그인 테스트 완료" />
     <MESSAGE value="[deploy] 주소 검색, 위치기반 데이터 패칭" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 주소 검색, 위치기반 데이터 패칭" />
+    <MESSAGE value="[deploy] 여러개의 위치 카카오 지도 pinned" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 여러개의 위치 카카오 지도 pinned" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
