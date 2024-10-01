@@ -18,7 +18,7 @@ const HomeCarousel = () => {
                    repeatedRow1.map((el, index) => (
                        <div
                            key={`1st-carousel-key-${index}`}
-                           className={`w-[83px] h-[83px] rounded-[16px] flex items-center justify-center bg-[#F2EBEB] ${index === repeatedRow1.length-1 ? 'mr-6' : ''}`}>
+                           className={`w-[83px] h-[83px] border border-[#F2EBEB] rounded-[16px] flex items-center justify-center bg-[#F7F7F7] ${index === repeatedRow1.length-1 ? 'mr-6' : ''}`}>
                            <Image width={60} height={60} src={`${imagePath}${el}`} alt={`food-row-2-${index}`}/>
                        </div>
                    ))
@@ -31,7 +31,7 @@ const HomeCarousel = () => {
                    repeatedRow2.map((el, index) => (
                        <div
                            key={`2st-carousel-key-${index}`}
-                           className={`w-[83px] items-center justify-center flex h-[83px] rounded-[16px] bg-[#F2EBEB] ${index === repeatedRow2.length - 1 ? 'mr-6' : ''}`}>
+                           className={`w-[83px] items-center border border-[#F2EBEB]  justify-center flex h-[83px] rounded-[16px] bg-[#F7F7F7] ${index === repeatedRow2.length - 1 ? 'mr-6' : ''}`}>
                            <Image width={60} height={60} src={`${imagePath}${el}`} alt={`food-row-2-${index}`}/>
                        </div>
                    ))
