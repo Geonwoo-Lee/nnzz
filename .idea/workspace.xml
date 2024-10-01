@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[deploy] app icon 전체 변경">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[deploy] 화면 ui 변경">
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -467,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727793176336</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="[deploy] 화면 ui 변경">
+      <option name="closed" value="true" />
+      <created>1727793499866</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1727793499866</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +493,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="[deploy] Project Setting last" />
     <MESSAGE value="[deploy] PWA setting" />
     <MESSAGE value="[deploy] Swape test" />
     <MESSAGE value="[deploy] Ui Update" />
@@ -511,7 +517,8 @@
     <MESSAGE value="[deploy] landing 화면 버튼과 컴포넌트 겹치지 않게 수정" />
     <MESSAGE value="[deploy] home carousel border, bg-color 변경" />
     <MESSAGE value="[deploy] app icon 전체 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] app icon 전체 변경" />
+    <MESSAGE value="[deploy] 화면 ui 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 화면 ui 변경" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
