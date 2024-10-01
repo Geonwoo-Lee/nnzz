@@ -19,7 +19,7 @@ const SplashScreen = ({ children }: { children: ReactNode }) => {
             if (isLanding) {
                 document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#fff')
             }
-        }, 700)
+        }, 1000)
 
         return () => {
             clearTimeout(timeout)

@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/page/splash/SplashScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/page/splash/SplashScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +124,7 @@
       <workItem from="1726468949661" duration="24251000" />
       <workItem from="1726735866330" duration="1627000" />
       <workItem from="1727081344255" duration="18327000" />
-      <workItem from="1727766719922" duration="10095000" />
+      <workItem from="1727766719922" duration="10155000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -415,7 +414,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727778295227</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="[deploy] test용 url로 redirect 하게 수정">
+      <option name="closed" value="true" />
+      <created>1727778462476</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1727778462476</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +463,8 @@
     <MESSAGE value="[deploy] 프로덕션 env 수정" />
     <MESSAGE value="[deploy] 네이버 개발자 가입 및 api 신청 완료, 네이버 지도 변경 완료 , 지도 친 변경 완료,네이버 env 설정 완료, HomeCarousel 에셋 없이 완료, splash 화면 완료" />
     <MESSAGE value="[deploy] 배포 build 에러 해결" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 배포 build 에러 해결" />
+    <MESSAGE value="[deploy] test용 url로 redirect 하게 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] test용 url로 redirect 하게 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
