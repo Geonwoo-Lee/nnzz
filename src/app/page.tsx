@@ -22,7 +22,7 @@ export default function Home() {
       {/*  <Deck cards={freeFoodData}/>*/}
       <div className="h-[100vh] w-full flex flex-col items-center justify-center relative">
              <div className='flex flex-col justify-center items-center gap-8  pt-16 pb-16'>
-                 <Image width={82} height={107} src={'/images/logo/nnzz-home-logo.png'}  alt='nnzz-logo'/>
+                 <Image width={128} height={128} src={'/images/logo/nnzz-home-logo.png'}  alt='nnzz-logo'/>
                  <div className='flex flex-col  justify-center items-center gap-4 text-common font-bold text-md'>
                      <Nnzz/>
                      직장인들 점심 저녁 메뉴 고민을 함께 해요🧚‍

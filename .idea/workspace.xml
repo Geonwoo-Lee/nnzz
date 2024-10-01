@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app/component/page/splash/SplashScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/page/splash/SplashScreen.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,10 +52,10 @@
       <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/public/images/logo" />
       <recent name="$PROJECT_DIR$/src/app/static" />
-      <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/src/app/component/client/deck" />
     </key>
   </component>
@@ -124,7 +122,7 @@
       <workItem from="1726468949661" duration="24251000" />
       <workItem from="1726735866330" duration="1627000" />
       <workItem from="1727081344255" duration="18327000" />
-      <workItem from="1727766719922" duration="10155000" />
+      <workItem from="1727766719922" duration="10569000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -422,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727778462476</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="[deploy] splash screen 화면 좀 더 길게 수정 favicon 수정">
+      <option name="closed" value="true" />
+      <created>1727778744695</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1727778744695</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +470,8 @@
     <MESSAGE value="[deploy] 네이버 개발자 가입 및 api 신청 완료, 네이버 지도 변경 완료 , 지도 친 변경 완료,네이버 env 설정 완료, HomeCarousel 에셋 없이 완료, splash 화면 완료" />
     <MESSAGE value="[deploy] 배포 build 에러 해결" />
     <MESSAGE value="[deploy] test용 url로 redirect 하게 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] test용 url로 redirect 하게 수정" />
+    <MESSAGE value="[deploy] splash screen 화면 좀 더 길게 수정 favicon 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] splash screen 화면 좀 더 길게 수정 favicon 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
