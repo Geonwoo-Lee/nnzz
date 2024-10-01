@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Controller, useForm } from "react-hook-form";
 import { searchAddressToCoords } from "@/src/app/func/common/geo.utills";
-import KakaoMap from "@/src/app/component/client/map/KakaoMap";
+import NaverMap from "@/src/app/component/client/map/NaverMap";
 
 interface FormData {
     address: string;
@@ -64,7 +64,7 @@ const TestPage = () => {
 
             {places.length > 0 && (
                 <div className="mt-4">
-                    <KakaoMap places={places} />
+                    <NaverMap places={places} />
                 </div>
             )}
 
