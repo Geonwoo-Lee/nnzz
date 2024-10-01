@@ -5,28 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/mapPin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo/nnzz-home-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo/nnzz-splash-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/client/conveyorCarousel/ConveyorCarousel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/page/home/carousel/HomeCarousel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/component/page/splash/SplashScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/static/PretendardVariable.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/types/component/carousel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/utils/font/font.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/svg/logo/Nnzzsvg.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/svg/logo/Nnzzsvg.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/client/map/KakaoMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/map/NaverMap.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +125,7 @@
       <workItem from="1726468949661" duration="24251000" />
       <workItem from="1726735866330" duration="1627000" />
       <workItem from="1727081344255" duration="18327000" />
-      <workItem from="1727766719922" duration="9633000" />
+      <workItem from="1727766719922" duration="10095000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -419,7 +399,23 @@
       <option name="project" value="LOCAL" />
       <updated>1727512604304</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="[deploy] 네이버 개발자 가입 및 api 신청 완료, 네이버 지도 변경 완료 , 지도 친 변경 완료,네이버 env 설정 완료, HomeCarousel 에셋 없이 완료, splash 화면 완료">
+      <option name="closed" value="true" />
+      <created>1727778049476</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1727778049476</updated>
+    </task>
+    <task id="LOCAL-00036" summary="[deploy] 배포 build 에러 해결">
+      <option name="closed" value="true" />
+      <created>1727778295227</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1727778295227</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +454,9 @@
     <MESSAGE value="[deploy] 여러개의 위치 카카오 지도 pinned" />
     <MESSAGE value="[deploy] 카카오 타입 추가" />
     <MESSAGE value="[deploy] 프로덕션 env 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 프로덕션 env 수정" />
+    <MESSAGE value="[deploy] 네이버 개발자 가입 및 api 신청 완료, 네이버 지도 변경 완료 , 지도 친 변경 완료,네이버 env 설정 완료, HomeCarousel 에셋 없이 완료, splash 화면 완료" />
+    <MESSAGE value="[deploy] 배포 build 에러 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 배포 build 에러 해결" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
