@@ -22,7 +22,7 @@ export default function Home() {
                     <HomeCarousel/>
                 </div>
             </main>
-            <footer className="w-full p-4 bg-white">
+            <footer className="w-full px-4 pt-4 pb-8 bg-white">
                 <KakaoButton/>
             </footer>
         </div>
