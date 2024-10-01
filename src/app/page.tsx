@@ -1,6 +1,5 @@
 // import Deck from "@/src/app/component/deck/Deck";
 // import freeFoodData from "@/src/app/dummy/dummy";
-
 import Nnzz from '../../public/svg/logo/Nnzzsvg.svg'
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -10,9 +9,9 @@ export default function Home() {
     const HomeCarousel = dynamic(() => import('@/src/app/component/page/home/carousel/HomeCarousel'), {ssr: false});
 
     return (
-        <div className="flex flex-col min-h-screen  bg-white">
-            <main className="flex-grow flex flex-col items-center justify-center pb-20"> {/* pb-20을 추가하여 KakaoButton을 위한 공간 확보 */}
-                <div className="h-full w-full flex flex-col items-center justify-center">
+        <div className="flex flex-col justify-between min-h-screen bg-white max-w-[640px] mx-auto">
+            <main className="flex-grow flex flex-col items-center justify-center">
+                <div className="w-full flex flex-col items-center justify-center">
                     <div className='flex flex-col justify-center items-center gap-8 pt-16 pb-16'>
                         <Image width={128} height={128} src={'/images/logo/nnzz-home-logo.png'} alt='nnzz-logo'/>
                         <div className='flex flex-col justify-center items-center gap-4 text-common font-bold text-md'>
@@ -23,13 +22,12 @@ export default function Home() {
                     <HomeCarousel/>
                 </div>
             </main>
-            <footer className="fixed bottom-10 left-0 right-0 p-4 bg-white max-w-[640px] mx-auto">
+            <footer className="w-full p-4 bg-white">
                 <KakaoButton/>
             </footer>
         </div>
     );
 }
-
 
 // import Nnzz from '../../public/svg/logo/Nnzzsvg.svg'
 // import dynamic from "next/dynamic";
