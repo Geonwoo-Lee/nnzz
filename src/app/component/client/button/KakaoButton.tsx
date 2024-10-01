@@ -16,7 +16,7 @@ export default function Login() {
     const loginWithKakao = () => {
         if (window.Kakao && window.Kakao.Auth) {
             window.Kakao.Auth.authorize({
-                redirectUri: `${process.env.NEXT_PUBLIC_SITE_URL}/swap`!
+                redirectUri: `${process.env.NEXT_PUBLIC_SITE_URL}/test`
             });
         } else {
             console.error('Kakao SDK not loaded');
