@@ -1,10 +1,8 @@
-interface KakaoKeywordSearchResult {
-    place_name: string;
-    address_name: string;
-    road_address_name: string;
-    y: string;  // 위도
-    x: string;  // 경도
-}
+
+import {KakaoResult} from "@/src/app/types/common/kakao";
+import {KakaoKeywordSearchResult} from "@/src/app/func/common/kakao";
+
+
 
 export async function searchAddressByKeyword(keyword: string): Promise<Array<{ name: string; address: string; roadAddress: string; latitude: number; longitude: number }>> {
     try {
@@ -41,5 +39,35 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<{ n
     }
 }
 
-// 사용 예시
-// searchAddressByKeyword("서초대로").then(results => console.log(results));
+
+
+export async function getAddressFromCoords(latitude: number, longitude: number): Promise<string> {
+    try {
+        const response = await fetch(
+            `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${longitude}&y=${latitude}`,
+            {
+                headers: {
+                    Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}`
+                }
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const result: KakaoResult = data.documents[0];
+
+        if (result.road_address) {
+            const road = result.road_address;
+            return `${road.region_1depth_name} ${road.region_2depth_name} ${road.region_3depth_name} ${road.road_name} ${road.main_building_no}${road.sub_building_no ? '-' + road.sub_building_no : ''} ${road.building_name ? '(' + road.building_name + ')' : ''}`.trim();
+        } else {
+            const jibun = result.address;
+            return `${jibun.region_1depth_name} ${jibun.region_2depth_name} ${jibun.region_3depth_name} ${jibun.mountain_yn === 'Y' ? '산 ' : ''}${jibun.main_address_no}${jibun.sub_address_no ? '-' + jibun.sub_address_no : ''}`.trim();
+        }
+    } catch (error) {
+        console.error('Error fetching address:', error);
+        return '주소를 찾을 수 없습니다.';
+    }
+}
