@@ -2,7 +2,7 @@ import {Dispatch, SetStateAction} from "react";
 import {LocationType} from "@/src/app/types/common/geo";
 
 
-const ButtonSellect = ({selectData, setStep} : {selectData: (length: number) => void , setStep:  Dispatch<SetStateAction<"0" | "1" | "2">>}) => {
+const ButtonSelect = ({selectData, setStep} : {selectData: (length: number) => void , setStep:  Dispatch<SetStateAction<"0" | "1" | "2">>}) => {
     const locationString = localStorage.getItem('userLocation');
     const location: LocationType | null = locationString ? JSON.parse(locationString) : null;
 
@@ -35,4 +35,4 @@ const ButtonSellect = ({selectData, setStep} : {selectData: (length: number) => 
     </div>
 }
 
-export default ButtonSellect
+export default ButtonSelect

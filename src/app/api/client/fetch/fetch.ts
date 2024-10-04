@@ -1,4 +1,5 @@
-import AuthUtils from "../../../app/func/common/auth.utills";
+import AuthUtils from "@/src/app/func/common/auth.utills";
+
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
 
@@ -119,7 +120,6 @@ export async function getSendRefreshToken(): Promise<string> {
     }
 
     const data = await response.json();
-    console.log(data)
     return data.result.token.token;
 }
 

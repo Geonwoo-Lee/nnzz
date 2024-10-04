@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="[deploy] 화면 ui 변경">
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/workbox-cb477421.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/workbox-cb477421.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/workbox-cb477421.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/workbox-cb477421.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(router)/swap/component/ButtonSellect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/component/ButtonSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/fetch/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/client/fetch/fetch.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/func/common/geo.utills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/func/common/geo.utills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +25,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="PerforceDirect.Settings">
     <option name="CHARSET" value="없음" />
@@ -32,37 +40,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/lee-geonwoo/Desktop/nnzz/public/icon",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/lee-geonwoo/Desktop/nnzz/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/igeon-u/Desktop/nnzz/src/app/api/client&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/igeon-u/Desktop/nnzz/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/icon" />
+      <recent name="$PROJECT_DIR$/src/app/api/client" />
       <recent name="$PROJECT_DIR$/src/app/(router)" />
       <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/public/icon" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/public/images/food" />
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/public/assets" />
+      <recent name="$PROJECT_DIR$/public/images/logo" />
+      <recent name="$PROJECT_DIR$/src/app/static" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -128,7 +136,9 @@
       <workItem from="1726468949661" duration="24251000" />
       <workItem from="1726735866330" duration="1627000" />
       <workItem from="1727081344255" duration="18327000" />
-      <workItem from="1727766719922" duration="10569000" />
+      <workItem from="1727766719922" duration="10902000" />
+      <workItem from="1727859486260" duration="1422000" />
+      <workItem from="1728004929554" duration="311000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -434,47 +444,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727778744695</updated>
     </task>
-    <task id="LOCAL-00039" summary="[deploy] Home carousel 이미지 추가">
+    <task id="LOCAL-00039" summary="[deploy] Home 이미지 크기 변경">
       <option name="closed" value="true" />
-      <created>1727791038153</created>
+      <created>1727778951745</created>
       <option name="number" value="00039" />
       <option name="presentableId" value="LOCAL-00039" />
       <option name="project" value="LOCAL" />
-      <updated>1727791038153</updated>
+      <updated>1727778951745</updated>
     </task>
-    <task id="LOCAL-00040" summary="[deploy] landing 화면 버튼과 컴포넌트 겹치지 않게 수정">
-      <option name="closed" value="true" />
-      <created>1727791709696</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1727791709696</updated>
-    </task>
-    <task id="LOCAL-00041" summary="[deploy] home carousel border, bg-color 변경">
-      <option name="closed" value="true" />
-      <created>1727791899143</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1727791899143</updated>
-    </task>
-    <task id="LOCAL-00042" summary="[deploy] app icon 전체 변경">
-      <option name="closed" value="true" />
-      <created>1727793176336</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1727793176336</updated>
-    </task>
-    <task id="LOCAL-00043" summary="[deploy] 화면 ui 변경">
-      <option name="closed" value="true" />
-      <created>1727793499866</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1727793499866</updated>
-    </task>
-    <option name="localTasksCounter" value="44" />
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,6 +471,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Project build error clear" />
+    <MESSAGE value="[deploy]" />
+    <MESSAGE value="[test] Project Setting last" />
+    <MESSAGE value="[deploy] Project Setting last" />
     <MESSAGE value="[deploy] PWA setting" />
     <MESSAGE value="[deploy] Swape test" />
     <MESSAGE value="[deploy] Ui Update" />
@@ -513,12 +495,8 @@
     <MESSAGE value="[deploy] 배포 build 에러 해결" />
     <MESSAGE value="[deploy] test용 url로 redirect 하게 수정" />
     <MESSAGE value="[deploy] splash screen 화면 좀 더 길게 수정 favicon 수정" />
-    <MESSAGE value="[deploy] Home carousel 이미지 추가" />
-    <MESSAGE value="[deploy] landing 화면 버튼과 컴포넌트 겹치지 않게 수정" />
-    <MESSAGE value="[deploy] home carousel border, bg-color 변경" />
-    <MESSAGE value="[deploy] app icon 전체 변경" />
-    <MESSAGE value="[deploy] 화면 ui 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 화면 ui 변경" />
+    <MESSAGE value="[deploy] Home 이미지 크기 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] Home 이미지 크기 변경" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

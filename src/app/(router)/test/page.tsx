@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Controller, useForm } from "react-hook-form";
-import { searchAddressToCoords } from "@/src/app/func/common/geo.utills";
+import {searchAddressByKeyword} from "@/src/app/func/common/geo.utills";
 import NaverMap from "@/src/app/component/client/map/NaverMap";
 
 interface FormData {
@@ -22,18 +22,18 @@ const TestPage = () => {
             address: "",
         }
     });
-
     const onSubmit = handleSubmit((data: FormData) => {
-        searchAddressToCoords(data.address).then((result) => {
-            if (result?.latitude && result?.longitude && result?.fullAddress) {
-                setPlaces(prevPlaces => [
-                    ...prevPlaces,
-                    {
-                        name: result.fullAddress,
-                        lat: result.latitude,
-                        lng: result.longitude
-                    }
-                ]);
+        searchAddressByKeyword(data.address).then((results) => {
+            if (results.length > 0) {
+                const newPlaces = results.map(result => ({
+                    name: result.roadAddress || result.address,
+                    lat: result.latitude,
+                    lng: result.longitude
+                }));
+
+                setPlaces(prevPlaces => [...prevPlaces, ...newPlaces]);
+
+                // 옵션: 첫 번째 결과로 지도 중심 이동
             } else {
                 alert('위치정보를 찾을 수 없습니다');
             }
