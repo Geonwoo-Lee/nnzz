@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/workbox-cb477421.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/workbox-cb477421.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/workbox-cb477421.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/workbox-cb477421.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(router)/swap/component/ButtonSellect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/component/ButtonSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/fetch/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/client/fetch/fetch.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/func/common/geo.utills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/func/common/geo.utills.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/global.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,11 +55,11 @@
       <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/images/food" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/public/images/logo" />
-      <recent name="$PROJECT_DIR$/src/app/static" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -139,6 +128,7 @@
       <workItem from="1727766719922" duration="10902000" />
       <workItem from="1727859486260" duration="1422000" />
       <workItem from="1728004929554" duration="311000" />
+      <workItem from="1728031249474" duration="161000" />
     </task>
     <task id="LOCAL-00001" summary="Project build error clear">
       <option name="closed" value="true" />
@@ -452,7 +442,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727778951745</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="[deploy] Home carousel 이미지 추가">
+      <option name="closed" value="true" />
+      <created>1728031360845</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1728031360845</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,7 +469,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Project build error clear" />
     <MESSAGE value="[deploy]" />
     <MESSAGE value="[test] Project Setting last" />
     <MESSAGE value="[deploy] Project Setting last" />
@@ -496,13 +493,14 @@
     <MESSAGE value="[deploy] test용 url로 redirect 하게 수정" />
     <MESSAGE value="[deploy] splash screen 화면 좀 더 길게 수정 favicon 수정" />
     <MESSAGE value="[deploy] Home 이미지 크기 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] Home 이미지 크기 변경" />
+    <MESSAGE value="[deploy] Home carousel 이미지 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] Home carousel 이미지 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/app/api/fetch/fetch.ts</url>
+          <url>file://$PROJECT_DIR$/src/app/api/client/fetch/fetch.ts</url>
           <line>44</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
