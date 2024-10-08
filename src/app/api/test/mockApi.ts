@@ -1,4 +1,4 @@
-import {LoginRes} from "@/src/app/types/common/user";
+import {LoginRes} from "@/src/app/types/models/user";
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 

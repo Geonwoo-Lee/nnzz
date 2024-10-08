@@ -4,7 +4,7 @@ import Card from "@/src/app/component/client/common/card/Card";
 import { useCardSwipe } from "@/src/app/hooks/useCardSwipe";
 import { animated, to } from '@react-spring/web'
 import ResultCard from "@/src/app/component/client/common/card/ResultCard";
-import {DeckProps} from "@/src/app/types/component/swape/deck";
+import {DeckProps} from "@/src/app/types/page/swape/deck";
 
 
 

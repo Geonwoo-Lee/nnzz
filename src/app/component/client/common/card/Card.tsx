@@ -1,7 +1,7 @@
 // Card.tsx
 import React from 'react'
 import Image from 'next/image'
-import {CardProps} from "@/src/app/types/component/swape/card";
+import {CardProps} from "@/src/app/types/page/swape/card";
 
 
 

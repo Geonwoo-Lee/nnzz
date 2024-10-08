@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect  } from 'react'
 import { useSpring } from '@react-spring/web'
-import {FoodItem} from "@/src/app/types/common/food";
+import {FoodItem} from "@/src/app/types/models/food";
 import {BindType} from "@/src/app/types/hook/cardSwipte";
 
 export type DragStatus = 'like' | 'dislike' | 'neutral';
