@@ -1,5 +1,5 @@
-import ConveyorCarousel from "@/src/app/component/client/conveyorCarousel/ConveyorCarousel";
-import {CarouselDirection} from "@/src/app/types/component/carousel";
+import ConveyorCarousel from "@/src/app/component/client/page/home/conveyorCarousel/ConveyorCarousel";
+import {CarouselDirection} from "@/src/app/types/component/home/carousel";
 import Image from 'next/image'
 
 

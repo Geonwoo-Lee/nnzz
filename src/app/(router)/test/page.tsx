@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { Controller, useForm } from "react-hook-form";
-import {searchAddressByKeyword} from "@/src/app/func/common/geo.utills";
-import NaverMap from "@/src/app/component/client/map/NaverMap";
+import {searchAddressByKeyword} from "@/src/app/func/common/geo.utils";
+import NaverMap from "@/src/app/component/client/common/map/NaverMap";
 
 interface FormData {
     address: string;

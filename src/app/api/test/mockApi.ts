@@ -11,7 +11,8 @@ export const mockApi = {
                 member: {
                     id: "1",
                     nickname: "Test User",
-                    email: "testuser@example.com"
+                    email: "testuser@example.com",
+                    profileImage: ''
                 }
             };
         }

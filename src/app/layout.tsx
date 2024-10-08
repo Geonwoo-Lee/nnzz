@@ -72,10 +72,10 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     const ReactQueryProvider = dynamic(() => import('../app/provider/ReactQueryProvider'), {ssr: false});
-    const SplashScreen = dynamic(() => import('../app/component/page/splash/SplashScreen'), {ssr: false});
+    const SplashScreen = dynamic(() => import('@/src/app/component/client/page/splash/SplashScreen'), {ssr: false});
     return (
         <html lang="ko">
-        <body data-theme="light" className={`${pretendard.variable} font-pretendard w-full max-w-[640px] mx-auto overflow-hidden"`}>
+        <body data-theme="light" className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}>
         <ReactQueryProvider>
             <SplashScreen>
             {children}

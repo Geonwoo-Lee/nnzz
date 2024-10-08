@@ -5,8 +5,8 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 
 export default function Home() {
-    const KakaoButton = dynamic(() => import('@/src/app/component/client/button/KakaoButton'), { ssr: false });
-    const HomeCarousel = dynamic(() => import('@/src/app/component/page/home/carousel/HomeCarousel'), {ssr: false});
+    const KakaoButton = dynamic(() => import('@/src/app/component/client/common/button/KakaoButton'), { ssr: false });
+    const HomeCarousel = dynamic(() => import('@/src/app/component/client/page/home/carousel/HomeCarousel'), {ssr: false});
 
     return (
         <div className="flex flex-col justify-between min-h-screen bg-white max-w-[640px] mx-auto">

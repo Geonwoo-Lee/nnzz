@@ -1,4 +1,4 @@
-import AuthUtils from "@/src/app/func/common/auth.utills";
+import AuthUtils from "@/src/app/func/common/auth.utils";
 
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";

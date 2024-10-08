@@ -1,5 +1,5 @@
 'use client'
-import Deck from "@/src/app/component/client/deck/Deck";
+import Deck from "@/src/app/component/client/page/swape/deck/Deck";
 import freeFoodData from "@/src/app/dummy/dummy";
 import {useFunnel} from "@/src/app/hooks/useFunnel";
 import {useEffect, useState} from "react";

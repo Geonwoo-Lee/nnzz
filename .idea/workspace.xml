@@ -4,8 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="627d0aaf-91d9-4547-ad91-46e873978388" name="변경" comment="[deploy] 이그노어 추가">
+      <change afterPath="$PROJECT_DIR$/public/svg/header/Close.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/svg/header/LeftArrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/svg/header/Map.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/svg/header/Settings.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/svg/header/Square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/svg/header/menu.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/svg/items/ArrowDown.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(router)/home/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(router)/home/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/client/common/button/KakaoButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/client/common/header-elements/Left.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/client/common/header-elements/Right.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/HomeMealSettingClient.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/component/HomeSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/layout/BasicLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/server/common/header/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/server/common/header/component/HeaderLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/server/common/header/component/Title.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/server/page/home/homeMealSettingServer/HomeMealSettingServer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/server/page/home/skeletons/HomeMealSettingSectionSkeleton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/func/common/date.utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/types/common/header.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/types/component/home/homeSelect.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/swap/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/test/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/client/fetch/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/client/fetch/fetch.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/test/apiTest.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/test/apiTest.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/test/mockApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/test/mockApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/button/KakaoButton.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/card/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/common/card/Card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/card/ResultCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/common/card/ResultCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/conveyorCarousel/ConveyorCarousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/home/conveyorCarousel/ConveyorCarousel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/deck/Deck.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/swape/deck/Deck.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/map/NaverMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/common/map/NaverMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/page/home/carousel/HomeCarousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/home/carousel/HomeCarousel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/page/splash/SplashScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/splash/SplashScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/func/common/auth.utills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/func/common/auth.utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/func/common/geo.utills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/func/common/geo.utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/hooks/useGeoloaction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hooks/useGeoloaction.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/types/common/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/common/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/types/component/card.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/component/swape/card.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/types/component/carousel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/component/home/carousel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/types/component/deck.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/component/swape/deck.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,13 +65,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PerforceDirect.Settings">
-    <option name="CHARSET" value="없음" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
-}</component>
-  <component name="ProjectId" id="2ljHTB4Hz9mTCjBzckcqiZKQ7mI" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2n8XcGT3ROCrkhBC6q2ZDRLPM78" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -29,40 +77,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/igeon-u/Desktop/nnzz/src/app/api/client&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/igeon-u/Desktop/nnzz/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
+    "ts.external.directory.path": "/Users/igeon-u/Desktop/nnzz/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/api/client" />
-      <recent name="$PROJECT_DIR$/src/app/(router)" />
-      <recent name="$PROJECT_DIR$/public" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/images/food" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$/public/assets" />
-      <recent name="$PROJECT_DIR$/public/images/logo" />
+      <recent name="$PROJECT_DIR$/public/svg/items" />
+      <recent name="$PROJECT_DIR$/src/app/types/component/swape" />
+      <recent name="$PROJECT_DIR$/src/app/types/component/home" />
+      <recent name="$PROJECT_DIR$/src/app/types/common" />
+      <recent name="$PROJECT_DIR$/src/app/component/server/page/home/skeletons" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -85,8 +124,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -100,414 +139,41 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="03924733-8c62-448f-b152-129dddc63979" name="변경" comment="" />
-      <created>1725686570841</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1725686570841</updated>
-      <workItem from="1725686572947" duration="3000000" />
-      <workItem from="1725694394151" duration="29000" />
-      <workItem from="1725694425418" duration="44000" />
-      <workItem from="1725694471821" duration="17000" />
-      <workItem from="1725694497677" duration="32000" />
-      <workItem from="1725694551023" duration="1123000" />
-      <workItem from="1725695679085" duration="2517000" />
-      <workItem from="1725698497746" duration="273000" />
-      <workItem from="1725698774714" duration="12000" />
-      <workItem from="1725698794628" duration="107000" />
-      <workItem from="1725698980994" duration="71000" />
-      <workItem from="1725699226893" duration="843000" />
-      <workItem from="1725951893954" duration="5836000" />
-      <workItem from="1726040690361" duration="4045000" />
-      <workItem from="1726108995112" duration="184000" />
-      <workItem from="1726124988466" duration="4461000" />
-      <workItem from="1726468949661" duration="24251000" />
-      <workItem from="1726735866330" duration="1627000" />
-      <workItem from="1727081344255" duration="18327000" />
-      <workItem from="1727766719922" duration="10902000" />
-      <workItem from="1727859486260" duration="1422000" />
-      <workItem from="1728004929554" duration="311000" />
-      <workItem from="1728031249474" duration="161000" />
-    </task>
-    <task id="LOCAL-00001" summary="Project build error clear">
+    <task id="LOCAL-00001" summary="[deploy] build 오류 해결">
       <option name="closed" value="true" />
-      <created>1725690506768</created>
+      <created>1728032501323</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1725690506768</updated>
+      <updated>1728032501323</updated>
     </task>
-    <task id="LOCAL-00002" summary="Project build error clear">
-      <option name="closed" value="true" />
-      <created>1725690691088</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1725690691088</updated>
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="627d0aaf-91d9-4547-ad91-46e873978388" name="변경" comment="[deploy] 이그노어 추가" />
+      <created>1728355754534</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728355754534</updated>
+      <workItem from="1728355755636" duration="14711000" />
     </task>
-    <task id="LOCAL-00003" summary="Project build error clear">
-      <option name="closed" value="true" />
-      <created>1725690879663</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1725690879663</updated>
-    </task>
-    <task id="LOCAL-00004" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725694664529</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1725694664529</updated>
-    </task>
-    <task id="LOCAL-00005" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725694688442</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1725694688442</updated>
-    </task>
-    <task id="LOCAL-00006" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725695024339</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1725695024339</updated>
-    </task>
-    <task id="LOCAL-00007" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725695255636</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1725695255636</updated>
-    </task>
-    <task id="LOCAL-00008" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725695695015</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1725695695015</updated>
-    </task>
-    <task id="LOCAL-00009" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725695943852</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1725695943852</updated>
-    </task>
-    <task id="LOCAL-00010" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725696237020</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1725696237020</updated>
-    </task>
-    <task id="LOCAL-00011" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725696337839</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1725696337839</updated>
-    </task>
-    <task id="LOCAL-00012" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725696791439</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1725696791439</updated>
-    </task>
-    <task id="LOCAL-00013" summary="[deploy]">
-      <option name="closed" value="true" />
-      <created>1725697524074</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1725697524074</updated>
-    </task>
-    <task id="LOCAL-00014" summary="[deploy] Project Setting last">
-      <option name="closed" value="true" />
-      <created>1725697647240</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1725697647240</updated>
-    </task>
-    <task id="LOCAL-00015" summary="[test] Project Setting last">
-      <option name="closed" value="true" />
-      <created>1725697836019</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1725697836019</updated>
-    </task>
-    <task id="LOCAL-00016" summary="[deploy] Project Setting last">
-      <option name="closed" value="true" />
-      <created>1725697919254</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1725697919254</updated>
-    </task>
-    <task id="LOCAL-00017" summary="[deploy] PWA setting">
-      <option name="closed" value="true" />
-      <created>1725699247433</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1725699247433</updated>
-    </task>
-    <task id="LOCAL-00018" summary="[deploy] Swape test">
-      <option name="closed" value="true" />
-      <created>1725957543881</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1725957543881</updated>
-    </task>
-    <task id="LOCAL-00019" summary="[deploy] Ui Update">
-      <option name="closed" value="true" />
-      <created>1726044071954</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1726044071954</updated>
-    </task>
-    <task id="LOCAL-00020" summary="[push] Type 정리">
-      <option name="closed" value="true" />
-      <created>1726045075608</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1726045075608</updated>
-    </task>
-    <task id="LOCAL-00021" summary="[deploy] pwa logo, seo 로고 추가">
-      <option name="closed" value="true" />
-      <created>1726125488566</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1726125488566</updated>
-    </task>
-    <task id="LOCAL-00022" summary="[deploy] favicon 추가">
-      <option name="closed" value="true" />
-      <created>1726125756907</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1726125756907</updated>
-    </task>
-    <task id="LOCAL-00023" summary="[deploy] favicon 추가">
-      <option name="closed" value="true" />
-      <created>1726128644627</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1726128644627</updated>
-    </task>
-    <task id="LOCAL-00024" summary="[deploy] favicon 추가">
-      <option name="closed" value="true" />
-      <created>1726129273953</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1726129273953</updated>
-    </task>
-    <task id="LOCAL-00025" summary="[deploy] 카카오톡 로그인 추가, 스왑 개수 추가 , 데이터 추가">
-      <option name="closed" value="true" />
-      <created>1726476201378</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1726476201378</updated>
-    </task>
-    <task id="LOCAL-00026" summary="[deploy] site Url 업데이트+">
-      <option name="closed" value="true" />
-      <created>1726476705179</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1726476705179</updated>
-    </task>
-    <task id="LOCAL-00027" summary="[deploy] site Url 업데이트+">
-      <option name="closed" value="true" />
-      <created>1726476842624</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1726476842624</updated>
-    </task>
-    <task id="LOCAL-00028" summary="[push] react-query 설정, 폴더 구조 변경">
-      <option name="closed" value="true" />
-      <created>1726712139306</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1726712139306</updated>
-    </task>
-    <task id="LOCAL-00029" summary="[deploy] Project Setting favicon 이동 layout.tsx 수정, config 수정">
-      <option name="closed" value="true" />
-      <created>1726712598711</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1726712598711</updated>
-    </task>
-    <task id="LOCAL-00030" summary="[push] api fetch 코드, 로그인 테스트 완료">
-      <option name="closed" value="true" />
-      <created>1726734673821</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1726734673821</updated>
-    </task>
-    <task id="LOCAL-00031" summary="[deploy] 주소 검색, 위치기반 데이터 패칭">
-      <option name="closed" value="true" />
-      <created>1727084134135</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1727084134135</updated>
-    </task>
-    <task id="LOCAL-00032" summary="[deploy] 여러개의 위치 카카오 지도 pinned">
-      <option name="closed" value="true" />
-      <created>1727511886959</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1727511886959</updated>
-    </task>
-    <task id="LOCAL-00033" summary="[deploy] 카카오 타입 추가">
-      <option name="closed" value="true" />
-      <created>1727512357393</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1727512357393</updated>
-    </task>
-    <task id="LOCAL-00034" summary="[deploy] 프로덕션 env 수정">
-      <option name="closed" value="true" />
-      <created>1727512604304</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1727512604304</updated>
-    </task>
-    <task id="LOCAL-00035" summary="[deploy] 네이버 개발자 가입 및 api 신청 완료, 네이버 지도 변경 완료 , 지도 친 변경 완료,네이버 env 설정 완료, HomeCarousel 에셋 없이 완료, splash 화면 완료">
-      <option name="closed" value="true" />
-      <created>1727778049476</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1727778049476</updated>
-    </task>
-    <task id="LOCAL-00036" summary="[deploy] 배포 build 에러 해결">
-      <option name="closed" value="true" />
-      <created>1727778295227</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1727778295227</updated>
-    </task>
-    <task id="LOCAL-00037" summary="[deploy] test용 url로 redirect 하게 수정">
-      <option name="closed" value="true" />
-      <created>1727778462476</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1727778462476</updated>
-    </task>
-    <task id="LOCAL-00038" summary="[deploy] splash screen 화면 좀 더 길게 수정 favicon 수정">
-      <option name="closed" value="true" />
-      <created>1727778744695</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1727778744695</updated>
-    </task>
-    <task id="LOCAL-00039" summary="[deploy] Home 이미지 크기 변경">
-      <option name="closed" value="true" />
-      <created>1727778951745</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1727778951745</updated>
-    </task>
-    <task id="LOCAL-00040" summary="[deploy] Home carousel 이미지 추가">
-      <option name="closed" value="true" />
-      <created>1728031360845</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1728031360845</updated>
-    </task>
-    <option name="localTasksCounter" value="41" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="[deploy]" />
-    <MESSAGE value="[test] Project Setting last" />
-    <MESSAGE value="[deploy] Project Setting last" />
-    <MESSAGE value="[deploy] PWA setting" />
-    <MESSAGE value="[deploy] Swape test" />
-    <MESSAGE value="[deploy] Ui Update" />
-    <MESSAGE value="[push] Type 정리" />
-    <MESSAGE value="[deploy] pwa logo, seo 로고 추가" />
-    <MESSAGE value="[deploy] favicon 추가" />
-    <MESSAGE value="[deploy] 카카오톡 로그인 추가, 스왑 개수 추가 , 데이터 추가" />
-    <MESSAGE value="[deploy] site Url 업데이트+" />
-    <MESSAGE value="[push] react-query 설정, 폴더 구조 변경" />
-    <MESSAGE value="[deploy] Project Setting favicon 이동 layout.tsx 수정, config 수정" />
-    <MESSAGE value="[deploy] api fetch 코드," />
-    <MESSAGE value="[push] api fetch 코드, 로그인 테스트 완료" />
-    <MESSAGE value="[deploy] 주소 검색, 위치기반 데이터 패칭" />
-    <MESSAGE value="[deploy] 여러개의 위치 카카오 지도 pinned" />
-    <MESSAGE value="[deploy] 카카오 타입 추가" />
-    <MESSAGE value="[deploy] 프로덕션 env 수정" />
-    <MESSAGE value="[deploy] 네이버 개발자 가입 및 api 신청 완료, 네이버 지도 변경 완료 , 지도 친 변경 완료,네이버 env 설정 완료, HomeCarousel 에셋 없이 완료, splash 화면 완료" />
-    <MESSAGE value="[deploy] 배포 build 에러 해결" />
-    <MESSAGE value="[deploy] test용 url로 redirect 하게 수정" />
-    <MESSAGE value="[deploy] splash screen 화면 좀 더 길게 수정 favicon 수정" />
-    <MESSAGE value="[deploy] Home 이미지 크기 변경" />
-    <MESSAGE value="[deploy] Home carousel 이미지 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] Home carousel 이미지 추가" />
+    <MESSAGE value="[deploy] build 오류 해결" />
+    <MESSAGE value="[deploy] 이그노어 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 이그노어 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/app/api/client/fetch/fetch.ts</url>
-          <line>44</line>
+          <url>file://$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/HomeMealSettingClient.tsx</url>
+          <line>10</line>
+          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/app/(router)/test/page.tsx</url>
-          <line>11</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
