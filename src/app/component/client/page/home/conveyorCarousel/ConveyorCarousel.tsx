@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import {CarouselDirection} from "@/src/app/types/component/carousel";
+import {CarouselDirection} from "@/src/app/types/component/home/carousel";
 
 const ConveyorCarousel = ({children, speed, direction}: {children: React.ReactNode, speed: number, direction?: CarouselDirection}) => {
     return (

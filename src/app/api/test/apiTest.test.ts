@@ -1,12 +1,12 @@
 import { mockApi } from "../../../app/api/test/mockApi";
-import { fetchWithoutToken, fetchWithToken } from "../../../app/api/fetch/fetch";
-import AuthUtils from "../../../app/func/common/auth.utills";
+import AuthUtils from "../../func/common/auth.utils";
+import {fetchWithoutToken, fetchWithToken} from "@/src/app/api/client/fetch/fetch";
 
 // Mock the global fetch function
 global.fetch = jest.fn();
 
 // Mock AuthUtils
-jest.mock("../../../app/func/common/auth.utills", () => ({
+jest.mock("../../func/common/auth.utils", () => ({
     setToken: jest.fn(),
     getToken: jest.fn(),
 }));

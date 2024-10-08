@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {getAddressFromCoords} from "@/src/app/func/common/geo.utills";
+import {getAddressFromCoords} from "@/src/app/func/common/geo.utils";
 import {LocationType} from "@/src/app/types/common/geo";
 
 

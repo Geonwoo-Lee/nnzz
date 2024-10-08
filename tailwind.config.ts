@@ -144,6 +144,11 @@ const config: Config = {
       colors: {
         ...colors,
       },
+      height: {
+        'header-height': '52px',
+        'basic-body-with-header': 'calc(100vh - 52px)',
+        'basic-menu-body': '100vh',
+      },
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'translateX(-2px)' },
@@ -160,6 +165,8 @@ const config: Config = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
 };
 export default config;

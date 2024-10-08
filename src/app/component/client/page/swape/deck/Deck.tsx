@@ -1,10 +1,10 @@
 'use client'
 import React, {  useRef } from 'react'
-import Card from "@/src/app/component/client/card/Card";
+import Card from "@/src/app/component/client/common/card/Card";
 import { useCardSwipe } from "@/src/app/hooks/useCardSwipe";
 import { animated, to } from '@react-spring/web'
-import ResultCard from "@/src/app/component/client/card/ResultCard";
-import {DeckProps} from "@/src/app/types/component/deck";
+import ResultCard from "@/src/app/component/client/common/card/ResultCard";
+import {DeckProps} from "@/src/app/types/component/swape/deck";
 
 
 
