@@ -1,4 +1,4 @@
-import {DayInfo} from "@/src/app/types/component/home/homeSelect";
+import {DayInfo} from "@/src/app/types/page/home/homeSelect";
 
 
 class DateUtils {

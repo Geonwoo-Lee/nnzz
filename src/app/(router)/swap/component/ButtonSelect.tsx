@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction} from "react";
-import {LocationType} from "@/src/app/types/common/geo";
+import {LocationType} from "@/src/app/types/models/geo";
 
 
 const ButtonSelect = ({selectData, setStep} : {selectData: (length: number) => void , setStep:  Dispatch<SetStateAction<"0" | "1" | "2">>}) => {

@@ -3,6 +3,7 @@ import HomeMealSettingServer from "@/src/app/component/server/page/home/homeMeal
 
 
 const Home = () => {
+
     return (
         <div>
             <HomeMealSettingServer/>

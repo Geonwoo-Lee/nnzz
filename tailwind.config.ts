@@ -7,6 +7,7 @@ interface ColorsType {
 export const colors: ColorsType = {
   'common': '#161616',
   'common-white': '#fff',
+  'backdrop': '#1A1A1A66',
   'slate-50': '#f8fafc',
   'slate-100': '#f1f5f9',
   'slate-200': '#e2e8f0',

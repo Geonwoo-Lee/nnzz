@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import {ResultCardProps} from "@/src/app/types/component/swape/card";
+import {ResultCardProps} from "@/src/app/types/page/swape/card";
 
 const ResultCard: React.FC<ResultCardProps> = ({ image, category, name, priceRange, index }) => {
     const [isVisible, setIsVisible] = useState(false);

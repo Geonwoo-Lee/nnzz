@@ -4,7 +4,7 @@ import Header from "../Header";
 
 const HeaderLayout = ({title, type, setting, headerBg, map, close, menu, square}: HeaderProps) => {
     return (
-        <header className={`w-full max-w-[640px] flex items-center justify-between relative h-header-height ${headerBg ? `bg-${headerBg}` : 'bg-common-white'}`}>
+        <header className={`w-full max-w-[640px] flex items-center justify-between relative h-header-height ${headerBg ? `bg-${headerBg}` : 'bg-slate-50'}`}>
             <div className=" flex-shrink-0 ">
                 <Header.Left type={type} setting={setting}/>
             </div>

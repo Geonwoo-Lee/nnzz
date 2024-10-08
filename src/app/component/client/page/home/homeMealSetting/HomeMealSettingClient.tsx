@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from "react";
 import DateUtils from "@/src/app/func/common/date.utils";
-import {DayInfo, MealTimingType} from "@/src/app/types/component/home/homeSelect";
+import {DayInfo, MealTimingType} from "@/src/app/types/page/home/homeSelect";
 import HomeSelect from "@/src/app/component/client/page/home/homeMealSetting/component/HomeSelect";
 import {useRouter} from "next/navigation";
 

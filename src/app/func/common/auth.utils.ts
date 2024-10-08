@@ -1,4 +1,4 @@
-import {LoginRes, UserInfo} from "@/src/app/types/common/user";
+import {LoginRes, UserInfo} from "@/src/app/types/models/user";
 
 export default class AuthUtils {
     public static isLoggedIn() {

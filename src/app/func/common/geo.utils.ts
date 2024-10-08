@@ -1,5 +1,5 @@
 
-import {KakaoResult} from "@/src/app/types/common/kakao";
+import {KakaoResult} from "@/src/app/types/models/kakao";
 import {KakaoKeywordSearchResult} from "@/src/app/func/common/kakao";
 
 

@@ -1,4 +1,4 @@
-import {FoodItem} from "@/src/app/types/common/food";
+import {FoodItem} from "@/src/app/types/models/food";
 import {Dispatch, SetStateAction} from "react";
 
 export interface DeckProps {
