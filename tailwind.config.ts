@@ -160,6 +160,9 @@ const config: Config = {
           '100%': { opacity: "1" },
         },
       },
+      boxShadow: {
+        'bottom-sheet-top': '0 20px 92px 6px rgba(0, 0, 0, 0.1)',
+      },
       animation: {
         wiggle: 'wiggle 0.15s linear infinite',
         fadeInPage: 'fadeIn 0.8s  forwards',

@@ -62,7 +62,7 @@ class DateUtils {
 
             const month = String(currentDate.getMonth() + 1).padStart(2, '0');
             const date = String(currentDate.getDate()).padStart(2, '0');
-            const dateString = `${month}${date}`;
+            const dateString = `${month}월 ${date}일`;
 
             let dayString: string;
             if (i === 0) {
@@ -83,6 +83,19 @@ class DateUtils {
 
         return resultDate;
     }
+
+    public  static  parseDateString = (dateString: string): Date | null => {
+        const [month, day] = dateString.split('월 ');
+        if (!month || !day) return null;
+
+        const currentYear = new Date().getFullYear();
+        const parsedMonth = parseInt(month, 10) - 1;
+        const parsedDay = parseInt(day.replace('일', ''), 10);
+
+        if (isNaN(parsedMonth) || isNaN(parsedDay)) return null;
+
+        return new Date(currentYear, parsedMonth, parsedDay);
+    };
 }
 
 export default DateUtils

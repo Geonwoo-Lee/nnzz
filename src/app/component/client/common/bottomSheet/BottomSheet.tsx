@@ -1,10 +1,11 @@
 'use client'
-import React from 'react';
-import { animated, useTransition } from "react-spring";
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { animated, useTransition, useSpring } from "react-spring";
 import { BottomSheetPropsType } from "@/src/app/types/common/bottomSheet";
 
 interface ExtendedBottomSheetPropsType extends BottomSheetPropsType {
     backdrop?: boolean;
+    animation?: boolean;
 }
 
 const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
@@ -12,50 +13,68 @@ const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
                                                                  close,
                                                                  children,
                                                                  nonPadding,
-                                                                 backdrop = true, // 기본값을 true로 설정
+                                                                 backdrop = true,
+                                                                 animation = true,
                                                              }) => {
-    const transitionConfig = {
-        from: { opacity: 1, transform: "translateY(100%)" },
-        enter: { opacity: 1, transform: "translateY(0%)" },
-        leave: { opacity: 0, transform: "translateY(100%)" },
-    };
+    const [windowWidth, setWindowWidth] = useState(0);
 
-    const backdropTransitions = useTransition(open && backdrop, transitionConfig);
-    const sheetTransitions = useTransition(open, transitionConfig);
+    const handleResize = useCallback(() => {
+        setWindowWidth(window.innerWidth);
+    }, []);
+
+    useEffect(() => {
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [handleResize]);
+
+    const backdropTransition = useTransition(open, {
+        from: { opacity: 0 },
+        enter: { opacity: backdrop ? 1 : 0 },
+        leave: { opacity: 0 },
+    });
+
+    const sheetSpring = useSpring({
+        transform: open ? 'translateY(0%)' : 'translateY(100%)',
+        config: { tension: 400, friction: 45 },
+    });
+
+    const maxWidth = 640;
+    const width = Math.min(windowWidth, maxWidth);
+    const leftPosition = (windowWidth - width) / 2;
+
+    const sheetStyle = useMemo(() => ({
+        ...sheetSpring,
+        display: open ? 'block' : 'none',
+        width: `${width}px`,
+        left: `${leftPosition}px`,
+        transform: animation ? sheetSpring.transform : 'translateY(0%)',
+    }), [sheetSpring, open, width, leftPosition, animation]);
 
     return (
         <>
-            {backdropTransitions((style, item) =>
-                item ? (
-                    <animated.div
-                        style={{
-                            ...style,
-                            transform: undefined,
-                            maxWidth: "640px",
-                            margin: "0 auto",
-                        }}
-                        onClick={close}
-                        className="fixed inset-0 bg-backdrop bg-opacity-10 z-[60]"
-                    ></animated.div>
-                ) : null
+            {backdropTransition((style, item) =>
+                    item && (
+                        <animated.div
+                            style={style}
+                            onClick={close}
+                            className="fixed inset-0 bg-backdrop bg-opacity-10 z-[60]"
+                        />
+                    )
             )}
 
-            {sheetTransitions((style, item) =>
-                item ? (
-                    <animated.div
-                        style={{ ...style, left: "50%", transform: "translateX(-50%)" }}
-                        className="w-full max-w-[640px] bg-common-white rounded-t-[12px] max-h-1/2 fixed bottom-0 z-[60]"
-                    >
-                        <div
-                            className={`${!nonPadding && "pl-6 pr-6 pt-[24px] pb-[34px]"}`}
-                        >
-                            {children}
-                        </div>
-                    </animated.div>
-                ) : null
-            )}
+            <animated.div
+                style={sheetStyle}
+                className="bg-common-white shadow-bottom-sheet-top rounded-t-[12px] fixed bottom-0 z-[60]"
+            >
+                <div
+                    className={`${!nonPadding ? "px-6 pt-6 pb-8" : ""} max-h-[calc(100vh-80px)] overflow-y-auto`}
+                >
+                    {children}
+                </div>
+            </animated.div>
         </>
     );
 };
 
-export default BottomSheet;
+export default React.memo(BottomSheet);
