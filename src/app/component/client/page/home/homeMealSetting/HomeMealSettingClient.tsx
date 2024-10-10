@@ -59,11 +59,11 @@ const HomeMealSettingClient = () => {
                먹을 음식 <HomeSelect selected={wayToFind !== '어떻게 고를까요?'} data={wayToFind} callBack={() => {
                 }}/>
             </div>
-            <BottomSheet open={mealTimingModal} backdrop={false} close={() => {
+            <BottomSheet open={mealTimingModal} nonPadding={true} backdrop={false} close={() => {
                 setMealTimingModal(false)
             }}>
-                <div className='flex flex-col gap-10'>
-                    <div className='flex flex-col gap-3'>
+                <div className='flex flex-col gap-10 pb-8 pt-6'>
+                    <div className='flex flex-col gap-3 px-6'>
                         <div className='text-lg font-bold'>
                             언제 시작하시나요?
                         </div>
@@ -74,7 +74,7 @@ const HomeMealSettingClient = () => {
                     <div className="w-full overflow-x-auto">
                         <div className="flex flex-nowrap gap-2 w-max">
                             {mealTime.map((el, index) => (
-                                <div key={index} className="flex-shrink-0">
+                                <div key={index} className={`${index === 0 ? 'ml-6' :''} ${index === mealTime.length - 1 ? 'mr-6' :''}`} >
                                     <DateCircle
                                         data={el}
                                         callBack={selectDate}
@@ -84,7 +84,7 @@ const HomeMealSettingClient = () => {
                             ))}
                         </div>
                     </div>
-                    <div className='flex flex-row gap-4 w-full'>
+                    <div className='flex flex-row gap-4 w-full px-6'>
                         <MealTimingSquare type={'lunch'} callBack={() => {
                             setMealTiming('점심')
                         }} active={mealTiming === '점심'}/>
