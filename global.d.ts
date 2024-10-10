@@ -134,11 +134,15 @@ interface KakaoLatLngBounds {
 interface KakaoStatic {
     init(appKey: string): void;
     isInitialized(): boolean;
-    maps: any
+    maps: any;
     Auth: {
         authorize(options: { redirectUri: string }): void;
         getStatusInfo(): Promise<{ status: string }>;
         setAccessToken(token: string): void;
+        loginForm(options: {
+            success: (authObj: any) => void;
+            fail: (error: any) => void;
+        }): void;
     };
 }
 

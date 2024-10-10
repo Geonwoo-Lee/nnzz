@@ -2,10 +2,10 @@ import React from 'react';
 import { HomeSelectProps } from "@/src/app/types/page/home/homeSelect";
 import ArrowDown from '../../../../../../../../public/svg/items/common/ArrowDown.svg'
 
-const HomeSelect = ({ data, callBack }: HomeSelectProps) => {
+const HomeSelect = ({ data, callBack, selected }: HomeSelectProps) => {
     return (
         <div
-            className='bg-slate-50 rounded-[12px] max-w-[400px] w-fit overflow-hidden'
+            className={`${selected ? 'bg-slate-50' : 'bg-common-white'} rounded-[12px] max-w-[400px] w-fit overflow-hidden`}
             onClick={callBack}
         >
             <div className='px-3 py-[11px] flex flex-row items-center gap-1'>

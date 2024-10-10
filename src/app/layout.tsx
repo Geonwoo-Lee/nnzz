@@ -75,7 +75,7 @@ export default function RootLayout({
     const SplashScreen = dynamic(() => import('@/src/app/component/client/page/splash/SplashScreen'), {ssr: false});
     return (
         <html lang="ko">
-        <body data-theme="light" className={`${pretendard.variable} font-pretendard bg-slate-50 w-full max-w-[640px] mx-auto overflow-hidden"`}>
+        <body data-theme="light" className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}>
         <ReactQueryProvider>
             <SplashScreen>
             {children}

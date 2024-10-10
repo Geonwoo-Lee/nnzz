@@ -6,6 +6,7 @@ export type DayInfo = {
 export interface HomeSelectProps {
     data: string,
     callBack: () => void
+    selected: boolean
 }
 
 export type MealTimingType = '점심' | '저녁' | ''

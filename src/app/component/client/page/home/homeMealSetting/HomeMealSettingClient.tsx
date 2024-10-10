@@ -48,15 +48,15 @@ const HomeMealSettingClient = () => {
                 김냠냠님,
             </div>
             <div className='flex flex-row gap-1 items-center font-medium text-xxl'>
-                <HomeSelect callBack={moveToMap} data={selectedLocation}/> 에서
+                <HomeSelect selected={false} callBack={moveToMap} data={selectedLocation}/> 에서
             </div>
             <div className='font-medium text-xxl flex flex-row gap-1 items-center'>
-                <HomeSelect data={`${selectedMealTime.day} ${mealTiming}`} callBack={() => {
+                <HomeSelect selected={!!selectedMealTime} data={`${selectedMealTime.day} ${mealTiming}`} callBack={() => {
                     setMealTimingModal(true)
                 }}/>에
             </div>
             <div className='font-medium text-xxl flex flex-row gap-1 items-center'>
-               먹을 음식 <HomeSelect data={wayToFind} callBack={() => {
+               먹을 음식 <HomeSelect selected={wayToFind !== '어떻게 고를까요?'} data={wayToFind} callBack={() => {
                 }}/>
             </div>
             <BottomSheet open={mealTimingModal} backdrop={false} close={() => {

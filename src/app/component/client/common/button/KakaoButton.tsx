@@ -14,15 +14,21 @@ export default function Login() {
     useEffect(() => {
         if (typeof window !== 'undefined' && window.Kakao) {
             if (!window.Kakao.isInitialized()) {
-                window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_REST_KEY as string);
+                window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY as string);
             }
         }
     }, [router]);
 
     const loginWithKakao = () => {
         if (window.Kakao && window.Kakao.Auth) {
-            window.Kakao.Auth.authorize({
-                redirectUri: `${process.env.NEXT_PUBLIC_SITE_URL}/home`
+            window.Kakao.Auth.loginForm({
+                success: function(authObj) {
+                    console.log(authObj);
+                    router.push('/home');
+                },
+                fail: function(err) {
+                    console.error(err);
+                },
             });
         } else {
             console.error('Kakao SDK not loaded');
