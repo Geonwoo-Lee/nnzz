@@ -7,11 +7,10 @@
     <list default="true" id="627d0aaf-91d9-4547-ad91-46e873978388" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/component/client/common/button/KakaoButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/common/button/KakaoButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/HomeMealSettingClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/HomeMealSettingClient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/component/HomeSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/component/HomeSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/types/page/home/homeSelect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/page/home/homeSelect.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/common/header-elements/Right.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/common/header-elements/Right.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +114,7 @@
       <workItem from="1728355755636" duration="17226000" />
       <workItem from="1728537272624" duration="6351000" />
       <workItem from="1728545303073" duration="2131000" />
-      <workItem from="1728547872155" duration="865000" />
+      <workItem from="1728547872155" duration="3214000" />
     </task>
     <task id="LOCAL-00002" summary="[deploy] Home UI 일부 구현 및 헤더 , 전체 Layout 설정, 전체 폴더 정리">
       <option name="closed" value="true" />
@@ -165,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728545349418</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[deploy] kakao login sdk =&gt; popup 으로 변경">
+      <option name="closed" value="true" />
+      <created>1728548848621</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728548848621</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +187,8 @@
     <MESSAGE value="[push] 홈화면 mealTiming 모달" />
     <MESSAGE value="[deploy] nnzz 배포" />
     <MESSAGE value="[deploy] build 오류 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] build 오류 수정" />
+    <MESSAGE value="[deploy] kakao login sdk =&gt; popup 으로 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] kakao login sdk =&gt; popup 으로 변경" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
