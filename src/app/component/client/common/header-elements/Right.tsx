@@ -19,7 +19,6 @@ const Right = ({ map, menu, square, close, setting}: {
 }) => {
     const router = useRouter()
     const rightIconRenderer = () => {
-        console.log(setting, map, menu, square, close)
         if (map) {
             return <Map onClick={() => {
 

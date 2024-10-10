@@ -143,6 +143,10 @@ interface KakaoStatic {
             success: (authObj: any) => void;
             fail: (error: any) => void;
         }): void;
+        login(options: {
+            success: (authObj: any) => void;
+            fail: (error: any) => void;
+        }): void;
     };
 }
 

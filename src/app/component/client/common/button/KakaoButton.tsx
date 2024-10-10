@@ -21,9 +21,9 @@ export default function Login() {
 
     const loginWithKakao = () => {
         if (window.Kakao && window.Kakao.Auth) {
-            window.Kakao.Auth.loginForm({
+            window.Kakao.Auth.login({
                 success: function(authObj) {
-                    console.log(authObj);
+                    console.log(authObj)
                     router.push('/home');
                 },
                 fail: function(err) {
