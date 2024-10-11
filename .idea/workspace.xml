@@ -5,8 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="627d0aaf-91d9-4547-ad91-46e873978388" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/public/images/items/FastFind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/items/SlowFind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/svg/header/NnzzHeaderLogo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/client/page/home/foodieScheduleBottomSheet/FoodieScheduleBottomSheet.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/client/page/home/foodieWay/FoodieWay.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/component/client/page/home/foodieWayBottomSheet/FoodieWayBottomSheet.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/types/page/home/foodieWay.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/types/page/home/modals.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(router)/home/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(router)/home/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/common/bottomSheet/BottomSheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/common/bottomSheet/BottomSheet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/common/header-elements/Left.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/common/header-elements/Left.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/common/header-elements/Right.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/common/header-elements/Right.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/client/page/home/dateCircle/DateCircle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/home/dateCircle/DateCircle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/HomeMealSettingClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/home/homeMealSetting/HomeMealSettingClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/layout/BasicLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/layout/BasicLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/server/common/header/component/HeaderLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/server/common/header/component/HeaderLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/types/common/header.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/types/common/header.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,14 +68,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/svg/header" />
+      <recent name="$PROJECT_DIR$/public/images/items" />
       <recent name="$PROJECT_DIR$/public/svg/items/home" />
       <recent name="$PROJECT_DIR$/public/svg/items/common" />
       <recent name="$PROJECT_DIR$/public/svg/items" />
-      <recent name="$PROJECT_DIR$/src/app/types/models" />
-      <recent name="$PROJECT_DIR$/src/app/types/component/swape" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -78,8 +98,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -110,7 +130,9 @@
       <workItem from="1728355755636" duration="17226000" />
       <workItem from="1728537272624" duration="6351000" />
       <workItem from="1728545303073" duration="2131000" />
-      <workItem from="1728547872155" duration="4681000" />
+      <workItem from="1728547872155" duration="5607000" />
+      <workItem from="1728607558590" duration="3405000" />
+      <workItem from="1728633192312" duration="3424000" />
     </task>
     <task id="LOCAL-00002" summary="[deploy] Home UI 일부 구현 및 헤더 , 전체 Layout 설정, 전체 폴더 정리">
       <option name="closed" value="true" />
@@ -192,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728553784841</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="[deploy] bottom sheet 패딩값 변경 및 Date circle padding -&gt; margin">
+      <option name="closed" value="true" />
+      <created>1728554126954</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728554126954</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +240,8 @@
     <MESSAGE value="[deploy] kakao login sdk =&gt; popup 으로 변경" />
     <MESSAGE value="[deploy] header 색 변경" />
     <MESSAGE value="[deploy] select 색 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] select 색 변경" />
+    <MESSAGE value="[deploy] bottom sheet 패딩값 변경 및 Date circle padding -&gt; margin" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] bottom sheet 패딩값 변경 및 Date circle padding -&gt; margin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

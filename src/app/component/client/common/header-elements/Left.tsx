@@ -1,12 +1,14 @@
 'use client'
 
 import HistoryBack from "../../../../../../public/svg/header/LeftArrow.svg";
+import NnzzHeaderLogo from '../../../../../../public/svg/header/NnzzHeaderLogo.svg'
 import { useRouter} from "next/navigation";
 import {HeaderTypes} from "@/src/app/types/common/header";
 
-const Left = ({type}: {
+const Left = ({type, logo}: {
     type: HeaderTypes,
-    setting?: boolean
+    setting?: boolean,
+    logo?: boolean
 }) => {
     const router = useRouter()
     const historyBack = () => {
@@ -14,6 +16,9 @@ const Left = ({type}: {
     }
 
     const leftIRenderer = () => {
+        if(logo) {
+            return <NnzzHeaderLogo/>
+        }
         if (type === "history") {
             return <HistoryBack onClick={historyBack}/>
         }

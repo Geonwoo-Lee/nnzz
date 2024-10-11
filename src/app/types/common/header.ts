@@ -15,5 +15,7 @@ export interface HeaderProps {
     square?: boolean;
     close?: boolean;
     menu?: boolean;
+    logo?: boolean;
+    profileImage?: boolean
 }
 

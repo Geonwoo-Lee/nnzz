@@ -4,7 +4,7 @@ import {ReactNode} from "react";
 
 
 const HomeLayout = ({children}: {children: ReactNode}) => {
-    return <BasicLayout header={true} headerTitle={''}  setting={true} headerType={HeaderTypes.basic} >
+    return <BasicLayout header={true} headerTitle={''}  profileImage={true} logo={true} headerType={HeaderTypes.basic} >
         {children}
     </BasicLayout>
 }

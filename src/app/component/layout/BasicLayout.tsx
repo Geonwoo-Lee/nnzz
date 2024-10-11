@@ -3,7 +3,7 @@ import {HeaderTypes} from "@/src/app/types/common/header";
 import Header from "@/src/app/component/server/common/header/Header";
 
 
-const BasicLayout = ({children, header, headerTitle, headerType, map, setting, menu, square, close}: {
+const BasicLayout = ({children, header, headerTitle, headerType, map, setting, menu, square, close, logo, profileImage}: {
     children: ReactNode,
     header: boolean,
     headerTitle: string,
@@ -13,6 +13,8 @@ const BasicLayout = ({children, header, headerTitle, headerType, map, setting, m
     square?: boolean;
     close?: boolean;
     menu?: boolean;
+    logo?: boolean;
+    profileImage?: boolean
 }) => {
     const bodyHeightRenderer = () => {
         if (header) {
@@ -24,7 +26,7 @@ const BasicLayout = ({children, header, headerTitle, headerType, map, setting, m
     return <section>
         {
             header && <div className="pl-4 pr-4">
-                <Header.HeaderLayout setting={setting} map={map} close={close} square={square} menu={menu} type={headerType} title={headerTitle} />
+                <Header.HeaderLayout logo={logo} profileImage={profileImage} setting={setting} map={map} close={close} square={square} menu={menu} type={headerType} title={headerTitle} />
             </div>
         }
         <div className={`${bodyHeightRenderer()} overflow-y-scroll`}>

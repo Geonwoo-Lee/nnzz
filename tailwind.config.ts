@@ -126,27 +126,59 @@ const config: Config = {
         poppins: ['var(--font-pretendard)'],
       },
       fontSize: {
-        'xxs': ['0.6875rem', { lineHeight: '1.2' }],  // 11px
-        'xs': ['0.75rem', { lineHeight: '1.2' }],     // 12px
-        'sm': ['0.875rem', { lineHeight: '1.2' }],    // 14px
-        'base': ['1rem', { lineHeight: '1.2' }],      // 16px
-        'md': ['1.125rem', { lineHeight: '1.2' }],    // 18px
-        'lg': ['1.25rem', { lineHeight: '1.2' }],     // 20px
-        'xl': ['1.375rem', { lineHeight: '1.2' }],    // 22px
-        '2xl': ['1.5625rem', { lineHeight: '1.2' }],  // 25px
-        '3xl': ['1.75rem', { lineHeight: '1.2' }],    // 28px
-        '4xl': ['2rem', { lineHeight: '1.2' }],       // 32px
-        '5xl': ['2.25rem', { lineHeight: '1.2' }],    // 36px
-        '6xl': ['2.5rem', { lineHeight: '1.2' }],     // 40px
-        '7xl': ['2.8125rem', { lineHeight: '1.2' }],  // 45px
-        '8xl': ['3.1875rem', { lineHeight: '1.2' }],  // 51px
-        '9xl': ['3.625rem', { lineHeight: '1.2' }],   // 58px
+        'caption3': ['0.6875rem', { lineHeight: '0.786rem' }],   // 11px
+        'caption2': ['0.75rem', { lineHeight: '0.857rem' }],     // 12px
+        'caption1': ['0.875rem', { lineHeight: '1rem' }],        // 14px
+        'body2': ['1rem', { lineHeight: '1.143rem' }],           // 16px
+        'body1': ['1.125rem', { lineHeight: '1.286rem' }],       // 18px
+        'title2': ['1.25rem', { lineHeight: '1.429rem' }],       // 20px
+        'title1': ['1.375rem', { lineHeight: '1.571rem' }],      // 22px
+        'heading4': ['1.5625rem', { lineHeight: '1.786rem' }],   // 25px
+        'heading3': ['1.75rem', { lineHeight: '2rem' }],         // 28px
+        'heading2': ['2rem', { lineHeight: '2.286rem' }],        // 32px
+        'heading1': ['2.25rem', { lineHeight: '2.571rem' }],     // 36px
+        'display4': ['2.5rem', { lineHeight: '2.857rem' }],        // 40px
+        'display3': ['2.8125rem', { lineHeight: '3.214rem' }],     // 45px
+        'display2': ['3.1875rem', { lineHeight: '3.643rem' }],     // 51px
+        'display1': ['3.625rem', { lineHeight: '4.143rem' }],      // 58px
       },
       colors: {
         ...colors,
+        "static-white": "rgba(255, 255, 255, 1)",
+        "static-black": "rgba(20, 20, 20, 1)",
+        "bg-0": "rgba(255, 255, 255, 1)",
+        "line-0": "rgba(255, 255, 255, 1)",
+        "primary-1": colors['red-50'],
+        "text-1": colors['slate-900'],
+        "text-2": colors['slate-700'],
+        "text-3": colors['slate-500'],
+        "text-4": colors['slate-400'],
+        "text-5": colors['slate-300'],
+        "text-6": colors['slate-200'],
+        "text-7": colors['slate-50'],
+        "primary-2": colors['red-100'],
+        "primary-3": colors['red-200'],
+        "primary-4": colors['red-300'],
+        "primary-5": colors['red-400'],
+        "primary-6": colors['red-500'],
+        "primary-7": colors['red-600'],
+        "primary-8": colors['red-700'],
+        "primary-9": colors['red-800'],
+        "primary-10": colors['red-950'],
+        "bg-1": colors['slate-50'],
+        "bg-2": colors['slate-100'],
+        "bg-3": colors['slate-200'],
+        "bg-7": colors['slate-500'],
+        "bg-8": colors['slate-700'],
+        "bg-9": colors['slate-900'],
+        "line-1": colors['slate-100'],
+        "line-2": colors['slate-200'],
+        "line-3": colors['slate-300'],
+        "line-4": colors['slate-400'],
+        "line-5": colors['slate-500']
       },
       height: {
-        'header-height': '52px',
+        'header-height': '60px',
         'basic-body-with-header': 'calc(100vh - 52px)',
         'basic-menu-body': '100vh',
       },

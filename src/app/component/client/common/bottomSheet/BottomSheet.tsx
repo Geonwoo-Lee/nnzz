@@ -68,7 +68,7 @@ const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
                 className="bg-common-white shadow-bottom-sheet-top rounded-t-[12px] fixed bottom-0 z-[60]"
             >
                 <div
-                    className={`${!nonPadding ? "px-6 pt-6 pb-8" : ""} max-h-[calc(100vh-80px)] overflow-y-auto`}
+                    className={`${!nonPadding ? "px-5 py-8" : ""} max-h-[calc(100vh-80px)] overflow-y-auto`}
                 >
                     {children}
                 </div>

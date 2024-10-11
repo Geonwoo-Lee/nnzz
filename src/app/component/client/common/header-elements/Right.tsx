@@ -9,13 +9,14 @@ import Close from "../../../../../../public/svg/header/Close.svg";
 import Map from "../../../../../../public/svg/header/Map.svg";
 import Square from "../../../../../../public/svg/header/Square.svg";
 
-const Right = ({ map, menu, square, close, setting}: {
+const Right = ({ map, menu, square, close, setting, profileImage}: {
     type: HeaderTypes,
     setting?: boolean,
     map?: boolean;
     square?: boolean;
     close?: boolean;
     menu?: boolean;
+    profileImage?: boolean;
 }) => {
     const router = useRouter()
     const rightIconRenderer = () => {
@@ -45,6 +46,10 @@ const Right = ({ map, menu, square, close, setting}: {
         if (setting) {
             return <Setting onClick={() => {
             }}/>
+        }
+
+        if(profileImage) {
+            return <div className='w-8 h-8 rounded-full bg-slate-200'></div>
         }
 
         return
