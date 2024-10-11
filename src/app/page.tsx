@@ -14,7 +14,7 @@ export default function Home() {
                 <div className="w-full flex flex-col items-center justify-center">
                     <div className='flex flex-col justify-center items-center gap-8 pt-16 pb-16'>
                         <Image width={128} height={128} src={'/images/logo/nnzz-home-logo.png'} alt='nnzz-logo'/>
-                        <div className='flex flex-col justify-center items-center gap-4 text-common font-bold text-md'>
+                        <div className='flex flex-col justify-center items-center gap-4 text-slate-700 font-regular text-body1'>
                             <Nnzz/>
                             직장인들 점심 저녁 메뉴 고민을 함께 해요🧚‍
                         </div>
