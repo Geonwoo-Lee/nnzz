@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="627d0aaf-91d9-4547-ad91-46e873978388" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/component/client/page/home/foodieWay/FoodieWay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/client/page/home/foodieWay/FoodieWay.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +112,7 @@
       <workItem from="1728545303073" duration="2131000" />
       <workItem from="1728547872155" duration="5607000" />
       <workItem from="1728607558590" duration="3405000" />
-      <workItem from="1728633192312" duration="4216000" />
+      <workItem from="1728633192312" duration="4485000" />
     </task>
     <task id="LOCAL-00002" summary="[deploy] Home UI 일부 구현 및 헤더 , 전체 Layout 설정, 전체 폴더 정리">
       <option name="closed" value="true" />
@@ -209,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728636731715</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="[deploy] 바텀시트 description 밀린 부분 수정">
+      <option name="closed" value="true" />
+      <created>1728637731208</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728637731208</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +238,8 @@
     <MESSAGE value="[deploy] select 색 변경" />
     <MESSAGE value="[deploy] bottom sheet 패딩값 변경 및 Date circle padding -&gt; margin" />
     <MESSAGE value="[deploy] wayPicker 개발 완료 폰트 수정 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="[deploy] wayPicker 개발 완료 폰트 수정 완료" />
+    <MESSAGE value="[deploy] 바텀시트 description 밀린 부분 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="[deploy] 바텀시트 description 밀린 부분 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
