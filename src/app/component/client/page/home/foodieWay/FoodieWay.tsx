@@ -19,13 +19,13 @@ const FoodieWay = ({type, onChangeWay} : FoodieWayProps) => {
     const typeStyle = () => {
         switch (type) {
             case 'fast':
-                return 'bg-red-200'
-            case 'slow':
                 return 'bg-green-200'
+            case 'slow':
+                return 'bg-red-200'
         }
     }
-    return <div className={`w-full rounded-[16px] ${typeStyle()}`} onClick={onChangeWay}>
-        <div className='p-4 w-full flex flex-row justify-between'>
+    return <div className={`w-full rounded-[16px]  ${typeStyle()}`} onClick={onChangeWay}>
+        <div className='p-4 w-full flex flex-row justify-between h-[135px] relative'>
             <div className='flex flex-col gap-2'>
                 <div className='whitespace-pre-wrap text-caption1 font-regular '>
                     {wayConfig[type].description}
@@ -34,7 +34,9 @@ const FoodieWay = ({type, onChangeWay} : FoodieWayProps) => {
                     {wayConfig[type].title}
                 </div>
             </div>
-            {wayConfig[type].icon}
+            <div className='absolute bottom-0 right-0'>
+                {wayConfig[type].icon}
+            </div>
         </div>
     </div>
 }
