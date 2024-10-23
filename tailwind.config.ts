@@ -181,6 +181,11 @@ const config: Config = {
         'header-height': '60px',
         'basic-body-with-header': 'calc(100vh - 52px)',
         'basic-menu-body': '100vh',
+        'button-height-sm': '26px',
+        'button-height-md': '38px',
+        'button-height-lg': '50px',
+        'input-height': '52px',
+        'location-no-search-height': 'calc(100vh - 260px - 52px)',
       },
       keyframes: {
         wiggle: {

@@ -1,7 +1,7 @@
 import {Suspense} from "react";
 import HomeMealSettingSectionSkeleton
     from "@/src/app/component/server/page/home/skeletons/HomeMealSettingSectionSkeleton";
-import HomeMealSettingClient from "@/src/app/component/client/page/home/homeMealSetting/HomeMealSettingClient";
+import HomeMealSettingClient from "@/src/app/component/client/page/home/HomeMealSettingClient";
 
 
 const HomeMealSettingServer = () => {

@@ -21,10 +21,11 @@ export function useGeolocation() {
                     const longitude = position.coords.longitude;
                     const address = await getAddressFromCoords(latitude, longitude);
 
+
                     const newLocation: LocationType = {
                         latitude,
                         longitude,
-                        address
+                        address: address?.address || '',
                     };
                     setLocation(newLocation);
                     localStorage.setItem('userLocation', JSON.stringify(newLocation));

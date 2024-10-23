@@ -40,3 +40,16 @@ body {
 .home-logo-size {
   aspect-ratio: 82 / 107;
 }
+
+.progress-color-value::-webkit-progress-value {
+  background-color: #FF334C;
+}
+
+/* Custom CSS */
+.progress-color-value::-moz-progress-bar {
+  background-color: #FF334C;
+}
+
+.progress-color-value {
+  background-color: #F1F5F9;
+}

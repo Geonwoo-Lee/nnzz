@@ -1,88 +1,90 @@
 'use client'
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 
-interface Place {
+export interface MapPlace {
     name: string;
     lat: number;
     lng: number;
 }
 
 interface Props {
-    places: Place[]
+    places: MapPlace[]
+    pinAble?: boolean
+    onPinUpdated?: (lat: number, lng: number) => void
 }
 
-const NaverMap: React.FC<Props> = ({ places }) => {
+let isNaverMapScriptLoaded = false;
+
+const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     const mapRef = useRef<HTMLDivElement>(null);
+    const path = usePathname()
     const [mapError, setMapError] = useState<string | null>(null);
-    const [isScriptLoaded, setIsScriptLoaded] = useState(false);
-    const [isNaverInitialized, setIsNaverInitialized] = useState(false);
+    const [map, setMap] = useState<any>(null);
+    const [marker, setMarker] = useState<any>(null);
 
-    useEffect(() => {
-        if (isScriptLoaded && (window as any).naver && !isNaverInitialized) {
-            setIsNaverInitialized(true);
-        }
-    }, [isScriptLoaded, isNaverInitialized]);
+    const initializeMap = useCallback(() => {
+        if (!mapRef.current || places.length === 0 || !window.naver) return;
 
-    useEffect(() => {
-        if (!isNaverInitialized || !mapRef.current || places.length === 0) return;
-
-        const loadMap = () => {
-            try {
+        try {
+            if (!map) {
                 const options = {
-                    center: new (window as any).naver.maps.LatLng(places[0].lat, places[0].lng),
+                    center: new window.naver.maps.LatLng(places[0].lat, places[0].lng),
                     zoom: 13,
                 };
-                const map = new (window as any).naver.maps.Map(mapRef.current!, options);
+                const newMap = new window.naver.maps.Map(mapRef.current, options);
+                setMap(newMap);
 
-                places.forEach((place) => {
-                    const position = new (window as any).naver.maps.LatLng(place.lat, place.lng);
-                    const customIcon = {
-                        content: '<img src="/assets/mapPin.png" alt="Custom Map Pin" style="width:40px; height:40px;" />', // 크기는 필요에 따라 조정
-                        anchor: new (window as any).naver.maps.Point(20, 40), // 핀의 끝부분이 좌표에 오도록 앵커 설정
-                    };
-
-
-                    const marker = new (window as any).naver.maps.Marker({
-                        map: map,
-                        position: position,
-                        icon: customIcon,
-                    });
-
-                    const infowindow = new (window as any).naver.maps.InfoWindow({
-                        content: `<div style="width:200px;text-align:center;padding:6px 0;">
-                        <strong>${place.name}</strong><br>
-                        Lat: ${place.lat}, Lng: ${place.lng}
-                      </div>`,
-                    });
-
-                    (window as any).naver.maps.Event.addListener(marker, 'mouseover', () => {
-                        infowindow.open(map, marker);
-                    });
-                    (window as any).naver.maps.Event.addListener(marker, 'mouseout', () => {
-                        infowindow.close();
-                    });
+                const initialMarker = new window.naver.maps.Marker({
+                    position: new window.naver.maps.LatLng(places[0].lat, places[0].lng),
+                    map: newMap,
+                    icon: {
+                        content: '<img src="/assets/mapPin.png" alt="Map Pin" style="width:40px; height:40px;" />',
+                        anchor: new window.naver.maps.Point(20, 40),
+                    },
                 });
+                setMarker(initialMarker);
 
-                // Fit bounds
-                if (places.length > 1) {
-                    const bounds = new (window as any).naver.maps.LatLngBounds();
-                    places.forEach(place => {
-                        bounds.extend(new (window as any).naver.maps.LatLng(place.lat, place.lng));
+                if (pinAble) {
+                    window.naver.maps.Event.addListener(newMap, 'click', (e: any) => {
+                        const latlng = e.coord;
+                        initialMarker.setPosition(latlng);
+                        if (onPinUpdated) {
+                            onPinUpdated(latlng.lat(), latlng.lng());
+                        }
                     });
-                    map.fitBounds(bounds);
                 }
-            } catch (error) {
-                setMapError(`Failed to initialize map: ${(error as Error).message}`);
+            } else {
+                // 기존 지도 객체가 있으면 중심점만 업데이트
+                const newPosition = new window.naver.maps.LatLng(places[0].lat, places[0].lng);
+                map.setCenter(newPosition);
+                if (marker) {
+                    marker.setPosition(newPosition);
+                }
             }
-        };
 
-        setTimeout(loadMap, 100);
+            if (places.length > 1) {
+                const bounds = new window.naver.maps.LatLngBounds();
+                places.forEach(place => {
+                    bounds.extend(new window.naver.maps.LatLng(place.lat, place.lng));
+                });
+                map.fitBounds(bounds);
+            }
+        } catch (error) {
+            setMapError(`Failed to initialize map: ${(error as Error).message}`);
+        }
+    }, [map, marker, places, pinAble, onPinUpdated]);
 
-    }, [places, isNaverInitialized]);
+    useEffect(() => {
+        if (isNaverMapScriptLoaded && window.naver && places.length > 0) {
+            initializeMap();
+        }
+    }, [isNaverMapScriptLoaded, places, path, initializeMap]);
 
     const handleScriptLoad = () => {
-        setIsScriptLoaded(true);
+        isNaverMapScriptLoaded = true;
+        initializeMap();
     };
 
     if (mapError) {
@@ -91,15 +93,18 @@ const NaverMap: React.FC<Props> = ({ places }) => {
 
     return (
         <div>
-            <Script
-                src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
-                onLoad={handleScriptLoad}
-                onError={() => {
-                    setMapError('Failed to load Naver Maps script');
-                }}
-            />
-            <div className="flex items-center justify-center pt-2">
-                <div ref={mapRef} style={{ width: "95%", height: "300px" }} />
+            {!isNaverMapScriptLoaded && (
+                <Script
+                    src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
+                    onLoad={handleScriptLoad}
+                    strategy="afterInteractive"
+                    onError={() => {
+                        setMapError('Failed to load Naver Maps script');
+                    }}
+                />
+            )}
+            <div className="flex items-center justify-center w-[100vw] h-[100vh]">
+                <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 'use client'
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { animated, useTransition, useSpring } from "react-spring";
-import { BottomSheetPropsType } from "@/src/app/types/common/bottomSheet";
+import React, {useEffect, useState, useCallback, useMemo} from 'react';
+import {animated, useTransition, useSpring} from "react-spring";
+import {BottomSheetPropsType} from "@/src/app/types/common/bottomSheet";
 
 interface ExtendedBottomSheetPropsType extends BottomSheetPropsType {
     backdrop?: boolean;
@@ -15,6 +15,7 @@ const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
                                                                  nonPadding,
                                                                  backdrop = true,
                                                                  animation = true,
+                                                                 noBackdrop = false,
                                                              }) => {
     const [windowWidth, setWindowWidth] = useState(0);
 
@@ -29,14 +30,14 @@ const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
     }, [handleResize]);
 
     const backdropTransition = useTransition(open, {
-        from: { opacity: 0 },
-        enter: { opacity: backdrop ? 1 : 0 },
-        leave: { opacity: 0 },
+        from: {opacity: 0},
+        enter: {opacity: backdrop ? 1 : 0},
+        leave: {opacity: 0},
     });
 
     const sheetSpring = useSpring({
         transform: open ? 'translateY(0%)' : 'translateY(100%)',
-        config: { tension: 400, friction: 45 },
+        config: {tension: 400, friction: 45},
     });
 
     const maxWidth = 640;
@@ -53,7 +54,7 @@ const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
 
     return (
         <>
-            {backdropTransition((style, item) =>
+            {!noBackdrop && backdropTransition((style, item) =>
                     item && (
                         <animated.div
                             style={style}

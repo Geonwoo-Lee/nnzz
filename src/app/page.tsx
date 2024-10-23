@@ -1,13 +1,10 @@
-// import Deck from "@/src/app/component/deck/Deck";
-// import freeFoodData from "@/src/app/dummy/dummy";
 import Nnzz from '../../public/svg/logo/Nnzzsvg.svg'
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
 export default function Home() {
     const KakaoButton = dynamic(() => import('@/src/app/component/client/common/button/KakaoButton'), { ssr: false });
-    const HomeCarousel = dynamic(() => import('@/src/app/component/client/page/home/carousel/HomeCarousel'), {ssr: false});
-
+    const HomeCarousel = dynamic(() => import('@/src/app/component/client/page/landing/features/carousel/HomeCarousel'), {ssr: false});
     return (
         <div className="flex flex-col justify-between min-h-screen bg-white max-w-[640px] mx-auto">
             <main className="flex-grow flex flex-col items-center justify-center">
