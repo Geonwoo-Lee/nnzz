@@ -15,7 +15,7 @@ const SignUpClientPage = () => {
         currentStep,
         nextStep,
         goToStep
-    } = useNestedFunnel(3);
+    } = useNestedFunnel(1);
     const [validateError, setValidateError] = useState(false);
 
     const {control,  watch, setValue} = useForm<SignUpController>({
@@ -38,6 +38,22 @@ const SignUpClientPage = () => {
 
     const setStep = (step: number) => {
         goToStep(step)
+    }
+
+    const disableNextStep = () => {
+        if(currentStep === 1){
+            return false
+        }
+        if(currentStep === 2){
+            if(genderAgeValue.age.length === 0) {
+                return true
+            }else {
+                return false
+            }
+        }
+        if(currentStep === 3){
+            return false
+        }
     }
 
     const headerRenderer = () => {
@@ -91,7 +107,7 @@ const SignUpClientPage = () => {
                 </Funnel>
             </div>
             <div className='py-4 w-full'>
-                <Button onClick={() => {
+                <Button disabled={disableNextStep()} onClick={() => {
                     if(currentStep === 1 ) {
                         if (!validateError) {
                             setStep(2)
