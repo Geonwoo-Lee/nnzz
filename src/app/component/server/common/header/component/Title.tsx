@@ -2,7 +2,7 @@
 
 const Title = ({title, color}: {title: string, color?: string}) => {
     return (
-        <p className={`text-lg font-semiBold border-none ${color ? color : "text-alpha-900"}`}>
+        <p className={`text-title2 font-bold border-none ${color ? color : "text-alpha-900"}`}>
             {title}
         </p>
     )

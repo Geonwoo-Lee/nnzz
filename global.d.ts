@@ -150,7 +150,20 @@ interface KakaoStatic {
     };
 }
 
+interface NaverMapModule {
+    Map: any;
+    LatLng: any;
+    Marker: any;
+    Event: any;
+    LatLngBounds: any;
+    Point: any
+}
+
+
 interface Window {
     kakao: KakaoMapStatic;
     Kakao: KakaoStatic;
+    naver: {
+        maps: NaverMapModule;
+    };
 }
