@@ -13,8 +13,11 @@ import {locationSearch, Place} from "@/src/app/types/page/location/location";
 import {useFunnel} from "@/src/app/hooks/useFunnel";
 import LocationComponent from "@/src/app/component/client/page/location/features/LocationComponent";
 import useLocationBasedNavigation from "@/src/app/hooks/useLocationBasedNavigation";
+import {MapPlace} from "@/src/app/component/client/common/map/NaverMap";
+import {useRouter} from "next/navigation";
 
 const LocationClientPage = () => {
+    const router = useRouter()
     const {control, handleSubmit} = useForm<locationSearch>({
         defaultValues: {
             address: "",
@@ -40,6 +43,16 @@ const LocationClientPage = () => {
             }
         });
     });
+
+    const setLocation = (place: Place) => {
+        const pinnedLocation: MapPlace = {
+            name: place.name,
+            lat: place.latitude,
+            lng: place.longitude
+        }
+        window.localStorage.setItem('pinedLocation', JSON.stringify(pinnedLocation));
+        router.push('/home')
+    }
 
     useEffect(() => {
         if(searchList.length > 0) {
@@ -91,7 +104,7 @@ const LocationClientPage = () => {
                         <LocationComponent.CurrentLocation />
                     </Funnel.Step>
                     <Funnel.Step name='list'>
-                        <LocationComponent.SearchList places={searchList} />
+                        <LocationComponent.SearchList setLocation={setLocation} places={searchList} />
                     </Funnel.Step>
                     <Funnel.Step name='notFound'>
                         <LocationComponent.NoSearch />

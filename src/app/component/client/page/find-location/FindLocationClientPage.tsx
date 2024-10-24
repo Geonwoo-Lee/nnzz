@@ -6,8 +6,10 @@ import {Place} from "@/src/app/types/page/location/location";
 import {getAddressFromCoords} from "@/src/app/func/common/geo.utils";
 import BottomSheet from "@/src/app/component/client/common/bottomSheet/BottomSheet";
 import Button from '../../common/button/Button'
+import {useRouter} from "next/navigation";
 
 const FindLocationClientPage = () => {
+    const router = useRouter();
     const [currentLocation, setCurrentLocation] = useState<MapPlace | null>(null);
 
     const upDatePin = async (lat: number, lng: number) => {
@@ -31,6 +33,15 @@ const FindLocationClientPage = () => {
             return location
         }else {
             return '위치를 설정해주세요'
+        }
+    }
+
+    const setLocation = (location: MapPlace) => {
+        if(location) {
+            window.localStorage.setItem('pinedLocation', JSON.stringify(location));
+            router.push('/home')
+        }else {
+            return
         }
     }
 
@@ -60,7 +71,9 @@ const FindLocationClientPage = () => {
                         {locationRenderer()}
                     </div>
                     <div>
-                        <Button style='w-full' onClick={() => {}} size='lg' type={'primary'}>
+                        <Button style='w-full' onClick={() => {
+                            setLocation(currentLocation as MapPlace)
+                        }} size='lg' type={'primary'}>
                             이 위치로 등록
                         </Button>
                     </div>

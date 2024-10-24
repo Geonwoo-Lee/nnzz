@@ -8,7 +8,7 @@ import HomeMealSettingComponent from "@/src/app/component/client/page/home/featu
 
 const HomeMealSettingClient = () => {
     const router = useRouter()
-    const [selectedLocation] = useState('현재 위치');
+    const [selectedLocation, setSelectedLocation] = useState('현재 위치');
     const [mealTime] = useState<DayInfo[]>(DateUtils.getWeekDates());
     const [selectedMealTime, setSelectedMealTime] = useState<DayInfo>(mealTime[0]);
     const [mealTiming, setMealTiming] = useState<MealTimingType>();
@@ -59,12 +59,20 @@ const HomeMealSettingClient = () => {
         }
     }, [selectedMealTime]);
 
+    useEffect(() => {
+        const location = localStorage.getItem('pinedLocation');
+        if(location) {
+            const locationData = JSON.parse(location);
+            setSelectedLocation(locationData.name)
+        }
+    }, []);
+
     return (
         <div className='flex flex-col gap-4 px-4'>
             <div className='font-medium text-heading4'>
                 김냠냠님,
             </div>
-            <div className='flex flex-row gap-1 items-center font-medium text-title1'>
+            <div className='flex flex-row gap-1 items-center font-medium text-title1 whitespace-nowrap'>
                 <HomeMealSettingComponent.HomeSelect selected={false} callBack={moveToMap} data={selectedLocation}/> 주변에서
             </div>
             <div className='font-medium text-title1 flex flex-row gap-1 items-center'>
