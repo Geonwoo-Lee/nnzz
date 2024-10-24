@@ -1,9 +1,8 @@
-'use client'
 import React from "react";
 import dynamic from "next/dynamic";
 
 
-const CompletePage = () => {
+const SignUpComplete = () => {
 
     const MoveButton = dynamic(() => import('./features/MoveButton'), {ssr: false})
 
@@ -24,4 +23,4 @@ const CompletePage = () => {
     )
 }
 
-export default CompletePage
+export default SignUpComplete
