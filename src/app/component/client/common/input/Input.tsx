@@ -28,7 +28,8 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
                                                                                   pattern,
                                                                                   readonly,
                                                                                   onClick,
-                                                                                  infoColor
+                                                                                  infoColor,
+                                                                                  selectVersion
                                                                               }, ref) => {
     const sizeRenderer = () => {
         if (multiple) {
@@ -62,10 +63,9 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
         pr-4
         ${textAlignClass(align)}
         text-text-4 
-        bg-bg-1
         focus:text-common 
         focus:bg-bg-0
-        ${error ? "text-common bg-bg-0" : ""}
+        ${error ? "text-common bg-bg-0" : "bg-bg-1"}
     `;
 
     const containerStyles = `
@@ -84,10 +84,12 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
         ${disabled ? "cursor-not-allowed bg-base-200" : ""}
     `;
 
+
     const sideElementStyles = `
         flex 
         items-center 
         flex-shrink-0
+        bg-transparent
     `;
 
     return (
@@ -124,10 +126,10 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
                             pattern={pattern}
                             disabled={disabled}
                             onBlur={onBlur}
-                            readOnly={readonly}
+                            readOnly={readonly || selectVersion}
                             onClick={() => {
-                                if(readonly && onClick) {
-                                    onClick()
+                                if(readonly || selectVersion) {
+                                    if(onClick) onClick()
                                 }
                             }}
                             onKeyUp={(e) => {

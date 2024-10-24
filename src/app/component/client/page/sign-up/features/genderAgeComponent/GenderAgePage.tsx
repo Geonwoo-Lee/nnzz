@@ -40,7 +40,7 @@ const GenderAgePage = (props: GenderAgePageProps) => {
                                 style="w-full"
                                 placeHolder="성별과 나이대를 선택해주세요"
                                 label='성별 · 나이대'
-                                readonly={true}
+                                selectVersion
                                 onClick={openModal}
                                 value={genderAgeValue.age || genderAgeValue.gender ? `${genderAgeValue.gender} ・ ${genderAgeValue.age}` : ''}
                                 right={<DownArrow/>}
