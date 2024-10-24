@@ -54,35 +54,37 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
         rounded-[16px]
         focus:outline-none
         flex-grow
-        text-body-2 font-medium
+        text-body-2 
+        font-medium
         border-none
         pl-4
         pr-4
         ${textAlignClass(align)}
-        ${readonly
-        ? "text-text-4 bg-bg-1"
-        : error
-            ? "text-common bg-bg-0"
-            : "text-text-4 bg-bg-1 focus:text-common focus:bg-bg-0"
-    }
+        text-text-4 
+        bg-bg-1
+        focus:text-common 
+        focus:bg-bg-0
+        ${error ? "text-common bg-bg-0" : ""}
     `;
 
     const containerStyles = `
         flex
         rounded-[16px]
         ${borderNone || disabled ? "" : "border"}
-        ${readonly
-        ? "border-line-3"
-        : error
-            ? "border-red-500"
-            : "border-line-2 focus-within:border-line-3"
+        ${
+        readonly
+            ? "border-line-3 text-text-4 bg-bg-1"
+            : error
+                ? "border-red-500 bg-bg-0"
+                : "border-line-2 bg-bg-1 focus-within:border-line-3 focus-within:bg-bg-0"
     }
         ${disabled ? "cursor-not-allowed bg-base-200" : ""}
     `;
 
     return (
         <div
-            className={`${style ? style : ""} flex flex-col gap-[10px] relative rounded-[16px] ${bgColor ? bgColor : "bg-alpha-00"}`}>
+            className={`${style ? style : ""} flex flex-col gap-[10px] relative rounded-[16px] ${bgColor ? bgColor : "bg-alpha-00"}`}
+        >
             {label && (
                 <div className="text-caption-1 font-medium text-text-3">{label}</div>
             )}
@@ -137,16 +139,15 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
                 {right && <div className={`flex items-center px-4`}>{right}</div>}
             </div>
             {errorMessage && (
-                <div className=" text-red-500 text-caption1 font-medium break-words">
+                <div className="text-red-500 text-caption1 font-medium break-words">
                     {errorMessage}
                 </div>
             )}
-            {
-                infoMessage &&
-                <div className={`${infoColor ? infoColor : "text-text-4"} text-caption1 font-medium mt-1}`}>
+            {infoMessage && (
+                <div className={`${infoColor ? infoColor : "text-text-4"} text-caption1 font-medium mt-1`}>
                     {infoMessage}
                 </div>
-            }
+            )}
         </div>
     );
 });

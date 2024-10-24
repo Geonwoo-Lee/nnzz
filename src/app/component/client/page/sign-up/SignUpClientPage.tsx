@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import {SignUpController} from "@/src/app/types/page/sign-up/sign-up";
 import SignUpComponent from "@/src/app/component/client/page/sign-up/features/SignUpComponent";
 import {useNestedFunnel} from "@/src/app/hooks/useNestedFunnel";
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
 import Button from "@/src/app/component/client/common/button/Button";
 import {useRouter} from "next/navigation";
 
@@ -76,6 +76,7 @@ const SignUpClientPage = () => {
                 </div>
         }
     }
+
 
     return (
         <main className='p-4 flex flex-col justify-between h-[100vh]'>
