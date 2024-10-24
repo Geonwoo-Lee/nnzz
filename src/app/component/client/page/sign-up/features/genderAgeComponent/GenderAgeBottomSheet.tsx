@@ -6,7 +6,16 @@ import Button from "../../../../common/button/Button";
 
 
 const GenderAgeBottomSheet = (props: GenderAgeBottomSheetProps) => {
-    const {open, onClose, genderAgeValue, setSelectedValue, setStep} = props
+    const {open, onClose, genderAgeValue, setSelectedValue, setStep, step} = props
+
+
+    const nextStep = () => {
+        if(step ===3) {
+            onClose()
+        }else {
+            setStep(3)
+        }
+    }
     return (
         <BottomSheet open={open} close={onClose} nonPadding={true}>
             <div>
@@ -23,7 +32,7 @@ const GenderAgeBottomSheet = (props: GenderAgeBottomSheetProps) => {
                                          setSelectedValue={setSelectedValue}/>
                 </div>
                 <div className='p-4'>
-                    <Button onClick={() => {setStep(3)}} disabled={genderAgeValue.age === '' || genderAgeValue.gender === ''} type={'primary'} size={'lg'} style='w-full' >
+                    <Button onClick={nextStep} disabled={genderAgeValue.age === '' || genderAgeValue.gender === ''} type={'primary'} size={'lg'} style='w-full' >
                         다음
                     </Button>
                 </div>

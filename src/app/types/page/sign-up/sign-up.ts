@@ -21,7 +21,8 @@ export interface BasicSignUpProps {
 export interface NickNamePageProps extends BasicSignUpProps {
     onSubmit?: (data: string) => void;
     nickNameValue?: string
-    setError: (error: boolean) => void
+    validateNickname: (value: string) => boolean
+    errorMessage: string
 }
 
 export interface GenderAgePageProps extends BasicSignUpProps {

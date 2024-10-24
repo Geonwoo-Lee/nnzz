@@ -51,9 +51,10 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
 
     const inputStyles = `
         ${sizeRenderer()}
+        flex-grow
+        w-full
         rounded-[16px]
         focus:outline-none
-        flex-grow
         text-body-2 
         font-medium
         border-none
@@ -69,6 +70,8 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
 
     const containerStyles = `
         flex
+        w-full
+        items-center
         rounded-[16px]
         ${borderNone || disabled ? "" : "border"}
         ${
@@ -81,62 +84,66 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
         ${disabled ? "cursor-not-allowed bg-base-200" : ""}
     `;
 
+    const sideElementStyles = `
+        flex 
+        items-center 
+        flex-shrink-0
+    `;
+
     return (
-        <div
-            className={`${style ? style : ""} flex flex-col gap-[10px] relative rounded-[16px] ${bgColor ? bgColor : "bg-alpha-00"}`}
-        >
+        <div className={`${style ? style : ""} flex flex-col gap-[10px] relative rounded-[16px] w-full ${bgColor ? bgColor : "bg-alpha-00"}`}>
             {label && (
                 <div className="text-caption-1 font-medium text-text-3">{label}</div>
             )}
             <div className={containerStyles}>
-                {left && <div className={`flex items-center pl-4 ${bgColor ? bgColor : "bg-alpha-00"}`}>{left}</div>}
-                {multiple ? (
-                    <textarea
-                        ref={ref as React.Ref<HTMLTextAreaElement>}
-                        placeholder={placeHolder}
-                        value={value}
-                        onChange={onChange}
-                        maxLength={max}
-                        onFocus={onFocus}
-                        disabled={disabled}
-                        onBlur={onBlur}
-                        readOnly={readonly}
-                        className={`resize-none ${inputStyles}`}
-                        style={{height: `${multiple * 20}px`}}
-                    />
-                ) : (
-                    <input
-                        ref={ref as React.Ref<HTMLInputElement>}
-                        type={type ? type : "text"}
-                        placeholder={placeHolder}
-                        value={value}
-                        onChange={onChange}
-                        maxLength={max}
-                        onFocus={onFocus}
-                        pattern={pattern}
-                        disabled={disabled}
-                        onBlur={onBlur}
-                        readOnly={readonly}
-                        onClick={() => {
-                            if(readonly && onClick) {
-                                onClick()
-                            }else {
-                                return
-                            }
-                        }}
-                        onKeyUp={(e) => {
-                            if (e.key === "Enter") {
-                                e.preventDefault();
-                                onSubmit && onSubmit();
-                            } else if (e.key === "Backspace") {
-                                e.preventDefault();
-                                onRemove && onRemove();
-                            }
-                        }}
-                        className={inputStyles}
-                    />
-                )}
-                {right && <div className={`flex items-center px-4`}>{right}</div>}
+                {left && <div className={`${sideElementStyles} pl-4 ${bgColor ? bgColor : "bg-alpha-00"}`}>{left}</div>}
+                <div className="flex-1 min-w-0">
+                    {multiple ? (
+                        <textarea
+                            ref={ref as React.Ref<HTMLTextAreaElement>}
+                            placeholder={placeHolder}
+                            value={value}
+                            onChange={onChange}
+                            maxLength={max}
+                            onFocus={onFocus}
+                            disabled={disabled}
+                            onBlur={onBlur}
+                            readOnly={readonly}
+                            className={`${inputStyles} resize-none`}
+                            style={{height: `${multiple * 20}px`}}
+                        />
+                    ) : (
+                        <input
+                            ref={ref as React.Ref<HTMLInputElement>}
+                            type={type ? type : "text"}
+                            placeholder={placeHolder}
+                            value={value}
+                            onChange={onChange}
+                            maxLength={max}
+                            onFocus={onFocus}
+                            pattern={pattern}
+                            disabled={disabled}
+                            onBlur={onBlur}
+                            readOnly={readonly}
+                            onClick={() => {
+                                if(readonly && onClick) {
+                                    onClick()
+                                }
+                            }}
+                            onKeyUp={(e) => {
+                                if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    onSubmit && onSubmit();
+                                } else if (e.key === "Backspace") {
+                                    e.preventDefault();
+                                    onRemove && onRemove();
+                                }
+                            }}
+                            className={inputStyles}
+                        />
+                    )}
+                </div>
+                {right && <div className={`${sideElementStyles} px-4`}>{right}</div>}
             </div>
             {errorMessage && (
                 <div className="text-red-500 text-caption1 font-medium break-words">

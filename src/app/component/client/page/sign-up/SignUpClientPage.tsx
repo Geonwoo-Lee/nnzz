@@ -16,7 +16,30 @@ const SignUpClientPage = () => {
         nextStep,
         goToStep
     } = useNestedFunnel(1);
-    const [validateError, setValidateError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const validateNickname = (value: string) => {
+        if (value.length < 2) {
+            setErrorMessage('닉네임은 2자 이상 입력해주세요');
+            return false;
+        }
+        if (value.length > 10) {
+            setErrorMessage('닉네임은 10자 이하로 입력해주세요');
+            return false;
+        }
+        if (value.includes(' ')) {
+            setErrorMessage('닉네임은 띄어쓰기 없이 한글, 영문, 숫자 입력만 가능해요');
+            return false;
+        }
+        if (!/^[a-zA-Z0-9가-힣]+$/.test(value)) {
+            setErrorMessage('닉네임은 띄어쓰기 없이 한글, 영문, 숫자 입력만 가능해요');
+            return false;
+        }
+        setStep(2)
+        setErrorMessage('');
+        return true
+    };
+
 
     const {control,  watch, setValue} = useForm<SignUpController>({
         defaultValues: {
@@ -28,9 +51,6 @@ const SignUpClientPage = () => {
         }
     });
 
-    const setError = (errState: boolean) => {
-        setValidateError(errState)
-    }
 
 
     const nickNameValue = watch('nickName')
@@ -55,6 +75,8 @@ const SignUpClientPage = () => {
             return false
         }
     }
+
+
 
     const headerRenderer = () => {
         switch (currentStep) {
@@ -90,7 +112,8 @@ const SignUpClientPage = () => {
                             control={control}
                             setStep={setStep}
                             step={currentStep}
-                            setError={setError}
+                            errorMessage={errorMessage}
+                            validateNickname={validateNickname}
                         />
                     </Funnel.Step>
                     <Funnel.Step>
@@ -110,9 +133,7 @@ const SignUpClientPage = () => {
             <div className='py-4 w-full'>
                 <Button disabled={disableNextStep()} onClick={() => {
                     if(currentStep === 1 ) {
-                        if (!validateError) {
-                            setStep(2)
-                        }
+                        validateNickname(nickNameValue)
                     }else if(currentStep === 2) {
                         nextStep()
                     }else {

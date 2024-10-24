@@ -16,7 +16,7 @@ const FoodProfileDummy: FoodProfileList = [
     {
         id: 2,
         name: 'hamburger',
-        src: `${fileLocation}/HamBurger.png`
+        src: `${fileLocation}/Hamburger.png`
     },
     {
         id: 3,
