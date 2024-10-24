@@ -37,4 +37,5 @@ export interface InputProps {
     pattern?: string;
     readonly?: boolean;
     onClick? : () => void;
+    selectVersion?: boolean;
 }
