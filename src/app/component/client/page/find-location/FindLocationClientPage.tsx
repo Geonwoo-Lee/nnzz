@@ -23,6 +23,17 @@ const FindLocationClientPage = () => {
 
     const getLocation = localStorage.getItem('userLocation');
 
+    const locationRenderer = () => {
+        if(currentLocation?.lng && currentLocation.lng) {
+            const location = getAddressFromCoords(currentLocation.lat, currentLocation.lng).then((res) => {
+                return `${res?.address} ${res?.name}`
+            })
+            return location
+        }else {
+            return '위치를 설정해주세요'
+        }
+    }
+
     useEffect(() => {
         if (getLocation) {
             const location = JSON.parse(getLocation) as Place;
@@ -46,9 +57,7 @@ const FindLocationClientPage = () => {
             <BottomSheet open={true} close={() => {}} nonPadding={true} backdrop={false} noBackdrop={true} >
                 <div className='px-5 py-6 flex flex-col gap-[54px]'>
                     <div className='text-common text-title2 font-medium'>
-                        {getAddressFromCoords(currentLocation!.lat, currentLocation!.lng).then((res) => {
-                            return `${res?.address} ${res?.name}`
-                        })}
+                        {locationRenderer()}
                     </div>
                     <div>
                         <Button style='w-full' onClick={() => {}} size='lg' type={'primary'}>
