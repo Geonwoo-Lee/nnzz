@@ -3,5 +3,6 @@ export interface FoodItem {
     imageUrl: string;
     category: string;
     name: string;
-    priceRange: string;
+    representativeMenu: string;
+    bgType?: string
 }

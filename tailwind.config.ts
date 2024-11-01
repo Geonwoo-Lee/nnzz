@@ -199,6 +199,7 @@ const config: Config = {
       },
       boxShadow: {
         'bottom-sheet-top': '0 20px 92px 6px rgba(0, 0, 0, 0.1)',
+        'card': '0px 15px 30px rgba(0, 0, 0, 0.1), 0px 5px 15px rgba(0, 0, 0, 0.08)',
       },
       animation: {
         wiggle: 'wiggle 0.15s linear infinite',

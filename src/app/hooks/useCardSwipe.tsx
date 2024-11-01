@@ -38,6 +38,7 @@ export function useCardSwipe(cards: FoodItem[],) {
         const currentCard = cards[currentIndex]
         const xMove = direction === 'right' ? 500 : -500
 
+
         api.start({
             x: xMove,
             rotation: direction === 'right' ? 15 : -15,
@@ -75,10 +76,10 @@ export function useCardSwipe(cards: FoodItem[],) {
             const startX = e.clientX
             const startY = e.clientY
 
+
             const onMouseMove = (e: MouseEvent) => {
                 const dx = e.clientX - startX
                 const dy = e.clientY - startY
-
                 const rotation = dx > 0 ? Math.min(15, dx / 10) : Math.max(-15, dx / 10)
                 api.start({ x: dx, y: dy, rotation })
                 updateDragStatus(dx)
@@ -92,7 +93,12 @@ export function useCardSwipe(cards: FoodItem[],) {
                     const direction = props.x.get() < 0 ? -1 : 1
                     handleSwipe(direction)
                 } else {
-                    api.start({ x: 0, y: 0, rotation: 0 })
+                    api.start({
+                        x: 0,
+                        y: 0,
+                        rotation: 0,
+                        config: { tension: 200, friction: 20 } // 스프링 애니메이션 설정
+                    })
                     setDragStatus('neutral')
                 }
             }
@@ -101,44 +107,77 @@ export function useCardSwipe(cards: FoodItem[],) {
             document.addEventListener('mouseup', onMouseUp)
         },
         onTouchStart: (e: React.TouchEvent) => {
-            const touch = e.touches[0]
-            const startX = touch.clientX
-            const startY = touch.clientY
-            let isSwiping = false
+            console.log('👆 Touch Start');
+            const target = e.target as HTMLElement;
+            const touch = e.touches[0];
+            const startX = touch.clientX;
+            const startY = touch.clientY;
 
-            const onTouchMove = (e: TouchEvent) => {
-                if (!isSwiping && Math.abs(e.touches[0].clientX - startX) > 10) {
-                    isSwiping = true
+            const onTouchMove = (e: Event) => {
+                console.log('👆 Touch Move');
+                e.stopPropagation();
+                const touchEvent = e as TouchEvent;
+                const touch = touchEvent.touches[0];
+                const dx = touch.clientX - startX;
+                const dy = touch.clientY - startY;
+                const rotation = dx > 0 ? Math.min(15, dx / 10) : Math.max(-15, dx / 10);
+
+                api.start({
+                    x: dx,
+                    y: dy,
+                    rotation,
+                    immediate: true
+                });
+                updateDragStatus(dx);
+            };
+
+            const onTouchEnd = (e: Event) => {
+                console.log('👆 Touch End');
+                e.stopPropagation();
+
+                // 이벤트 리스너 제거
+                target.removeEventListener('touchmove', onTouchMove, { capture: true });
+                target.removeEventListener('touchend', onTouchEnd, { capture: true });
+
+                const currentX = props.x.get();
+                console.log('Current X on touch end:', currentX);
+
+                if (Math.abs(currentX) > 100) {
+                    const moveOut = currentX > 0 ? 500 : -500;
+                    api.start({
+                        x: moveOut,
+                        rotation: currentX > 0 ? 15 : -15,
+                        config: { duration: 300 },
+                        onRest: () => {
+                            const direction = currentX > 0 ? 1 : -1;
+                            handleSwipe(direction);
+                        }
+                    });
+                } else {
+                    api.start({
+                        x: 0,
+                        y: 0,
+                        rotation: 0,
+                        config: { tension: 20, friction: 10 }
+                    });
+                    setDragStatus('neutral');
                 }
-                if (isSwiping) {
-                    e.preventDefault()
-                    const touch = e.touches[0]
-                    const dx = touch.clientX - startX
-                    const dy = touch.clientY - startY
+            };
 
-                    const rotation = dx > 0 ? Math.min(15, dx / 10) : Math.max(-15, dx / 10)
-                    api.start({ x: dx, y: dy, rotation })
-                    updateDragStatus(dx)
-                }
-            }
+            target.addEventListener('touchmove', onTouchMove, {
+                passive: false,
+                capture: true
+            });
 
-            const onTouchEnd = () => {
-                document.removeEventListener('touchmove', onTouchMove)
+            target.addEventListener('touchend', onTouchEnd, {
+                passive: false,
+                capture: true
+            });
+
+            return () => {
+                e.target.removeEventListener('touchmove', onTouchMove)
                 document.removeEventListener('touchend', onTouchEnd)
-
-                if (isSwiping) {
-                    if (Math.abs(props.x.get()) > 100) {
-                        const direction = props.x.get() < 0 ? -1 : 1
-                        handleSwipe(direction)
-                    } else {
-                        api.start({ x: 0, y: 0, rotation: 0 })
-                        setDragStatus('neutral')
-                    }
-                }
             }
-
-            document.addEventListener('touchmove', onTouchMove, { passive: false })
-            document.addEventListener('touchend', onTouchEnd)
         }
     }), [api, props.x, handleSwipe, updateDragStatus])
 
