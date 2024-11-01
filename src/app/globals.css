@@ -33,8 +33,12 @@ body {
 }
 
 
+.card-image-size {
+  aspect-ratio: 262 / 224;
+}
+
 .card-size {
-  aspect-ratio: 640 / 800;
+  aspect-ratio: 294 / 390;
 }
 
 .home-logo-size {

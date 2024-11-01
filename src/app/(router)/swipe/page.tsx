@@ -3,8 +3,8 @@ import Deck from "@/src/app/component/client/page/swape/deck/Deck";
 import freeFoodData from "@/src/app/dummy/dummy";
 import {useFunnel} from "@/src/app/hooks/useFunnel";
 import {useEffect, useState} from "react";
-import ButtonSelect from "@/src/app/(router)/swap/component/ButtonSelect";
-import CompletePage from "@/src/app/(router)/swap/component/Comple";
+import ButtonSelect from "@/src/app/(router)/swipe/component/ButtonSelect";
+import CompletePage from "@/src/app/(router)/swipe/component/Comple";
 import {useGeolocation} from "@/src/app/hooks/useGeoloaction";
 
 // <Deck cards={freeFoodData}/>
