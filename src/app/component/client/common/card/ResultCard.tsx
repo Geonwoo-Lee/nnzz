@@ -1,78 +1,80 @@
+// ResultCard.tsx
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, {useState} from "react";
 import {ResultCardProps} from "@/src/app/types/page/swape/card";
+import LocationPin from "@/public/svg/items/deck/LocationPin.svg";
+import Plus from '@/public/svg/items/common/Plus.svg'
 
-const ResultCard: React.FC<ResultCardProps> = ({ image, category, name, priceRange, index }) => {
-    const [isVisible, setIsVisible] = useState(false);
+const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCard, deleted}) => {
+    const [showSadzz, setShowSadzz] = useState(false);
 
-    useEffect(() => {
-        // Set a delay for each card based on its index
-        const timeout = setTimeout(() => {
-            setIsVisible(true);
-        }, index * 200); // 200ms delay for each card
-
-        return () => clearTimeout(timeout);
-    }, [index]);
+    const handleDelete = () => {
+        const type = deleted ? 'add' : 'delete'
+        if (type === 'delete') {
+            setShowSadzz(true);
+            setTimeout(() => {
+                setShowSadzz(false);
+            }, 800);
+        }
+        handleDeleteCard(data, type);
+    };
 
     return (
-        <div
-            className={`transition-opacity duration-500 ease-in-out transform ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-            }`}
-            style={{
-                width: '300px',
-                height: '400px',
-                borderRadius: '10px',
-                overflow: 'hidden',
-                position: 'relative',
-                boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                cursor: 'grab',
-                touchAction: 'none',
-            }}
-        >
+        <div className='relative'>
+            {deleted && (
+                <div className="absolute inset-0 bg-black/[0.5] z-40 w-full h-full rounded-[16px]"/>
+            )}
+            {showSadzz && (
+                <div className="absolute inset-0 flex items-center justify-center z-20">
+                    <Image
+                        src={'/images/items/Sadzz.png'}
+                        alt='sad'
+                        className='animate-flyIn'
+                        width={95}
+                        height={95}
+                    />
+                </div>
+            )}
+            {
+                deleted ? <div onClick={handleDelete}
+                               className="bg-common-white z-40 rounded-full w-[24px] h-[24px] absolute flex justify-center items-center top-4 right-4 " >
+                    <Plus/>
+                </div> : <div
+                    onClick={handleDelete}
+                    className="bg-bg-9 rounded-full w-[24px] h-[24px] absolute flex justify-center items-center top-4 right-4 z-10">
+                    <div
+                        className="cursor-pointer text-common-white h-[2px] w-[10px] border border-common-white rounded-large "></div>
+                </div>
+            }
             <div
-                style={{ width: '100%', height: '100%', position: 'relative' }}
+                className={`p-4 relative card-image-size ${className ? className : ""} rounded-[16px] overflow-hidden`}
             >
-                <Image
-                    src={image}
-                    alt={name}
-                    layout="fill"
-                    objectFit="cover"
-                    draggable={false}
-                />
+                <div className="w-fulle rounded-[16px] overflow-hidden">
+                    <Image
+                        src={`/images/bg/${data.bgType}.png`}
+                        alt="background"
+                        layout="fill"
+                        className="rounded-[16px] object-cover"
+                        draggable={false}
+                    />
+                    <div className="absolute inset-0">
+                        <Image
+                            src={data.imageUrl}
+                            alt={data.name}
+                            layout="fill"
+                            className="rounded-[16px] object-cover"
+                            draggable={false}
+                        />
+                    </div>
+                </div>
             </div>
-            <div
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    background: 'rgba(0,0,0,0.7)',
-                    color: 'white',
-                    padding: '20px',
-                }}
-            >
-                <h2 style={{ margin: '0 0 10px 0', fontSize: '1.2rem' }}>{name}</h2>
-                <p style={{
-                    margin: '5px 0',
-                    fontSize: '0.9rem',
-                    backgroundColor: 'rgba(255,255,255,0.2)',
-                    display: 'inline-block',
-                    padding: '2px 5px',
-                    borderRadius: '3px'
-                }}>
-                    Category: {category}
-                </p>
-                <p style={{
-                    margin: '5px 0',
-                    fontSize: '0.9rem',
-                    backgroundColor: 'rgba(255,255,255,0.2)',
-                    display: 'inline-block',
-                    padding: '2px 5px',
-                    borderRadius: '3px'
-                }}>
-                    Price: {priceRange}
-                </p>
+            <div className="text-common px-4 py-4 h-[120px] overflow-y-auto">
+                <h2 className="text-xl">{data.name}</h2>
+                <div className="flex flex-row items-center">
+                    <LocationPin/>
+                    <div className='truncate'>가까운 식당 232m</div>
+                </div>
+                <div>{data.representativeMenu}</div>
             </div>
         </div>
     );

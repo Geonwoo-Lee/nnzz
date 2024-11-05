@@ -5,7 +5,7 @@ import LocationPin from '../../../../../../public/svg/items/deck/LocationPin.svg
 import LikeButton from '../../../../../../public/svg/items/deck/LikeButton.svg'
 import DisLikeButton from '../../../../../../public/svg/items/deck/DisLikeButton.svg'
 
-const Card: React.FC<CardProps> = ({ data,  bind, dragStatus, className }) => {
+const DeckCard: React.FC<CardProps> = ({ data,  bind, dragStatus, className }) => {
     const statusCard = () => {
         if (dragStatus === 'like') {
             return <div    {...(bind || {})} className=' w-full h-full bg-[#0F172AD1] flex items-center justify-center'>
@@ -31,8 +31,7 @@ const Card: React.FC<CardProps> = ({ data,  bind, dragStatus, className }) => {
                                     src={`/images/bg/${data.bgType}.png`}
                                     alt="background"
                                     layout="fill"
-                                    objectFit="cover"
-                                    className="rounded-[16px]"
+                                    className="rounded-[16px] object-cover"
                                     draggable={false}
                                 />
                                 <div className="absolute inset-0">
@@ -40,8 +39,7 @@ const Card: React.FC<CardProps> = ({ data,  bind, dragStatus, className }) => {
                                         src={data.imageUrl}
                                         alt={data.name}
                                         layout="fill"
-                                        objectFit="cover"
-                                        className="rounded-[16px]"
+                                        className="rounded-[16px] object-cover"
                                         draggable={false}
                                     />
                                 </div>
@@ -60,10 +58,9 @@ const Card: React.FC<CardProps> = ({ data,  bind, dragStatus, className }) => {
                             </div>
                         </div>
                     </>
-
             }
         </div>
     )
 }
 
-export default Card
+export default DeckCard

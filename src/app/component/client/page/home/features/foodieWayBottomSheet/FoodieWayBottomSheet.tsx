@@ -6,6 +6,7 @@ import FoodieWay from "@/src/app/component/client/page/home/features/foodieWay/F
 const FoodieWayBottomSheet = (props: FoodieWayModalProps) => {
     const {onChangeWay, modalOpen, closeModal} = props
 
+
     return <BottomSheet open={modalOpen}  backdrop={false} close={closeModal}>
         <div className='flex flex-col gap-6'>
             <div className='text-title2 font-medium text-text-1'>
