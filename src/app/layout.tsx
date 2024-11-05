@@ -1,20 +1,21 @@
 // src/app/layout.tsx
-import type {Metadata, Viewport} from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import React from "react";
-import {pretendard} from "@/src/app/utils/font/font";
+import { pretendard } from "@/src/app/utils/font/font";
 
 export const viewport: Viewport = {
-    themeColor: '#fff',
-}
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+};
 
 export const metadata: Metadata = {
     manifest: "/manifest.json",
     title: "nnzz",
     description: "맛있는 솔루션",
-    themeColor: "#ffffff",
     openGraph: {
         title: "nnzz",
         description: "맛있는 솔루션",
@@ -50,11 +51,6 @@ export const metadata: Metadata = {
         statusBarStyle: "default",
         capable: true,
     },
-    viewport: {
-        width: 'device-width',
-        initialScale: 1,
-        maximumScale: 1,
-    },
     applicationName: "nnzz",
     keywords: ["맛있는", "솔루션", "점심", "저녁", "메뉴", "고민"],
     formatDetection: {
@@ -71,15 +67,22 @@ export default function RootLayout({
                                    }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const ReactQueryProvider = dynamic(() => import('../app/provider/ReactQueryProvider'), {ssr: false});
-    const SplashScreen = dynamic(() => import('@/src/app/component/client/page/splash/SplashScreen'), {ssr: false});
+    const ReactQueryProvider = dynamic(
+        () => import("../app/provider/ReactQueryProvider"),
+        { ssr: false }
+    );
+    const SplashScreen = dynamic(
+        () => import("@/src/app/component/client/page/splash/SplashScreen"),
+        { ssr: false }
+    );
     return (
         <html lang="ko">
-        <body data-theme="light" className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}>
+        <body
+            data-theme="light"
+            className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}
+        >
         <ReactQueryProvider>
-            <SplashScreen>
-            {children}
-            </SplashScreen>
+            <SplashScreen>{children}</SplashScreen>
         </ReactQueryProvider>
         <Script
             src="https://developers.kakao.com/sdk/js/kakao.js"

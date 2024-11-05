@@ -3,17 +3,17 @@ import {BindType} from "@/src/app/types/hook/cardSwipte";
 import {FoodItem} from "@/src/app/types/models/food";
 
 
-export interface CardProps {
-    data: FoodItem
-    bind: BindType | undefined;
-    dragStatus: DragStatus;
+export interface BasicCardProps {
+    data: FoodItem;
     className?: string;
 }
 
-export interface ResultCardProps {
-    image: string;
-    category: string;
-    name: string;
-    priceRange: string;
-    index: number;
+export interface CardProps extends BasicCardProps{
+    bind: BindType | undefined;
+    dragStatus: DragStatus;
+}
+
+export interface ResultCardProps extends BasicCardProps {
+    handleDeleteCard: (result: FoodItem, type: 'add' | 'delete') => void;
+    deleted: boolean;
 }

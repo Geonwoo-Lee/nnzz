@@ -41,6 +41,13 @@ const HomeMealSettingClient = () => {
     const onChangeWay = (way: '빠르게' | '꼼꼼히') => {
         setWayToFind(way)
         setWayBottomSheet(false)
+        if(selectedLocation && selectedMealTime) {
+            if(way === '꼼꼼히') {
+                router.push('/swipe')
+            }else {
+                return
+            }
+        }
     }
 
     useEffect(() => {

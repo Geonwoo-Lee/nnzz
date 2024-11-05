@@ -125,6 +125,9 @@ const config: Config = {
       fontFamily: {
         poppins: ['var(--font-pretendard)'],
       },
+      borderRadius: {
+        'large': '1200px',
+      },
       fontSize: {
         'caption3': ['0.6875rem', { lineHeight: '0.786rem' }],   // 11px
         'caption2': ['0.75rem', { lineHeight: '0.857rem' }],     // 12px
@@ -192,6 +195,26 @@ const config: Config = {
           '0%, 100%': { transform: 'translateX(-2px)' },
           '50%': { transform: 'translateX(2px)' },
         },
+        "fly-in": {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(-10px) rotate(-5deg)',
+          },
+          '25%': {
+            transform: 'translateX(10px) rotate(5deg)',
+          },
+          '50%': {
+            transform: 'translateX(-5px) rotate(-3deg)',
+            opacity: '1',
+          },
+          '75%': {
+            transform: 'translateX(5px) rotate(3deg)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0) rotate(0)',
+          }
+        },
         fadeIn: {
           '0%': { opacity: "0" },
           '100%': { opacity: "1" },
@@ -204,6 +227,7 @@ const config: Config = {
       animation: {
         wiggle: 'wiggle 0.15s linear infinite',
         fadeInPage: 'fadeIn 0.8s  forwards',
+        flyIn: 'fly-in 0.8s forwards'
       }
     },
   },
