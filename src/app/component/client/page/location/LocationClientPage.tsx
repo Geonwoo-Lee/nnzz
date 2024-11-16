@@ -15,6 +15,7 @@ import LocationComponent from "@/src/app/component/client/page/location/features
 import useLocationBasedNavigation from "@/src/app/hooks/useLocationBasedNavigation";
 import {MapPlace} from "@/src/app/component/client/common/map/NaverMap";
 import {useRouter} from "next/navigation";
+import Loading from "@/src/app/component/client/common/loading/Loading";
 
 const LocationClientPage = () => {
     const router = useRouter()
@@ -23,7 +24,8 @@ const LocationClientPage = () => {
             address: "",
         }
     });
-    const handleLocationRequest = useLocationBasedNavigation();
+    const locationHandler = useLocationBasedNavigation();
+    const { handleLocationRequest, isLoading } = locationHandler;
     const [searchList, setSearchList] = useState<Place[]>([]);
     const [Funnel, setFunnel] = useFunnel(['tip', 'current', 'list', 'notFound'], "tip");
 
@@ -111,6 +113,11 @@ const LocationClientPage = () => {
                     </Funnel.Step>
                 </Funnel>
         </div>
+        {isLoading && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <Loading/>
+            </div>
+        )}
     </div>
 }
 

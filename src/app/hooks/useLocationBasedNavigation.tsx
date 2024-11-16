@@ -1,10 +1,13 @@
 import { useRouter } from "next/navigation";
+import { useState } from "react"; // useState 추가
 import { searchAddressByKeyword, getAddressFromCoords } from "@/src/app/func/common/geo.utils";
 
 const useLocationBasedNavigation = () => {
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
 
     const handleLocationRequest = () => {
+        setIsLoading(true); // 로딩 시작
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
                 async (position) => {
@@ -13,6 +16,7 @@ const useLocationBasedNavigation = () => {
                         const userLocation = await getAddressFromCoords(latitude, longitude);
                         if (userLocation) {
                             localStorage.setItem('userLocation', JSON.stringify(userLocation));
+                            setIsLoading(false); // 로딩 종료
                             router.push('/find-location');
                         } else {
                             setDefaultLocation();
@@ -40,10 +44,13 @@ const useLocationBasedNavigation = () => {
             }
         }).catch((error) => {
             console.error('주소 검색 중 오류 발생:', error);
+        }).finally(() => {
+            setIsLoading(false); // 로딩 종료
+            router.push('/find-location');
         });
     };
 
-    return handleLocationRequest;
+    return { handleLocationRequest, isLoading }; // isLoading 상태 함께 반환
 };
 
 export default useLocationBasedNavigation;

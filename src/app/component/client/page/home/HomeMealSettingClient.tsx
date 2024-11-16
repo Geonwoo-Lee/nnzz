@@ -45,7 +45,14 @@ const HomeMealSettingClient = () => {
             if(way === '꼼꼼히') {
                 router.push('/swipe')
             }else {
-                return
+                const mealTimingToEng = () => {
+                    if(mealTiming === '저녁'){
+                        return 'dinner'
+                    }else {
+                        return 'lunch'
+                    }
+                 }
+                router.push(`/fast-choice/${mealTimingToEng()}`)
             }
         }
     }

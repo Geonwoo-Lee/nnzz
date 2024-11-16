@@ -1,11 +1,14 @@
 import {Suspense} from "react";
 import FindLocationClientPage from "@/src/app/component/client/page/find-location/FindLocationClientPage";
+import dynamic from "next/dynamic";
 
+
+const Loading = dynamic(() => import('../../component/client/common/loading/Loading'), {
+    ssr: false
+})
 
 const FindLocation = () => {
-    return <Suspense fallback={<div>
-        로딩중
-    </div>}>
+    return <Suspense fallback={<Loading/>}>
        <FindLocationClientPage/>
     </Suspense>
 }

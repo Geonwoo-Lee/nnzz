@@ -57,3 +57,11 @@ body {
 .progress-color-value {
   background-color: #F1F5F9;
 }
+
+.food-detail-card-size {
+  aspect-ratio: 112 / 112;
+}
+
+.food-detail-card-image-size {
+  aspect-ratio: 80 / 80;
+}

@@ -189,6 +189,7 @@ const config: Config = {
         'button-height-lg': '50px',
         'input-height': '52px',
         'location-no-search-height': 'calc(100vh - 260px - 52px)',
+        'fast-choice-height': 'calc(100vh - 199px)',
       },
       keyframes: {
         wiggle: {
