@@ -50,8 +50,10 @@ const LocationClientPage = () => {
         const pinnedLocation: MapPlace = {
             name: place.name,
             lat: place.latitude,
-            lng: place.longitude
+            lng: place.longitude,
+            address: place.address
         }
+        console.log(place)
         window.localStorage.setItem('pinedLocation', JSON.stringify(pinnedLocation));
         router.push('/home')
     }

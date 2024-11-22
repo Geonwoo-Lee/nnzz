@@ -1,12 +1,13 @@
 'use client'
 
 import {useForm} from "react-hook-form";
-import {SignUpController} from "@/src/app/types/page/sign-up/sign-up";
+import {FoodProfileType, SignUpController} from "@/src/app/types/page/sign-up/sign-up";
 import SignUpComponent from "@/src/app/component/client/page/sign-up/features/SignUpComponent";
 import {useNestedFunnel} from "@/src/app/hooks/useNestedFunnel";
 import React, { useState} from "react";
 import Button from "@/src/app/component/client/common/button/Button";
 import {useRouter} from "next/navigation";
+import AuthUtils from "@/src/app/func/common/auth.utils";
 
 const SignUpClientPage = () => {
     const router = useRouter()
@@ -47,7 +48,8 @@ const SignUpClientPage = () => {
             genderAge: {
                 gender: '',
                 age: ''
-            }
+            },
+            profileImage: {} as FoodProfileType
         }
     });
 
@@ -55,6 +57,7 @@ const SignUpClientPage = () => {
 
     const nickNameValue = watch('nickName')
     const genderAgeValue = watch('genderAge')
+    const profileImageValue = watch('profileImage')
 
     const setStep = (step: number) => {
         goToStep(step)
@@ -99,6 +102,10 @@ const SignUpClientPage = () => {
         }
     }
 
+    const setProfileImage = (profileImage: FoodProfileType) => {
+        setValue('profileImage', profileImage)
+    }
+
 
     return (
         <main className='p-4 flex flex-col justify-between h-[100vh]'>
@@ -126,7 +133,7 @@ const SignUpClientPage = () => {
                         />
                     </Funnel.Step>
                     <Funnel.Step>
-                        <SignUpComponent.ProfileImageComponent/>
+                        <SignUpComponent.ProfileImageComponent setLoginProfileImage={setProfileImage}/>
                     </Funnel.Step>
                 </Funnel>
             </div>
@@ -137,6 +144,14 @@ const SignUpClientPage = () => {
                     }else if(currentStep === 2) {
                         nextStep()
                     }else {
+                        AuthUtils.login({
+                            member: {
+                                nickname: nickNameValue,
+                                gender: genderAgeValue.gender,
+                                age: genderAgeValue.age,
+                                profileImage: profileImageValue.id === 0 ? null : profileImageValue
+                            }
+                        })
                         router.push('/sign-up/complete')
                     }
                 }} style='w-full' type='primary' size='lg'>

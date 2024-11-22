@@ -11,47 +11,47 @@ const FoodProfileDummy: FoodProfileList = [
     {
         id: 1,
         name: 'susi',
-        src: `${fileLocation}/Susi.png`
+        src: `${fileLocation}/FoodProfile01.jpg`
     },
     {
         id: 2,
         name: 'hamburger',
-        src: `${fileLocation}/Hamburger.png`
+        src: `${fileLocation}/FoodProfile02.jpg`
     },
     {
         id: 3,
         name: 'pizza',
-        src: `${fileLocation}/Pizza.png`
+        src: `${fileLocation}/FoodProfile03.jpg`
     },
     {
         id: 4,
-        name: 'bulgogi',
-        src: `${fileLocation}/Bulgogi.png`
+        name: 'shrimp',
+        src: `${fileLocation}/FoodProfile04.jpg`
     },
     {
         id: 5,
         name: 'nengmyun',
-        src: `${fileLocation}/NengMyun.png`
+        src: `${fileLocation}/FoodProfile05.jpg`
     },
     {
         id: 6,
         name: 'chicken',
-        src: `${fileLocation}/Chicken.png`
+        src: `${fileLocation}/FoodProfile06.jpg`
     },
     {
         id: 7,
-        name: '',
-        src: ``
+        name: 'samgyetang',
+        src: `${fileLocation}/FoodProfile07.jpg`
     },
     {
-        id: 7,
-        name: '',
-        src: ``
+        id: 8,
+        name: 'jjajangmyun',
+        src: `${fileLocation}/FoodProfile08.jpg`
     },
     {
-        id: 7,
-        name: '',
-        src: ``
+        id: 9,
+        name: 'salad',
+        src: `${fileLocation}/FoodProfile09.jpg`
     },
 
 ]

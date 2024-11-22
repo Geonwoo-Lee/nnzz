@@ -16,7 +16,7 @@ const useLocationBasedNavigation = () => {
                         const userLocation = await getAddressFromCoords(latitude, longitude);
                         if (userLocation) {
                             localStorage.setItem('userLocation', JSON.stringify(userLocation));
-                            setIsLoading(false); // 로딩 종료
+                            setIsLoading(false);
                             router.push('/find-location');
                         } else {
                             setDefaultLocation();
@@ -45,7 +45,7 @@ const useLocationBasedNavigation = () => {
         }).catch((error) => {
             console.error('주소 검색 중 오류 발생:', error);
         }).finally(() => {
-            setIsLoading(false); // 로딩 종료
+            setIsLoading(false);
             router.push('/find-location');
         });
     };

@@ -46,7 +46,7 @@ export default class AuthUtils {
 
     public static async login(loginRes: LoginRes) {
         return new Promise((resolve) => {
-            this.setToken(loginRes.token.token);
+            // this.setToken(loginRes.token.token);
             this.setUserInfo({
                 ...loginRes.member,
             });

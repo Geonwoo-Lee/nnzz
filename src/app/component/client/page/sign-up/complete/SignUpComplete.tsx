@@ -13,7 +13,7 @@ const SignUpComplete = () => {
                     냠냠쩝쩝님
                 </div>
                 <div>
-                    가입을 축하드랴요 !
+                    가입을 축하드려요 !
                 </div>
             </div>
             <div className='py-4 w-full'>
