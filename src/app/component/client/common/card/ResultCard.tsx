@@ -59,13 +59,15 @@ const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCar
                         draggable={false}
                     />
                     <div className="absolute inset-0">
-                        <Image
-                            src={data.imageUrl}
-                            alt={data.name}
-                            layout="fill"
-                            className=" object-cover"
-                            draggable={false}
-                        />
+                        <div className="relative w-full h-full pt-4 px-8 flex items-center justify-center">
+                            <Image
+                                src={data.imageUrl}
+                                alt={data.name}
+                                layout="fill"
+                                className="rounded-[16px] object-contain"
+                                draggable={false}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
