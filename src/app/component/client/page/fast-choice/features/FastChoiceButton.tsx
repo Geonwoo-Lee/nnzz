@@ -11,7 +11,7 @@ const FastChoiceButton = (props: FastChoiceButtonProps) => {
                 <ProgressBar currentStep={step} totalStep={15} leftCount={true} />
             </div>
             <div className='pt-4 pb-12'>
-                <Button type='primary' disabled={step < 15} onClick={onClick} size='lg' style='w-full'>
+                <Button type='primary' disabled={step < 3} onClick={onClick} size='lg' style='w-full'>
                     식당 정보 보러가기
                 </Button>
             </div>

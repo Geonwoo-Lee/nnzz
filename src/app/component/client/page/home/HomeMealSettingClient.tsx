@@ -15,6 +15,7 @@ const HomeMealSettingClient = () => {
     const [wayToFind, setWayToFind] = useState('');
     const [wayBottomSheet, setWayBottomSheet] = useState(false);
     const [mealTimingBottomSheet, setMealTimingBottomSheet] = useState(false);
+    const location = localStorage.getItem('pinedLocation');
 
     const moveToMap = () => {
         router.push('/location')
@@ -37,6 +38,7 @@ const HomeMealSettingClient = () => {
     const mealTimingController = (timing: MealTimingType) => {
         setMealTiming(timing)
     }
+
 
     const onChangeWay = (way: '빠르게' | '꼼꼼히') => {
         setWayToFind(way)
@@ -74,12 +76,16 @@ const HomeMealSettingClient = () => {
     }, [selectedMealTime]);
 
     useEffect(() => {
-        const location = localStorage.getItem('pinedLocation');
         if(location) {
             const locationData = JSON.parse(location);
-            setSelectedLocation(locationData.name)
+            if(!locationData.name) {
+                setSelectedLocation(locationData.address)
+            }else {
+                setSelectedLocation(locationData.name)
+            }
+
         }
-    }, []);
+    }, [location]);
 
     return (
         <div className='flex flex-col gap-4 px-4'>

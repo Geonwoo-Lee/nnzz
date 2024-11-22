@@ -18,7 +18,8 @@ const FindLocationClientPage = () => {
             setCurrentLocation({
                 name: userLocation.name,
                 lat: userLocation.latitude,
-                lng: userLocation.longitude
+                lng: userLocation.longitude,
+                address: userLocation.address
             });
         }
     };

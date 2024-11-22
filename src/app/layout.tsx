@@ -1,10 +1,10 @@
 // src/app/layout.tsx
-import type { Metadata, Viewport } from "next";
+import type {Metadata, Viewport} from "next";
 import "./globals.css";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import React from "react";
-import { pretendard } from "@/src/app/utils/font/font";
+import {pretendard} from "@/src/app/utils/font/font";
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -32,18 +32,18 @@ export const metadata: Metadata = {
     },
     icons: {
         icon: [
-            { url: "/favicon.ico", sizes: "any" },
-            { url: "/icon/app-icon-24x24.png", sizes: "24x24", type: "image/png" },
-            { url: "/icon/app-icon-48x48.png", sizes: "48x48", type: "image/png" },
-            { url: "/icon/app-icon-72x72.png", sizes: "72x72", type: "image/png" },
-            { url: "/icon/app-icon-96x96.png", sizes: "96x96", type: "image/png" },
-            { url: "/icon/app-icon-128x128.png", sizes: "128x128", type: "image/png" },
-            { url: "/icon/app-icon-192x192.png", sizes: "192x192", type: "image/png" },
-            { url: "/icon/app-icon-384x384.png", sizes: "384x384", type: "image/png" },
-            { url: "/icon/app-icon-512x512.png", sizes: "512x512", type: "image/png" },
+            {url: "/favicon.ico", sizes: "any"},
+            {url: "/icon/app-icon-24x24.png", sizes: "24x24", type: "image/png"},
+            {url: "/icon/app-icon-48x48.png", sizes: "48x48", type: "image/png"},
+            {url: "/icon/app-icon-72x72.png", sizes: "72x72", type: "image/png"},
+            {url: "/icon/app-icon-96x96.png", sizes: "96x96", type: "image/png"},
+            {url: "/icon/app-icon-128x128.png", sizes: "128x128", type: "image/png"},
+            {url: "/icon/app-icon-192x192.png", sizes: "192x192", type: "image/png"},
+            {url: "/icon/app-icon-384x384.png", sizes: "384x384", type: "image/png"},
+            {url: "/icon/app-icon-512x512.png", sizes: "512x512", type: "image/png"},
         ],
         apple: [
-            { url: "/icon/app-icon-192x192.png", sizes: "192x192", type: "image/png" },
+            {url: "/icon/app-icon-192x192.png", sizes: "192x192", type: "image/png"},
         ],
     },
     appleWebApp: {
@@ -62,6 +62,8 @@ export const metadata: Metadata = {
     },
 };
 
+const ToastProvider = dynamic(() => import('./core/ToastProvider'))
+
 export default function RootLayout({
                                        children,
                                    }: Readonly<{
@@ -69,11 +71,11 @@ export default function RootLayout({
 }>) {
     const ReactQueryProvider = dynamic(
         () => import("../app/provider/ReactQueryProvider"),
-        { ssr: false }
+        {ssr: false}
     );
     const SplashScreen = dynamic(
         () => import("@/src/app/component/client/page/splash/SplashScreen"),
-        { ssr: false }
+        {ssr: false}
     );
     return (
         <html lang="ko">
@@ -82,7 +84,9 @@ export default function RootLayout({
             className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}
         >
         <ReactQueryProvider>
-            <SplashScreen>{children}</SplashScreen>
+            <ToastProvider>
+                <SplashScreen>{children}</SplashScreen>
+            </ToastProvider>
         </ReactQueryProvider>
         <Script
             src="https://developers.kakao.com/sdk/js/kakao.js"

@@ -8,6 +8,7 @@ export interface  genderAgeType {
 export interface SignUpController {
     nickName: string;
     genderAge: genderAgeType
+    profileImage: FoodProfileType;
 }
 
 export interface BasicSignUpProps {
@@ -37,6 +38,12 @@ export interface GenderAgeBottomSheetProps {
     onClose: () => void;
     genderAgeValue:   genderAgeType
     setSelectedValue: (value: string | genderAgeType['gender'], type: 'gender' | 'age') => void;
+}
+
+export interface ProfilePageProps {
+    setLoginProfileImage: (value: FoodProfileType) => void;
+    userInfoImage?: FoodProfileType;
+    isSetting?: boolean
 }
 
 export interface GenderAgeSelectWrapProps {

@@ -8,3 +8,12 @@ export interface ProfileImageType {
     size?: number
     setSelectedImage?: (value: FoodProfileType) => void
 }
+
+export interface ProfileImageServerType {
+    profileImage: string;
+    size?: number
+}
+
+export interface ChangeProfileImageProps {
+    userInfoProfile: FoodProfileType | null
+}

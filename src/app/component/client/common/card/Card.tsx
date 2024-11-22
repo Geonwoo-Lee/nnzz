@@ -8,11 +8,11 @@ import DisLikeButton from '../../../../../../public/svg/items/deck/DisLikeButton
 const DeckCard: React.FC<CardProps> = ({ data,  bind, dragStatus, className }) => {
     const statusCard = () => {
         if (dragStatus === 'like') {
-            return <div    {...(bind || {})} className=' w-full h-full bg-[#0F172AD1] flex items-center justify-center'>
+            return <div {...(bind || {})} className='w-full h-full bg-[#0F172AD1] flex items-center justify-center'>
                 <LikeButton/>
             </div>
         } else {
-            return <div    {...(bind || {})} className=' w-full h-full bg-[#0F172AD1] flex items-center justify-center'>
+            return <div {...(bind || {})} className='w-full h-full bg-[#0F172AD1] flex items-center justify-center'>
                 <DisLikeButton/>
             </div>
         }
@@ -35,13 +35,15 @@ const DeckCard: React.FC<CardProps> = ({ data,  bind, dragStatus, className }) =
                                     draggable={false}
                                 />
                                 <div className="absolute inset-0">
-                                    <Image
-                                        src={data.imageUrl}
-                                        alt={data.name}
-                                        layout="fill"
-                                        className="rounded-[16px] object-cover"
-                                        draggable={false}
-                                    />
+                                    <div className="relative w-full h-full pt-4 px-8">
+                                        <Image
+                                            src={data.imageUrl}
+                                            alt={data.name}
+                                            layout="fill"
+                                            className="rounded-[16px] object-contain"
+                                            draggable={false}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
