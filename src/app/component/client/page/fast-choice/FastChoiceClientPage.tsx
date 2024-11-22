@@ -13,17 +13,18 @@ const FastChoiceClientPage = () => {
     const showToast = useToast()
 
     const handleSelect = (card: FoodChoiceCard) => {
-       if(selectedList.length >= 15) {
-           showToast('최대 15개까지 선택할 수 있습니다.',ToastPosition.BOTTOM, ToastAlign.CENTER)
-       }else {
-           setSelectedList((prevList) => {
-               if (prevList.includes(card)) {
-                   return prevList.filter((item) => item !== card);
-               } else {
-                   return [...prevList, card];
-               }
-           });
-       }
+        setSelectedList((prevList) => {
+            if (prevList.includes(card)) {
+                return prevList.filter((item) => item !== card);
+            }
+
+            if (prevList.length >= 15) {
+                showToast('최대 15개까지 선택할 수 있습니다.', ToastPosition.BOTTOM, ToastAlign.CENTER);
+                return prevList;
+            }
+
+            return [...prevList, card];
+        });
     };
 
     return (
