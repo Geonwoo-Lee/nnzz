@@ -12,7 +12,7 @@ const SettingPage = () => {
             <div className='px-5'>
                 <div className='pt-6 w-full flex justify-center items-center flex-col gap-6'>
                     <div className='flex flex-col gap-3'>
-                        <ProfileImageServer profileImage={userInfo.profileImage.src} size={112} />
+                        <ProfileImageServer profileImage={userInfo.profileImage ? userInfo.profileImage.src : '/images/food/food-profile/Default.png'} size={112} />
                         <div className='text-center text-title2 font-bold '>
                             {userInfo.nickname}
                         </div>
