@@ -10,15 +10,15 @@ import {ChangeProfileImageProps} from "@/src/app/types/common/profileImage";
 const ChangeProfile = (props: ChangeProfileImageProps) => {
     const {userInfoProfile} = props
     const [profileImage, setProfileImage] = useState<FoodProfileType>(FoodProfileDummy[0])
-    const [open, setOpen] = useState<boolean>(false)
-
-    const close = () => {
-        setOpen(false)
-    }
-    const setImage = (profileImage: FoodProfileType) => {
-        setProfileImage(profileImage)
-        setOpen(false)
-    }
+    // const [open, setOpen] = useState<boolean>(false)
+    //
+    // const close = () => {
+    //     setOpen(false)
+    // }
+    // const setImage = (profileImage: FoodProfileType) => {
+    //     setProfileImage(profileImage)
+    //     setOpen(false)
+    // }
 
     const setLoginProfileImage = (profileImage: FoodProfileType) => {
         console.log(profileImage)

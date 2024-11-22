@@ -5,7 +5,7 @@ export interface  UserInfo {
     id?: string;
     nickname: string;
     email?: string;
-    profileImage: FoodProfileType;
+    profileImage: FoodProfileType | null;
     gender?: string;
     age?: string;
 }
