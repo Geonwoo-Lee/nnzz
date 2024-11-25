@@ -4,10 +4,11 @@ import {useForm} from "react-hook-form";
 import {FoodProfileType, SignUpController} from "@/src/app/types/page/sign-up/sign-up";
 import SignUpComponent from "@/src/app/component/client/page/sign-up/features/SignUpComponent";
 import {useNestedFunnel} from "@/src/app/hooks/useNestedFunnel";
-import React, { useState} from "react";
+import React, {useState} from "react";
 import Button from "@/src/app/component/client/common/button/Button";
 import {useRouter} from "next/navigation";
 import AuthUtils from "@/src/app/func/common/auth.utils";
+import SignUpApi from "@/src/app/api/client/sign-up/sign-up";
 
 const SignUpClientPage = () => {
     const router = useRouter()
@@ -42,7 +43,7 @@ const SignUpClientPage = () => {
     };
 
 
-    const {control,  watch, setValue} = useForm<SignUpController>({
+    const {control, watch, setValue} = useForm<SignUpController>({
         defaultValues: {
             nickName: '',
             genderAge: {
@@ -54,7 +55,6 @@ const SignUpClientPage = () => {
     });
 
 
-
     const nickNameValue = watch('nickName')
     const genderAgeValue = watch('genderAge')
     const profileImageValue = watch('profileImage')
@@ -64,21 +64,20 @@ const SignUpClientPage = () => {
     }
 
     const disableNextStep = () => {
-        if(currentStep === 1){
+        if (currentStep === 1) {
             return false
         }
-        if(currentStep === 2){
-            if(genderAgeValue.age.length === 0) {
+        if (currentStep === 2) {
+            if (genderAgeValue.age.length === 0) {
                 return true
-            }else {
+            } else {
                 return false
             }
         }
-        if(currentStep === 3){
+        if (currentStep === 3) {
             return false
         }
     }
-
 
 
     const headerRenderer = () => {
@@ -96,7 +95,8 @@ const SignUpClientPage = () => {
                 return <div className=' w-full flex flex-col items-center py-6 text-title1 font-bold text-text-1'>
                     성별과 나이대를 알려주세요.
                 </div>
-            case 3: return <div className=' w-full flex flex-col items-center py-6 text-title1 font-bold text-text-1'>
+            case 3:
+                return <div className=' w-full flex flex-col items-center py-6 text-title1 font-bold text-text-1'>
                     프로필 이미지를 선택해주세요!
                 </div>
         }
@@ -139,19 +139,29 @@ const SignUpClientPage = () => {
             </div>
             <div className='py-4 w-full'>
                 <Button disabled={disableNextStep()} onClick={() => {
-                    if(currentStep === 1 ) {
+                    if (currentStep === 1) {
                         validateNickname(nickNameValue)
-                    }else if(currentStep === 2) {
+                    } else if (currentStep === 2) {
                         nextStep()
-                    }else {
-                        AuthUtils.login({
-                            member: {
-                                nickname: nickNameValue,
-                                gender: genderAgeValue.gender,
-                                age: genderAgeValue.age,
-                                profileImage: profileImageValue.id === 0 ? null : profileImageValue
-                            }
+                    } else {
+                        SignUpApi.join({
+                            nickname: nickNameValue,
+                            gender: genderAgeValue.gender,
+                            ageRange: genderAgeValue.age,
+                            profileImage: profileImageValue.id === 0 ? null : profileImageValue,
+                            email: AuthUtils.getUserInfo()?.email
+                        }).then((res) => {
+                            console.log(res)
                         })
+                            AuthUtils.login({
+                                member: {
+                                    nickname: nickNameValue,
+                                    gender: genderAgeValue.gender,
+                                    age: genderAgeValue.age,
+                                    profileImage: profileImageValue.id === 0 ? null : profileImageValue,
+                                    email: AuthUtils.getUserInfo()?.email
+                                }
+                            })
                         router.push('/sign-up/complete')
                     }
                 }} style='w-full' type='primary' size='lg'>

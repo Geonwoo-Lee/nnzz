@@ -41,7 +41,7 @@ export interface GenderAgeBottomSheetProps {
 }
 
 export interface ProfilePageProps {
-    setLoginProfileImage: (value: FoodProfileType) => void;
+    setLoginProfileImage?: (value: FoodProfileType) => void;
     userInfoImage?: FoodProfileType;
     isSetting?: boolean
 }
