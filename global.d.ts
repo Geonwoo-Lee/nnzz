@@ -93,6 +93,13 @@ interface KakaoMapOptions {
     level: number;
 }
 
+interface KakaoLoginOptions {
+    success: (authObj?: any) => void;
+    fail: (error: any) => void;
+    scope?: string;
+}
+
+
 interface KakaoLatLng {
     getLat(): number;
     getLng(): number;
@@ -143,8 +150,12 @@ interface KakaoStatic {
             success: (authObj: any) => void;
             fail: (error: any) => void;
         }): void;
-        login(options: {
-            success: (authObj: any) => void;
+        login(options: KakaoLoginOptions): void;
+    };
+    API: {
+        request(options: {
+            url: string;
+            success: (response: any) => void;
             fail: (error: any) => void;
         }): void;
     };

@@ -2,11 +2,11 @@
 import { UserInfo } from "../../types/models/user";
 import ProfileImageServer from "@/src/app/component/server/common/ProfileImage/ProfileImage";
 import AuthUtils from "@/src/app/func/common/auth.utils";
+import SettingList from "@/src/app/component/server/page/setting/settingList/SettingList";
 
 
 const SettingPage = () => {
     const userInfo: UserInfo = AuthUtils.getUserInfo() || {} as UserInfo
-
     return (
         <div className='h-basic-body-with-header'>
             <div className='px-5'>
@@ -22,7 +22,7 @@ const SettingPage = () => {
                     </div>
                 </div>
                 <div className='pt-6'>
-
+                    <SettingList/>
                 </div>
             </div>
         </div>

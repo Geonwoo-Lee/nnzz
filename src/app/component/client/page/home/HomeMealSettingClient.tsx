@@ -5,6 +5,7 @@ import DateUtils from "@/src/app/func/common/date.utils";
 import {DayInfo, MealTimingType} from "@/src/app/types/page/home/homeSelect";
 import {useRouter} from "next/navigation";
 import HomeMealSettingComponent from "@/src/app/component/client/page/home/features/HomeMealSettingComponent";
+import AuthUtils from "@/src/app/func/common/auth.utils";
 
 const HomeMealSettingClient = () => {
     const router = useRouter()
@@ -16,6 +17,7 @@ const HomeMealSettingClient = () => {
     const [wayBottomSheet, setWayBottomSheet] = useState(false);
     const [mealTimingBottomSheet, setMealTimingBottomSheet] = useState(false);
     const location = localStorage.getItem('pinedLocation');
+    const userName = AuthUtils.getUserInfo()?.nickname
 
     const moveToMap = () => {
         router.push('/location')
@@ -90,7 +92,7 @@ const HomeMealSettingClient = () => {
     return (
         <div className='flex flex-col gap-4 px-4'>
             <div className='font-medium text-heading4'>
-                김냠냠님,
+                {userName}님,
             </div>
             <div className='flex flex-row gap-1 items-center font-medium text-title1 whitespace-nowrap'>
                 <HomeMealSettingComponent.HomeSelect selected={false} callBack={moveToMap} data={selectedLocation}/> 주변에서

@@ -16,3 +16,11 @@ export interface LoginRes {
     //     token: string;
     // };
 }
+
+export interface JoinParams {
+    email?: string;
+    nickname: string;
+    profileImage: FoodProfileType | null;
+    gender?: string;
+    ageRange?: string;
+}

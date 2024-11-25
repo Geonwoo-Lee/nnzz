@@ -16,7 +16,7 @@ const ProfileImageComponent = (props: ProfilePageProps) => {
     }
     const setImage = (profileImage: FoodProfileType) => {
         setProfileImage(profileImage)
-        setLoginProfileImage(profileImage)
+       if(setLoginProfileImage) setLoginProfileImage(profileImage)
         setOpen(false)
     }
 

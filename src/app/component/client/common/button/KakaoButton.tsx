@@ -2,6 +2,7 @@
 import {useEffect} from 'react'
 import KakaoLogo from '../../../../../../public/svg/logo/KakaoLogo.svg'
 import {useRouter} from "next/navigation";
+import { UserInfo } from '@/src/app/types/models/user';
 
 export default function Login() {
     const router = useRouter();
@@ -23,17 +24,36 @@ export default function Login() {
         if (window.Kakao && window.Kakao.Auth) {
             window.Kakao.Auth.login({
                 success: function() {
-                    router.push('/sign-up');
+                    window.Kakao.API.request({
+                        url: '/v2/user/me',
+                        success: function(response: any) {
+                            const kakaoAccount = response.kakao_account;
+
+                            const userInfo: UserInfo = {
+                                nickname: '',
+                                email: kakaoAccount.email,
+                                profileImage: null
+                            };
+
+                            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
+                            // 회원가입 페이지로 이동
+                            router.push('/sign-up');
+                        },
+                        fail: function(error: any) {
+                            console.error('사용자 정보 요청 실패', error);
+                        },
+                    });
                 },
-                fail: function(err) {
+                fail: function(err: any) {
                     console.error(err);
                 },
-            });
+                scope: 'account_email'
+            } as any);
         } else {
             console.error('Kakao SDK not loaded');
         }
     };
-
     const handleLogin = () => {
         loginWithKakao();
     };
