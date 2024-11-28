@@ -148,20 +148,20 @@ const SignUpClientPage = () => {
                             nickname: nickNameValue,
                             gender: genderAgeValue.gender,
                             ageRange: genderAgeValue.age,
-                            profileImage: profileImageValue.id === 0 ? null : profileImageValue,
+                            profileImage:  profileImageValue.id,
                             email: AuthUtils.getUserInfo()?.email
                         }).then((res) => {
                             console.log(res)
                         })
-                            AuthUtils.login({
-                                member: {
-                                    nickname: nickNameValue,
-                                    gender: genderAgeValue.gender,
-                                    age: genderAgeValue.age,
-                                    profileImage: profileImageValue.id === 0 ? null : profileImageValue,
-                                    email: AuthUtils.getUserInfo()?.email
-                                }
-                            })
+                        AuthUtils.login({
+                            member: {
+                                nickname: nickNameValue,
+                                gender: genderAgeValue.gender,
+                                age: genderAgeValue.age,
+                                profileImage: profileImageValue.id,
+                                email: AuthUtils.getUserInfo()?.email
+                            }
+                        })
                         router.push('/sign-up/complete')
                     }
                 }} style='w-full' type='primary' size='lg'>
