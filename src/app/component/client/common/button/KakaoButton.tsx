@@ -32,7 +32,7 @@ export default function Login() {
                             const userInfo: UserInfo = {
                                 nickname: '',
                                 email: kakaoAccount.email,
-                                profileImage: null
+                                profileImage: 0
                             };
 
                             localStorage.setItem('userInfo', JSON.stringify(userInfo));

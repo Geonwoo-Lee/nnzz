@@ -1,11 +1,10 @@
-import {FoodProfileType} from "@/src/app/types/page/sign-up/sign-up";
 
 
 export interface  UserInfo {
     id?: string;
     nickname: string;
     email?: string;
-    profileImage: FoodProfileType | null;
+    profileImage: number;
     gender?: string;
     age?: string;
 }
@@ -20,7 +19,7 @@ export interface LoginRes {
 export interface JoinParams {
     email?: string;
     nickname: string;
-    profileImage: FoodProfileType | null;
+    profileImage: number;
     gender?: string;
     ageRange?: string;
 }
