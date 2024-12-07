@@ -1,22 +1,23 @@
 import {fetchWithoutToken} from "@/src/app/api/client/fetch/fetch";
 import BaseApi from "@/src/app/api/client/base/base-api";
-import {JoinParams} from "@/src/app/types/models/user";
+import { SignInTypeFromServer} from "@/src/app/types/page/sign-up/sign-up";
 
 
-class SignUpApi extends BaseApi {
+class SignInApi extends BaseApi {
     private static readonly BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
     private static readonly ENDPOINTS = {
-        JOIN: '/api/user/join'
+        JOIN: '/api/user/login'
     } as const;
 
-    static async join(params: JoinParams) {
+
+    static async login(email: string): Promise<SignInTypeFromServer> {
         try {
             const response = await fetchWithoutToken(`${this.BASE_URL}${this.ENDPOINTS.JOIN}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(params)
+                body: JSON.stringify(email)
             });
 
             return await response.json();
@@ -26,4 +27,4 @@ class SignUpApi extends BaseApi {
     }
 }
 
-export default SignUpApi;
+export default SignInApi;

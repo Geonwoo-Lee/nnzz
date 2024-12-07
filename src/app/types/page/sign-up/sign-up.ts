@@ -6,9 +6,25 @@ export interface  genderAgeType {
     age: string;
 }
 export interface SignUpController {
-    nickName: string;
+    nickname: string;
     genderAge: genderAgeType
     profileImage: FoodProfileType;
+}
+
+export interface SignInType {
+    profileImage: FoodProfileType;
+    nickname: string;
+    gender: '남' | '여' | '선택안함' | '',
+    age: string;
+    email?: string
+}
+
+export interface SignInTypeFromServer {
+    nickname: string;
+    gender: '남' | '여' | '선택안함' | '',
+    age: string;
+    profileImage: number;
+    email: string
 }
 
 export interface BasicSignUpProps {
@@ -31,8 +47,10 @@ export interface GenderAgePageProps extends BasicSignUpProps {
 }
 
 export interface GenderAgeBottomSheetProps {
-    setStep: (step: number) => void;
-    step: number
+    setStep?: (step: number) => void;
+    step?: number
+    stepAble: boolean;
+    callback?: () => void
     control: Control<SignUpController>
     open: boolean;
     onClose: () => void;
@@ -43,7 +61,8 @@ export interface GenderAgeBottomSheetProps {
 export interface ProfilePageProps {
     setLoginProfileImage?: (value: FoodProfileType) => void;
     userInfoImage?: FoodProfileType;
-    isSetting?: boolean
+    isSetting?: boolean;
+    callback?: (image: FoodProfileType) => void
 }
 
 export interface GenderAgeSelectWrapProps {

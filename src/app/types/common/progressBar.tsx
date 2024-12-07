@@ -1,6 +1,6 @@
 
 
-export interface  ProgressBarProps {
+export interface ProgressBarProps {
     currentStep: string | number;
     totalStep: string | number;
     bg?: string;
@@ -9,4 +9,7 @@ export interface  ProgressBarProps {
     height?: string;
     width?: string;
     leftCount?: boolean;
+    minRequired?: number;
+    beforeMinText?: string;
+    afterMinText?: string;
 }

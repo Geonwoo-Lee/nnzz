@@ -3,6 +3,9 @@ import {useEffect} from 'react'
 import KakaoLogo from '../../../../../../public/svg/logo/KakaoLogo.svg'
 import {useRouter} from "next/navigation";
 import { UserInfo } from '@/src/app/types/models/user';
+import SignInApi from "@/src/app/api/client/sign-in/sign-in";
+import FoodProfileDummy from "@/src/app/dummy/sign-up";
+import AuthUtils from "@/src/app/func/common/auth.utils";
 
 export default function Login() {
     const router = useRouter();
@@ -34,14 +37,19 @@ export default function Login() {
                                 email: kakaoAccount.email,
                                 profileImage: 0
                             };
-
                             localStorage.setItem('userInfo', JSON.stringify(userInfo));
-
-                            // 회원가입 페이지로 이동
-                            router.push('/sign-up');
+                            SignInApi.login(kakaoAccount.email).then((res) => {
+                                const profile = FoodProfileDummy.find(el => el.id === Number(res.profileImage))
+                                AuthUtils.setUserInfo({
+                                    ...res,
+                                    profileImage: profile!,
+                                    nickname: res.nickname
+                                })
+                                router.push('/home');
+                            })
                         },
-                        fail: function(error: any) {
-                            console.error('사용자 정보 요청 실패', error);
+                        fail: function() {
+                            router.push('/sign-up');
                         },
                     });
                 },

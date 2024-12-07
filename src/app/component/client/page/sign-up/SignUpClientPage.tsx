@@ -45,7 +45,7 @@ const SignUpClientPage = () => {
 
     const {control, watch, setValue} = useForm<SignUpController>({
         defaultValues: {
-            nickName: '',
+            nickname: '',
             genderAge: {
                 gender: '',
                 age: ''
@@ -55,7 +55,7 @@ const SignUpClientPage = () => {
     });
 
 
-    const nickNameValue = watch('nickName')
+    const nickNameValue = watch('nickname')
     const genderAgeValue = watch('genderAge')
     const profileImageValue = watch('profileImage')
 
@@ -156,9 +156,9 @@ const SignUpClientPage = () => {
                         AuthUtils.login({
                             member: {
                                 nickname: nickNameValue,
-                                gender: genderAgeValue.gender,
-                                age: genderAgeValue.age,
-                                profileImage: profileImageValue.id,
+                                    gender: genderAgeValue.gender,
+                                    age: genderAgeValue.age,
+                                profileImage: profileImageValue,
                                 email: AuthUtils.getUserInfo()?.email
                             }
                         })

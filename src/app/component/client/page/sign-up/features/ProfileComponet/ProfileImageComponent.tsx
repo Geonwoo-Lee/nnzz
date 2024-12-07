@@ -7,16 +7,21 @@ import ProfileImage from "@/src/app/component/client/common/profileImage/Profile
 
 
 const ProfileImageComponent = (props: ProfilePageProps) => {
-    const {setLoginProfileImage, userInfoImage, isSetting} = props
+    const {setLoginProfileImage, userInfoImage, isSetting, callback} = props
     const [profileImage, setProfileImage] = useState<FoodProfileType>(FoodProfileDummy[0])
     const [open, setOpen] = useState<boolean>(false)
-
+    const [isInitialRender, setIsInitialRender] = useState(true)
     const close = () => {
         setOpen(false)
     }
     const setImage = (profileImage: FoodProfileType) => {
         setProfileImage(profileImage)
-       if(setLoginProfileImage) setLoginProfileImage(profileImage)
+        if(setLoginProfileImage) setLoginProfileImage(profileImage)
+
+        // 이미지 선택 시에는 직접 callback 호출
+        if(callback) {
+            callback(profileImage)
+        }
         setOpen(false)
     }
 
@@ -25,8 +30,13 @@ const ProfileImageComponent = (props: ProfilePageProps) => {
     }
 
     useEffect(() => {
-        if(userInfoImage) setImage(userInfoImage)
-    }, [userInfoImage]);
+        // 초기 userInfoImage 설정
+        if(userInfoImage && isInitialRender) {
+            setProfileImage(userInfoImage)
+            setIsInitialRender(false)
+        }
+    }, [userInfoImage, isInitialRender]);
+
 
     return <div className='w-full flex justify-center items-center '>
         <div className={`${isSetting && 'flex flex-col gap-6 justify-center items-center'}`}>

@@ -1,19 +1,18 @@
 'use client'
-import { UserInfo } from "../../types/models/user";
 import ProfileImageServer from "@/src/app/component/server/common/ProfileImage/ProfileImage";
 import AuthUtils from "@/src/app/func/common/auth.utils";
 import SettingList from "@/src/app/component/server/page/setting/settingList/SettingList";
 import { useEffect, useState } from "react";
-import FoodProfileDummy from "@/src/app/dummy/sign-up";
-import { FoodProfileType } from "@/src/app/types/page/sign-up/sign-up";
+import {FoodProfileType, SignInType} from "@/src/app/types/page/sign-up/sign-up";
+import Link from "next/link";
 
 const SettingPage = () => {
-    const userInfo: UserInfo = AuthUtils.getUserInfo() || {} as UserInfo;
+    const userInfo: SignInType = AuthUtils.getUserInfo() || {} as SignInType;
     const [profileInfo, setProfileInfo] = useState<FoodProfileType | null>(null);
 
     useEffect(() => {
         if (userInfo?.profileImage) {
-            const profile = FoodProfileDummy.find(el => el.id === userInfo.profileImage);
+            const profile = userInfo.profileImage;
             setProfileInfo(profile || null);
         }
     }, [userInfo.profileImage]);
@@ -38,9 +37,9 @@ const SettingPage = () => {
                             {userInfo.nickname}
                         </div>
                     </div>
-                    <div className='w-[126px] cursor-pointer h-[38px] border border-line-3 flex items-center justify-center text-text-3 text-caption1 font-medium rounded-[8px]'>
+                    <Link href={'/edit'}  className='w-[126px] cursor-pointer h-[38px] border border-line-3 flex items-center justify-center text-text-3 text-caption1 font-medium rounded-[8px]'>
                         프로필 관리
-                    </div>
+                    </Link>
                 </div>
                 <div className='pt-6'>
                     <SettingList/>
