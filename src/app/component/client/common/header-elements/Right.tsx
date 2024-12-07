@@ -10,7 +10,6 @@ import Map from "../../../../../../public/svg/header/Map.svg";
 import Square from "../../../../../../public/svg/header/Square.svg";
 import Link from "next/link";
 import AuthUtils from "@/src/app/func/common/auth.utils";
-import FoodProfileDummy from "@/src/app/dummy/sign-up";
 import { FoodProfileType } from "@/src/app/types/page/sign-up/sign-up";
 import { useEffect, useState } from "react";
 
@@ -36,8 +35,7 @@ const Right = ({
 
     useEffect(() => {
         if (profileImage && userInfo?.profileImage) {
-            const profile = FoodProfileDummy.find(el => el.id === userInfo.profileImage);
-            setProfileInfo(profile || null);
+            setProfileInfo(userInfo?.profileImage);
         }
     }, [profileImage, userInfo]);
 

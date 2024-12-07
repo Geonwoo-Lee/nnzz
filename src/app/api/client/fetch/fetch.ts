@@ -45,7 +45,6 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
 
     try {
         const initialResponse = await fetch(fullUrl, mergedOptions);
-        console.log(fullUrl, mergedOptions, '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
 
         if (initialResponse.status === 401 && !isServer && useToken) {
             if (isRefreshing) {

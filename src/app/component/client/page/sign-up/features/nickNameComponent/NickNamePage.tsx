@@ -12,7 +12,7 @@ const NickNamePage = (props: NickNamePageProps) => {
         <div className='flex flex-col gap-6'>
                 <div>
                     <Controller
-                        name="nickName"
+                        name="nickname"
                         control={control}
                         rules={{
                             validate: validateNickname

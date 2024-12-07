@@ -69,3 +69,15 @@ body {
 .welcome-image-size {
   aspect-ratio: 288 / 288;
 }
+
+.no-choice-card {
+  aspect-ratio: 172/234;
+}
+
+.random-card{
+  aspect-ratio: 305/450;
+}
+
+.random-image {
+  aspect-ratio: 240 / 240;
+}

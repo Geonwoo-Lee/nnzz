@@ -4,18 +4,20 @@ import GenderAgeSelectWrap from "@/src/app/component/client/page/sign-up/feature
 import Close from "@/public/svg/header/Close.svg";
 import Button from "../../../../common/button/Button";
 
-
 const GenderAgeBottomSheet = (props: GenderAgeBottomSheetProps) => {
-    const {open, onClose, genderAgeValue, setSelectedValue, setStep, step} = props
-
+    const {open, onClose, genderAgeValue, setSelectedValue, stepAble, step, setStep, callback} = props
 
     const nextStep = () => {
-        if(step ===3) {
-            onClose()
-        }else {
-            setStep(3)
+        if (stepAble && setStep) {
+            step === 3 ? onClose() : setStep(3)
+            return
         }
+
+        callback?.()
     }
+
+    const isButtonDisabled = genderAgeValue.age === '' || genderAgeValue.gender === ''
+
     return (
         <BottomSheet open={open} close={onClose} nonPadding={true}>
             <div>
@@ -24,15 +26,27 @@ const GenderAgeBottomSheet = (props: GenderAgeBottomSheetProps) => {
                         성별 ・ 나이대 선택
                         <Close className='absolute right-[8px] top-[12px]' onClick={onClose}/>
                     </div>
-                    <GenderAgeSelectWrap type='gender' selectedValue={genderAgeValue.gender}
-                                         selectList={['남', '여', '선택안함']}
-                                         setSelectedValue={setSelectedValue}/>
-                    <GenderAgeSelectWrap type='age' selectedValue={genderAgeValue.age}
-                                         selectList={['10대', '20대', '30대', '40대', '50대', '60대 이상']}
-                                         setSelectedValue={setSelectedValue}/>
+                    <GenderAgeSelectWrap
+                        type='gender'
+                        selectedValue={genderAgeValue.gender}
+                        selectList={['남', '여', '선택안함']}
+                        setSelectedValue={setSelectedValue}
+                    />
+                    <GenderAgeSelectWrap
+                        type='age'
+                        selectedValue={genderAgeValue.age}
+                        selectList={['10대', '20대', '30대', '40대', '50대', '60대 이상']}
+                        setSelectedValue={setSelectedValue}
+                    />
                 </div>
                 <div className='p-4'>
-                    <Button onClick={nextStep} disabled={genderAgeValue.age === '' || genderAgeValue.gender === ''} type={'primary'} size={'lg'} style='w-full' >
+                    <Button
+                        onClick={nextStep}
+                        disabled={isButtonDisabled}
+                        type={'primary'}
+                        size={'lg'}
+                        style='w-full'
+                    >
                         다음
                     </Button>
                 </div>

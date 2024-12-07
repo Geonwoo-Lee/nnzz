@@ -2,8 +2,33 @@ import {ProgressBarProps} from "@/src/app/types/common/progressBar";
 import Image from 'next/image'
 
 const ProgressBar = (props: ProgressBarProps) => {
-    const {currentStep, totalStep, style, bg, borderColor, height, width, leftCount} = props
-    return <div className={`flex flex-col gap-3  ${width ? width : 'w-full'}`}>
+    const {
+        currentStep,
+        totalStep,
+        style,
+        bg,
+        borderColor,
+        height,
+        width,
+        leftCount,
+        minRequired = 0,
+        beforeMinText = "최소 개수를 채워주세요! 💪",
+        afterMinText = "앞으로 {count}개 남았어요! 💪"
+    } = props
+
+    const currentCount = Number(currentStep);
+    const totalCount = Number(totalStep);
+    const remainingCount = totalCount - currentCount;
+
+    // 현재 상태에 따른 메시지 결정
+    const getMessage = () => {
+        if (currentCount < minRequired) {
+            return beforeMinText.replace('{count}', String(minRequired - currentCount));
+        }
+        return afterMinText.replace('{count}', String(remainingCount));
+    }
+
+    return <div className={`flex flex-col gap-3 ${width ? width : 'w-full'}`}>
         <div
             className={`bg-common-white border ${width ? width : 'w-full'} rounded-[120px] ${bg ? bg : ''} ${borderColor ? borderColor : 'border-line-2'}`}>
             <div
@@ -23,7 +48,7 @@ const ProgressBar = (props: ProgressBarProps) => {
         </div>
         {
             leftCount && <div className='text-center text-caption1 font-medium text-text-2'>
-            앞으로 {Number(totalStep) - Number(currentStep)}개 남았어요! 💪
+                {getMessage()}
             </div>
         }
     </div>

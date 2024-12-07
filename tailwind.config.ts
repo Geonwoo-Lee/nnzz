@@ -190,6 +190,7 @@ const config: Config = {
         'input-height': '52px',
         'location-no-search-height': 'calc(100vh - 260px - 52px)',
         'fast-choice-height': 'calc(100vh - 199px)',
+        'random-height': 'calc(100vh - 180px)',
       },
       keyframes: {
         wiggle: {

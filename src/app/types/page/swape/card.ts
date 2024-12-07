@@ -1,10 +1,10 @@
 import {DragStatus} from "@/src/app/hooks/useCardSwipe";
 import {BindType} from "@/src/app/types/hook/cardSwipte";
 import {FoodItem} from "@/src/app/types/models/food";
+import {DefaultCardProps} from "@/src/app/types/common/card";
 
 
-export interface BasicCardProps {
-    data: FoodItem;
+export interface BasicCardProps extends DefaultCardProps{
     className?: string;
 }
 

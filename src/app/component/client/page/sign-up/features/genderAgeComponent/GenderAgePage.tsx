@@ -50,7 +50,7 @@ const GenderAgePage = (props: GenderAgePageProps) => {
                 </div>
             </div>
         </div>
-        <GenderAgeBottomSheet setSelectedValue={setGenderAge} setStep={setStep} step={step} control={control}
+        <GenderAgeBottomSheet stepAble={true} setSelectedValue={setGenderAge} setStep={setStep} step={step} control={control}
                               open={open} onClose={closeModal} genderAgeValue={genderAgeValue}/>
     </div>
 }

@@ -10,7 +10,7 @@ import SwipeComponent from "@/src/app/component/client/page/swIpe/features/Swipe
 const SwapPage = () => {
     const {  requestGeolocation } = useGeolocation();
 
-    const [Funnel, setStep] = useFunnel(["0", "1"], "0");
+    const [Funnel, setStep] = useFunnel(["0", "1", "2"], "0");
     const [likeCards, setLikeCards] = useState<FoodItem[]>([]);
     const [deletedList, setDeletedList] = useState<FoodItem[]>([]);
 
@@ -18,10 +18,6 @@ const SwapPage = () => {
         setLikeCards(result)
     }
 
-    // const deleteList = (item: FoodItem) => {
-    //     const filteredList = likeCards.filter((card) => card.id !== item.id);
-    //     setLikeCards(filteredList);
-    // }
 
     const controlDeleteList = (card: FoodItem, type: 'add' | 'delete') => {
         if (type === 'delete') {
@@ -35,9 +31,6 @@ const SwapPage = () => {
         requestGeolocation();
     }, []);
 
-    useEffect(() => {
-        console.log('rel', deletedList)
-    }, [deletedList]);
 
     return   <Funnel>
         <Funnel.Step name="0">
@@ -45,6 +38,9 @@ const SwapPage = () => {
         </Funnel.Step>
         <Funnel.Step name="1">
            <SwipeComponent.CompletePage deletedList={deletedList} setDeletedCards={controlDeleteList} likeCards={likeCards}/>
+        </Funnel.Step>
+        <Funnel.Step name="2">
+            <SwipeComponent.NoChoice />
         </Funnel.Step>
     </Funnel>
 }

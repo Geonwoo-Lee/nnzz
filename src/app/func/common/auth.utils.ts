@@ -1,4 +1,5 @@
-import {LoginRes, UserInfo} from "@/src/app/types/models/user";
+import {LoginRes} from "@/src/app/types/models/user";
+import {SignInType} from "@/src/app/types/page/sign-up/sign-up";
 
 export default class AuthUtils {
     public static isLoggedIn() {
@@ -22,12 +23,12 @@ export default class AuthUtils {
 
 
 
-    public static setUserInfo(UserInfo: UserInfo) {
+    public static setUserInfo(UserInfo: SignInType) {
         //todo userInfo 설정
         localStorage.setItem("userInfo", JSON.stringify(UserInfo));
     }
 
-    public static getUserInfo(): UserInfo | null {
+    public static getUserInfo(): SignInType | null {
         //todo 토큰명 설정
         const storedUserInfo = localStorage.getItem("userInfo");
         if (!storedUserInfo) {

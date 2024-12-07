@@ -3,7 +3,7 @@ import {Dispatch, SetStateAction} from "react";
 
 export interface DeckProps {
     cards: FoodItem[];
-    setStep?: Dispatch<SetStateAction<"0" | "1" >>;
+    setStep?: Dispatch<SetStateAction<"0" | "1" | "2" >>;
     setLikeCards: (result: FoodItem[]) => void;
 }
 

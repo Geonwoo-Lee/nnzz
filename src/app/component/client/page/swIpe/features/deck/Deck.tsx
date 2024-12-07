@@ -1,6 +1,6 @@
 'use client'
 import React, { useRef } from 'react'
-import DeckCard from "@/src/app/component/client/common/card/Card";
+import DeckCard from "@/src/app/component/client/common/card/DeckCard";
 import { useCardSwipe } from "@/src/app/hooks/useCardSwipe";
 import { animated, to } from '@react-spring/web'
 import { DeckProps } from "@/src/app/types/page/swape/deck";
@@ -22,10 +22,16 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep,setLikeCards }) =
 
     if (isFinished) {
         if(setStep) {
-            setTimeout(() => {
-                setStep('1')
-                setLikeCards(likedCards)
-            }, 10)
+            if(likedCards.length > 0) {
+                setTimeout(() => {
+                    setStep('1')
+                    setLikeCards(likedCards)
+                }, 10)
+            }else {
+                setTimeout(() => {
+                    setStep('2')
+                }, 10)
+            }
         }
     }
 
