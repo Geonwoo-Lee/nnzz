@@ -62,7 +62,7 @@ const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCar
                         <div className="relative w-full h-full pt-4 px-8 flex items-center justify-center">
                             <Image
                                 src={data.imageUrl}
-                                alt={data.name}
+                                alt={data.categoryId}
                                 layout="fill"
                                 className="rounded-[16px] object-contain"
                                 draggable={false}
@@ -73,12 +73,12 @@ const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCar
             </div>
             </div>
             <div className="text-common px-4 py-4 h-[120px] overflow-y-auto">
-                <h2 className="text-xl">{data.name}</h2>
+                <h2 className="text-xl">{data.category}</h2>
                 <div className="flex flex-row items-center">
                     <LocationPin/>
-                    <div className='truncate'>가까운 식당 232m</div>
+                    <div className='truncate'>가까운 식당 {data.distance}m</div>
                 </div>
-                <div>{data.representativeMenu}</div>
+                <div>{data.represent}</div>
             </div>
         </div>
     );

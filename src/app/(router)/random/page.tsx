@@ -51,20 +51,20 @@ const RandomPage = () => {
                     <div className='w-[80%] max-w-[400px]' ref={cardRef}>
                         <RandomCard data={
                             {
-                                id: 12,
+                                categoryId: '12',
                                 imageUrl: `${imageLocation}/Sushi.png`,
                                 category: "일식",
-                                name: "초밥",
-                                representativeMenu: "초밥",
+                                represent: '초밥',
+                                distance: 10
                             }
                         }/>
                     </div>
                 </div>
-                <div className='px-4 pb-12 pt-4 w-full bg-bg-1 fixed bottom-0 flex flex-col gap-4'>
+                <div className='px-4 pb-12 h-[220px] pt-4 w-full bg-bg-1 fixed bottom-0 flex flex-col gap-4'>
                     <Button type='primary' size='lg' style='w-full' onClick={handleKakaoShare}>
                         이미지로 공유하기
                     </Button>
-                    <Button type='transparent' size='lg' style='w-full' onClick={() => {
+                    <Button type='outlined' size='lg' style='w-full' onClick={() => {
                     }}>
                         식당리스트 확인하기
                     </Button>

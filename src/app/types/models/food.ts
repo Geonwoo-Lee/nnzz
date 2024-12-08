@@ -1,8 +1,18 @@
-export interface FoodItem {
-    id: number;
-    imageUrl: string;
+
+export interface FoodItemFromServer {
     category: string;
-    name: string;
-    representativeMenu: string;
+    distance: number;
+    represent: string;
+    categoryId: string
+}
+
+export interface FoodItemFromClient {
+    categoryId: number;
+    imageUrl: string;
+    bgType?: string
+}
+
+export interface FoodItem extends FoodItemFromServer {
+    imageUrl: string;
     bgType?: string
 }

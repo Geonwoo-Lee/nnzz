@@ -5,7 +5,6 @@ import {BindType} from "@/src/app/types/hook/cardSwipte";
 
 export type DragStatus = 'like' | 'dislike' | 'neutral';
 
-
 export function useCardSwipe(cards: FoodItem[],) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [props, api] = useSpring(() => ({ x: 0, y: 0, rotation: 0 }))
@@ -13,9 +12,19 @@ export function useCardSwipe(cards: FoodItem[],) {
     const [dislikedCards, setDislikedCards] = useState<FoodItem[]>([])
     const [isFinished, setIsFinished] = useState(false)
     const [dragStatus, setDragStatus] = useState<DragStatus>('neutral')
-
+    const [cardCounts, setCardCounts] = useState({ liked: 0, disliked: 0 })
 
     useEffect(() => {
+        setCardCounts({
+            liked: likedCards.length,
+            disliked: dislikedCards.length
+        })
+    }, [likedCards, dislikedCards])
+
+    useEffect(() => {
+        if(cards.length === 0) {
+            return
+        }
         if (currentIndex >= cards.length) {
             setIsFinished(true)
         }
@@ -38,7 +47,6 @@ export function useCardSwipe(cards: FoodItem[],) {
         const currentCard = cards[currentIndex]
         const xMove = direction === 'right' ? 500 : -500
 
-
         api.start({
             x: xMove,
             rotation: direction === 'right' ? 15 : -15,
@@ -55,7 +63,6 @@ export function useCardSwipe(cards: FoodItem[],) {
             }
         })
     }, [currentIndex, cards, api])
-
 
     const updateDragStatus = useCallback((x: number) => {
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -75,7 +82,6 @@ export function useCardSwipe(cards: FoodItem[],) {
         onMouseDown: (e: React.MouseEvent) => {
             const startX = e.clientX
             const startY = e.clientY
-
 
             const onMouseMove = (e: MouseEvent) => {
                 const dx = e.clientX - startX
@@ -97,7 +103,7 @@ export function useCardSwipe(cards: FoodItem[],) {
                         x: 0,
                         y: 0,
                         rotation: 0,
-                        config: { tension: 200, friction: 20 } // 스프링 애니메이션 설정
+                        config: { tension: 200, friction: 20 }
                     })
                     setDragStatus('neutral')
                 }
@@ -107,14 +113,12 @@ export function useCardSwipe(cards: FoodItem[],) {
             document.addEventListener('mouseup', onMouseUp)
         },
         onTouchStart: (e: React.TouchEvent) => {
-            console.log('👆 Touch Start');
             const target = e.target as HTMLElement;
             const touch = e.touches[0];
             const startX = touch.clientX;
             const startY = touch.clientY;
 
             const onTouchMove = (e: Event) => {
-                console.log('👆 Touch Move');
                 e.stopPropagation();
                 const touchEvent = e as TouchEvent;
                 const touch = touchEvent.touches[0];
@@ -132,15 +136,12 @@ export function useCardSwipe(cards: FoodItem[],) {
             };
 
             const onTouchEnd = (e: Event) => {
-                console.log('👆 Touch End');
                 e.stopPropagation();
 
-                // 이벤트 리스너 제거
                 target.removeEventListener('touchmove', onTouchMove, { capture: true });
                 target.removeEventListener('touchend', onTouchEnd, { capture: true });
 
                 const currentX = props.x.get();
-                console.log('Current X on touch end:', currentX);
 
                 if (Math.abs(currentX) > 100) {
                     const moveOut = currentX > 0 ? 500 : -500;
@@ -175,7 +176,7 @@ export function useCardSwipe(cards: FoodItem[],) {
             });
 
             return () => {
-                e.target.removeEventListener('touchmove', onTouchMove)
+                target.removeEventListener('touchmove', onTouchMove)
                 document.removeEventListener('touchend', onTouchEnd)
             }
         }
@@ -189,6 +190,7 @@ export function useCardSwipe(cards: FoodItem[],) {
         likedCards,
         dislikedCards,
         dragStatus,
-        handleButtonSwipe
+        handleButtonSwipe,
+        cardCounts
     }
 }

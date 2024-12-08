@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef } from 'react'
+import React, {useEffect, useRef} from 'react'
 import DeckCard from "@/src/app/component/client/common/card/DeckCard";
 import { useCardSwipe } from "@/src/app/hooks/useCardSwipe";
 import { animated, to } from '@react-spring/web'
@@ -16,7 +16,7 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep,setLikeCards }) =
         isFinished,
         likedCards,
         dragStatus,
-        handleButtonSwipe
+        handleButtonSwipe,
     } = useCardSwipe(cards);
 
 
@@ -35,6 +35,12 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep,setLikeCards }) =
         }
     }
 
+    useEffect(() => {
+        setLikeCards(likedCards)
+    }, [likedCards]);
+
+
+
     return (
         <div className="flex w-full flex-col gap-6 pb-10 ">
             <div ref={deckRef} className="w-full relative ">
@@ -43,7 +49,7 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep,setLikeCards }) =
                         const isTop = i === 0;
                         return (
                             <animated.div
-                                key={card.id}
+                                key={card.categoryId}
                                 className={`
                                 px-[50px] 
                                 col-start-1 

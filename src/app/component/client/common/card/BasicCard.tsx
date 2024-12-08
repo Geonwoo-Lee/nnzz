@@ -22,7 +22,7 @@ return (
                         <div className="relative w-full h-full pt-4 px-8">
                             <Image
                                 src={data.imageUrl}
-                                alt={data.name}
+                                alt={data.category}
                                 layout="fill"
                                 className="rounded-[16px] object-contain"
                                 draggable={false}
@@ -32,15 +32,15 @@ return (
                 </div>
             </div>
             <div className="text-common px-4 pb-10">
-                <h2 className="text-xl">{data.name}</h2>
+                <h2 className="text-xl">{data.category}</h2>
                 <div className='flex flex-row items-center'>
                     <LocationPin/>
                     <div>
-                        가까운 식당 232m
+                        가까운 식당 {data.distance}m
                     </div>
                 </div>
                 <div>
-                    {data.representativeMenu}
+                    {data.represent}
                 </div>
             </div>
         </>

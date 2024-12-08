@@ -14,6 +14,7 @@ export interface LoginRes {
     member: SignInType;
     // token: {
     //     token: string;
+    //     refreshToken: string;
     // };
 }
 

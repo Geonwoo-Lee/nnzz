@@ -45,18 +45,27 @@ const HomeMealSettingClient = () => {
     const onChangeWay = (way: '빠르게' | '꼼꼼히') => {
         setWayToFind(way)
         setWayBottomSheet(false)
+
         if(selectedLocation && selectedMealTime) {
+            const mealTimingToEng = () => {
+                if(mealTiming === '저녁'){
+                    return 'dinner'
+                }else {
+                    return 'lunch'
+                }
+            }
+            const formatDate = (dateStr: string) => {
+                const [month, day] = dateStr.replace(/[월일]/g, '').trim().split(' ').map(Number);
+                const year = new Date().getFullYear();
+                return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            }
+
+            const formattedDate = formatDate(selectedMealTime.date);
+
             if(way === '꼼꼼히') {
-                router.push('/swipe')
-            }else {
-                const mealTimingToEng = () => {
-                    if(mealTiming === '저녁'){
-                        return 'dinner'
-                    }else {
-                        return 'lunch'
-                    }
-                 }
-                router.push(`/fast-choice/${mealTimingToEng()}`)
+                router.push(`/swipe/${mealTimingToEng()}/${formattedDate}`)
+            } else {
+                router.push(`/fast-choice/${mealTimingToEng()}/${formattedDate}`)
             }
         }
     }
