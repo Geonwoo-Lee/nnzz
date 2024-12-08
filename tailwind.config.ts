@@ -191,6 +191,9 @@ const config: Config = {
         'location-no-search-height': 'calc(100vh - 260px - 52px)',
         'fast-choice-height': 'calc(100vh - 199px)',
         'random-height': 'calc(100vh - 180px)',
+        'swipe-result-height': 'calc(100vh - 114px)',
+        'restaurant-result-height': 'calc(100vh - 132px)',
+        'restaurant-result-up-height': 'calc(100vh - 222px)',
       },
       keyframes: {
         wiggle: {

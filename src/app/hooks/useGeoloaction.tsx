@@ -26,6 +26,7 @@ export function useGeolocation() {
                         latitude,
                         longitude,
                         address: address?.address || '',
+                        name: address.name,
                     };
                     setLocation(newLocation);
                     localStorage.setItem('userLocation', JSON.stringify(newLocation));

@@ -71,14 +71,14 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
             }
         }
 
-        if (!initialResponse.ok) {
-            if (initialResponse.status === 404 || initialResponse.status === 403) {
-                if (!isServer) {
-                    window.location.href = `/error/${initialResponse.status || "network"}`;
-                }
-            }
-            throw new Error(`HTTP error! status: ${initialResponse.status}`);
-        }
+        // if (!initialResponse.ok) {
+        //     if (initialResponse.status === 404 || initialResponse.status === 403) {
+        //         if (!isServer) {
+        //             window.location.href = `/error/${initialResponse.status || "network"}`;
+        //         }
+        //     }
+        //     throw new Error(`HTTP error! status: ${initialResponse.status}`);
+        // }
 
         return initialResponse;
     } catch (error) {

@@ -3,12 +3,15 @@ import {Dispatch, SetStateAction} from "react";
 
 export interface DeckProps {
     cards: FoodItem[];
-    setStep?: Dispatch<SetStateAction<"0" | "1" | "2" >>;
+    setStep: Dispatch<SetStateAction<"0" | "1" | "2" | "3" >>;
     setLikeCards: (result: FoodItem[]) => void;
+    isLoading?: boolean
+    likedCards: FoodItem[]
 }
 
 export interface CompletePageProps {
     likeCards: FoodItem[];
     setDeletedCards: (result: FoodItem, type: 'add' | 'delete') => void;
     deletedList: FoodItem[]
+    setStep: Dispatch<SetStateAction<"0" | "1" | "2"| "3">>;
 }
