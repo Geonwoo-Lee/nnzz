@@ -1,5 +1,5 @@
 import BaseApi from "@/src/app/api/client/base/base-api";
-import {fetchWithoutToken, fetchWithToken} from "@/src/app/api/client/fetch/fetch";
+import { fetchWithToken} from "@/src/app/api/client/fetch/fetch";
 import {FindCategoryReq, FindRestaurantReq, FindStore} from "@/src/app/types/models/find";
 import {FoodItemFromServer} from "@/src/app/types/models/food";
 
