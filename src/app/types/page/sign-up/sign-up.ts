@@ -27,6 +27,16 @@ export interface SignInTypeFromServer {
     email: string
 }
 
+export interface LoginToken {
+        accessToken: string;
+        refreshToken: string;
+}
+
+export interface LoginRes {
+    user: SignInTypeFromServer;
+    token: LoginToken
+}
+
 export interface BasicSignUpProps {
     step: number;
     setStep: (step: number) => void;

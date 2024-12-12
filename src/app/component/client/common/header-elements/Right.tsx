@@ -35,9 +35,9 @@ const Right = ({
 
     useEffect(() => {
         if (profileImage && userInfo?.profileImage) {
-            setProfileInfo(userInfo?.profileImage);
+            setProfileInfo(userInfo.profileImage);
         }
-    }, [profileImage, userInfo]);
+    }, []);
 
     const renderProfileImage = () => {
         if (!profileImage) return null;

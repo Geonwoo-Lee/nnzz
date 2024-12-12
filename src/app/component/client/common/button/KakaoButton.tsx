@@ -40,12 +40,14 @@ export default function Login() {
                             };
                             localStorage.setItem('userInfo', JSON.stringify(userInfo));
                             SignInApi.login(kakaoAccount.email).then((res) => {
-                                const profile = FoodProfileDummy.find(el => el.id === Number(res.profileImage))
+                                const profile = FoodProfileDummy.find(el => el.id === Number(res.user.profileImage))
+                                console.log(res)
                                 AuthUtils.setUserInfo({
-                                    ...res,
+                                    ...res.user,
                                     profileImage: profile!,
-                                    nickname: res.nickname
+                                    nickname: res.user.nickname
                                 })
+                                AuthUtils.setToken(res.token)
                                 router.push('/home');
                             })
                         },

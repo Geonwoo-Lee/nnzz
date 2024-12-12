@@ -31,9 +31,12 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
     };
 
     if (!isServer && useToken) {
-        const accessToken = AuthUtils.getToken();
-        defaultHeaders['Authorization'] = `Bearer ${accessToken}`;
+        const tokenObj = AuthUtils.getToken();
+        if (tokenObj?.accessToken) {
+            defaultHeaders['Authorization'] = tokenObj.accessToken;
+        }
     }
+
 
     const mergedOptions: RequestInit = {
         ...options,
@@ -96,7 +99,10 @@ async function refreshTokenIfNeeded(): Promise<string> {
 
     try {
         const newToken = await refreshPromise;
-        AuthUtils.setToken(newToken);
+        AuthUtils.setToken({
+            accessToken: newToken,
+            refreshToken: ""
+        });
         return newToken;
     } catch (error) {
         handleAuthError();
@@ -136,6 +142,5 @@ export function fetchWithoutToken(url: string, options: RequestInit = {}): Promi
 }
 
 export function fetchWithToken(url: string, options: RequestInit = {}): Promise<Response> {
-    console.log(url, options)
     return customFetch(url, options, true);
 }

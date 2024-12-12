@@ -1,6 +1,6 @@
 import {fetchWithoutToken} from "@/src/app/api/client/fetch/fetch";
 import BaseApi from "@/src/app/api/client/base/base-api";
-import { SignInTypeFromServer} from "@/src/app/types/page/sign-up/sign-up";
+import {LoginRes} from "@/src/app/types/page/sign-up/sign-up";
 
 
 class SignInApi extends BaseApi {
@@ -10,7 +10,7 @@ class SignInApi extends BaseApi {
     } as const;
 
 
-    static async login(email: string): Promise<SignInTypeFromServer> {
+    static async login(email: string): Promise<LoginRes> {
         try {
             const response = await fetchWithoutToken(`${this.BASE_URL}${this.ENDPOINTS.JOIN}`, {
                 method: 'POST',
