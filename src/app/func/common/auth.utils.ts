@@ -1,6 +1,9 @@
 import {LoginRes} from "@/src/app/types/models/user";
-import {SignInType} from "@/src/app/types/page/sign-up/sign-up";
-
+import {LoginToken, SignInType} from "@/src/app/types/page/sign-up/sign-up";
+interface TokenObject {
+    accessToken: string;
+    refreshToken: string;
+}
 export default class AuthUtils {
     public static isLoggedIn() {
         return this.getToken() != null && this.getUserInfo() != null;
@@ -8,14 +11,15 @@ export default class AuthUtils {
 
     private static TOKEN_KEY = "토큰";
 
-    public static setToken(token: string) {
+    public static setToken(token: LoginToken) {
         localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
     }
 
-    public static getToken(): string | null {
-        const tokenStr = localStorage.getItem(this.TOKEN_KEY);
-        return tokenStr ? JSON.parse(tokenStr) : null;
-    }
+
+public static getToken(): TokenObject | null {
+    const tokenStr = localStorage.getItem(this.TOKEN_KEY);
+    return tokenStr ? JSON.parse(tokenStr) : null;
+}
 
     public static removeToken() {
         localStorage.removeItem(this.TOKEN_KEY);

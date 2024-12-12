@@ -1,5 +1,5 @@
 import BaseApi from "@/src/app/api/client/base/base-api";
-import {fetchWithoutToken} from "@/src/app/api/client/fetch/fetch";
+import {fetchWithoutToken, fetchWithToken} from "@/src/app/api/client/fetch/fetch";
 import {FindCategoryReq, FindRestaurantReq, FindStore} from "@/src/app/types/models/find";
 import {FoodItemFromServer} from "@/src/app/types/models/food";
 
@@ -21,7 +21,7 @@ class FindApi extends BaseApi{
 
             const url = `${this.BASE_URL}/api/find/${params.type}/category?${queryParams}`;
 
-            const response = await fetchWithoutToken(url, {
+            const response = await fetchWithToken(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ class FindApi extends BaseApi{
 
     static async findRestaurants(params: FindRestaurantReq): Promise<FindStore[]> {
         const url = `${this.BASE_URL}/api/find/${params.type}/detail/${params.distance}`;
-        const response = await fetchWithoutToken(url, {
+        const response = await fetchWithToken(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
