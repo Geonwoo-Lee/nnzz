@@ -12,8 +12,8 @@ import GenderAgeBottomSheet
 import UpdateUserApi from "@/src/app/api/client/update-user/update";
 import {useToast} from "@/src/app/core/ToastProvider";
 import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
+import Edit from '../../../../public/svg/items/common/Edit.svg'
 
-import Edit from '../../../../public/svg/items/common/edit.svg'
 
 const DEFAULT_IMAGE: FoodProfileType = {
     id: 0,
