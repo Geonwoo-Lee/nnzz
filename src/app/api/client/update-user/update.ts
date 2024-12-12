@@ -1,4 +1,5 @@
 import {JoinParams} from "@/src/app/types/models/user";
+import {fetchWithToken} from "@/src/app/api/client/fetch/fetch";
 
 
 class UpdateUserApi {
@@ -8,7 +9,7 @@ class UpdateUserApi {
     } as const;
 
     static async updateUser(params: JoinParams) {
-        const response = await fetch(`${this.BASE_URL}${this.ENDPOINTS.JOIN}`, {
+        const response = await fetchWithToken(`${this.BASE_URL}${this.ENDPOINTS.JOIN}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
