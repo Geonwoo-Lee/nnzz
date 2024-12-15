@@ -11,7 +11,7 @@ const FastChoiceButton = (props: FastChoiceButtonProps) => {
                 <ProgressBar minRequired={5}  beforeMinText={'최소 5개 카드를 고르면 메뉴 추천 받을 수 있어요 🙂'} afterMinText={'이제 점심 메뉴를 추천 받을 수 있어요!'} currentStep={step} totalStep={15} leftCount={true} />
             </div>
             <div className='pt-4 pb-12'>
-                <Button type='primary' disabled={step < 3} onClick={onClick} size='lg' style='w-full'>
+                <Button type='primary' disabled={step < 5} onClick={onClick} size='lg' style='w-full'>
                     식당 정보 보러가기
                 </Button>
             </div>

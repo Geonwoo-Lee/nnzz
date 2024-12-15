@@ -25,6 +25,7 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
     const isServer = typeof window === 'undefined';
     const fullUrl = `${apiKey}${url}`;
 
+
     //todo 헤더 수정
     const defaultHeaders: Record<string, string> = {
         'Content-Type': 'application/json',

@@ -104,8 +104,20 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
                     }}
                 />
             )}
+            <header
+                className={`w-full max-w-[640px] flex items-center justify-between relative h-header-height bg-common-white px-4`}>
+                <div className=" flex-shrink-0 ">
+                </div>
+                <div
+                    className="absolute inset-x-0 text-title2 font-bold text-text-2 flex justify-center max-w-[180px] mx-auto whitespace-nowrap">
+                    식당보기
+                </div>
+                <div className="flex-shrink-0 text-caption1 text-text-2 font-medium">
+                    처음으로
+                </div>
+            </header>
             <div className="flex items-center justify-center w-[100vw] h-[100vh]">
-                <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
+                <div ref={mapRef} style={{width: "100%", height: "100%"}}/>
             </div>
         </div>
     );

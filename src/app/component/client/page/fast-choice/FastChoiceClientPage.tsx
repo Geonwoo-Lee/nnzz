@@ -1,21 +1,27 @@
 'use client'
 
-import {foodDetailData} from "@/src/app/dummy/dummy";
-import {FastChoiceComponent} from "@/src/app/component/client/page/fast-choice/features/FastChoiceComponent";
-import {FoodChoiceCard} from "@/src/app/types/page/fast-choice/fast-choice";
-import {useState} from "react";
-import FastChoiceButton from "@/src/app/component/client/page/fast-choice/features/FastChoiceButton";
+import freeFoodData from "@/src/app/dummy/dummy";
+import React, { useEffect, useState} from "react";
 import {useToast} from "@/src/app/core/ToastProvider";
 import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
+import FindApi from "@/src/app/api/client/find/find";
+import {FoodItem} from "@/src/app/types/models/food";
+import {useFunnel} from "@/src/app/hooks/useFunnel";
+import FastCardChoice from "@/src/app/component/client/page/fast-choice/features/FastCardChoice";
+import RestaurantResult from "@/src/app/component/client/common/restaurantResult/RestaurantResult";
+import {getUserLocation} from "@/src/app/func/common/geo.utils";
 
-const FastChoiceClientPage = () => {
-    const [selectedList,setSelectedList] = useState<FoodChoiceCard[]>([])
+const FastChoiceClientPage = ({type, day, menu}: {type: string, day: string, menu: string}) => {
+    const [selectedList,setSelectedList] = useState<FoodItem[]>([])
+    const [cardData, setCardData] = useState<FoodItem[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const showToast = useToast()
+    const [Funnel, setStep] = useFunnel(["choice", "result"], "choice");
 
-    const handleSelect = (card: FoodChoiceCard) => {
+    const handleSelect = (card: FoodItem) => {
         setSelectedList((prevList) => {
-            if (prevList.includes(card)) {
-                return prevList.filter((item) => item !== card);
+            if (prevList.some(item => item.categoryId === card.categoryId)) {
+                return prevList.filter((item) => item.categoryId !== card.categoryId);
             }
 
             if (prevList.length >= 15) {
@@ -27,15 +33,59 @@ const FastChoiceClientPage = () => {
         });
     };
 
-    return (
-        <div className='grid-rows-3 grid grid-cols-3 w-full gap-3'>
-            {
-                foodDetailData.map((card, index) => (
-                    <FastChoiceComponent.FoodCard key={`fast-card-${index}`} selected={selectedList.includes(card)}
-                                                  data={card} setSelected={handleSelect}/>
-                ))
+
+    useEffect(() => {
+        setIsLoading(true);
+        FindApi.findCategories({
+            type: type,
+            data: {
+                day: day,
+                lat: getUserLocation()?.latitude || 0,
+                lng: getUserLocation()?.longitude || 0
             }
-            <FastChoiceButton step={selectedList.length} onClick={() => {}}/>
+        }).then((serverData) => {
+            const mergedData = serverData
+                .filter(serverItem => {
+                    return freeFoodData.some(
+                        clientItem => clientItem.categoryId.toString() === serverItem.categoryId.toString()
+                    );
+                })
+                .map(serverItem => {
+                    const clientItem = freeFoodData.find(
+                        clientItem => clientItem.categoryId.toString() === serverItem.categoryId.toString()
+                    );
+
+                    return {
+                        ...serverItem,
+                        imageUrl: clientItem!.imageUrl,
+                    };
+                });
+
+            setCardData(mergedData);
+            setIsLoading(false);
+        }).catch(() => {
+            setIsLoading(false);
+        });
+    }, [type, day]);
+
+    const categoryList = () => {
+        const categoryIds = selectedList.map(card => card.categoryId);
+        return categoryIds
+    }
+
+    return (
+        <div>
+            <Funnel>
+                <Funnel.Step name='choice'>
+                    <FastCardChoice setStep={setStep} isLoading={isLoading} menu={menu} cardData={cardData}
+                                    handleSelect={handleSelect} selectedList={selectedList}/>
+                </Funnel.Step>
+                <Funnel.Step name='result'>
+                    <RestaurantResult name={getUserLocation()?.name || ''} address={getUserLocation()?.address || ''}
+                                      day={day} type={type} lat={getUserLocation()?.latitude || 0}
+                                      lng={getUserLocation()?.longitude || 0} categoryList={categoryList()}/>
+                </Funnel.Step>
+            </Funnel>
         </div>
     )
 }

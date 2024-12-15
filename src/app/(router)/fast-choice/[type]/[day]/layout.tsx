@@ -4,7 +4,7 @@ import {ReactNode} from "react";
 
 
 const FastChoiceLayout = ({children}: {children: ReactNode}) => {
-    return <BasicLayout header={true} headerTitle={'식당 찾기'}  profileImage={false} logo={false} headerType={HeaderTypes.history} >
+    return <BasicLayout header={false} headerTitle={'식당 찾기'}  profileImage={false} logo={false} headerType={HeaderTypes.history} >
         {children}
     </BasicLayout>
 }

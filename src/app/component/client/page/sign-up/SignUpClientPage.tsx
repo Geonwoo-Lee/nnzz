@@ -151,7 +151,7 @@ const SignUpClientPage = () => {
                             profileImage:  profileImageValue.id,
                             email: AuthUtils.getUserInfo()?.email
                         }).then((res) => {
-                            console.log(res)
+                            AuthUtils.setToken(res.token)
                         })
                         AuthUtils.login({
                             member: {
@@ -160,7 +160,7 @@ const SignUpClientPage = () => {
                                     age: genderAgeValue.age,
                                 profileImage: profileImageValue,
                                 email: AuthUtils.getUserInfo()?.email
-                            }
+                            },
                         })
                         router.push('/sign-up/complete')
                     }

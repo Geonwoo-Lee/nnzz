@@ -20,7 +20,7 @@ const SettingList = () => {
             {
                 settingConfig.map((el, index) => (
                     <Link href={el.link}  className='h-[56px] flex items-center' key={`setting-key-${index}`}>
-                        <div className='flex flex-row justify-between w-full px-4'>
+                        <div className='flex flex-row justify-between w-full '>
                             <div className='text-body1 font-medium text-text-2'>
                                 {el.title}
                             </div>

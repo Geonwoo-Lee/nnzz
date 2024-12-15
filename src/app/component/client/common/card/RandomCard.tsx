@@ -22,7 +22,7 @@ const RandomCard = ({data}: DefaultCardProps) => {
                     <div className='flex flex-row items-center'>
                         <LocationPin/>
                         <div>
-                            가까운 식당 232m
+                            가까운 식당 {data.distance}m
                         </div>
                     </div>
                     <div>

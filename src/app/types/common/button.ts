@@ -3,6 +3,7 @@ import {ReactNode} from "react";
 const ButtonSizes = {
     sm: "sm",
     md: "md",
+    ml: 'ml',
     lg: "lg",
 } as const;
 
@@ -12,7 +13,7 @@ const ButtonTypes = {
     secondary: "secondary",
     muted: "muted",
     outlined: "outlined",
-    transparent: 'transparent'
+    transparent: 'transparent',
 } as const;
 
 type ButtonSize = (typeof ButtonSizes)[keyof typeof ButtonSizes];
@@ -24,6 +25,7 @@ export interface ButtonProps {
     children: ReactNode;
     onClick: () => void;
     style?: string;
+    fullRound?: boolean;
     disabled?: boolean;
     color?: string
 }

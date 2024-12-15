@@ -1,3 +1,4 @@
+import {FoodItem} from "@/src/app/types/models/food";
 
 
 export interface FoodChoiceCard {
@@ -8,11 +9,20 @@ export interface FoodChoiceCard {
 
 export interface FastChoiceCardProps {
     selected: boolean;
-    data: FoodChoiceCard;
-    setSelected: (card: FoodChoiceCard) => void;
+    data: FoodItem;
+    setSelected: (card: FoodItem) => void;
 }
 
 export interface FastChoiceButtonProps {
     step: number;
     onClick: () => void;
+}
+
+export interface FastChoicePageProps  {
+    setStep: (step: 'result' | 'choice') => void;
+    isLoading: boolean;
+    menu:string;
+    cardData: FoodItem[];
+    handleSelect: (card: FoodItem) => void;
+    selectedList: FoodItem[]
 }

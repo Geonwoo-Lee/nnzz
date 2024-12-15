@@ -77,13 +77,13 @@ const foodData: FoodItemFromClient[] = [
     // 13. 초밥
     {
         categoryId: 32,
-        imageUrl: `${imageLocation}/Donkats.png`,
+        imageUrl: `${imageLocation}/Sushi.png`,
         bgType: "Red"
     },
     // 14. 돈가스
     {
         categoryId: 33,
-        imageUrl: `${imageLocation}/Ramen.png`,
+        imageUrl: `${imageLocation}/Donkats.png`,
         bgType: "Pink"
     },
     // 15. 카레
@@ -161,7 +161,7 @@ const foodData: FoodItemFromClient[] = [
     // 27. 햄버거
     {
         categoryId: 80,
-        imageUrl: `${imageLocation}/Sandwich.png`,
+        imageUrl: `${imageLocation}/Hamburger.png`,
         bgType: "Blue"
     },
     // 29. 술집

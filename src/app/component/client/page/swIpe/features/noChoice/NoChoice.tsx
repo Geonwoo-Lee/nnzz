@@ -2,7 +2,7 @@
 
 import WayToChoose from "@/src/app/component/client/page/swIpe/features/noChoice/component/WayToChoose";
 
-const  NoChoice = () => {
+const  NoChoice = ({type, day} : {type: string, day: string;}) => {
     return (
         <div className='h-screen flex flex-col gap-6 justify-center items-center w-full'>
             <div className='flex flex-col justify-center items-center gap-4'>
@@ -14,8 +14,8 @@ const  NoChoice = () => {
                 </div>
             </div>
             <div className='px-4 pt-4 pb-12 flex flex-row gap-4 w-full'>
-                <WayToChoose type='reStart'/>
-                <WayToChoose type='random'/>
+                <WayToChoose mealTiming={type} day={day} type='reStart'/>
+                <WayToChoose type='random' day={day} mealTiming={type}/>
             </div>
         </div>
     )

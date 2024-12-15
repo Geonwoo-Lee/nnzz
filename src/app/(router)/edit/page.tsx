@@ -9,10 +9,11 @@ import Close from "@/public/svg/header/InputClose.svg";
 import DownArrow from "@/public/svg/items/common/DownArrow.svg";
 import GenderAgeBottomSheet
     from "@/src/app/component/client/page/sign-up/features/genderAgeComponent/GenderAgeBottomSheet";
-import UpdateUserApi from "@/src/app/api/client/update-user/update";
 import {useToast} from "@/src/app/core/ToastProvider";
 import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
 import Edit from '../../../../public/svg/items/common/Edit.svg'
+import Button from '@/src/app/component/client/common/button/Button'
+import DeleteApi from "@/src/app/api/client/delete/delete";
 
 
 const DEFAULT_IMAGE: FoodProfileType = {
@@ -79,6 +80,45 @@ const EditPage = () => {
         });
     }
 
+    const deleteUser = () => {
+        const accessToken = AuthUtils.getToken()?.accessToken;
+        if (!accessToken) {
+            // 토큰이 없는 경우 처리
+            return;
+        }
+
+        DeleteApi.DeleteUser(accessToken).then(() => {
+            AuthUtils.removeUserInfo();
+            AuthUtils.removeToken();
+            window.location.href = '/';
+        });
+    }
+
+// UpdateUserApi 클래스 수정
+    class UpdateUserApi {
+        static async updateUser(params: any) {
+            try {
+                const response = await fetch('/api/user/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(params)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                throw error; // 에러를 상위로 전파
+            }
+        }
+    }
+
+// upDateUserInfo 함수 수정
     const upDateUserInfo = async (type: 'nickname' | 'profileImage' | 'gender' ) => {
         const params = {
             nickname: nicknameValue,
@@ -86,22 +126,34 @@ const EditPage = () => {
             ageRange: genderValue.age,
             profileImage: profileImageValue.id.toString()
         }
-          const response = await UpdateUserApi.updateUser(params);
-          if (response.status === 200) {
-              AuthUtils.setUserInfo({
+
+        try {
+             await UpdateUserApi.updateUser(params);
+            AuthUtils.setUserInfo({
                 nickname: nicknameValue,
                 gender: genderValue.gender,
                 age: genderValue.age,
                 profileImage: profileImageValue
-              });
-              switch (type) {
-                  case "gender": showToast('나이대, 성별 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER); break
-                  case "nickname": showToast('닉네임 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);break
-                  case "profileImage": showToast('평점 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);break
-              }
-          }
-        }
+            });
 
+            switch (type) {
+                case "gender":
+                    showToast('나이대, 성별 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
+                    closeModal();
+                    break;
+                case "nickname":
+                    showToast('닉네임 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
+                    break;
+                case "profileImage":
+                    showToast('평점 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
+                    break;
+            }
+        } catch (error: any) {
+            console.error('Update failed:', error);
+            const errorMessage = error.response?.data?.message || '업데이트에 실패했습니다';
+            showToast(errorMessage, ToastPosition.BOTTOM, ToastAlign.CENTER);
+        }
+    }
         const upDateProfileImage = async (image: FoodProfileType) => {
             await setValue('profileImage', image)
             upDateUserInfo('profileImage')
@@ -135,7 +187,7 @@ const EditPage = () => {
     }, []);
 
     return (
-        <div className='h-basic-body-with-header'>
+        <div className='h-basic-body-with-header relative'>
             <div className='px-5'>
                 <div className='pt-6 w-full flex justify-center items-center flex-col gap-6'>
                     <div className='flex flex-col gap-3'>
@@ -215,6 +267,11 @@ const EditPage = () => {
                                               open={open} onClose={closeModal} genderAgeValue={genderValue}/>
                     </div>
                 </div>
+            </div>
+            <div className='absolute bottom-0 pb-20 w-full '>
+                <Button type='transparent' onClick={deleteUser} size='md' style='w-full text-text-4 font-medium text-body2' >
+                    회원탈퇴
+                </Button>
             </div>
         </div>
     );

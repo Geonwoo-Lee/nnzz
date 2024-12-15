@@ -37,6 +37,10 @@ export interface LoginRes {
     token: LoginToken
 }
 
+export interface logoutRes {
+    message: string
+}
+
 export interface BasicSignUpProps {
     step: number;
     setStep: (step: number) => void;

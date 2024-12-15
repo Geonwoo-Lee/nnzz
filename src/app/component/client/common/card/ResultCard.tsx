@@ -62,7 +62,7 @@ const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCar
                         <div className="relative w-full h-full pt-4 px-8 flex items-center justify-center">
                             <Image
                                 src={data.imageUrl}
-                                alt={data.categoryId}
+                                alt={`${data.categoryId} image`}
                                 layout="fill"
                                 className="rounded-[16px] object-contain"
                                 draggable={false}

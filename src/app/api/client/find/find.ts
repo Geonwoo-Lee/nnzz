@@ -1,6 +1,12 @@
 import BaseApi from "@/src/app/api/client/base/base-api";
 import { fetchWithToken} from "@/src/app/api/client/fetch/fetch";
-import {FindCategoryReq, FindRestaurantReq, FindStore} from "@/src/app/types/models/find";
+import {
+    FindCategoryReq,
+    FindFinalRestaurantReq,
+    FindRestaurantReq,
+    FindStore, FindStoreRandomReq,
+    FindStoreType, RandomStore
+} from "@/src/app/types/models/find";
 import {FoodItemFromServer} from "@/src/app/types/models/food";
 
 
@@ -48,6 +54,29 @@ class FindApi extends BaseApi{
                 categoryList: params.data.category // categoryList로 파라미터 이름 변경
             })
         });
+        return await response.json();
+    }
+
+    static async FindStores(params: FindFinalRestaurantReq): Promise<FindStoreType> {
+        const url = `${this.generateSearchUri(`${this.BASE_URL}/api/find/store`, params)}`
+        const response = await fetchWithToken(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        return await response.json();
+    }
+
+    static async RandomStores(type: string, params: FindStoreRandomReq): Promise<RandomStore> {
+        const url = `${this.BASE_URL}/api/find/${type}/category/random`
+        const reqUrl = `${this.generateSearchUri(url, params)}`
+        const response = await fetchWithToken(reqUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         return await response.json();
     }
 }
