@@ -1,6 +1,6 @@
 import {fetchWithoutToken} from "@/src/app/api/client/fetch/fetch";
 import BaseApi from "@/src/app/api/client/base/base-api";
-import {JoinParams} from "@/src/app/types/models/user";
+import {JoinParams, JoinRes} from "@/src/app/types/models/user";
 
 
 class SignUpApi extends BaseApi {
@@ -9,7 +9,7 @@ class SignUpApi extends BaseApi {
         JOIN: '/api/user/join'
     } as const;
 
-    static async join(params: JoinParams) {
+    static async join(params: JoinParams) : Promise<JoinRes> {
         try {
             const response = await fetchWithoutToken(`${this.BASE_URL}${this.ENDPOINTS.JOIN}`, {
                 method: 'POST',

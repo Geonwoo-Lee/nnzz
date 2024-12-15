@@ -40,6 +40,24 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
     }
 }
 
+ export const getUserLocation = () => {
+    const locationString = localStorage.getItem('userLocation');
+    const pinedLocation = localStorage.getItem('pinedLocation');
+
+    if (pinedLocation) {
+        const pinedData = JSON.parse(pinedLocation);
+        return {
+            latitude: pinedData.lat,
+            longitude: pinedData.lng,
+            address: pinedData.address,
+            name: pinedData.name
+        };
+    }
+
+    return locationString ? JSON.parse(locationString) : null;
+}
+
+
 
 
 export async function getAddressFromCoords(latitude: number, longitude: number): Promise<Place > {

@@ -7,6 +7,7 @@ import {getAddressFromCoords} from "@/src/app/func/common/geo.utils";
 import BottomSheet from "@/src/app/component/client/common/bottomSheet/BottomSheet";
 import Button from '../../common/button/Button'
 import {useRouter} from "next/navigation";
+import SaveApi from "@/src/app/api/client/save/save";
 
 const FindLocationClientPage = () => {
     const router = useRouter();
@@ -39,8 +40,19 @@ const FindLocationClientPage = () => {
 
     const setLocation = (location: MapPlace) => {
         if(location) {
-            window.localStorage.setItem('pinedLocation', JSON.stringify(location));
-            router.push('/home')
+            SaveApi.SaveLocation({
+                name: location.name,
+                address: location.address!,
+                latitude: location.lat,
+                longitude: location.lng
+            }).then((res) => {
+                if(res.status === 400) {
+                    router.push(`/not-service/${encodeURIComponent(location.address!.replace(/\s+/g, ''))}`)
+                }else {
+                    window.localStorage.setItem('pinedLocation', JSON.stringify(location));
+                    router.push('/home')
+                }
+            })
         }else {
             return
         }

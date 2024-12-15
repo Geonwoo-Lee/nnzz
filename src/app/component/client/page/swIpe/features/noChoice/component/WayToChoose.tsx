@@ -10,30 +10,32 @@ interface ChoiceConfig {
     callback: () => void
 }
 
-const CHOICE_CONFIG: Record<ChoiceType, ChoiceConfig> = {
-    reStart: {
-        bg: 'bg-[#FFC5CC]',
-        image: '/images/items/SlowFind.png',
-        title: '맛의 짝 찾기',
-        description: '한번 더!',
-        callback: () => {window.location.reload()}
-    },
-    random: {
-        bg: 'bg-[#BFDBFE]',
-        image: '/images/items/RandomFind.png',
-        title: '알아서 골라주세요',
-        description: '랜덤 뽑기',
-        callback: () => {
-            window.location.href = '/random'
-        }
-    }
-} as const;
 
 interface WayToChooseProps {
     type: ChoiceType;
+    mealTiming: string
+    day: string;
 }
 
-const WayToChoose = ({ type }: WayToChooseProps) => {
+const WayToChoose = ({ type, mealTiming, day }: WayToChooseProps) => {
+    const CHOICE_CONFIG: Record<ChoiceType, ChoiceConfig> = {
+        reStart: {
+            bg: 'bg-[#FFC5CC]',
+            image: '/images/items/SlowFind.png',
+            title: '맛의 짝 찾기',
+            description: '한번 더!',
+            callback: () => {window.location.reload()}
+        },
+        random: {
+            bg: 'bg-[#BFDBFE]',
+            image: '/images/items/RandomFind.png',
+            title: '알아서 골라주세요',
+            description: '랜덤 뽑기',
+            callback: () => {
+                window.location.href = `/random/${mealTiming}/${day}`
+            }
+        }
+    } as const;
     const config = CHOICE_CONFIG[type];
 
     return (

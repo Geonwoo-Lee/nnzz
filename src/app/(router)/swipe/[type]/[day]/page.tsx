@@ -7,8 +7,8 @@ import SwipeClientPage from "@/src/app/component/client/page/swIpe/SwipeClientPa
 import {FoodItem} from "@/src/app/types/models/food";
 import SwipeComponent from "@/src/app/component/client/page/swIpe/features/SwipeComponent";
 import FindApi from "@/src/app/api/client/find/find";
-import {LocationType} from "@/src/app/types/models/geo";
 import RestaurantResult from "@/src/app/component/client/common/restaurantResult/RestaurantResult";
+import {getUserLocation} from "@/src/app/func/common/geo.utils";
 
 interface PageProps {
     params: {
@@ -40,11 +40,6 @@ const SwapPage = ({ params }: PageProps) => {
         }
     }
 
-    const getUserLocation = () =>{
-        const locationString = localStorage.getItem('userLocation');
-        const location: LocationType | null = locationString ? JSON.parse(locationString) : null;
-        return location
-    }
 
     useEffect(() => {
         requestGeolocation();
@@ -91,7 +86,6 @@ const SwapPage = ({ params }: PageProps) => {
     }, [type, day]);
 
 
-    console.log(likeCards)
 
     return   <Funnel>
         <Funnel.Step name="0">
@@ -101,7 +95,7 @@ const SwapPage = ({ params }: PageProps) => {
            <SwipeComponent.CompletePage setStep={setStep} deletedList={deletedList} setDeletedCards={controlDeleteList} likeCards={likeCards}/>
         </Funnel.Step>
         <Funnel.Step name="2">
-            <SwipeComponent.NoChoice />
+            <SwipeComponent.NoChoice day={day} type={type} />
         </Funnel.Step>
         <Funnel.Step name="3">
             <RestaurantResult name={getUserLocation()?.name || ''} address={getUserLocation()?.address || ''} day={day} type={type} lat={ getUserLocation()?.latitude || 0} lng={ getUserLocation()?.longitude || 0} categoryList={categoryList()} />

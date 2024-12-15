@@ -1,8 +1,8 @@
 import React from "react";
-import {Place} from "@/src/app/types/page/location/location";
+import {CurrentLocation} from "@/src/app/types/page/location/location";
 
 
-const LocationList = ({isLast, place, setLocation} : {isLast: boolean, place: Place , setLocation?: (place: Place) => void}) => {
+const LocationList = ({isLast, place, setLocation} : {isLast: boolean, place: CurrentLocation , setLocation?: (place: CurrentLocation) => void}) => {
     return <div onClick={() => {
         if(setLocation) {
             setLocation(place)
@@ -11,10 +11,10 @@ const LocationList = ({isLast, place, setLocation} : {isLast: boolean, place: Pl
     }}
                 className={`${isLast ? '' : 'border-b border-line-1'} h-[65px] flex flex-col gap-3 justify-center p-4`}>
         <div className='text-body2 font-regular text-text-2'>
-            {place.name}
+            {place.buildingName}
         </div>
         <div className='text-text-3 text-caption1 font-regular'>
-            {place.roadAddress}
+            {place.address}
         </div>
     </div>
 }

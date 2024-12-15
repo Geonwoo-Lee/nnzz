@@ -3,7 +3,7 @@ export interface FoodItemFromServer {
     category: string;
     distance: number;
     represent: string;
-    categoryId: string
+    categoryId: string | number
 }
 
 export interface FoodItemFromClient {

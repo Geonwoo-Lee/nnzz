@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import UserName from "@/src/app/component/client/common/userName/UserName";
 
 const CompleteDescription = () => {
     return (
@@ -6,7 +7,7 @@ const CompleteDescription = () => {
             <div className='flex flex-row justify-between items-center'>
                 <div className='flex flex-col justify-start gap-4'>
                     <div className='text-title1 font-bold text-common'>
-                        냠냠님의<br/> 오늘점심 <span className='text-primary-6'>Pick!</span>
+                        <div className='flex flex-row gap-1'><UserName style='text-title1 font-bold text-common'/>님의</div> 오늘점심 <span className='text-primary-6'>Pick!</span>
                     </div>
                     <div className='text-body2 font-medium'>
                         진짜 먹고 싶은 메뉴만 남겨볼까요?

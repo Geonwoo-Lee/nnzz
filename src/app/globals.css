@@ -81,3 +81,13 @@ body {
 .random-image {
   aspect-ratio: 240 / 240;
 }
+
+.hearts-size {
+  aspect-ratio: 640/144;
+}
+
+.naver-map-container .map_copyright,
+.naver-map-container .btn_maps,
+.naver-map-container .map_logo_wrap {
+  display: none !important;
+}

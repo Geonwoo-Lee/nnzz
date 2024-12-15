@@ -1,5 +1,12 @@
 
 
+export interface RandomStore {
+    category: string;
+    categoryId: number;
+    distance: number;
+    represent: string;
+}
+
 export interface FindCategoryReq {
     type: string
     data: {
@@ -16,8 +23,20 @@ export interface  FindRestaurantReq {
         lng: number;
         lat: number;
         day: string;
-        category: number[] | string[]
+        category: (string | number)[];
     }
+}
+
+export interface FindFinalRestaurantReq {
+    lng: number;
+    lat: number;
+    storeId: string;
+}
+
+export interface FindStoreRandomReq {
+    lng: number;
+    lat: number;
+    day: string;
 }
 
 export interface CategoryList {
@@ -45,7 +64,27 @@ export interface FindStore {
     address: string;
     distance: number;
     category: string;
+    lat: number;
+    lng: number;
     broadcasts: Broadcast[];
     menus: Menu[];
     last?: boolean
+}
+
+export interface FindStoreType {
+    storeId: string;
+    name: string;
+    lat: number;
+    lng: number;
+    address: string;
+    distance: number;
+    description: string;
+    category: string;
+    categoryId: number;
+    broadcasts: string[];
+    menus: {
+        price: string;
+        menu_name: string;
+        description: string;
+    }[];
 }

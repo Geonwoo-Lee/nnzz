@@ -12,10 +12,6 @@ export interface  UserInfo {
 
 export interface LoginRes {
     member: SignInType;
-    // token: {
-    //     token: string;
-    //     refreshToken: string;
-    // };
 }
 
 export interface JoinParams {
@@ -24,4 +20,12 @@ export interface JoinParams {
     profileImage: number | string;
     gender?: string;
     ageRange?: string;
+}
+
+export interface JoinRes {
+    member: SignInType;
+    token: {
+        accessToken: string;
+        refreshToken: string;
+    };
 }

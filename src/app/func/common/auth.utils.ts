@@ -46,7 +46,7 @@ public static getToken(): TokenObject | null {
     }
 
     public static removeUserInfo() {
-        localStorage.removeItem("토큰");
+        localStorage.removeItem("userInfo");
     }
 
     public static async login(loginRes: LoginRes) {

@@ -9,13 +9,14 @@ import Button from "../../common/button/Button";
 import Location from '../../../../../../public/svg/items/common/Location.svg'
 import Search from '../../../../../../public/svg/items/common/Search.svg'
 import {searchAddressByKeyword} from "@/src/app/func/common/geo.utils";
-import {locationSearch, Place} from "@/src/app/types/page/location/location";
+import {CurrentLocation, locationSearch} from "@/src/app/types/page/location/location";
 import {useFunnel} from "@/src/app/hooks/useFunnel";
 import LocationComponent from "@/src/app/component/client/page/location/features/LocationComponent";
 import useLocationBasedNavigation from "@/src/app/hooks/useLocationBasedNavigation";
 import {MapPlace} from "@/src/app/component/client/common/map/NaverMap";
 import {useRouter} from "next/navigation";
 import Loading from "@/src/app/component/client/common/loading/Loading";
+import SaveApi from "@/src/app/api/client/save/save";
 
 const LocationClientPage = () => {
     const router = useRouter()
@@ -26,18 +27,19 @@ const LocationClientPage = () => {
     });
     const locationHandler = useLocationBasedNavigation();
     const { handleLocationRequest, isLoading } = locationHandler;
-    const [searchList, setSearchList] = useState<Place[]>([]);
+    const [currentLocation, setCurrentLocation] = useState<CurrentLocation[]>([]);
+    const [searchList, setSearchList] = useState<CurrentLocation[]>([]);
     const [Funnel, setFunnel] = useFunnel(['tip', 'current', 'list', 'notFound'], "tip");
 
     const onSubmit = handleSubmit((data:locationSearch) => {
         searchAddressByKeyword(data.address).then((results) => {
             if (results.length > 0) {
                 const newPlaces = results.map(result => ({
-                    name: result.name,
+                    buildingName: result.name,
                     address: result.address,
                     roadAddress: result.roadAddress,
-                    latitude: result.latitude,
-                    longitude: result.longitude
+                    lng: result.latitude,
+                    lat: result.longitude
                 }));
                 setSearchList(() => [ ...newPlaces]);
             } else {
@@ -46,17 +48,36 @@ const LocationClientPage = () => {
         });
     });
 
-    const setLocation = (place: Place) => {
+    const setLocation = (place: CurrentLocation) => {
         const pinnedLocation: MapPlace = {
-            name: place.name,
-            lat: place.latitude,
-            lng: place.longitude,
+            name: place.buildingName,
+            lat: place.lat,
+            lng: place.lng,
             address: place.address
         }
-        console.log(place)
-        window.localStorage.setItem('pinedLocation', JSON.stringify(pinnedLocation));
-        router.push('/home')
+        SaveApi.SaveLocation({
+            name: pinnedLocation.name,
+            address: pinnedLocation.address!,
+            latitude: pinnedLocation.lat,
+            longitude: pinnedLocation.lng
+        }).then((res) => {
+            if(res.status === 400) {
+                router.push(`/not-service/${encodeURIComponent(pinnedLocation.address!.replace(/\s+/g, ''))}`)
+            }else {
+                window.localStorage.setItem('pinedLocation', JSON.stringify(pinnedLocation));
+                router.push('/home')
+            }
+        })
     }
+
+    useEffect(() => {
+        SaveApi.GetSavedLocation().then((res) => {
+            if(res.length > 0) {
+                setFunnel('current')
+            }
+            setCurrentLocation(res)
+        })
+    }, []);
 
     useEffect(() => {
         if(searchList.length > 0) {
@@ -70,6 +91,7 @@ const LocationClientPage = () => {
             }
         }
     }, [searchList]);
+
 
 
     return <div className='  overflow-y-scroll h-basic-body-with-header'>
@@ -105,7 +127,7 @@ const LocationClientPage = () => {
                         <LocationComponent.SearchTip/>
                     </Funnel.Step>
                     <Funnel.Step name='current'>
-                        <LocationComponent.CurrentLocation />
+                        <LocationComponent.CurrentLocation setLocation={setLocation}  place={currentLocation} />
                     </Funnel.Step>
                     <Funnel.Step name='list'>
                         <LocationComponent.SearchList setLocation={setLocation} places={searchList} />

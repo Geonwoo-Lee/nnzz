@@ -50,6 +50,23 @@ class DateUtils {
         return result;
     };
 
+    public static mealRenderer = (type: string) => {
+        switch (type) {
+            case 'lunch' : return '점심'
+            case 'dinner': return '저녁'
+            default: return '점심'
+        }
+    }
+
+    public  static  formatDateToKorean(dateString: string): string {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+            throw new Error('Invalid date format. Expected: YYYY-MM-DD');
+        }
+
+        const [year, month, day] = dateString.split('-');
+        return `${year}년${month}월${day}일`;
+    }
+
 
     public  static  getWeekDates = () : DayInfo[] => {
         const days = ['일', '월', '화', '수', '목', '금', '토'];

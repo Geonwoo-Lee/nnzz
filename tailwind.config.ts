@@ -186,13 +186,14 @@ const config: Config = {
         'basic-menu-body': '100vh',
         'button-height-sm': '26px',
         'button-height-md': '38px',
+        'button-height-ml': '43px',
         'button-height-lg': '50px',
         'input-height': '52px',
         'location-no-search-height': 'calc(100vh - 260px - 52px)',
         'fast-choice-height': 'calc(100vh - 199px)',
         'random-height': 'calc(100vh - 180px)',
         'swipe-result-height': 'calc(100vh - 114px)',
-        'restaurant-result-height': 'calc(100vh - 132px)',
+        'restaurant-result-height': 'calc(100vh - 102px)',
         'restaurant-result-up-height': 'calc(100vh - 222px)',
       },
       keyframes: {
@@ -228,6 +229,7 @@ const config: Config = {
       boxShadow: {
         'bottom-sheet-top': '0 20px 92px 6px rgba(0, 0, 0, 0.1)',
         'card': '0px 15px 30px rgba(0, 0, 0, 0.1), 0px 5px 15px rgba(0, 0, 0, 0.08)',
+        'top-sides': '0 -1px 0 1px rgba(0, 0, 0, 0.04)',
       },
       animation: {
         wiggle: 'wiggle 0.15s linear infinite',

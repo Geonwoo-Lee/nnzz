@@ -18,7 +18,7 @@ const FoodCard = (props: FastChoiceCardProps) => {
             </div>
         </div>
         <div className='w-full text-center text-caption1 font-medium text-text-2'>
-            {data.name}
+            {data.category}
         </div>
     </div>
 }

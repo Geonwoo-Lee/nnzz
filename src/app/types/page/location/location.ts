@@ -9,3 +9,13 @@ export interface Place {
     latitude: number;
     longitude: number
 }
+
+export interface CurrentLocation  {
+    locationId?: number,
+    userId?: number,
+    lat: number,
+    lng: number,
+    address: string,
+    buildingName: string,
+    createdAt?: string
+}

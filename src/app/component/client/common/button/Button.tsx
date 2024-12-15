@@ -9,13 +9,15 @@ const Button = ({
                     onClick,
                     style,
                     disabled,
-                    color
+                    color,
+                    fullRound
                 }: ButtonProps) => {
     const styles = {
         size: {
-            sm: "h-button-height-sm text-caption2 font-regular rounded-[6px]",
-            md: "h-button-height-md text-caption1 font-medium rounded-[8px]",
-            lg: "h-button-height-lg text-body2 font-medium rounded-[12px]",
+            sm: `h-button-height-sm text-caption2 font-regular ${fullRound  ? "rounded-full" : "rounded-[8px]"}`,
+            md: `h-button-height-md text-caption1 font-medium rounded-[8px] ${fullRound  ? "rounded-full" : "rounded-[8px]"}`,
+            ml: `h-button-height-md text-caption1 font-medium rounded-[8px] ${fullRound  ? "rounded-full" : "rounded-[8px]"}`,
+            lg: `h-button-height-lg text-body2 font-medium  ${fullRound ? 'rounded-full' : 'rounded-[12px]'}`,
         },
         type: {
             primary: `${color ? color : "text-common-white"} bg-red-500 active:bg-primary-8 active:scale-95`,
@@ -23,6 +25,7 @@ const Button = ({
             muted: `${color ? color : "text-common-white"} bg-bg-9 active:bg-bg-7 active:scale-95`,
             outlined: `${color ? color : "text-text-3"} bg-common-white border border-line-3 active:scale-95 active:bg-bg-3`,
             transparent: `${color ? color : 'text-text-2'} bg-common-white active:bg-bg-2 active:scale-95`,
+
         },
         disabled: {
             primary: "bg-opacity-20 bg-red-500 text-opacity-20 text-common-white",

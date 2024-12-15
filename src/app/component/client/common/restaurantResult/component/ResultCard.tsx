@@ -2,10 +2,10 @@ import {FindStore} from "@/src/app/types/models/find";
 import Button from "../../button/Button";
 
 
-const ResultCard = (props: FindStore) => {
-    const {name, address, distance, category, broadcasts, menus, last } = props
+const ResultCard = ({data, isMap, setStep, setSelectedStore}: {data: FindStore, isMap?: boolean, setStep: (step: 'map' | 'list' | 'result') => void, setSelectedStore: (store: FindStore) => void}) => {
+    const {name, address, distance, category, broadcasts, menus, last } = data
     return (
-        <div className={`bg-bg-0 w-full bg-common-white ${last ? '' : 'border-b border-line-1  '}`}>
+        <div className={`bg-bg-0 w-full bg-common-white ${isMap ? 'rounded-[12px] border border-line-2' : ''} ${last ? '' : 'border-b border-line-1  '}`}>
             <div className='p-4 flex flex-col gap-6'>
                 <div className='flex flex-col gap-6'>
                     <div className='flex flex-col gap-3'>
@@ -51,6 +51,8 @@ const ResultCard = (props: FindStore) => {
                     </div>
                 </div>
                     <Button type='outlined' style='w-full' size='md' onClick={() => {
+                        setStep('result')
+                        setSelectedStore(data)
                     }}>
                         이 식당으로 할게요
                     </Button>
