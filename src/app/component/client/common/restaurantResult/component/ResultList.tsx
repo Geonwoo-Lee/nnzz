@@ -2,9 +2,11 @@ import Loading from "@/src/app/component/client/common/loading/Loading";
 import ResultCard from "@/src/app/component/client/common/restaurantResult/component/ResultCard";
 import React from "react";
 import {FindStore} from "@/src/app/types/models/find";
+import {useRouter} from "next/navigation";
 
 const ResultList = (props: { restaurants: FindStore[], isUp: boolean, isLoading: boolean, setStep: (step: 'map' | 'list' | 'result') => void, setSelectedStore: (storeId: FindStore) => void }) => {
     const {restaurants, isUp, isLoading, setStep, setSelectedStore} = props
+    const router = useRouter()
     return (
         <div
             className={`pb-10 w-full ${isUp ? 'h-restaurant-result-up-height' : 'h-restaurant-result-height'} overflow-y-scroll bg-bg-0`}>
@@ -16,7 +18,9 @@ const ResultList = (props: { restaurants: FindStore[], isUp: boolean, isLoading:
                     className="absolute inset-x-0 text-title2 font-bold text-text-2 flex justify-center max-w-[180px] mx-auto whitespace-nowrap">
                     식당보기
                 </div>
-                <div className="flex-shrink-0 text-caption1 text-text-2 font-medium" onClick={() => {window.location.reload()}}>
+                <div className="flex-shrink-0 text-caption1 text-text-2 font-medium" onClick={() => {
+                    router.push('/home')
+                }}>
                     처음으로
                 </div>
             </header>

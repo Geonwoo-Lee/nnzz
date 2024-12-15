@@ -38,8 +38,8 @@ const LocationClientPage = () => {
                     buildingName: result.name,
                     address: result.address,
                     roadAddress: result.roadAddress,
-                    lng: result.latitude,
-                    lat: result.longitude
+                    lng: result.longitude,
+                    lat: result.latitude
                 }));
                 setSearchList(() => [ ...newPlaces]);
             } else {
