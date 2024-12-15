@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Script from "next/script";
-import { usePathname } from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 
 export interface MapPlace {
     name: string;
@@ -21,6 +21,7 @@ let isNaverMapScriptLoaded = false;
 const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const path = usePathname()
+    const router = useRouter()
     const [mapError, setMapError] = useState<string | null>(null);
     const [map, setMap] = useState<any>(null);
     const [marker, setMarker] = useState<any>(null);
@@ -112,7 +113,9 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
                     className="absolute inset-x-0 text-title2 font-bold text-text-2 flex justify-center max-w-[180px] mx-auto whitespace-nowrap">
                     식당보기
                 </div>
-                <div className="flex-shrink-0 text-caption1 text-text-2 font-medium">
+                <div className="flex-shrink-0 text-caption1 text-text-2 font-medium" onClick={() => {
+                    router.push('/home')
+                }}>
                     처음으로
                 </div>
             </header>
