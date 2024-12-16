@@ -27,7 +27,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
             setNaverMapLoading(true)
         setTimeout(() => {
             setNaverMapLoading(false)
-        }, 3000)
+        }, 1500)
         setTimeout(() => {
             if (isMobile) {
                 const naverMapAppUrl = `nmap://place?lat=${store.lat}&lng=${store.lng}&name=${encodeURIComponent(store.name)}&appname=your_app_name`;
@@ -40,7 +40,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
             } else {
                 window.open(`https://map.naver.com/v5/search/${encodeURIComponent(store.name)}?c=${store.lng},${store.lat},15,0,0,0,dh`, '_blank');
             }
-        }, 3000)
+        }, 1500)
     };
 
     useEffect(() => {

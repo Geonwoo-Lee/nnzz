@@ -63,6 +63,7 @@ const FindLocationClientPage = () => {
             const location = JSON.parse(getLocation) as Place;
             setCurrentLocation({
                 name: location.name,
+                address: location.address,
                 lat: location.latitude,
                 lng: location.longitude
             });

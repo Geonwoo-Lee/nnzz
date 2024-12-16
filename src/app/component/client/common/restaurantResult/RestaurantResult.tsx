@@ -52,9 +52,6 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
         pageRequest()
     }, [])
 
-    useEffect(() => {
-        console.log(selectedStore)
-    }, [selectedStore]);
 
 
     return (
