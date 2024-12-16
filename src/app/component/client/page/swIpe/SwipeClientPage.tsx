@@ -4,6 +4,7 @@ import Loading from "@/src/app/component/client/common/loading/Loading";
 import React  from "react";
 import ProgressBar from "@/src/app/component/client/common/progressBar/ProgressBar";
 import Button from "../../common/button/Button";
+import UserName from "@/src/app/component/client/common/userName/UserName";
 
 
 const SwipeClientPage = (props :DeckProps ) => {
@@ -34,7 +35,9 @@ const SwipeClientPage = (props :DeckProps ) => {
                                 setLikeCards(likedCards)
                             }, 10)
                         }}>
-                            냠냠쩝쩝이 고른 메뉴보기
+                            <div className='flex flex-row gap-1 items-center justify-center'>
+                                <UserName style=''/>님이 고른 메뉴보기
+                            </div>
                         </Button>
                     </div>
                 </div>
