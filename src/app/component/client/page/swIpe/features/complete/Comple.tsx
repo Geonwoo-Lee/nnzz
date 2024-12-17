@@ -29,7 +29,7 @@ const CompletePage = (props: CompletePageProps) => {
             </div>
             <div className='h-[118px] w-full bg-common-white fixed bottom-0  max-w-[640px] px-4'>
                 <div className='w-full pt-4'>
-                    <Button type='primary' size='lg' onClick={() => {setStep('3')}} style='w-full' >
+                    <Button type='primary' size='lg' onClick={setStep} style='w-full' >
                         식당정보 보러가기
                     </Button>
                 </div>

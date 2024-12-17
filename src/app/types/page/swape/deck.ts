@@ -13,5 +13,5 @@ export interface CompletePageProps {
     likeCards: FoodItem[];
     setDeletedCards: (result: FoodItem, type: 'add' | 'delete') => void;
     deletedList: FoodItem[]
-    setStep: Dispatch<SetStateAction<"0" | "1" | "2"| "3">>;
+    setStep: () => void;
 }
