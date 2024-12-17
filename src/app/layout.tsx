@@ -1,16 +1,20 @@
 // src/app/layout.tsx
 import type {Metadata, Viewport} from "next";
 import "./globals.css";
+import {GoogleAnalytics} from '@next/third-parties/google'
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import React from "react";
 import {pretendard} from "@/src/app/utils/font/font";
+import process from "process";
 
 export const viewport: Viewport = {
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
 };
+
+const ga4Id = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
     manifest: "/manifest.json",
@@ -79,6 +83,31 @@ export default function RootLayout({
     );
     return (
         <html lang="ko">
+        <head>
+            <Script id="fb-pixel" strategy="afterInteractive">
+                {`
+                    !function(f,b,e,v,n,t,s)
+                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                    n.queue=[];t=b.createElement(e);t.async=!0;
+                    t.src=v;s=b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t,s)}(window, document,'script',
+                    'https://connect.facebook.net/en_US/fbevents.js');
+                    fbq('init', '1741376476675737');
+                    fbq('track', 'PageView');
+                `}
+            </Script>
+            <noscript>
+                <img
+                    height="1"
+                    width="1"
+                    style={{ display: 'none' }}
+                    src="https://www.facebook.com/tr?id=1741376476675737&ev=PageView&noscript=1"
+                    alt=""
+                />
+            </noscript>
+        </head>
         <body
             data-theme="light"
             className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}
@@ -92,6 +121,7 @@ export default function RootLayout({
             src="https://developers.kakao.com/sdk/js/kakao.js"
             strategy="lazyOnload"
         />
+        <GoogleAnalytics gaId={ga4Id ? ga4Id : ""}/>
         </body>
         </html>
     );

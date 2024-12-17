@@ -50,6 +50,22 @@ const SwapPage = ({ params }: PageProps) => {
         return categoryIds
     }
 
+    const [shouldMoveToNext, setShouldMoveToNext] = useState(false);
+
+    const nextStep = () => {
+        const finalSelectedCards = likeCards.filter(
+            card => !deletedList.some(deletedCard => deletedCard.categoryId === card.categoryId)
+        );
+        setLikeCards(finalSelectedCards);
+        setShouldMoveToNext(true);
+    }
+
+    useEffect(() => {
+        if (shouldMoveToNext) {
+            setStep('3');
+            setShouldMoveToNext(false);
+        }
+    }, [likeCards, shouldMoveToNext]);
     useEffect(() => {
         setIsLoading(true);
         FindApi.findCategories({
@@ -92,7 +108,7 @@ const SwapPage = ({ params }: PageProps) => {
             <SwipeClientPage likedCards={likeCards} setLikeCards={controlLikeCard} cards={cardData} isLoading={isLoading} setStep={setStep}/>
         </Funnel.Step>
         <Funnel.Step name="1">
-           <SwipeComponent.CompletePage setStep={setStep} deletedList={deletedList} setDeletedCards={controlDeleteList} likeCards={likeCards}/>
+           <SwipeComponent.CompletePage setStep={nextStep} deletedList={deletedList} setDeletedCards={controlDeleteList} likeCards={likeCards}/>
         </Funnel.Step>
         <Funnel.Step name="2">
             <SwipeComponent.NoChoice day={day} type={type} />
