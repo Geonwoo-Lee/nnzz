@@ -1,7 +1,12 @@
 'use client'
 import AuthUtils from "@/src/app/func/common/auth.utils";
 import React, {useEffect, useMemo, useState} from "react";
-import {FoodProfileType, genderAgeType, SignInType, SignUpController} from "@/src/app/types/page/sign-up/sign-up";
+import {
+    FoodProfileType,
+    genderAgeType,
+    SignInType,
+    SignUpController
+} from "@/src/app/types/page/sign-up/sign-up";
 import ProfileImageComponent from "@/src/app/component/client/page/sign-up/features/ProfileComponet/ProfileImageComponent";
 import {Controller, useForm} from "react-hook-form";
 import Input from "@/src/app/component/client/common/input/Input";
@@ -63,7 +68,6 @@ const EditPage = () => {
 
     const nicknameValue = watch('nickname');
     const genderValue = watch('genderAge');
-    const profileImageValue = watch('profileImage');
 
     const closeModal = () => {
         setOpen(false)
@@ -97,23 +101,28 @@ const EditPage = () => {
 
 
 
-// upDateUserInfo 함수 수정
-    const upDateUserInfo = async (type: 'nickname' | 'profileImage' | 'gender' ) => {
+    const upDateUserInfo = async (type: 'nickname' | 'profileImage' | 'gender', profile?: FoodProfileType) => {
+        if (profile) {
+            setValue('profileImage', profile);
+            await new Promise(resolve => setTimeout(resolve, 0));
+        }
+
         const params = {
             nickname: nicknameValue,
             gender: genderValue.gender,
             ageRange: genderValue.age,
-            profileImage: profileImageValue.id.toString()
+            profileImage: watch('profileImage').id.toString()
         }
 
-            closeModal();
+
+        closeModal();
         try {
-             await UpdateUserApi.updateUser(params);
+            await UpdateUserApi.updateUser(params);
             AuthUtils.setUserInfo({
                 nickname: nicknameValue,
                 gender: genderValue.gender,
                 age: genderValue.age,
-                profileImage: profileImageValue
+                profileImage: watch('profileImage')
             });
 
             switch (type) {
@@ -132,10 +141,10 @@ const EditPage = () => {
             showToast(errorMessage, ToastPosition.BOTTOM, ToastAlign.CENTER);
         }
     }
-        const upDateProfileImage = async (image: FoodProfileType) => {
-            await setValue('profileImage', image)
-            upDateUserInfo('profileImage')
-        }
+
+    const handleProfileUpdate = (image: FoodProfileType) => {
+        upDateUserInfo('profileImage', image);
+    };
 
 
     const profileInfo = useMemo(() => {
@@ -164,6 +173,7 @@ const EditPage = () => {
         }
     }, []);
 
+
     return (
         <div className='h-basic-body-with-header relative'>
             <div className='px-5'>
@@ -172,7 +182,7 @@ const EditPage = () => {
                         <ProfileImageComponent
                             userInfoImage={profileInfo}
                             isSetting
-                            callback={upDateProfileImage}
+                            callback={handleProfileUpdate}
                         />
                     </div>
                 </div>
