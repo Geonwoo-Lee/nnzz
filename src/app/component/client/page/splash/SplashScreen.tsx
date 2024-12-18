@@ -1,7 +1,6 @@
 'use client'
 import React, { useState, useEffect, ReactNode } from "react"
 import { usePathname } from "next/navigation"
-import Image from 'next/image'
 
 const SplashScreen = ({ children }: { children: ReactNode }) => {
     const [isLoading, setIsLoading] = useState(true)

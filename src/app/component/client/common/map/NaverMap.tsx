@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Script from "next/script";
-import {usePathname, useRouter} from "next/navigation";
+import {usePathname} from "next/navigation";
 
 export interface MapPlace {
     name: string;
@@ -21,7 +21,6 @@ let isNaverMapScriptLoaded = false;
 const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const path = usePathname()
-    const router = useRouter()
     const [mapError, setMapError] = useState<string | null>(null);
     const [map, setMap] = useState<any>(null);
     const [marker, setMarker] = useState<any>(null);
