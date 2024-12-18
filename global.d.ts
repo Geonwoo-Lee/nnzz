@@ -168,6 +168,7 @@ interface NaverMapModule {
     Event: any;
     LatLngBounds: any;
     Point: any
+    Position: any
 }
 
 

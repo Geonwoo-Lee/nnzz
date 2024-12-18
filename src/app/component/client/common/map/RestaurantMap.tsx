@@ -53,10 +53,13 @@ const RestaurantMap: React.FC<Props> = ({ places,step, selectedStore, onStoreSel
                     ),
                     zoom: 20,
                     scaleControl: false,
-                    logoControl: false,
+                    logoControl: true,
                     mapDataControl: false,
                     zoomControl: false,
                     mapTypeControl: false,
+                    logoControlOptions: {
+                        position: window.naver.maps.Position.TOP_LEFT
+                    }
                 };
                 const newMap = new window.naver.maps.Map(mapRef.current, options);
                 setMap(newMap);

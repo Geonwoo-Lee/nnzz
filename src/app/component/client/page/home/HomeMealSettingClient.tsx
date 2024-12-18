@@ -6,9 +6,12 @@ import {DayInfo, MealTimingType} from "@/src/app/types/page/home/homeSelect";
 import {useRouter} from "next/navigation";
 import HomeMealSettingComponent from "@/src/app/component/client/page/home/features/HomeMealSettingComponent";
 import AuthUtils from "@/src/app/func/common/auth.utils";
+import {useToast} from "@/src/app/core/ToastProvider";
+import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
 
 const HomeMealSettingClient = () => {
     const router = useRouter()
+    const showToast = useToast()
     const [selectedLocation, setSelectedLocation] = useState('현재 위치');
     const [mealTime] = useState<DayInfo[]>(DateUtils.getWeekDates());
     const [selectedMealTime, setSelectedMealTime] = useState<DayInfo>(mealTime[0]);
@@ -61,6 +64,10 @@ const HomeMealSettingClient = () => {
             }
 
             const formattedDate = formatDate(selectedMealTime.date);
+            if(selectedLocation === '현재 위치') {
+                showToast('위치를 선택해주세요', ToastPosition.MIDDLE, ToastAlign.CENTER)
+                return;
+            }
 
             if(way === '꼼꼼히') {
                 router.push(`/swipe/${mealTimingToEng()}/${formattedDate}`)
