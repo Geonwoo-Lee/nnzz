@@ -18,6 +18,8 @@ export interface InputProps {
     type?: string;
     autoFocus?: boolean;
     right?: ReactNode;
+    rightFocus?: boolean;
+    leftFocus?: boolean;
     radius?: boolean;
     color?: string;
     left?: ReactNode;

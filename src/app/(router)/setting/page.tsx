@@ -45,9 +45,6 @@ const SettingPage = () => {
                             profileImage={getProfileImage()}
                             size={112}
                         />
-                        <div className='text-center text-title2 font-bold'>
-                            {userInfo.nickname}
-                        </div>
                     </div>
                     <Link
                         href={'/edit'}

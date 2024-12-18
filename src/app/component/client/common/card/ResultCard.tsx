@@ -72,13 +72,13 @@ const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCar
                 </div>
             </div>
             </div>
-            <div className="text-common px-4 py-4 h-[120px] overflow-y-auto">
-                <h2 className="text-xl">{data.category}</h2>
+            <div className="text-common flex flex-col gap-3  px-4 py-4 h-[120px] overflow-y-auto">
+                <h2 className="text-title2 font-bold">{data.category}</h2>
                 <div className="flex flex-row items-center">
                     <LocationPin/>
-                    <div className='truncate'>가까운 식당 {data.distance}m</div>
+                    <div className='truncate text-caption2 font-medium'>가까운 식당 {data.distance}m</div>
                 </div>
-                <div>{data.represent}</div>
+                <div className='text-caption2 font-regular'>{data.represent}</div>
             </div>
         </div>
     );

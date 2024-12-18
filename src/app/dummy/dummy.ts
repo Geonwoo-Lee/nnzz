@@ -140,22 +140,22 @@ const foodData: FoodItemFromClient[] = [
     },
     {
         categoryId: 28,
-        imageUrl: `${imageLocation}/Sushi.png`,
+        imageUrl: `${imageLocation}/Ramen.png`,
         bgType: "Blue"
     },
     {
         categoryId: 29,
-        imageUrl: `${imageLocation}/Sushi.png`,
+        imageUrl: `${imageLocation}/Ramen.png`,
         bgType: "Blue"
     },
     {
         categoryId: 30,
-        imageUrl: `${imageLocation}/Sushi.png`,
+        imageUrl: `${imageLocation}/Ramen.png`,
         bgType: "Blue"
     },
     {
         categoryId: 31,
-        imageUrl: `${imageLocation}/Sushi.png`,
+        imageUrl: `${imageLocation}/Ramen.png`,
         bgType: "Blue"
     },
     {
@@ -405,47 +405,47 @@ const foodData: FoodItemFromClient[] = [
     },
     {
         categoryId: 81,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {
         categoryId: 82,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {
         categoryId: 83,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {
         categoryId: 84,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {
         categoryId: 85,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {
         categoryId: 86,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {
         categoryId: 87,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {
         categoryId: 88,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {
         categoryId: 89,
-        imageUrl: `${imageLocation}/Hamburger.png`,
+        imageUrl: `${imageLocation}/Sandwich.png`,
         bgType: "Blue"
     },
     {

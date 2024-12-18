@@ -22,7 +22,7 @@ const GenderAgeBottomSheet = (props: GenderAgeBottomSheetProps) => {
         <BottomSheet open={open} close={onClose} nonPadding={true}>
             <div>
                 <div className='flex flex-col'>
-                    <div className='pt-3 px-2 text-center relative text-text-2 font-semibold text-title2 h-[48px]'>
+                    <div className='pt-3 px-2 text-center relative text-text-2 font-medium text-title2 h-[48px]'>
                         성별 ・ 나이대 선택
                         <Close className='absolute right-[8px] top-[12px]' onClick={onClose}/>
                     </div>

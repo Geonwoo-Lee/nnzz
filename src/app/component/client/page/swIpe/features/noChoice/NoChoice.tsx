@@ -6,7 +6,7 @@ const  NoChoice = ({type, day} : {type: string, day: string;}) => {
     return (
         <div className='h-screen flex flex-col gap-6 justify-center items-center w-full'>
             <div className='flex flex-col justify-center items-center gap-4'>
-                <div className='title-1 font-medium text-text-1'>
+                <div className='text-title-1 font-medium text-text-1'>
                     아직 고른 메뉴가 없어요 🥲
                 </div>
                 <div className='text-text-2 text-body2 font-regular'>

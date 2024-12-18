@@ -58,6 +58,35 @@ class DateUtils {
         }
     }
 
+    public static getWeekdayWithTimezone = (dateString: string) => {
+        if (!dateString) return '';
+
+        const targetDate = new Date(dateString);
+        if (isNaN(targetDate.getTime())) return '';
+
+        const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+        const today = new Date();
+
+        today.setHours(0, 0, 0, 0);
+        targetDate.setHours(0, 0, 0, 0);
+
+        const diffTime = targetDate.getTime() - today.getTime();
+        const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+        if (diffDays === 0) {
+            return '오늘';
+        } else if (diffDays === 1) {
+            return '내일';
+        } else if (diffDays === 2) {
+            return '모레';
+        } else {
+            const koreaDate = new Date(targetDate.getTime() + (9 * 60 * 60 * 1000));
+            const weekdayIndex = koreaDate.getUTCDay();
+            return `${weekdays[weekdayIndex]}요일`;
+        }
+    }
+
+
     public  static  formatDateToKorean(dateString: string): string {
         if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
             throw new Error('Invalid date format. Expected: YYYY-MM-DD');

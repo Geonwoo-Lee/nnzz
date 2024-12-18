@@ -14,6 +14,7 @@ import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
 import Edit from '../../../../public/svg/items/common/Edit.svg'
 import Button from '@/src/app/component/client/common/button/Button'
 import DeleteApi from "@/src/app/api/client/delete/delete";
+import UpdateUserApi from "@/src/app/api/client/update-user/update";
 
 
 const DEFAULT_IMAGE: FoodProfileType = {
@@ -94,29 +95,7 @@ const EditPage = () => {
         });
     }
 
-// UpdateUserApi 클래스 수정
-    class UpdateUserApi {
-        static async updateUser(params: any) {
-            try {
-                const response = await fetch('/api/user/update', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(params)
-                });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                throw error; // 에러를 상위로 전파
-            }
-        }
-    }
 
 // upDateUserInfo 함수 수정
     const upDateUserInfo = async (type: 'nickname' | 'profileImage' | 'gender' ) => {
@@ -127,6 +106,7 @@ const EditPage = () => {
             profileImage: profileImageValue.id.toString()
         }
 
+            closeModal();
         try {
              await UpdateUserApi.updateUser(params);
             AuthUtils.setUserInfo({
@@ -139,17 +119,15 @@ const EditPage = () => {
             switch (type) {
                 case "gender":
                     showToast('나이대, 성별 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
-                    closeModal();
                     break;
                 case "nickname":
                     showToast('닉네임 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
                     break;
                 case "profileImage":
-                    showToast('평점 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
+                    showToast('프로필 이미지 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
                     break;
             }
         } catch (error: any) {
-            console.error('Update failed:', error);
             const errorMessage = error.response?.data?.message || '업데이트에 실패했습니다';
             showToast(errorMessage, ToastPosition.BOTTOM, ToastAlign.CENTER);
         }
@@ -196,9 +174,6 @@ const EditPage = () => {
                             isSetting
                             callback={upDateProfileImage}
                         />
-                        <div className='text-center text-title2 font-bold'>
-                            {userInfo.nickname}
-                        </div>
                     </div>
                 </div>
                 <div className='pt-6' />
@@ -215,8 +190,13 @@ const EditPage = () => {
                                     <Input
                                         {...field}
                                         autoFocus
+                                        rightFocus={!focused}
                                         style="w-full"
                                         onBlur={() => {
+                                            validateNickname(nicknameValue)
+                                            if(validateNickname(nicknameValue)) {
+                                                upDateUserInfo('nickname')
+                                            }
                                             setFocused(false)
                                         }}
                                         onFocus={() => {
@@ -227,7 +207,7 @@ const EditPage = () => {
                                         right={rightRenderer(nicknameValue, () => field.onChange(''))}
                                         onSubmit={() => {
                                             if(validateNickname(nicknameValue)) {
-                                                upDateUserInfo('gender')
+                                                upDateUserInfo('nickname')
                                             }
                                         }}
 
@@ -253,7 +233,7 @@ const EditPage = () => {
                                                 selectVersion
                                                 onClick={openModal}
                                                 value={genderValue.age || genderValue.gender ? `${genderValue.gender} ・ ${genderValue.age}` : ''}
-                                                right={<DownArrow/>}
+                                                right={<DownArrow onClick={openModal}/>}
                                             />
                                         )}
                                     />

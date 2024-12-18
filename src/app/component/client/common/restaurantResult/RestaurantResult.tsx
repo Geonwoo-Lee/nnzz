@@ -116,12 +116,12 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
                                                             {defaultDistance}m
                                                         </div>
                                                         {
-                                                            isUp ? <DownArrowSmall/> : <UpArrowSmall/>
+                                                            !isUp ? <DownArrowSmall/> : <UpArrowSmall/>
                                                         }
                                                     </div>
                                                 </div>
                                                 {
-                                                    isUp && <div className='flex flex-col gap-4'>
+                                                    isUp && <div className='flex flex-col gap-6'>
                                                         <RangeSlider defaultValue={defaultDistance} max={750}
                                                                      changeDistance={changeDistance}
                                                                      steps={[250, 500, 750]}/>

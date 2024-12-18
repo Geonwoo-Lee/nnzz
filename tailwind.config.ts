@@ -194,7 +194,8 @@ const config: Config = {
         'random-height': 'calc(100vh - 180px)',
         'swipe-result-height': 'calc(100vh - 114px)',
         'restaurant-result-height': 'calc(100vh - 102px)',
-        'restaurant-result-up-height': 'calc(100vh - 222px)',
+        'restaurant-result-up-height': 'calc(100vh - 190px)',
+        'restaurant-result-card-page-height' : 'calc(100vh - 122px - 60px)'
       },
       keyframes: {
         wiggle: {

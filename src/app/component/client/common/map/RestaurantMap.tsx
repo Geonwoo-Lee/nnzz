@@ -80,6 +80,7 @@ const RestaurantMap: React.FC<Props> = ({ places,step, selectedStore, onStoreSel
                 const marker = new window.naver.maps.Marker({
                     position: new window.naver.maps.LatLng(place.lat, place.lng),
                     map: map || null,
+                    zIndex: isSelected ? 100 : 1,  // 선택된 마커는 더 높은 zIndex
                     icon: isSelected ? {
                         content: '<img src="/assets/mapPinColored.png" alt="Selected Pin" style="width:38px; height:50px; -webkit-user-drag: none; user-select: none;" />',
                         anchor: new window.naver.maps.Point(20, 40),
@@ -114,6 +115,7 @@ const RestaurantMap: React.FC<Props> = ({ places,step, selectedStore, onStoreSel
 
         Object.entries(markersRef.current).forEach(([storeId, marker]) => {
             const isSelected = storeId === selectedStore?.storeId;
+            marker.setZIndex(isSelected ? 100 : 1);
             marker.setIcon(isSelected ? {
                 content: '<img src="/assets/mapPinColored.png" alt="Selected Pin" style="width:38px; height:50px;" />',
                 anchor: new window.naver.maps.Point(20, 40),

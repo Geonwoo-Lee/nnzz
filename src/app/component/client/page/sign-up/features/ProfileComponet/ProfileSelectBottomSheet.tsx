@@ -14,7 +14,7 @@ const ProfileSelectBottomSheet = (props: ProfileSelectBottomSheetProps) => {
         <BottomSheet open={open} close={close} nonPadding={true}>
             <div>
                 <div className='flex flex-col'>
-                    <div className='pt-3 px-2 text-center relative text-text-2 font-semibold text-title2 h-[48px]'>
+                    <div className='pt-3 px-2 text-center relative text-text-2 font-medium text-title2 h-[48px]'>
                         프로필 이미지 선택
                         <Close className='absolute right-[8px] top-[12px]' onClick={close}/>
                     </div>

@@ -32,7 +32,17 @@ const SplashScreen = ({ children }: { children: ReactNode }) => {
             <div
                 className="animate-fadeInPage flex h-[100vh] w-full items-center justify-center relative bg-[#FF334C] bg-cover bg-center bg-blue-gray-900">
                 <div className='w-[219px] h-[219px] bg-common-white rounded-full flex items-center justify-center'>
-                    <Image  alt='splash' src={'/images/logo/nnzz-splash-logo.png'} width={156} height={156}/>
+                    <img
+                        alt='splash'
+                        src={'/images/logo/nnzz-splash-logo.png'}
+                        style={{
+                            width: '156px',
+                            height: '156px',
+                            objectFit: 'contain',
+                            imageRendering: '-webkit-optimize-contrast' as const,
+                            transform: 'translateZ(0)',
+                        }}
+                    />
                 </div>
             </div>
         ) : (

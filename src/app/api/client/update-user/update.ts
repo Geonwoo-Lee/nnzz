@@ -16,7 +16,18 @@ class UpdateUserApi {
             },
             body: JSON.stringify(params)
         });
-        return await response.json();
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw {
+                status: response.status,
+                response: {
+                    data: data
+                }
+            };
+        }
+
+        return data;
     }
 }
 

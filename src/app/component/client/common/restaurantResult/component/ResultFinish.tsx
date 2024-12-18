@@ -82,7 +82,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
                         )}
 
                         {!isLoading && (
-                            <div className='flex-1 w-full flex flex-col gap-6 items-center justify-center pb-[122px] z-10'>
+                            <div className='flex-1   w-full flex flex-col gap-6 items-center overflow-y-hidden pb-[122px] justify-center  z-10'>
                                 <div className='text-title2 text-text-1 font-medium'>
                                     <span className='text-primary-6'>최종 선택</span> 맛의 짝!
                                 </div>
