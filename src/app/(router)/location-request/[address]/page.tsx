@@ -8,8 +8,8 @@ const LocationRequest = ({params}: { params: { address: string } }) => {
     // const decodedAddress = decodeURIComponent(params.address)
     return (
         <div className='h-screen flex flex-col relative gap-8 justify-center items-center'>
-            <Image src={'/images/logo/not-service.png'} alt='not-service' width={160} height={160} className='mx-auto'/>
-            <div>
+            <Image src={'/images/logo/request-complete.png'} alt='not-service' width={160} height={160} className='mx-auto'/>
+            <div className='flex flex-col gap-5'>
                 <div className='text-center text-title1 font-bold text-text-1'>
                     오픈 요청이 <br/>
                     완료되었어요!
@@ -19,7 +19,7 @@ const LocationRequest = ({params}: { params: { address: string } }) => {
                 </div>
             </div>
             <div className='absolute w-full bottom-0 pb-20 px-4'>
-                <Button type='muted' size='md' style='w-full' onClick={() => {
+                <Button type='muted' size='lg' style='w-full' onClick={() => {
                     router.push('/home')
                 }}>
                     닫기

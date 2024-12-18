@@ -1,7 +1,19 @@
 'use client';
 
 import {InputProps} from "@/src/app/types/common/input";
-import {forwardRef} from "react";
+import {forwardRef, useRef} from "react";
+
+const mergeRefs = (...refs: any[]) => {
+    return (node: any) => {
+        refs.forEach((ref) => {
+            if (typeof ref === "function") {
+                ref(node);
+            } else if (ref) {
+                ref.current = node;
+            }
+        });
+    };
+};
 
 const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
                                                                                   value,
@@ -29,14 +41,25 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
                                                                                   readonly,
                                                                                   onClick,
                                                                                   infoColor,
-                                                                                  selectVersion
+                                                                                  selectVersion,
+                                                                                  rightFocus = false,
+                                                                                  leftFocus = false,
                                                                               }, ref) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleFocusClick = () => {
+        console.log(rightFocus, leftFocus)
+        if(rightFocus || leftFocus) {
+            inputRef.current?.focus();
+        }
+    };
     const sizeRenderer = () => {
         if (multiple) {
             return `h-[${multiple * 10}px]`;
         }
         return "h-input-height";
     };
+
 
     const textAlignClass = (align?: string) => {
         switch (align) {
@@ -98,7 +121,12 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
                 <div className="text-caption-1 font-medium text-text-3">{label}</div>
             )}
             <div className={containerStyles}>
-                {left && <div className={`${sideElementStyles} pl-4 ${bgColor ? bgColor : "bg-alpha-00"}`}>{left}</div>}
+                {left &&  <div   onMouseDown={(e) => e.preventDefault()}   onClick={(e) => {
+                    e.stopPropagation();
+                    if(leftFocus) {
+                        handleFocusClick()
+                    }
+                }} className={`${sideElementStyles} pl-4 ${bgColor ? bgColor : "bg-alpha-00"}`}>{left}</div>}
                 <div className="flex-1 min-w-0">
                     {multiple ? (
                         <textarea
@@ -116,7 +144,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
                         />
                     ) : (
                         <input
-                            ref={ref as React.Ref<HTMLInputElement>}
+                            ref={mergeRefs(ref, inputRef)}
                             type={type ? type : "text"}
                             placeholder={placeHolder}
                             value={value}
@@ -145,7 +173,10 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
                         />
                     )}
                 </div>
-                {right && <div className={`${sideElementStyles} px-4`}>{right}</div>}
+                {right && <div   onMouseDown={(e) => e.preventDefault()}   className={`${sideElementStyles} px-4`}      onClick={(e) => {
+                    e.stopPropagation();
+                        handleFocusClick()
+                }}>{right}</div>}
             </div>
             {errorMessage && (
                 <div className="text-red-500 text-caption1 font-medium break-words">

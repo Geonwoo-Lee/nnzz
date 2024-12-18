@@ -26,18 +26,41 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
         try {
             const htmlToImage = await import('html-to-image');
 
+            await Promise.all(
+                Array.from(cardRef.current.querySelectorAll('img'))
+                    .filter(img => !img.complete)
+                    .map(img => new Promise(resolve => {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    }))
+            );
+
             const dataUrl = await htmlToImage.toPng(cardRef.current, {
                 quality: 1.0,
-                pixelRatio: 2
+                pixelRatio: 3,
+                cacheBust: true,
+                skipAutoScale: true,
+                style: {
+                    transform: 'scale(1)',
+                    transformOrigin: 'top left'
+                }
             });
-            const link = document.createElement('a');
-            link.href = dataUrl;
-            link.download = `random-menu-${Date.now()}.png`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
 
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                const img = document.createElement('img');
+                img.src = dataUrl;
+                const win = window.open('');
+                win?.document.write(img.outerHTML);
+            } else {
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = `random-menu-${Date.now()}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
         } catch (err) {
+            console.error('Image capture error:', err);
             alert('이미지 저장에 실패했습니다. 다시 시도해주세요.');
         }
     };
@@ -86,7 +109,7 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
                                 </div>
                             </div>
                             <div
-                                className='px-4 max-w-[640px] pb-12 h-[220px] pt-4 w-full bg-bg-1 fixed bottom-0 flex flex-col gap-4'>
+                                className='px-4 max-w-[640px] pb-12 h-[180px] pt-4 w-full bg-bg-1 fixed bottom-0 flex flex-col gap-4'>
                                 <Button type='primary' size='lg' style='w-full' onClick={handleKakaoShare}>
                                     이미지 저장하기
                                 </Button>

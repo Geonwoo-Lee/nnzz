@@ -30,7 +30,7 @@ const FoodieWay = ({type, onChangeWay} : FoodieWayProps) => {
                 <div className='whitespace-pre-wrap text-caption1 font-regular '>
                     {wayConfig[type].description}
                 </div>
-                <div className='text-title2 font-semibold'>
+                <div className='text-title2 font-medium'>
                     {wayConfig[type].title}
                 </div>
             </div>

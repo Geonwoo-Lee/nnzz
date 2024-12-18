@@ -105,10 +105,10 @@ const SwapPage = ({ params }: PageProps) => {
 
     return   <Funnel>
         <Funnel.Step name="0">
-            <SwipeClientPage likedCards={likeCards} setLikeCards={controlLikeCard} cards={cardData} isLoading={isLoading} setStep={setStep}/>
+            <SwipeClientPage day={day} type={type} likedCards={likeCards} setLikeCards={controlLikeCard} cards={cardData} isLoading={isLoading} setStep={setStep}/>
         </Funnel.Step>
         <Funnel.Step name="1">
-           <SwipeComponent.CompletePage setStep={nextStep} deletedList={deletedList} setDeletedCards={controlDeleteList} likeCards={likeCards}/>
+           <SwipeComponent.CompletePage day={day} type={type} setStep={nextStep} deletedList={deletedList} setDeletedCards={controlDeleteList} likeCards={likeCards}/>
         </Funnel.Step>
         <Funnel.Step name="2">
             <SwipeComponent.NoChoice day={day} type={type} />

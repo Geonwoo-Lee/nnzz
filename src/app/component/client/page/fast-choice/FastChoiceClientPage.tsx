@@ -77,7 +77,7 @@ const FastChoiceClientPage = ({type, day, menu}: {type: string, day: string, men
         <div>
             <Funnel>
                 <Funnel.Step name='choice'>
-                    <FastCardChoice setStep={setStep} isLoading={isLoading} menu={menu} cardData={cardData}
+                    <FastCardChoice type={type} setStep={setStep} isLoading={isLoading} menu={menu} cardData={cardData}
                                     handleSelect={handleSelect} selectedList={selectedList}/>
                 </Funnel.Step>
                 <Funnel.Step name='result'>

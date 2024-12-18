@@ -6,13 +6,13 @@ import Button from "../../../../common/button/Button";
 
 
 const CompletePage = (props: CompletePageProps) => {
-    const {likeCards, setDeletedCards, deletedList, setStep } = props;
+    const {likeCards,day, type, setDeletedCards, deletedList, setStep } = props;
 
 
     return (
         <>
             <div className='px-4 py-6 flex flex-col gap-6 h-swipe-result-height bg-common-white overflow-y-scroll'>
-                <CompleteDescription/>
+                <CompleteDescription deletedList={deletedList} day={day} type={type} likeCards={likeCards}/>
                 <div className='text-text-2 text-body2 font-regular'>
                     {`${likeCards.length - deletedList.length}개 선택됨`}
                 </div>
@@ -29,7 +29,7 @@ const CompletePage = (props: CompletePageProps) => {
             </div>
             <div className='h-[118px] w-full bg-common-white fixed bottom-0  max-w-[640px] px-4'>
                 <div className='w-full pt-4'>
-                    <Button type='primary' size='lg' onClick={setStep} style='w-full' >
+                    <Button disabled={likeCards.length === deletedList.length} type='primary' size='lg' onClick={setStep} style='w-full' >
                         식당정보 보러가기
                     </Button>
                 </div>

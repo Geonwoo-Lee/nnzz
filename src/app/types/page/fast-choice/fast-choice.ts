@@ -16,6 +16,7 @@ export interface FastChoiceCardProps {
 export interface FastChoiceButtonProps {
     step: number;
     onClick: () => void;
+    type: string
 }
 
 export interface FastChoicePageProps  {
@@ -25,4 +26,5 @@ export interface FastChoicePageProps  {
     cardData: FoodItem[];
     handleSelect: (card: FoodItem) => void;
     selectedList: FoodItem[]
+    type: string;
 }

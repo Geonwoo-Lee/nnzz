@@ -17,15 +17,15 @@ const RandomCard = ({data}: DefaultCardProps) => {
                         <Image src={data.imageUrl} alt='random' fill className='object-contain' />
                     </div>
                 </div>
-                <div className="text-common">
-                    <h2 className="text-xl">{data.category}</h2>
+                <div className="text-common flex flex-col gap-2 ">
+                    <h2 className="text-title1 font-bold">{data.category}</h2>
                     <div className='flex flex-row items-center'>
                         <LocationPin/>
-                        <div>
+                        <div className='text-text-1 text-caption1 font-regular'>
                             가까운 식당 {data.distance}m
                         </div>
                     </div>
-                    <div>
+                    <div className='text-caption1 font-regular'>
                         {data.represent}
                     </div>
                 </div>

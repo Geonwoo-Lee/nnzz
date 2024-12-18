@@ -18,11 +18,11 @@ const ResultCard = ({data, isMap, setStep, setSelectedStore}: {data: FindStore, 
                                     {distance}m
                                 </div>
                             </div>
-                            <div className='inline-flex justify-center items-center rounded-[1200px] bg-amber-50 text-caption2 font-medium text-amber-600'>
+                            <div className='inline-flex justify-center px-3 py-2 items-center rounded-[1200px] bg-amber-50 text-caption2 font-medium text-amber-600'>
                                 {category}
                             </div>
                         </div>
-                        <div className='text-caption2 font-medium text-text-2'>
+                        <div className='text-caption2 font-medium text-text-2 truncate'>
                             {address}
                         </div>
                         {

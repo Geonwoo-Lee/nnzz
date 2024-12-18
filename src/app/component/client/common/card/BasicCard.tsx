@@ -31,15 +31,15 @@ return (
                     </div>
                 </div>
             </div>
-            <div className="text-common px-4 pb-10">
-                <h2 className="text-xl">{data.category}</h2>
+            <div className="text-common px-4 flex flex-col gap-4 pb-10">
+                <h2 className="text-heading3 font-bold">{data.category}</h2>
                 <div className='flex flex-row items-center'>
                     <LocationPin/>
-                    <div>
+                    <div className='text-body2 font-regular'>
                         가까운 식당 {data.distance}m
                     </div>
                 </div>
-                <div>
+                <div className='text-body2 font-regular'>
                     {data.represent}
                 </div>
             </div>
