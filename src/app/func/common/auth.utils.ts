@@ -9,7 +9,7 @@ export default class AuthUtils {
         return this.getToken() != null && this.getUserInfo() != null;
     }
 
-    private static TOKEN_KEY = "토큰";
+    private static TOKEN_KEY = "nnzz_token";
 
     public static setToken(token: LoginToken) {
         localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
@@ -29,12 +29,12 @@ public static getToken(): TokenObject | null {
 
     public static setUserInfo(UserInfo: SignInType) {
         //todo userInfo 설정
-        localStorage.setItem("userInfo", JSON.stringify(UserInfo));
+        localStorage.setItem("nnzz_user", JSON.stringify(UserInfo));
     }
 
     public static getUserInfo(): SignInType | null {
         //todo 토큰명 설정
-        const storedUserInfo = localStorage.getItem("userInfo");
+        const storedUserInfo = localStorage.getItem("nnzz_user");
         if (!storedUserInfo) {
             return null;
         }
@@ -46,12 +46,11 @@ public static getToken(): TokenObject | null {
     }
 
     public static removeUserInfo() {
-        localStorage.removeItem("userInfo");
+        localStorage.removeItem("nnzz_user");
     }
 
     public static async login(loginRes: LoginRes) {
         return new Promise((resolve) => {
-            // this.setToken(loginRes.token.token);
             this.setUserInfo({
                 ...loginRes.member,
             });
