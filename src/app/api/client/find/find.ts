@@ -18,7 +18,6 @@ class FindApi extends BaseApi{
 
     static async findCategories(params: FindCategoryReq): Promise<FoodItemFromServer[]> {
         try {
-            // Query string 생성
             const queryParams = new URLSearchParams({
                 lng: params.data.lng.toString(),
                 lat: params.data.lat.toString(),

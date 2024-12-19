@@ -1,8 +1,6 @@
 'use client'
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { UserInfo } from "../types/models/user";
-import AuthUtils from "@/src/app/func/common/auth.utils";
 import { SignInType } from "@/src/app/types/page/sign-up/sign-up";
 import { AuthValuesType } from "@/src/app/types/models/auth";
 

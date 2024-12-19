@@ -2,10 +2,8 @@
 import Button from "@/src/app/component/client/common/button/Button";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
-const LocationRequest = ({params}: { params: { address: string } }) => {
+const LocationRequest = () => {
     const router = useRouter()
-    console.log(params.address)
-    // const decodedAddress = decodeURIComponent(params.address)
     return (
         <div className='h-screen flex flex-col relative gap-8 justify-center items-center'>
             <Image src={'/images/logo/request-complete.png'} alt='not-service' width={160} height={160} className='mx-auto'/>

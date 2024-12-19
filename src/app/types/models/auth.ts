@@ -1,4 +1,3 @@
-import { UserInfo } from "./user";
 import {SignInType} from "@/src/app/types/page/sign-up/sign-up";
 
 export type AuthValuesType = {
