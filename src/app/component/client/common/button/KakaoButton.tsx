@@ -9,11 +9,6 @@ import AuthUtils from "@/src/app/func/common/auth.utils";
 
 export default function Login() {
     const router = useRouter();
-    // const [userInfo, setUserInfo] = useState(null)
-    // const [error, setError] = useState(null)
-    // const searchParams = useSearchParams()
-    // const grant_type = 'authorization_code'
-    // const code = searchParams.get('code')
 
     useEffect(() => {
         if (typeof window !== 'undefined' && window.Kakao) {
@@ -38,7 +33,7 @@ export default function Login() {
                                 email: kakaoAccount.email,
                                 profileImage: 0
                             };
-                            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                            localStorage.setItem('nnzz_user', JSON.stringify(userInfo));
                             SignInApi.login(kakaoAccount.email).then((res) => {
                                 const profile = FoodProfileDummy.find(el => el.id === Number(res.user.profileImage))
                                 AuthUtils.removeUserInfo();

@@ -81,6 +81,10 @@ export default function RootLayout({
         () => import("@/src/app/component/client/page/splash/SplashScreen"),
         {ssr: false}
     );
+
+
+    const AuthProvider = dynamic(() => import('@/src/app/provider/AuthProvider'), {ssr: false});
+
     return (
         <html lang="ko">
         <head>
@@ -102,7 +106,7 @@ export default function RootLayout({
                 <img
                     height="1"
                     width="1"
-                    style={{ display: 'none' }}
+                    style={{display: 'none'}}
                     src="https://www.facebook.com/tr?id=1741376476675737&ev=PageView&noscript=1"
                     alt=""
                 />
@@ -114,7 +118,9 @@ export default function RootLayout({
         >
         <ReactQueryProvider>
             <ToastProvider>
-                <SplashScreen>{children}</SplashScreen>
+                <AuthProvider>
+                    <SplashScreen>{children}</SplashScreen>
+                </AuthProvider>
             </ToastProvider>
         </ReactQueryProvider>
         <Script
