@@ -37,28 +37,15 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
 
             const dataUrl = await htmlToImage.toPng(cardRef.current, {
                 quality: 1.0,
-                pixelRatio: 3,
-                cacheBust: true,
-                skipAutoScale: true,
-                style: {
-                    transform: 'scale(1)',
-                    transformOrigin: 'top left'
-                }
+                pixelRatio: 2
             });
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = `random-menu-${Date.now()}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                const img = document.createElement('img');
-                img.src = dataUrl;
-                const win = window.open('');
-                win?.document.write(img.outerHTML);
-            } else {
-                const link = document.createElement('a');
-                link.href = dataUrl;
-                link.download = `random-menu-${Date.now()}.png`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
         } catch (err) {
             console.error('Image capture error:', err);
             alert('이미지 저장에 실패했습니다. 다시 시도해주세요.');
