@@ -7,6 +7,7 @@ const NotServicePage = ({params}: { params: { address: string } }) => {
     const router = useRouter()
     const decodedAddress = decodeURIComponent(params.address)
 
+
     return (
         <div className='h-screen flex flex-col relative gap-8 items-center justify-center px-4'>
             <Image src={'/images/logo/not-service.png'} alt='not-service' width={160} height={160} className='mx-auto'/>

@@ -8,6 +8,7 @@ import {FindStoreType} from "@/src/app/types/models/find";
 import foodData from "@/src/app/dummy/dummy";
 import RoundFinishCard from "@/src/app/component/client/common/restaurantResult/component/RoundFinishCard";
 import MoveToNaverMap from "@/src/app/component/client/common/restaurantResult/component/MoveToNaverMap";
+import CardApi from "@/src/app/api/client/card/card";
 
 const ResultFinish = ({storeIdx, lng, lat, day, type}: {
     storeIdx?: string,
@@ -43,6 +44,8 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
         }, 1500)
     };
 
+    const token = localStorage.getItem('nnzz_token')
+
     useEffect(() => {
         if (storeIdx && storeIdx !== '1') {
             FindApi.FindStores({
@@ -55,6 +58,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
                 setCategoryImage(image!.imageUrl!)
                 setTimeout(() => {
                     setIsLoading(false)
+                    CardApi.SaveLocation({id: storeIdx, date: day, authorization: token!})
                 }, 500)
             })
         }

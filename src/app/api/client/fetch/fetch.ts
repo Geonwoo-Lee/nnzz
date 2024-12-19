@@ -5,9 +5,11 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
 async function customFetch(url: string, options: RequestInit = {}, useToken: boolean = true): Promise<Response> {
     const isServer = typeof window === 'undefined';
     const fullUrl = `${apiKey}${url}`;
+    const token = AuthUtils.getToken()
 
     const defaultHeaders: Record<string, string> = {
         'Content-Type': 'application/json',
+        'Authorization': token!.accessToken,
     };
 
     if (!isServer && useToken) {
