@@ -14,7 +14,7 @@ const RandomCard = ({data}: DefaultCardProps) => {
                 <div className='flex-1 relative'>
                     <div className='border-l border-line-2 h-full absolute left-0'></div>
                     <div className='h-full'>
-                        <Image src={data.imageUrl} alt='random' fill className='object-contain' />
+                        <Image unoptimized src={data.imageUrl} priority alt='random' fill className='object-contain' />
                     </div>
                 </div>
                 <div className="text-common flex flex-col gap-2 ">

@@ -17,28 +17,43 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
     const [Funnel, setStep] = useFunnel(['random', 'list'], "random");
     const [isLoading, setIsLoading] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
+    const [isCapturing, setIsCapturing] = useState(false);
     const handleKakaoShare = async () => {
         if (!cardRef.current) {
             console.log('카드 요소를 찾을 수 없습니다');
             return;
         }
 
+        setIsCapturing(true);
+
         try {
             const htmlToImage = await import('html-to-image');
 
+            // 모든 이미지가 로드될 때까지 기다립니다
+            const images = Array.from(cardRef.current.getElementsByTagName('img'));
             await Promise.all(
-                Array.from(cardRef.current.querySelectorAll('img'))
-                    .filter(img => !img.complete)
-                    .map(img => new Promise(resolve => {
-                        img.onload = resolve;
-                        img.onerror = resolve;
-                    }))
+                images.map(
+                    (img) =>
+                        new Promise((resolve) => {
+                            if (img.complete) {
+                                resolve(true);
+                            } else {
+                                img.onload = () => resolve(true);
+                                img.onerror = () => resolve(false);
+                            }
+                        })
+                )
             );
+
+            // 약간의 지연을 추가하여 이미지 렌더링이 완료되도록 합니다
+            await new Promise(resolve => setTimeout(resolve, 100));
 
             const dataUrl = await htmlToImage.toPng(cardRef.current, {
                 quality: 1.0,
-                pixelRatio: 2
+                pixelRatio: 2,
+                cacheBust: true, // 캐시된 이미지를 사용하지 않도록 합니다
             });
+
             const link = document.createElement('a');
             link.href = dataUrl;
             link.download = `random-menu-${Date.now()}.png`;
@@ -49,8 +64,11 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
         } catch (err) {
             console.error('Image capture error:', err);
             alert('이미지 저장에 실패했습니다. 다시 시도해주세요.');
+        } finally {
+            setIsCapturing(false);
         }
     };
+
 
     useEffect(() => {
         setIsLoading(true);
@@ -97,8 +115,14 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
                             </div>
                             <div
                                 className='px-4 max-w-[640px] pb-12 h-[180px] pt-4 w-full bg-bg-1 fixed bottom-0 flex flex-col gap-4'>
-                                <Button type='primary' size='lg' style='w-full' onClick={handleKakaoShare}>
-                                    이미지 저장하기
+                                <Button
+                                    type='primary'
+                                    size='lg'
+                                    style='w-full'
+                                    onClick={handleKakaoShare}
+                                    disabled={isCapturing}
+                                >
+                                    {isCapturing ? '이미지 저장 중...' : '이미지 저장하기'}
                                 </Button>
                                 <Button type='outlined' size='lg' style='w-full' onClick={() => {
                                     setStep('list')
