@@ -2,7 +2,6 @@
 import {useEffect} from 'react'
 import KakaoLogo from '../../../../../../public/svg/logo/KakaoLogo.svg'
 import {useRouter} from "next/navigation";
-import { UserInfo } from '@/src/app/types/models/user';
 import SignInApi from "@/src/app/api/client/sign-in/sign-in";
 import FoodProfileDummy from "@/src/app/dummy/sign-up";
 import AuthUtils from "@/src/app/func/common/auth.utils";
