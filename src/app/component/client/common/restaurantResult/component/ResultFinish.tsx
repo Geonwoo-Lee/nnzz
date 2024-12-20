@@ -9,13 +9,14 @@ import foodData from "@/src/app/dummy/dummy";
 import RoundFinishCard from "@/src/app/component/client/common/restaurantResult/component/RoundFinishCard";
 import MoveToNaverMap from "@/src/app/component/client/common/restaurantResult/component/MoveToNaverMap";
 import CardApi from "@/src/app/api/client/card/card";
+import DateUtils from "@/src/app/func/common/date.utils";
 
 const ResultFinish = ({storeIdx, lng, lat, day, type}: {
     storeIdx?: string,
     lng: number,
     lat: number,
     day: string,
-    type: string
+    type: string,
 }) => {
     const [isLoading, setIsLoading] = useState(true)
     const [store, setStore] = useState<FindStoreType>({} as FindStoreType)
@@ -58,7 +59,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
                 setCategoryImage(image!.imageUrl!)
                 setTimeout(() => {
                     setIsLoading(false)
-                    CardApi.SaveLocation({id: storeIdx, date: day, authorization: token!})
+                    CardApi.SaveLocation({id: storeIdx, date: day, day:DateUtils.mealRenderer(type),  authorization: token!})
                 }, 500)
             })
         }

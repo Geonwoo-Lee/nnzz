@@ -2,16 +2,24 @@ import AuthUtils from "@/src/app/func/common/auth.utils";
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
 
+interface ErrorResponse {
+    type: string;
+    title: string;
+    status: number;
+    detail: string;
+    instance: string;
+    timestamp: string;
+    message: string;
+}
+
 async function customFetch(url: string, options: RequestInit = {}, useToken: boolean = true): Promise<Response> {
     const isServer = typeof window === 'undefined';
     const fullUrl = `${apiKey}${url}`;
 
-    // 기본 헤더에서 Authorization 제거
     const defaultHeaders: Record<string, string> = {
         'Content-Type': 'application/json',
     };
 
-    // useToken이 true일 때만 Authorization 헤더 추가
     if (!isServer && useToken) {
         const tokenObj = AuthUtils.getToken();
         if (tokenObj?.accessToken) {
@@ -28,26 +36,22 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
     };
 
     try {
-        const initialResponse = await fetch(fullUrl, mergedOptions);
+        const response = await fetch(fullUrl, mergedOptions);
 
         // 401 에러 처리 - 바로 로그아웃
-        if (initialResponse.status === 401 && !isServer) {
+        if (response.status === 401 && !isServer) {
             localStorage.removeItem("nnzz_token");
             localStorage.removeItem("nnzz_user");
             window.location.href = "/";
             throw new Error('Unauthorized access');
         }
 
-        if (!initialResponse.ok) {
-            if (initialResponse.status === 404 || initialResponse.status === 403) {
-                if (!isServer) {
-                    window.location.href = `/error/${initialResponse.status || "network"}`;
-                }
-            }
-            throw new Error(`HTTP error! status: ${initialResponse.status}`);
+        if (!response.ok) {
+            const errorData: ErrorResponse = await response.json();
+            throw new Error(errorData.message);
         }
 
-        return initialResponse;
+        return response;
     } catch (error) {
         console.error('Fetch error:', error);
         throw error;

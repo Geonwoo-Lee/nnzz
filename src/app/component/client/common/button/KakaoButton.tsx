@@ -26,12 +26,24 @@ export default function Login() {
                         url: '/v2/user/me',
                         success: function(response: any) {
                             const kakaoAccount = response.kakao_account;
+                            AuthUtils.setUserInfo({
+                                email: kakaoAccount.email,
+                                profileImage: {
+                                    id: 0,
+                                    name: 'default',
+                                    src: ''
+                                },
+                                nickname: '',
+                                gender: '',
+                                age: ''
+                            })
                             SignInApi.login(kakaoAccount.email).then((res) => {
                                 const profile = FoodProfileDummy.find(el => el.id === Number(res.user.profileImage))
                                 AuthUtils.removeUserInfo();
                                 AuthUtils.removeToken()
                                 AuthUtils.setUserInfo({
                                     ...res.user,
+                                    email: kakaoAccount.email,
                                     profileImage: profile!,
                                     nickname: res.user.nickname
                                 })
