@@ -5,13 +5,13 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
 async function customFetch(url: string, options: RequestInit = {}, useToken: boolean = true): Promise<Response> {
     const isServer = typeof window === 'undefined';
     const fullUrl = `${apiKey}${url}`;
-    const token = AuthUtils.getToken()
 
+    // 기본 헤더에서 Authorization 제거
     const defaultHeaders: Record<string, string> = {
         'Content-Type': 'application/json',
-        'Authorization': token!.accessToken,
     };
 
+    // useToken이 true일 때만 Authorization 헤더 추가
     if (!isServer && useToken) {
         const tokenObj = AuthUtils.getToken();
         if (tokenObj?.accessToken) {
