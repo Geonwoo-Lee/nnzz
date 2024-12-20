@@ -7,7 +7,7 @@ class CardApi extends BaseApi {
         JOIN: '/api/card/make'
     } as const;
 
-    public static SaveLocation(params: {id: number | string, date: string, authorization: string}) {
+    public static SaveLocation(params: {id: number | string, date: string, day: string, authorization: string}) {
         const url = `${this.BASE_URL}${this.ENDPOINTS.JOIN}`;
         return fetchWithToken(url, {
             method: 'POST',
@@ -16,7 +16,7 @@ class CardApi extends BaseApi {
             },
             body: JSON.stringify({
                 storeId: params.id,
-                date: params.date
+                date: `${params.date} ${params.day}`
             }),
         })
     }

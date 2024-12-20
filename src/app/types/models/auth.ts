@@ -6,3 +6,13 @@ export type AuthValuesType = {
     setLoading: (value: boolean) => void;
     setUser: (value: SignInType | null) => void;
 };
+
+export interface ErrorResponse {
+    type: string;
+    title: string;
+    status: number;
+    detail: string;
+    instance: string;
+    timestamp: string;
+    message: string;
+}

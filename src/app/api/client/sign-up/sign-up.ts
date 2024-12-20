@@ -9,7 +9,7 @@ class SignUpApi extends BaseApi {
         JOIN: '/api/user/join'
     } as const;
 
-    static async join(params: JoinParams) : Promise<JoinRes> {
+    static async join(params: JoinParams): Promise<JoinRes> {
         try {
             const response = await fetchWithoutToken(`${this.BASE_URL}${this.ENDPOINTS.JOIN}`, {
                 method: 'POST',

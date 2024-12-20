@@ -46,12 +46,11 @@ const FindLocationClientPage = () => {
                 latitude: location.lat,
                 longitude: location.lng
             }).then((res) => {
-                if(res.status === 400) {
-                    router.push(`/not-service/${encodeURIComponent(location.address!.replace(/\s+/g, ''))}`)
-                }else {
+                console.log(res)
                     window.localStorage.setItem('pinedLocation', JSON.stringify(location));
                     router.push('/home')
-                }
+            }).catch(() => {
+                router.push(`/not-service/${encodeURIComponent(location.address!.replace(/\s+/g, ''))}/${location.lat}/${location.lng}`)
             })
         }else {
             return

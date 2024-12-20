@@ -2,11 +2,26 @@
 import Button from "@/src/app/component/client/common/button/Button";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
+import RequestLocationApi from "@/src/app/api/client/requestLocation/requestLocationApi";
+import {useToast} from "@/src/app/core/ToastProvider";
+import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
 
-const NotServicePage = ({params}: { params: { address: string } }) => {
+const NotServicePage = ({params}: { params: { address: string, lat: string, lan: string } }) => {
     const router = useRouter()
     const decodedAddress = decodeURIComponent(params.address)
+    const showToast = useToast()
 
+    const requestOpen = () => {
+        RequestLocationApi.requestLocation({
+            address: params.address,
+            lat: params.lat,
+            lng: params.lan
+        }).then(() => {
+            router.push('/location-request')
+        }).catch((error) => {
+            showToast(error.message, ToastPosition.BOTTOM, ToastAlign.CENTER)
+        })
+    }
 
     return (
         <div className='h-screen flex flex-col relative gap-8 items-center justify-center px-4'>
@@ -22,9 +37,7 @@ const NotServicePage = ({params}: { params: { address: string } }) => {
                 </div>
             </div>
             <div className='absolute flex flex-col gap-4 w-full bottom-0 px-4 pb-20'>
-                <Button type='primary' size='lg' onClick={() => {
-                    router.push(`/location-request/${params.address}`)
-                }}>
+                <Button type='primary' size='lg' onClick={requestOpen}>
                     오픈 요청하기
                 </Button>
                 <Button type='secondary' size='lg' onClick={() => {

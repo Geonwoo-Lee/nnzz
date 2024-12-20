@@ -9,6 +9,8 @@ import Button from "@/src/app/component/client/common/button/Button";
 import {useRouter} from "next/navigation";
 import AuthUtils from "@/src/app/func/common/auth.utils";
 import SignUpApi from "@/src/app/api/client/sign-up/sign-up";
+import {useToast} from "@/src/app/core/ToastProvider";
+import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
 
 const SignUpClientPage = () => {
     const router = useRouter()
@@ -19,6 +21,7 @@ const SignUpClientPage = () => {
         goToStep
     } = useNestedFunnel(1);
     const [errorMessage, setErrorMessage] = useState('');
+    const showToast = useToast()
 
     const validateNickname = (value: string) => {
         if (value.length < 2) {
@@ -106,6 +109,35 @@ const SignUpClientPage = () => {
         setValue('profileImage', profileImage)
     }
 
+    const handleSignUp = async () => {
+        try {
+            const signUpResponse = await SignUpApi.join({
+                nickname: nickNameValue,
+                gender: genderAgeValue.gender,
+                ageRange: genderAgeValue.age,
+                profileImage: profileImageValue.id,
+                email: AuthUtils.getUserInfo()?.email
+            });
+
+            AuthUtils.setToken(signUpResponse.token);
+
+            await AuthUtils.login({
+                member: {
+                    nickname: nickNameValue,
+                    gender: genderAgeValue.gender,
+                    age: genderAgeValue.age,
+                    profileImage: profileImageValue,
+                    email: AuthUtils.getUserInfo()?.email
+                },
+            });
+
+            router.push('/sign-up/complete');
+        } catch (error: any) {
+            console.error('Error during sign up process:', error);
+            showToast(error.message || '회원가입 중 문제가 발생했습니다', ToastPosition.BOTTOM, ToastAlign.CENTER);
+        }
+    };
+
 
     return (
         <main className='p-4 flex flex-col justify-between h-[100vh]'>
@@ -144,25 +176,7 @@ const SignUpClientPage = () => {
                     } else if (currentStep === 2) {
                         nextStep()
                     } else {
-                        SignUpApi.join({
-                            nickname: nickNameValue,
-                            gender: genderAgeValue.gender,
-                            ageRange: genderAgeValue.age,
-                            profileImage:  profileImageValue.id,
-                            email: AuthUtils.getUserInfo()?.email
-                        }).then((res) => {
-                            AuthUtils.setToken(res.token)
-                        })
-                        AuthUtils.login({
-                            member: {
-                                nickname: nickNameValue,
-                                    gender: genderAgeValue.gender,
-                                    age: genderAgeValue.age,
-                                profileImage: profileImageValue,
-                                email: AuthUtils.getUserInfo()?.email
-                            },
-                        })
-                        router.push('/sign-up/complete')
+                        handleSignUp()
                     }
                 }} style='w-full' type='primary' size='lg'>
                     다음
