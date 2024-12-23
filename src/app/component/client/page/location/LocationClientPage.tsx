@@ -60,13 +60,11 @@ const LocationClientPage = () => {
             address: pinnedLocation.address!,
             latitude: pinnedLocation.lat,
             longitude: pinnedLocation.lng
-        }).then((res) => {
-            if(res.status === 400) {
-                router.push(`/not-service/${encodeURIComponent(pinnedLocation.address!.replace(/\s+/g, ''))}`)
-            }else {
+        }).then(() => {
                 window.localStorage.setItem('pinedLocation', JSON.stringify(pinnedLocation));
                 router.push('/home')
-            }
+        }).catch(() => {
+            router.push(`/not-service/${encodeURIComponent(pinnedLocation.address!.replace(/\s+/g, ''))}/${pinnedLocation.lat}/${pinnedLocation.lng}`)
         })
     }
 

@@ -5,7 +5,7 @@ import ArrowDown from '../../../../../../../../public/svg/items/common/ArrowDown
 const HomeSelect = ({ data, callBack, selected }: HomeSelectProps) => {
     return (
         <div
-            className={`${selected ? 'bg-bg-1 text-common' : 'bg-bg-0 text-text-3'} rounded-[12px] max-w-[400px] w-fit overflow-hidden`}
+            className={`${selected ? 'bg-bg-1 text-common' : 'bg-bg-0 text-text-3 border border-line-1'} rounded-[12px] max-w-[400px] w-fit overflow-hidden`}
             onClick={callBack}
         >
             <div className='px-3 py-[11px] flex flex-row items-center gap-1'>

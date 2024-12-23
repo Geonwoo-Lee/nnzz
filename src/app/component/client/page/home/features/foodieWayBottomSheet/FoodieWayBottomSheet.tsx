@@ -8,7 +8,7 @@ const FoodieWayBottomSheet = (props: FoodieWayModalProps) => {
 
 
     return <BottomSheet open={modalOpen}  backdrop={false} close={closeModal}>
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-6 bg-bg-0'>
             <div className='text-title2 font-medium text-text-1'>
                 먹고 싶은 음식 찾기
             </div>

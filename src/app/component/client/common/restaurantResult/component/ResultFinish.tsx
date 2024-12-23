@@ -10,6 +10,7 @@ import RoundFinishCard from "@/src/app/component/client/common/restaurantResult/
 import MoveToNaverMap from "@/src/app/component/client/common/restaurantResult/component/MoveToNaverMap";
 import CardApi from "@/src/app/api/client/card/card";
 import DateUtils from "@/src/app/func/common/date.utils";
+import {useRouter} from "next/navigation";
 
 const ResultFinish = ({storeIdx, lng, lat, day, type}: {
     storeIdx?: string,
@@ -18,6 +19,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
     day: string,
     type: string,
 }) => {
+    const router = useRouter()
     const [isLoading, setIsLoading] = useState(true)
     const [store, setStore] = useState<FindStoreType>({} as FindStoreType)
     const [categoryImage, setCategoryImage] = useState('')
@@ -43,6 +45,9 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
                 window.open(`https://map.naver.com/v5/search/${encodeURIComponent(store.name)}?c=${store.lng},${store.lat},15,0,0,0,dh`, '_blank');
             }
         }, 1500)
+        setTimeout(() => {
+            router.push('/home')
+        }, 2000)
     };
 
     const token = localStorage.getItem('nnzz_token')
@@ -76,7 +81,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
                             <div
                                 className="absolute inset-x-0 text-title2 font-bold text-text-2 flex justify-center max-w-[180px] mx-auto whitespace-nowrap"/>
                             <div className="flex-shrink-0 text-caption1 text-text-2 font-medium">
-                                <Close onClick={() => window.location.reload()}/>
+                                <Close onClick={() => router.push('/home')}/>
                             </div>
                         </header>
 

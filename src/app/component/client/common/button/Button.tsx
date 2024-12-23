@@ -16,7 +16,7 @@ const Button = ({
         size: {
             sm: `h-button-height-sm text-caption2 font-regular ${fullRound  ? "rounded-full" : "rounded-[8px]"}`,
             md: `h-button-height-md text-caption1 font-medium rounded-[8px] ${fullRound  ? "rounded-full" : "rounded-[8px]"}`,
-            ml: `h-button-height-md text-caption1 font-medium rounded-[8px] ${fullRound  ? "rounded-full" : "rounded-[8px]"}`,
+            ml: `h-button-height-ml text-caption1 font-medium rounded-[8px] ${fullRound  ? "rounded-full" : "rounded-[8px]"}`,
             lg: `h-button-height-lg text-body2 font-medium  ${fullRound ? 'rounded-full' : 'rounded-[12px]'}`,
         },
         type: {

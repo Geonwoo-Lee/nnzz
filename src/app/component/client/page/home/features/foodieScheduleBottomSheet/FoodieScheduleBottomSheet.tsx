@@ -8,7 +8,7 @@ const FoodieScheduleBottomSheet = (props: FoodieSettingModalProps) => {
     const {mealTime, setMealTiming, selectedMealTime , mealTiming, selectDate, modalOpen, closeModal} = props
     return (
         <BottomSheet open={modalOpen} nonPadding={true} backdrop={false} close={closeModal}>
-            <div className='flex flex-col gap-10 pb-8 pt-6'>
+            <div className='flex flex-col gap-10 pb-8 pt-6 bg-bg-0'>
                 <div className='flex flex-col gap-3 px-6'>
                     <div className='text-title2 font-bold'>
                         언제 시작하시나요?

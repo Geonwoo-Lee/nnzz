@@ -7,7 +7,7 @@ const RandomCard = ({data}: DefaultCardProps) => {
     return (
         <div className='w-full aspect-[4/5] bg-common-white rounded-[12px] shadow-[0_8px_28px_0_rgba(0,0,0,0.2)] border border-line-1'>
             <div className='h-full flex flex-col p-8 gap-4'>
-                <div className='text-title1 font-bold text-text-1'>
+                <div className='text-title1 font-medium text-text-1'>
                     오늘 <br/>
                     {data.category} 어때요?
                 </div>
@@ -18,7 +18,7 @@ const RandomCard = ({data}: DefaultCardProps) => {
                     </div>
                 </div>
                 <div className="text-common flex flex-col gap-2 ">
-                    <h2 className="text-title1 font-bold">{data.category}</h2>
+                    <h2 className="text-title1 font-medium">{data.category}</h2>
                     <div className='flex flex-row items-center'>
                         <LocationPin/>
                         <div className='text-text-1 text-caption1 font-regular'>

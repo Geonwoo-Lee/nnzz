@@ -105,13 +105,19 @@ const HomeMealSettingClient = () => {
         }
     }, [location]);
 
+    useEffect(() => {
+        if(selectedLocation !== '현재 위치' && selectedMealTime) {
+            setWayBottomSheet(true)
+        }
+    }, [selectedLocation, selectedMealTime]);
+
     return (
         <div className='flex flex-col gap-4 px-4'>
             <div className='font-medium text-heading4'>
                 {userName}님,
             </div>
             <div className='flex flex-row gap-1 items-center font-medium text-title1 whitespace-nowrap'>
-                <HomeMealSettingComponent.HomeSelect selected={false} callBack={moveToMap} data={selectedLocation}/> 주변에서
+                <HomeMealSettingComponent.HomeSelect selected={selectedLocation !== '현재 위치'} callBack={moveToMap} data={selectedLocation}/> 주변에서
             </div>
             <div className='font-medium text-title1 flex flex-row gap-1 items-center'>
                 <HomeMealSettingComponent.HomeSelect selected={!!selectedMealTime} data={`${selectedMealTime.day} ${mealTiming}`} callBack={() => {
