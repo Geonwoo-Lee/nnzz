@@ -32,7 +32,7 @@ return (
                 </div>
             </div>
             <div className="text-common px-4 flex flex-col gap-4 pb-10">
-                <h2 className="text-heading3 font-bold">{data.category}</h2>
+                <div className="text-heading3 font-medium">{data.category}</div>
                 <div className='flex flex-row items-center'>
                     <LocationPin/>
                     <div className='text-body2 font-regular'>

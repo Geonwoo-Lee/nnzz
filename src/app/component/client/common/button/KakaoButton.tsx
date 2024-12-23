@@ -11,7 +11,6 @@ export default function Login() {
 
     useEffect(() => {
         if (typeof window !== 'undefined' && window.Kakao) {
-
             if (!window.Kakao.isInitialized()) {
                 window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY as string);
             }
@@ -19,6 +18,9 @@ export default function Login() {
     }, [router]);
 
     const loginWithKakao = () => {
+        if (!window.Kakao.isInitialized()) {
+            window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY as string);
+        }
         if (window.Kakao && window.Kakao.Auth) {
             window.Kakao.Auth.login({
                 success: function() {

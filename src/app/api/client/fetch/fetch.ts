@@ -48,7 +48,7 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
 
         if (!response.ok) {
             const errorData: ErrorResponse = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.detail);
         }
 
         return response;

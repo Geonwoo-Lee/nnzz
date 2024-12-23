@@ -46,7 +46,7 @@ const RoundFinishCard = ({store, day, type, categoryImage, handleOpenNaverMap}: 
                                     }
                                 </div>
                             </div>
-                            <div className='flex flex-col gap-1'>
+                            <div className='flex flex-col gap-[14px]'>
                                 {store.menus?.slice(0, 3).map((menu, index) => (
                                     <div key={index} className='flex flex-row justify-between'>
                                         <div className='text-caption2  text-text-3 font-regular'>

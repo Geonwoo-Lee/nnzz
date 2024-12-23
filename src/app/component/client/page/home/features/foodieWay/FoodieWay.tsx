@@ -7,7 +7,7 @@ const FoodieWay = ({type, onChangeWay} : FoodieWayProps) => {
     const wayConfig: FoodieWayConfigType = {
         fast: {
             title: '빠른 찾기',
-            description: '빨리빨리 \n고르고싶어요',
+            description: '빨리 빨리 \n고르고싶어요',
             icon: <Image src={'/images/items/FastFind.png'} alt='fast' width={135} height={135} />
         },
         slow: {

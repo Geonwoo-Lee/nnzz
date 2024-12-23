@@ -1,6 +1,5 @@
 import {ProgressBarProps} from "@/src/app/types/common/progressBar";
-import Image from 'next/image'
-
+import NnzzPin from '../../../../../../public/svg/logo/nnzz_pin.svg'
 const ProgressBar = (props: ProgressBarProps) => {
     const {
         currentStep,
@@ -34,7 +33,7 @@ const ProgressBar = (props: ProgressBarProps) => {
             <div
                 className={`px-3 flex flex-row items-center ${width ? width : 'w-full'} ${height ? height : 'h-[42px]'} justify-between ${style ? style : ''}`}>
                 <div className='flex flex-row pr-2 min-w-[48px] font-medium text-primary-6 text-body2 items-center'>
-                    <Image src="/images/logo/progressLogo.png" width={24} height={24} alt="progressBar"/>
+                 <NnzzPin/>
                     {currentStep}
                 </div>
                 <div className='w-full'>

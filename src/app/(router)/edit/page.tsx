@@ -117,7 +117,16 @@ const EditPage = () => {
 
         closeModal();
         try {
-            await UpdateUserApi.updateUser(params);
+            switch (type) {
+                case "nickname":
+                     await UpdateUserApi.updateUser(params, 'nickname');
+                    break;
+                case "profileImage":
+                    await UpdateUserApi.updateUser(params, 'profile-image');
+                    break;
+                case "gender":
+                    await UpdateUserApi.updateUser(params, 'age-and-gender');
+            }
             AuthUtils.setUserInfo({
                 nickname: nicknameValue,
                 gender: genderValue.gender,
@@ -136,8 +145,9 @@ const EditPage = () => {
                     showToast('프로필 이미지 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
                     break;
             }
-        } catch (error: any) {
-            const errorMessage = error.response?.data?.message || '업데이트에 실패했습니다';
+        }  catch (error: any) {
+            const errorMessage = error.message || '업데이트에 실패했습니다';
+            console.log('Error:', error);
             showToast(errorMessage, ToastPosition.BOTTOM, ToastAlign.CENTER);
         }
     }

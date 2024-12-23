@@ -50,7 +50,7 @@ class FindApi extends BaseApi{
                 lat: params.data.lat,
                 lng: params.data.lng,
                 day: params.data.day,
-                categoryList: params.data.category // categoryList로 파라미터 이름 변경
+                categoryList: params.data.category
             })
         });
         return await response.json();
