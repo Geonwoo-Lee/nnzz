@@ -25,7 +25,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
     const [categoryImage, setCategoryImage] = useState('')
     const [naverMapLoading, setNaverMapLoading] = useState(false)
 
-    const handleOpenNaverMap = async (store: FindStoreType) => {
+    const handleOpenNaverMap = async () => {
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
         setNaverMapLoading(true);
