@@ -25,29 +25,41 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
     const [categoryImage, setCategoryImage] = useState('')
     const [naverMapLoading, setNaverMapLoading] = useState(false)
 
-    const handleOpenNaverMap = (store: FindStoreType) => {
+    const handleOpenNaverMap = async (store: FindStoreType) => {
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-            setNaverMapLoading(true)
-        setTimeout(() => {
-            setNaverMapLoading(false)
-        }, 1500)
-        setTimeout(() => {
-            if (isMobile) {
-                const naverMapAppUrl = `nmap://place?lat=${store.lat}&lng=${store.lng}&name=${encodeURIComponent(store.name)}&appname=your_app_name`;
-                const naverMapWebUrl = `https://map.naver.com/v5/search/${encodeURIComponent(store.name)}?c=${store.lng},${store.lat},15,0,0,0,dh`;
+        setNaverMapLoading(true);
 
-                setTimeout(() => {
-                    window.location.href = naverMapWebUrl;
+        if (isMobile) {
+            const naverMapAppUrl = `nmap://place?id=${storeIdx}`;
+            const naverMapWebUrl = `https://map.naver.com/p/entry/place/${storeIdx}`;
+
+            const openApp = new Promise((resolve) => {
+                const timeout = setTimeout(() => {
+                    resolve(false);
                 }, 1000);
+
                 window.location.href = naverMapAppUrl;
-            } else {
-                window.open(`https://map.naver.com/v5/search/${encodeURIComponent(store.name)}?c=${store.lng},${store.lat},15,0,0,0,dh`, '_blank');
+
+                window.addEventListener('blur', () => {
+                    clearTimeout(timeout);
+                    resolve(true);
+                });
+            });
+
+            const appOpened = await openApp;
+            if (!appOpened) {
+                window.location.href = naverMapWebUrl;
             }
-        }, 1500)
+        } else {
+            window.open(`https://map.naver.com/p/entry/place/${storeIdx}`, '_blank');
+        }
+
+        setNaverMapLoading(false);
+
         setTimeout(() => {
-            router.push('/home')
-        }, 2000)
+            router.push('/home');
+        }, 2500);
     };
 
     const token = localStorage.getItem('nnzz_token')
