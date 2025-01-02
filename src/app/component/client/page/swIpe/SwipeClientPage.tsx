@@ -14,7 +14,7 @@ const SwipeClientPage = (props :DeckProps ) => {
     const {cards, setStep, setLikeCards, isLoading, likedCards, day, type} = props
 
     return (
-        <div className='h-[100vh] flex flex-col justify-between overflow-y-scroll'>
+        <div className='h-[100vh] flex flex-col justify-between'>
             {
                 isLoading && (
                     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
