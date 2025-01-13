@@ -1,0 +1,36 @@
+name: 'Chromatic'
+on:
+  push:
+    branches:
+      - main  # 또는 원하는 브랜치
+
+jobs:
+  check-commit:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check-message.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - id: check-message
+        run: |
+          message=$(git log -1 --pretty=%B)
+          if [[ $message == *"[StoryBook]"* ]]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+
+  chromatic-deployment:
+    needs: check-commit
+    if: needs.check-commit.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: npm install
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
