@@ -34,8 +34,12 @@ const meta: Meta<ButtonProps> = {
       description: '커스텀 텍스트 색상'
     }
   },
-  args: { onClick: fn() }
-} satisfies Meta<typeof Button>;
+  args: {
+    onClick: fn(),
+    size: 'md',
+    type: 'primary'
+  }
+} satisfies Meta<ButtonProps>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
