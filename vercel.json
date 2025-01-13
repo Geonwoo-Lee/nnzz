@@ -3,14 +3,5 @@
     "deploymentEnabled": {
       "main": false
     }
-  },
-  "buildCommand": "npm run build-storybook",
-  "outputDirectory": "storybook-static",
-  "framework": "other",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build"
-    }
-  ]
+  }
 }
