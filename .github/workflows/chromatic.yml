@@ -2,7 +2,7 @@ name: 'Chromatic'
 on:
   push:
     branches:
-      - main  # 또는 원하는 브랜치
+      - main
 
 jobs:
   check-commit:
