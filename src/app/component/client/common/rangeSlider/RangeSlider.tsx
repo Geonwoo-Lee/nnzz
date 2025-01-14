@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import {RangeSliderProps} from "@/src/app/types/common/rangeSlider";
 
-const RangeSlider = ({steps, defaultValue, max, changeDistance}: {steps: number[], defaultValue: number, max: number, changeDistance: (distance: number) => void}) => {
+const RangeSlider = ({steps, defaultValue, max, changeDistance}: RangeSliderProps) => {
     const [value, setValue] = useState(defaultValue);
     const minStep = Math.min(...steps);
 
