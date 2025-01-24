@@ -46,7 +46,7 @@ export interface CategoryList {
 }
 
 interface Broadcast {
-    broadcastName: string;
+    broadcast_name: string;
     episode: string;
     broadcastDate: Date;
     topic: string;

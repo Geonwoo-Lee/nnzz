@@ -129,21 +129,21 @@ const config: Config = {
         'large': '1200px',
       },
       fontSize: {
-        'caption3': ['0.6875rem', { lineHeight: '0.786rem' }],   // 11px
-        'caption2': ['0.75rem', { lineHeight: '0.857rem' }],     // 12px
-        'caption1': ['0.875rem', { lineHeight: '1rem' }],        // 14px
-        'body2': ['1rem', { lineHeight: '1.143rem' }],           // 16px
-        'body1': ['1.125rem', { lineHeight: '1.286rem' }],       // 18px
-        'title2': ['1.25rem', { lineHeight: '1.429rem' }],       // 20px
-        'title1': ['1.375rem', { lineHeight: '1.571rem' }],      // 22px
-        'heading4': ['1.5625rem', { lineHeight: '1.786rem' }],   // 25px
-        'heading3': ['1.75rem', { lineHeight: '2rem' }],         // 28px
-        'heading2': ['2rem', { lineHeight: '2.286rem' }],        // 32px
-        'heading1': ['2.25rem', { lineHeight: '2.571rem' }],     // 36px
-        'display4': ['2.5rem', { lineHeight: '2.857rem' }],        // 40px
-        'display3': ['2.8125rem', { lineHeight: '3.214rem' }],     // 45px
-        'display2': ['3.1875rem', { lineHeight: '3.643rem' }],     // 51px
-        'display1': ['3.625rem', { lineHeight: '4.143rem' }],      // 58px
+        'caption3': ['11px', { lineHeight: '0.786rem' }],   // 11px
+        'caption2': ['12px', { lineHeight: '0.857rem' }],     // 12px
+        'caption1': ['14px', { lineHeight: '1rem' }],        // 14px
+        'body2': ['16px', { lineHeight: '1.143rem' }],           // 16px
+        'body1': ['18px', { lineHeight: '1.286rem' }],       // 18px
+        'title2': ['20px', { lineHeight: '1.429rem' }],       // 20px
+        'title1': ['22px', { lineHeight: '1.571rem' }],      // 22px
+        'heading4': ['25px', { lineHeight: '1.786rem' }],   // 25px
+        'heading3': ['28px', { lineHeight: '2rem' }],         // 28px
+        'heading2': ['32px', { lineHeight: '2.286rem' }],        // 32px
+        'heading1': ['36px', { lineHeight: '2.571rem' }],     // 36px
+        'display4': ['40px', { lineHeight: '2.857rem' }],        // 40px
+        'display3': ['45px', { lineHeight: '3.214rem' }],     // 45px
+        'display2': ['51px', { lineHeight: '3.643rem' }],     // 51px
+        'display1': ['58px', { lineHeight: '4.143rem' }],      // 58px
       },
       colors: {
         ...colors,
