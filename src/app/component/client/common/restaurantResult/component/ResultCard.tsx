@@ -11,7 +11,7 @@ const ResultCard = ({data, isMap, setStep, setSelectedStore}: {data: FindStore, 
                     <div className='flex flex-col gap-3'>
                         <div className='flex flex-row justify-between items-center'>
                             <div className='flex flex-row gap-2 items-center'>
-                                <div className='text-title2 font-bold text-text-1'>
+                                <div className='text-title2 font-bold text-text-1 antialiased'>
                                     {name}
                                 </div>
                                 <div className='text-text-3 text-caption2 font-regular'>
@@ -25,15 +25,18 @@ const ResultCard = ({data, isMap, setStep, setSelectedStore}: {data: FindStore, 
                         <div className='text-caption2 font-medium text-text-2 truncate'>
                             {address}
                         </div>
-                        {
-                            broadcasts && (
-                                broadcasts.map((el, index) => (
-                                    <div key={`broadcast-${index}`}>
-                                        {el.broadcastName}
-                                    </div>
-                                ))
-                            )
-                        }
+                        <div className='flex flex-row'>
+                            {
+                                broadcasts && (
+                                    broadcasts.map((el, index) => (
+                                        <div key={`broadcast-${index}`} className='text-caption2 font-regular text-text-2'>
+                                            {broadcasts.length > 1 && index > 0 && ' · '}
+                                            {el.broadcast_name}
+                                        </div>
+                                    ))
+                                )
+                            }
+                        </div>
                     </div>
                     <div className='flex flex-col gap-[14px]'>
                         {

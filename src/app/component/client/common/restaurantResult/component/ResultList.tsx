@@ -30,9 +30,6 @@ const ResultList = (props: { restaurants: FindStore[], isUp: boolean, isLoading:
                 </div>
             }
             <div className='flex flex-col gap-4'>
-                <div>
-
-                </div>
                 <div className='text-body2 font-regular text-text-2 px-4 pt-2'>
                     식당 <span className='font-bold'>{restaurants.length}</span>개를 찾았어요.
                 </div>
