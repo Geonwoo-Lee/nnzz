@@ -3,10 +3,13 @@ import ResultCard from "@/src/app/component/client/common/restaurantResult/compo
 import React from "react";
 import {FindStore} from "@/src/app/types/models/find";
 import {useRouter} from "next/navigation";
+import CategoryList from "@/src/app/component/client/common/restaurantResult/component/CategoryList";
 
-const ResultList = (props: { restaurants: FindStore[], isUp: boolean, isLoading: boolean, setStep: (step: 'map' | 'list' | 'result') => void, setSelectedStore: (storeId: FindStore) => void }) => {
-    const {restaurants, isUp, isLoading, setStep, setSelectedStore} = props
+const ResultList = (props: { restaurants: FindStore[],filteredRestaurants: FindStore[], isUp: boolean, isLoading: boolean, setStep: (step: 'map' | 'list' | 'result') => void, setSelectedStore: (storeId: FindStore) => void, setFilteredRestaurants: (restaurants: FindStore[]) => void }) => {
+    const {restaurants, isUp, isLoading, setStep, setSelectedStore, setFilteredRestaurants, filteredRestaurants} = props
     const router = useRouter()
+
+
     return (
         <div
             className={`pb-10 w-full ${isUp ? 'h-restaurant-result-up-height' : 'h-restaurant-result-height'} overflow-y-scroll bg-bg-0`}>
@@ -24,6 +27,12 @@ const ResultList = (props: { restaurants: FindStore[], isUp: boolean, isLoading:
                     처음으로
                 </div>
             </header>
+            <CategoryList
+                restaurants={restaurants}
+                filteredRestaurants={filteredRestaurants}
+                setFilteredRestaurants={setFilteredRestaurants}
+            />
+
             {
                 isLoading && <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
                     <Loading/>
@@ -31,11 +40,11 @@ const ResultList = (props: { restaurants: FindStore[], isUp: boolean, isLoading:
             }
             <div className='flex flex-col gap-4'>
                 <div className='text-body2 font-regular text-text-2 px-4 pt-2'>
-                    식당 <span className='font-bold'>{restaurants.length}</span>개를 찾았어요.
+                    식당 <span className='font-bold'>{filteredRestaurants.length}</span>개를 찾았어요.
                 </div>
                 <div>
                     {
-                        restaurants.map((el, index) => (
+                        filteredRestaurants.map((el, index) => (
                             <ResultCard setStep={setStep} setSelectedStore={setSelectedStore} key={`result-${index}`} data={el}/>
                         ))
                     }

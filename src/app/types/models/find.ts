@@ -63,6 +63,7 @@ export interface FindStore {
     name: string;
     address: string;
     distance: number;
+    categoryId: number;
     category: string;
     lat: number;
     lng: number;

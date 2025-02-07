@@ -22,6 +22,7 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
     const [defaultDistance, setDefaultDistance] = useState(750)
     const [Funnel, setStep, step] = useFunnel(["list", "map", "result"], "list");
     const [selectedStore, setSelectedStore] = useState<FindStore >(restaurants[0]);
+    const [filteredRestaurants, setFilteredRestaurants] = useState<FindStore[]>(restaurants);
 
     const changeDistance = (distance: number) => {
         setDefaultDistance(distance)
@@ -52,17 +53,23 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
         pageRequest()
     }, [])
 
+    useEffect(() => {
+        if(restaurants.length > 0) {
+            setFilteredRestaurants(restaurants)
+        }
+    }, [restaurants]);
+
 
 
     return (
         <div className='absolute w-full max-w-[640px]'>
             <Funnel>
                 <Funnel.Step name='list'>
-                    <ResultList setSelectedStore={changeSelectedStore} setStep={setStep} restaurants={restaurants} isUp={isUp} isLoading={isLoading}/>
+                    <ResultList setFilteredRestaurants={setFilteredRestaurants} setSelectedStore={changeSelectedStore} setStep={setStep} restaurants={restaurants} filteredRestaurants={filteredRestaurants} isUp={isUp} isLoading={isLoading}/>
                 </Funnel.Step>
                 <Funnel.Step name='map'>
                     <div >
-                        <RestaurantMap step={step} setStep={setStep} onStoreSelect={changeSelectedStore} selectedStore={selectedStore} isUp={isUp} places={restaurants}  />
+                        <RestaurantMap step={step} setStep={setStep}  onStoreSelect={changeSelectedStore} selectedStore={selectedStore} isUp={isUp} places={filteredRestaurants}  />
                     </div>
                 </Funnel.Step>
                 <Funnel.Step name='result'>
