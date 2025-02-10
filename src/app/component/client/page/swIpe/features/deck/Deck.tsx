@@ -19,7 +19,6 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep,setLikeCards }) =
         handleButtonSwipe,
     } = useCardSwipe(cards);
 
-
     if (isFinished) {
         if(setStep) {
             if(likedCards.length > 0) {
