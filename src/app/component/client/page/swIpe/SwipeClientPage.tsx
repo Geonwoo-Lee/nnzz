@@ -42,7 +42,7 @@ const SwipeClientPage = (props :DeckProps ) => {
                         }
                     </div>
                 </div>
-                <div className='flex flex-col gap-6 pb-10'>
+                <div className='bg-common-white flex flex-col gap-6 pb-10'>
                     <SwipeComponent.Deck type={type} day={day} likedCards={likedCards} setLikeCards={setLikeCards}
                                          cards={cards} setStep={setStep}/>
                     <div className='flex w-full items-center justify-center  px-4'>
