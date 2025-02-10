@@ -598,7 +598,7 @@ export const foodDetailData = [
 
 export const categoryNames = {
     "Bibim.png": "비빔밥",
-    "Seolungtang.png": "설렁탕",
+    "Seolungtang.png": "탕과 국",
     "Zzigae.png": "찌개",
     "Samgyetang.png": "삼계탕",
     "Nengmyun.png": "냉면",
