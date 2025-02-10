@@ -69,6 +69,11 @@ const foodData: FoodItemFromClient[] = [
         bgType: "Yellow"
     },
     {
+        categoryId: 102,
+        imageUrl: `${imageLocation}/Seolungtang.png`,
+        bgType: "Yellow"
+    },
+    {
         categoryId: 14,
         imageUrl: `${imageLocation}/Zzigae.png`,
         bgType: "Red"
