@@ -21,16 +21,16 @@ class FindApi extends BaseApi{
             const queryParams = new URLSearchParams({
                 lng: params.data.lng.toString(),
                 lat: params.data.lat.toString(),
-                day: params.data.day
+                day: params.data.day,
             });
 
-            const url = `${this.BASE_URL}/api/find/${params.type}/category?${queryParams}`;
+            const url = `${this.BASE_URL}/api/find/${params.type}/category?${queryParams}&choice=${params.choice}`;
 
             const response = await fetchWithToken(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
             });
 
             return await response.json();

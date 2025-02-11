@@ -14,6 +14,7 @@ export interface FindCategoryReq {
         lat: number;
         day: string;
     }
+    choice: boolean
 }
 
 export interface  FindRestaurantReq {
