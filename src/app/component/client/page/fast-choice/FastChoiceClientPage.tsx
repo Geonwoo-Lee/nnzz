@@ -42,7 +42,8 @@ const FastChoiceClientPage = ({type, day, menu}: {type: string, day: string, men
                 day: day,
                 lat: getUserLocation()?.latitude || 0,
                 lng: getUserLocation()?.longitude || 0
-            }
+            },
+            choice: true
         }).then((serverData) => {
             const mergedData = serverData
                 .filter(serverItem => {
