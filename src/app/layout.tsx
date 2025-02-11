@@ -66,9 +66,7 @@ export const metadata: Metadata = {
         statusBarStyle: "default",
         capable: true,
     },
-    verification: {
-        google: '1QKRvTlM8LTU89RcO5TjN7IrwiUGdj8OT5QFmps9dKU',
-    },
+
     applicationName: "nnzz",
     keywords: ["맛있는", "솔루션", "점심", "저녁", "메뉴", "고민"],
     formatDetection: {
@@ -130,6 +128,7 @@ export default function RootLayout({
                 }}
             />
             <meta name="naver-site-verification" content="b8b44acfbf4b794834769776d1b9b8cb37b41721"/>
+            <meta name="google-site-verification" content="1QKRvTlM8LTU89RcO5TjN7IrwiUGdj8OT5QFmps9dKU"/>
             <noscript>
                 <img
                     height="1"
