@@ -512,7 +512,37 @@ const foodData: FoodItemFromClient[] = [
         categoryId: 101,
         imageUrl: `${imageLocation}/Salad.png`,
         bgType: "Green"
-    }
+    },
+    {
+        categoryId: 102,
+        imageUrl: `${imageLocation}/Seolungtang.png`,
+        bgType: "Yellow"
+    },
+    {
+        categoryId: 103,
+        imageUrl: `${imageLocation}/Chicken.png`,
+        bgType: "Green"
+    },
+    {
+        categoryId: 104,
+        imageUrl: `${imageLocation}/Pasta.png`,
+        bgType: "Green"
+    },
+    {
+        categoryId: 105,
+        imageUrl: `${imageLocation}/Pasta.png`,
+        bgType: "Green"
+    },
+    {
+        categoryId: 106,
+        imageUrl: `${imageLocation}/Sushi.png`,
+        bgType: "Red"
+    },
+    {
+        categoryId: 107,
+        imageUrl: `${imageLocation}/Seolungtang.png`,
+        bgType: "Red"
+    },
 ];
 
 export default foodData;
@@ -633,7 +663,7 @@ export const categoryNames = {
 
 export const groupedCategories = {
     "Bibim.png": [1, 2, 3, 4, 5, 6],
-    "Seolungtang.png": [7, 8, 9, 10, 11, 12, 13],
+    "Seolungtang.png": [7, 8, 9, 10, 11, 12, 13,102, 107],
     "Zzigae.png": [14],
     "Samgyetang.png": [15],
     "Nengmyun.png": [16],
@@ -644,16 +674,16 @@ export const groupedCategories = {
     "Jeon.png": [24],
     "Jjajang.png": [25, 26, 27],
     "Ramen.png": [28, 29, 30, 31],
-    "Sushi.png": [32],
+    "Sushi.png": [32, 106],
     "Donkats.png": [33],
     "Curry.png": [34],
     "RiceNoodle.png": [35, 36, 37, 38, 39],
     "Tteockbokki.png": [40, 41, 42, 43, 44],
-    "Pasta.png": [45, 46, 47, 48, 49, 50],
+    "Pasta.png": [45, 46, 47, 48, 49, 50, 104, 105],
     "Taco.png": [51],
     "Fusion.png": [52],
     "Beef.png": [53, 54, 55, 56, 57],
-    "Chicken.png": [58, 59, 60, 61, 62, 63],
+    "Chicken.png": [58, 59, 60, 61, 62, 63, 103],
     "Gobchang.png": [64, 65, 66],
     "Shrimp.png": [67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77],
     "Hoi.png": [78],
