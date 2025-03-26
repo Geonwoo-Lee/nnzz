@@ -109,6 +109,54 @@ export const colors: ColorsType = {
   'indigo-950': '#1e1b4b',
 };
 
+const getHeightUnit = () => {
+  // 클라이언트 사이드에서만 실행
+  if (typeof window === 'undefined') return 'dvh';
+
+  try {
+    const iOSCanInstall = "standalone" in window.navigator;
+    const iOSIsInstalled = window.navigator.standalone === true;
+
+    if (window.navigator.standalone) {
+      return 'vh';
+    }
+    if (iOSCanInstall && iOSIsInstalled) {
+      return 'vh';
+    }
+    if (window.matchMedia("(display-mode: standalone)").matches) {
+      return 'vh';
+    }
+
+    // PWA가 아닌 경우 dvh 사용
+    return 'dvh';
+  } catch (e) {
+    // 오류 발생 시 기본값 사용
+    return 'dvh';
+  }
+};
+const generateHeights = () => {
+  const heightUnit = getHeightUnit();
+
+  return {
+    full: "100%",
+    'header-height': '60px',
+    'basic-body-with-header': `calc(100${heightUnit} - 52px)`,
+    'basic-menu-body': '100dvh',
+    'button-height-sm': '26px',
+    'button-height-md': '38px',
+    'button-height-ml': '43px',
+    'button-height-lg': '50px',
+    'input-height': '52px',
+    'location-no-search-height': `calc(100${heightUnit} - 260px - 52px)`,
+    'fast-choice-height': `calc(100${heightUnit} - 199px)`,
+    'random-height': `calc(100${heightUnit} - 180px)`,
+    'swipe-result-height': `calc(100${heightUnit} - 114px)`,
+    'restaurant-result-height': `calc(100${heightUnit} - 102px)`,
+    'restaurant-result-up-height': `calc(100${heightUnit} - 190px)`,
+    'restaurant-result-card-page-height' : `calc(100${heightUnit} - 122px - 60px)`
+  }
+}
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -180,23 +228,7 @@ const config: Config = {
         "line-4": colors['slate-400'],
         "line-5": colors['slate-500']
       },
-      height: {
-        'header-height': '60px',
-        'basic-body-with-header': 'calc(100vh - 52px)',
-        'basic-menu-body': '100vh',
-        'button-height-sm': '26px',
-        'button-height-md': '38px',
-        'button-height-ml': '43px',
-        'button-height-lg': '50px',
-        'input-height': '52px',
-        'location-no-search-height': 'calc(100vh - 260px - 52px)',
-        'fast-choice-height': 'calc(100vh - 199px)',
-        'random-height': 'calc(100vh - 180px)',
-        'swipe-result-height': 'calc(100vh - 114px)',
-        'restaurant-result-height': 'calc(100vh - 102px)',
-        'restaurant-result-up-height': 'calc(100vh - 190px)',
-        'restaurant-result-card-page-height' : 'calc(100vh - 122px - 60px)'
-      },
+      height:generateHeights(),
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'translateX(-2px)' },

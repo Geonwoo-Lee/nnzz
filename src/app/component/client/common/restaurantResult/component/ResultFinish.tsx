@@ -82,7 +82,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
         }
     }, [storeIdx]);
     return (
-        <div className='h-screen bg-bg-1 flex flex-col'>
+        <div className='h-basic-menu-body bg-bg-1 flex flex-col'>
             {
                 naverMapLoading ?
                     <MoveToNaverMap/>

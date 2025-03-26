@@ -8,13 +8,14 @@ import UserName from "@/src/app/component/client/common/userName/UserName";
 import DateUtils from "@/src/app/func/common/date.utils";
 import Header from "@/src/app/component/server/common/header/Header";
 import {HeaderTypes} from "@/src/app/types/common/header";
+import HeightUnitWrapper from "@/src/app/component/client/common/heightWrapper/HeightWrapper";
 
 
 const SwipeClientPage = (props :DeckProps ) => {
     const {cards, setStep, setLikeCards, isLoading, likedCards, day, type} = props
 
     return (
-        <div className='h-[100vh] flex flex-col justify-between'>
+        <HeightUnitWrapper className='flex flex-col overflow-y-scroll '>
             {
                 isLoading && (
                     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -29,7 +30,7 @@ const SwipeClientPage = (props :DeckProps ) => {
                     title={''}
                 />
             </div>
-            <div className='flex flex-col gap-4 '>
+            <div className='flex flex-col gap-4 h-basic-body-with-header'>
                 <div className='flex flex-col gap-8'>
                     <SwipeComponent.SwipeDescription type={type}/>
                     <div className='px-4'>
@@ -42,10 +43,10 @@ const SwipeClientPage = (props :DeckProps ) => {
                         }
                     </div>
                 </div>
-                <div className='bg-common-white flex flex-col gap-6 pb-10'>
+                <div className='bg-common-white flex flex-col pb-10  gap-4 '>
                     <SwipeComponent.Deck type={type} day={day} likedCards={likedCards} setLikeCards={setLikeCards}
                                          cards={cards} setStep={setStep}/>
-                    <div className='flex w-full items-center justify-center  px-4'>
+                    <div className='flex w-full items-center justify-center px-4'>
                         <Button fullRound type='muted' size='ml' style='w-[80%]' disabled={likedCards.length < 3}
                                 onClick={() => {
                                     setTimeout(() => {
@@ -60,7 +61,7 @@ const SwipeClientPage = (props :DeckProps ) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </HeightUnitWrapper>
     )
 }
 

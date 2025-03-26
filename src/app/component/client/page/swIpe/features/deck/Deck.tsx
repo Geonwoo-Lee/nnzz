@@ -41,7 +41,7 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep,setLikeCards }) =
 
 
     return (
-        <div className="flex w-full flex-col gap-6 pb-10 bg-common-white">
+        <div className="flex w-full flex-col gap-6  bg-common-white">
             <div ref={deckRef} className="w-full relative ">
                 <div className="grid grid-cols-1 grid-rows-1 w-full ">
                     {cards.slice(currentIndex, currentIndex + 2).map((card, i) => {

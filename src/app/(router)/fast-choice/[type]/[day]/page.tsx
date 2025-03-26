@@ -10,7 +10,7 @@ const FastChoicePage = ({
 
 
     return (
-        <div className="relative h-screen">
+        <div className="relative h-full overflow-y-hidden">
             <FastChoiceClientPage type={params.type} day={params.day} menu={DateUtils.mealRenderer(params.type)}/>
         </div>
     )

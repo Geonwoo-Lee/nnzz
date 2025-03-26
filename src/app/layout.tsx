@@ -9,9 +9,8 @@ import {pretendard} from "@/src/app/utils/font/font";
 import process from "process";
 
 export const viewport: Viewport = {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
+    themeColor: '#fff',
+    userScalable: false,
 };
 
 const ga4Id = process.env.NEXT_PUBLIC_GA_ID;

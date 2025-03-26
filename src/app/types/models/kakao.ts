@@ -25,3 +25,10 @@ export interface KakaoResult {
     address: KakaoAddress;
     road_address: KakaoRoadAddress | null;
 }
+
+
+declare global {
+    interface Navigator {
+        standalone?: boolean;
+    }
+}
