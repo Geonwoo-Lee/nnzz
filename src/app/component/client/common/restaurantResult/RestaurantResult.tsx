@@ -79,6 +79,7 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
                         storeIdx={selectedStore ? selectedStore.storeId : '1'}
                         day={day}
                         type={type}
+                        setStep={setStep}
                     />
                 </Funnel.Step>
             </Funnel>

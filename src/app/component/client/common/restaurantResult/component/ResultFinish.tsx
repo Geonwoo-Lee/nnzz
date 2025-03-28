@@ -12,12 +12,13 @@ import CardApi from "@/src/app/api/client/card/card";
 import DateUtils from "@/src/app/func/common/date.utils";
 import {useRouter} from "next/navigation";
 
-const ResultFinish = ({storeIdx, lng, lat, day, type}: {
+const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
     storeIdx?: string,
     lng: number,
     lat: number,
     day: string,
     type: string,
+    setStep: (step: 'map' | 'list' | 'result') => void
 }) => {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(true)
@@ -93,7 +94,9 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
                             <div
                                 className="absolute inset-x-0 text-title2 font-bold text-text-2 flex justify-center max-w-[180px] mx-auto whitespace-nowrap"/>
                             <div className="flex-shrink-0 text-caption1 text-text-2 font-medium">
-                                <Close onClick={() => router.push('/home')}/>
+                                <Close onClick={() => {
+                                    setStep('list')
+                                }}/>
                             </div>
                         </header>
 
@@ -104,7 +107,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type}: {
                         )}
 
                         {!isLoading && (
-                            <div className='flex-1   w-full flex flex-col gap-6 items-center overflow-y-hidden pb-[122px] justify-center  z-10'>
+                            <div className='flex-1  w-full flex flex-col gap-6 items-center overflow-y-hidden pb-[122px]   z-10'>
                                 <div className='text-title2 text-text-1 font-medium'>
                                     <span className='text-primary-6'>최종 선택</span> 맛의 짝!
                                 </div>

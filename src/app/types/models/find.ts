@@ -3,8 +3,12 @@
 export interface RandomStore {
     category: string;
     categoryId: number;
-    distance: number;
+    distance: number | string;
     represent: string;
+}
+
+export interface CardImageModal extends RandomStore {
+    imageUrl: string
 }
 
 export interface FindCategoryReq {
