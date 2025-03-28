@@ -27,10 +27,15 @@ const CompletePage = (props: CompletePageProps) => {
                     ))}
                 </div>
             </div>
-            <div className='h-[118px] w-full bg-common-white fixed bottom-0 z-10  max-w-[640px] px-4'>
+            <div className='] w-full bg-common-white fixed bottom-0 z-10  max-w-[640px] px-4'>
                 <div className='w-full pt-4'>
                     <Button disabled={likeCards.length === deletedList.length} type='primary' size='lg' onClick={setStep} style='w-full' >
                         식당정보 보러가기
+                    </Button>
+                    <Button  type='transparent' size='lg' onClick={() => {
+                        window.location.reload()
+                    }} style='w-full' >
+                        처음으로
                     </Button>
                 </div>
             </div>

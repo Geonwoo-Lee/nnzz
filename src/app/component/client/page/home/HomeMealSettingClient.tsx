@@ -19,6 +19,8 @@ const HomeMealSettingClient = () => {
     const [wayToFind, setWayToFind] = useState('');
     const [wayBottomSheet, setWayBottomSheet] = useState(false);
     const [mealTimingBottomSheet, setMealTimingBottomSheet] = useState(false);
+    const [initialMealTime, setInitialMealTime] = useState<DayInfo | null>(null);
+    const [initialMealTiming, setInitialMealTiming] = useState<string | undefined>('');
     const location = localStorage.getItem('pinedLocation');
     const userName = AuthUtils.getUserInfo()?.nickname
 
@@ -30,13 +32,36 @@ const HomeMealSettingClient = () => {
         setSelectedMealTime(data);
     }
 
-    const closeScheduleBottomSheet = () => {
-        setMealTimingBottomSheet(false)
+    const openScheduleBottomSheet = () => {
+        setInitialMealTime(selectedMealTime);
+        setInitialMealTiming(mealTiming);
+        setMealTimingBottomSheet(true);
+    }
 
-        if(wayToFind === '') {
-            setWayBottomSheet(true)
-        }else {
-            return
+    const closeScheduleBottomSheet = () => {
+        const isDateSelected = !!selectedMealTime;
+
+        const isMealTimingSelected = mealTiming !== undefined && mealTiming !== null && mealTiming !== '';
+
+        const hasMealTimeChanged = initialMealTime !== selectedMealTime;
+        const hasMealTimingChanged = initialMealTiming !== mealTiming;
+        const hasSelectionChanged = hasMealTimeChanged || hasMealTimingChanged;
+
+        const wasInitialMealTimingValid =
+            initialMealTiming !== undefined &&
+            initialMealTiming !== null &&
+            initialMealTiming !== '';
+
+        if (isDateSelected && isMealTimingSelected &&
+            (hasSelectionChanged || wasInitialMealTimingValid)) {
+
+            setMealTimingBottomSheet(false);
+
+            if (wayToFind === '') {
+                setTimeout(() => {
+                    setWayBottomSheet(true);
+                }, 100);
+            }
         }
     }
 
@@ -93,23 +118,47 @@ const HomeMealSettingClient = () => {
         }
     }, [selectedMealTime]);
 
+    // selectedMealTime이 변경될 때 mealTiming을 업데이트하는 useEffect 수정
+    useEffect(() => {
+        if (!selectedMealTime) return;
+
+        const now = new Date();
+        const currentHour = now.getHours();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        const selectedDate = DateUtils.parseDateString(selectedMealTime.date);
+
+        // 선택된 날짜가 오늘인지 확인
+        if (selectedDate && selectedDate.getTime() === today.getTime()) {
+            setMealTiming(currentHour < 15 ? '점심' : '저녁');
+        } else {
+            setMealTiming('');
+        }
+    }, [selectedMealTime]);
+
+    useEffect(() => {
+        // 이미 바텀시트가 열려있지 않을 때만 고려
+        if (!mealTimingBottomSheet &&
+            selectedLocation !== '현재 위치' &&
+            selectedMealTime &&
+            mealTiming !== undefined &&
+            mealTiming !== null &&
+            wayToFind === '') {
+
+            setWayBottomSheet(true);
+        }
+    }, [selectedLocation, selectedMealTime, mealTiming, wayToFind, mealTimingBottomSheet]);
+// 선택 위치 변경 감지 useEffect는 그대로 유지
     useEffect(() => {
         if(location) {
             const locationData = JSON.parse(location);
             if(!locationData.name) {
-                setSelectedLocation(locationData.address)
-            }else {
-                setSelectedLocation(locationData.name)
+                setSelectedLocation(locationData.address);
+            } else {
+                setSelectedLocation(locationData.name);
             }
-
         }
     }, [location]);
-
-    useEffect(() => {
-        if(selectedLocation !== '현재 위치' && selectedMealTime) {
-            setWayBottomSheet(true)
-        }
-    }, [selectedLocation, selectedMealTime]);
 
     return (
         <div className='flex flex-col gap-4 px-4'>
@@ -120,17 +169,19 @@ const HomeMealSettingClient = () => {
                 <HomeMealSettingComponent.HomeSelect selected={selectedLocation !== '현재 위치'} callBack={moveToMap} data={selectedLocation}/> 주변에서
             </div>
             <div className='font-medium text-title1 flex flex-row gap-1 items-center'>
-                <HomeMealSettingComponent.HomeSelect selected={!!selectedMealTime} data={`${selectedMealTime.day} ${mealTiming}`} callBack={() => {
-                    setMealTimingBottomSheet(true)
-                }}/>에
+                <HomeMealSettingComponent.HomeSelect
+                    selected={!!selectedMealTime}
+                    data={`${selectedMealTime.day} ${mealTiming}`}
+                    callBack={openScheduleBottomSheet}
+                />에
             </div>
             <div className='font-medium text-title1 flex flex-row gap-1 items-center'>
-               먹을 음식 <HomeMealSettingComponent.HomeSelect selected={wayToFind !== ''} data={wayToFind === '' ? '어떻게' : wayToFind} callBack={() => {
-                   setWayBottomSheet(true)
-                }}/>
+                먹을 음식 <HomeMealSettingComponent.HomeSelect selected={wayToFind !== ''} data={wayToFind === '' ? '어떻게' : wayToFind} callBack={() => {
+                setWayBottomSheet(true)
+            }}/>
                 고를까요?
             </div>
-           <HomeMealSettingComponent.FoodieScheduleBottomSheet
+            <HomeMealSettingComponent.FoodieScheduleBottomSheet
                 closeModal={closeScheduleBottomSheet}
                 modalOpen={mealTimingBottomSheet}
                 mealTiming={mealTiming}
@@ -138,7 +189,7 @@ const HomeMealSettingClient = () => {
                 selectDate={selectDate}
                 selectedMealTime={selectedMealTime}
                 setMealTiming={mealTimingController}
-           />
+            />
             <HomeMealSettingComponent.FoodieWayBottomSheet
                 closeModal={() => setWayBottomSheet(false)}
                 modalOpen={wayBottomSheet}
