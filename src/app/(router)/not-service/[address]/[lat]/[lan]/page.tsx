@@ -32,7 +32,7 @@ const NotServicePage = ({params}: { params: { address: string, lat: string, lan:
                     오픈 예정 지역이예요!
                 </div>
                 <div className='text-center text-body2 font-medium text-text-3'>
-                    교대역, 강남역, 역삼역, 선릉역, 삼성역 부근에서<br/>
+                    강남구, 서초구, 송파구, 강동구에서<br/>
                     우선적으로 서비스를 제공하고 있어요.
                 </div>
             </div>
