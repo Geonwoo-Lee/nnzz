@@ -4,10 +4,10 @@ import {KakaoKeywordSearchResult} from "@/src/app/func/common/kakao";
 import {Place} from "@/src/app/types/page/location/location";
 
 
-
 export async function searchAddressByKeyword(keyword: string): Promise<Array<Place>> {
     try {
-        const response = await fetch(
+        // 키워드 검색 API 호출
+        const keywordResponse = await fetch(
             `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(keyword)}`,
             {
                 headers: {
@@ -16,24 +16,69 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
             }
         );
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (!keywordResponse.ok) {
+            throw new Error(`HTTP error! status: ${keywordResponse.status}`);
         }
 
-        const data = await response.json();
+        const keywordData = await keywordResponse.json();
+        let results: Place[] = [];
 
-        if (data.documents.length === 0) {
-            console.log('No results found for the given keyword');
-            return [];
+        // 키워드 검색 결과 처리
+        if (keywordData.documents.length > 0) {
+            results = keywordData.documents.map((result: KakaoKeywordSearchResult) => ({
+                name: result.place_name,
+                address: result.address_name,
+                roadAddress: result.road_address_name,
+                latitude: parseFloat(result.y),
+                longitude: parseFloat(result.x)
+            }));
         }
 
-        return data.documents.map((result: KakaoKeywordSearchResult) => ({
-            name: result.place_name,
-            address: result.address_name,
-            roadAddress: result.road_address_name,
-            latitude: parseFloat(result.y),
-            longitude: parseFloat(result.x)
-        }));
+        // 키워드 검색 결과가 없으면 주소 검색 API도 시도
+        if (results.length === 0) {
+            const addressResponse = await fetch(
+                `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(keyword)}`,
+                {
+                    headers: {
+                        Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}`
+                    }
+                }
+            );
+
+            if (!addressResponse.ok) {
+                throw new Error(`HTTP error! status: ${addressResponse.status}`);
+            }
+
+            const addressData = await addressResponse.json();
+
+            if (addressData.documents.length > 0) {
+                results = addressData.documents.map((doc: any) => {
+                    let name = '';
+
+                    // 건물명이 있으면 사용
+                    if (doc.road_address && doc.road_address.building_name) {
+                        name = doc.road_address.building_name;
+                    } else if (doc.address && doc.address_name) {
+                        // 건물명이 없으면 주소명을 이름으로 사용
+                        name = doc.address_name;
+                    }
+
+                    return {
+                        name: name,
+                        address: doc.address ? doc.address.address_name || doc.address_name : '',
+                        roadAddress: doc.road_address ? doc.road_address.address_name || '' : '',
+                        latitude: parseFloat(doc.y),
+                        longitude: parseFloat(doc.x)
+                    };
+                });
+            }
+        }
+
+        if (results.length === 0) {
+            console.log('No results found for the given keyword or address');
+        }
+
+        return results;
     } catch (error) {
         console.error('Error searching address:', error);
         return [];

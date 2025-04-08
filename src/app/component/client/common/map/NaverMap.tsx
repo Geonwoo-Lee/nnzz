@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Script from "next/script";
 import {usePathname} from "next/navigation";
+import {useNaverMapLoaded} from "@/src/app/hooks/useNaverMapLoaded";
 
 export interface MapPlace {
     name: string;
@@ -16,7 +17,6 @@ interface Props {
     onPinUpdated?: (lat: number, lng: number) => void
 }
 
-let isNaverMapScriptLoaded = false;
 
 const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -24,6 +24,7 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     const [mapError, setMapError] = useState<string | null>(null);
     const [map, setMap] = useState<any>(null);
     const [marker, setMarker] = useState<any>(null);
+    const { isLoaded } = useNaverMapLoaded();
 
     const initializeMap = useCallback(() => {
         if (!mapRef.current || places.length === 0 || !window.naver) return;
@@ -78,13 +79,12 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     }, [map, marker, places, pinAble, onPinUpdated]);
 
     useEffect(() => {
-        if (isNaverMapScriptLoaded && window.naver && places.length > 0) {
+        if (isLoaded && window.naver && places.length > 0) {
             initializeMap();
         }
-    }, [isNaverMapScriptLoaded, places, path, initializeMap]);
+    }, [isLoaded, places, path, initializeMap]);
 
     const handleScriptLoad = () => {
-        isNaverMapScriptLoaded = true;
         initializeMap();
     };
 
@@ -94,7 +94,7 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
 
     return (
         <div>
-            {!isNaverMapScriptLoaded && (
+            {!isLoaded && (
                 <Script
                     src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
                     onLoad={handleScriptLoad}

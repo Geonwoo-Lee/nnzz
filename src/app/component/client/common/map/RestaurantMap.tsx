@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import {FindStore} from "@/src/app/types/models/find";
 import ResultCard from "@/src/app/component/client/common/restaurantResult/component/ResultCard";
 import Menu from '../../../../../../public/svg/header/Menu.svg'
+import {useNaverMapLoaded} from "@/src/app/hooks/useNaverMapLoaded";
 
 
 interface Props {
@@ -16,7 +17,6 @@ interface Props {
     step: 'map' | 'list' | 'result'
 }
 
-let isNaverMapScriptLoaded = false;
 
 const RestaurantMap: React.FC<Props> = ({ places,step, selectedStore, onStoreSelect, isUp, setStep }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -24,6 +24,7 @@ const RestaurantMap: React.FC<Props> = ({ places,step, selectedStore, onStoreSel
     const [mapError, setMapError] = useState<string | null>(null);
     const [map, setMap] = useState<any>(null);
     const markersRef = useRef<{ [key: string]: any }>({});
+    const { isLoaded, mapScriptError } = useNaverMapLoaded();
 
     useEffect(() => {
         if (places.length > 0 && !selectedStore?.storeId && onStoreSelect) {
@@ -137,24 +138,23 @@ const RestaurantMap: React.FC<Props> = ({ places,step, selectedStore, onStoreSel
     }, [selectedStore, places, map]);
 
     useEffect(() => {
-        if (isNaverMapScriptLoaded && window.naver && places.length > 0) {
+        if (isLoaded && window.naver && places.length > 0) {
             initializeMap();
         }
-    }, [isNaverMapScriptLoaded, places, path, initializeMap]);
+    }, [isLoaded, places, path, initializeMap]);
 
     const handleScriptLoad = () => {
-        isNaverMapScriptLoaded = true;
         initializeMap();
     };
 
-    if (mapError) {
+    if (mapError || mapScriptError) {
         return <div>Error: {mapError}</div>;
     }
 
 
     return (
         <div className='relative'>
-            {!isNaverMapScriptLoaded && (
+            {!isLoaded && (
                 <Script
                     src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
                     onLoad={handleScriptLoad}
