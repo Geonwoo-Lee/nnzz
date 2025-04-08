@@ -126,8 +126,8 @@ export default function RootLayout({
                     })
                 }}
             />
-            <meta name="naver-site-verification" content="b8b44acfbf4b794834769776d1b9b8cb37b41721"/>
-            <meta name="google-site-verification" content="1QKRvTlM8LTU89RcO5TjN7IrwiUGdj8OT5QFmps9dKU"/>
+            <meta name="naver-site-verification" content="dde16215ae14b67451a5c33bbb6bf1f4491cabad"/>
+            <meta name="google-site-verification" content="YMuxFpB_F05-z5Qnkz3P__CZUTm8JTXHXi3qkXdqtWM"/>
             <noscript>
                 <img
                     height="1"
