@@ -58,7 +58,15 @@ body {
   }
 }
 
-@media (max-width: 640px) {
+css/* 기본 스타일 (모든 화면 크기에 적용) */
+.card-image-size {
+  width: 100%; /* 또는 원하는 너비 */
+  height: auto;
+  aspect-ratio: 262/224; /* 원하시는 비율 */
+}
+
+/* 작은 화면에서만 적용되는 스타일 */
+@media (max-width: 374px) {
   .card-image-size {
     width: 120px !important;
     height: 140px !important;
@@ -66,10 +74,16 @@ body {
     max-height: none !important;
     margin: 0 auto;
   }
-  .cardWrap{
+}
 
+/* 중간 크기 화면에서 적용되는 스타일 (선택적) */
+@media (min-width: 375px) {
+  .card-image-size {
+    aspect-ratio: 262/224;
   }
 }
+
+
 
 
 .card-size {
