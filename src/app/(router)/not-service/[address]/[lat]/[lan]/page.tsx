@@ -31,8 +31,8 @@ const NotServicePage = ({params}: { params: { address: string, lat: string, lan:
                     {decodedAddress}는 <br/>
                     오픈 예정 지역이예요!
                 </div>
-                <div className='text-center text-body2 font-medium text-text-3'>
-                    강남구, 서초구, 송파구, 강동구에서<br/>
+                <div className='text-center text-body2 font-medium text-text-3 leading-6'>
+                    강남구, 강동구, 강서구, 관악구, 구로구, 금천구,<br/> 동작구, 서초구, 송파구, 양천구, 영등포구에서<br/>
                     우선적으로 서비스를 제공하고 있어요.
                 </div>
             </div>

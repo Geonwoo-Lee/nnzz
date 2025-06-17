@@ -7,8 +7,7 @@ export default function Home() {
     const KakaoButton = dynamic(() => import('@/src/app/component/client/common/button/KakaoButton'), { ssr: false });
     const HomeCarousel = dynamic(() => import('@/src/app/component/client/page/landing/features/carousel/HomeCarousel'), {ssr: false});
     return (
-        <HeightUnitWrapper className="flex flex-col justify-between bg-white max-w-[640px] pt-8 overflow-y-hidden mx-auto">
-            <main className="flex-grow flex flex-col items-center justify-center">
+        <HeightUnitWrapper className="flex flex-col flex-grow  items-center justify-between bg-white max-w-[640px] pt-8 overflow-y-hidden mx-auto">
                 <div className="w-full flex flex-col items-center justify-center">
                     <div className='flex flex-col justify-center items-center gap-8 pb-16'>
                         <Image width={128} height={128} src={'/images/logo/nnzz-home-logo.png'} alt='nnzz-logo'/>
@@ -22,7 +21,6 @@ export default function Home() {
             <footer className="w-full px-4 pt-4 pb-8 bg-white">
                 <KakaoButton/>
             </footer>
-            </main>
         </HeightUnitWrapper>
     );
 }
