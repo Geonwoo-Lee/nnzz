@@ -77,7 +77,12 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
                 setCategoryImage(image!.imageUrl!)
                 setTimeout(() => {
                     setIsLoading(false)
-                    CardApi.SaveLocation({id: storeIdx, date: day, day:DateUtils.mealRenderer(type),  authorization: token!})
+                    CardApi.SaveLocation({
+                        id: storeIdx,
+                        date: day,
+                        day: DateUtils.mealRenderer(type),
+                        authorization: token!
+                    })
                 }, 500)
             })
         }
@@ -107,7 +112,8 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
                         )}
 
                         {!isLoading && (
-                            <div className='flex-1  w-full flex flex-col gap-6 items-center overflow-y-hidden pb-[122px]   z-10'>
+                            <div
+                                className='flex-1  w-full flex flex-col gap-6 items-center overflow-y-hidden pb-[122px]   z-10'>
                                 <div className='text-title2 text-text-1 font-medium'>
                                     <span className='text-primary-6'>최종 선택</span> 맛의 짝!
                                 </div>
@@ -118,7 +124,9 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
 
                         <div className='absolute w-full bottom-0 z-0'>
                             <div className='w-full h-[122px] relative'>
-                                <Image fill src='/assets/hearts.png' alt='hearts'/>
+                                <Image placeholder="blur"
+                                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAgAAAwED/2wBDAAYEhMVExcZFhMXGxchHSAhJSImJiUlKSwyLC0yMT8/"
+                                       fill src='/assets/hearts.png' priority quality={75} alt='hearts'/>
                             </div>
                         </div>
                     </>

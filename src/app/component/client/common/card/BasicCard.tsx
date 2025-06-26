@@ -7,7 +7,7 @@ const BasicCard: React.FC<BasicCardProps> = ({ data }) => {
     return (
         <>
             <div className="w-full p-4 relative" >
-                <div className="w-full h-full relative rounded-[16px] overflow-hidden" style={{aspectRatio: '1/1.1'}} >
+                <div className="w-full h-full relative rounded-[16px] overflow-hidden aspect-[49/50]"  >
                     {
                         data.bgType &&
                         <Image
@@ -23,6 +23,10 @@ const BasicCard: React.FC<BasicCardProps> = ({ data }) => {
                             <Image
                                 src={data.imageUrl}
                                 alt={data.category}
+                                priority
+                                quality={75}
+                                placeholder="blur"
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAgAAAwED/2wBDAAYEhMVExcZFhMXGxchHSAhJSImJiUlKSwyLC0yMT8/"
                                 layout="fill"
                                 className="rounded-[16px] object-contain"
                                 draggable={false}
@@ -32,14 +36,14 @@ const BasicCard: React.FC<BasicCardProps> = ({ data }) => {
                 </div>
             </div>
             <div className="text-common px-4 flex flex-col gap-2 pb-4">
-                <div className="text-heading3 font-medium">{data.category}</div>
+                <div className="text-heading3 xs:text-heading1 font-medium">{data.category}</div>
                 <div className='flex flex-row items-center'>
                     <LocationPin/>
-                    <div className='text-body2 font-regular'>
+                    <div className='text-body2 xs:text-body1 font-regular'>
                         가까운 식당 {data.distance}m
                     </div>
                 </div>
-                <div className='text-body2 font-regular'>
+                <div className='text-body2 xs:text-body1  font-regular'>
                     {data.represent}
                 </div>
             </div>

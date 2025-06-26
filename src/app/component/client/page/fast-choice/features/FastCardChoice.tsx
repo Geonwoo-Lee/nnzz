@@ -46,6 +46,7 @@ const FastCardChoice = (props: FastChoicePageProps) => {
                         {
                             cardData.map((card, index) => (
                                 <FastChoiceComponent.FoodCard key={`fast-card-${index}`}
+                                                              index={index}
                                                               selected={selectedList.includes(card)}
                                                               data={card} setSelected={handleSelect}/>
                             ))
