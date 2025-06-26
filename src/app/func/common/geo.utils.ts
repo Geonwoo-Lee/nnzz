@@ -1,20 +1,16 @@
-
 import {KakaoResult} from "@/src/app/types/models/kakao";
 import {KakaoKeywordSearchResult} from "@/src/app/func/common/kakao";
 import {Place} from "@/src/app/types/page/location/location";
 
-
 export async function searchAddressByKeyword(keyword: string): Promise<Array<Place>> {
     try {
-        // 키워드 검색 API 호출
-        const keywordResponse = await fetch(
-            `https://dapi.kakao.com/v2/local/search/keyword.json?query=${encodeURIComponent(keyword)}`,
-            {
-                headers: {
-                    Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}`
-                }
-            }
-        );
+        const keywordResponse = await fetch('/api/kakao/search-keyword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ keyword }),
+        });
 
         if (!keywordResponse.ok) {
             throw new Error(`HTTP error! status: ${keywordResponse.status}`);
@@ -24,7 +20,7 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
         let results: Place[] = [];
 
         // 키워드 검색 결과 처리
-        if (keywordData.documents.length > 0) {
+        if (keywordData.documents && keywordData.documents.length > 0) {
             results = keywordData.documents.map((result: KakaoKeywordSearchResult) => ({
                 name: result.place_name,
                 address: result.address_name,
@@ -36,14 +32,13 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
 
         // 키워드 검색 결과가 없으면 주소 검색 API도 시도
         if (results.length === 0) {
-            const addressResponse = await fetch(
-                `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(keyword)}`,
-                {
-                    headers: {
-                        Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}`
-                    }
-                }
-            );
+            const addressResponse = await fetch('/api/kakao/search-address', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ keyword }),
+            });
 
             if (!addressResponse.ok) {
                 throw new Error(`HTTP error! status: ${addressResponse.status}`);
@@ -51,7 +46,7 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
 
             const addressData = await addressResponse.json();
 
-            if (addressData.documents.length > 0) {
+            if (addressData.documents && addressData.documents.length > 0) {
                 results = addressData.documents.map((doc: any) => {
                     let name = '';
 
@@ -85,7 +80,8 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
     }
 }
 
- export const getUserLocation = () => {
+// 이 함수는 로컬스토리지만 사용하므로 변경 필요 없음
+export const getUserLocation = () => {
     const locationString = localStorage.getItem('userLocation');
     const pinedLocation = localStorage.getItem('pinedLocation');
 
@@ -102,19 +98,16 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
     return locationString ? JSON.parse(locationString) : null;
 }
 
-
-
-
-export async function getAddressFromCoords(latitude: number, longitude: number): Promise<Place > {
+export async function getAddressFromCoords(latitude: number, longitude: number): Promise<Place> {
     try {
-        const response = await fetch(
-            `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${longitude}&y=${latitude}`,
-            {
-                headers: {
-                    Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}`
-                }
-            }
-        );
+        // 좌표를 주소로 변환 API 호출 (서버 API 사용)
+        const response = await fetch('/api/kakao/coord-to-address', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ latitude, longitude }),
+        });
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

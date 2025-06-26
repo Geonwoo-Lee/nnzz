@@ -16,3 +16,12 @@ export interface ErrorResponse {
     timestamp: string;
     message: string;
 }
+
+
+export interface ClientConfig {
+    kakaoJsKey: string;
+    siteUrl: string;
+    imageDomain: string;
+    apiBaseUrl: string;
+    gaId: string;
+}

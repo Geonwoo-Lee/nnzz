@@ -13,7 +13,7 @@ export const viewport: Viewport = {
     userScalable: false,
 };
 
-const ga4Id = process.env.NEXT_PUBLIC_GA_ID;
+const ga4Id = process.env.GA_ID;
 
 export const metadata: Metadata = {
     manifest: "/manifest.json",

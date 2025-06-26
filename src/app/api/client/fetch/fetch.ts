@@ -1,6 +1,6 @@
 import AuthUtils from "@/src/app/func/common/auth.utils";
 
-const apiKey = process.env.NEXT_PUBLIC_API_KEY || "";
+const apiKey = process.env.API_KEY || "";
 
 interface ErrorResponse {
     type: string;
