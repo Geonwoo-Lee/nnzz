@@ -124,8 +124,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
 
                         <div className='absolute w-full bottom-0 z-0'>
                             <div className='w-full h-[122px] relative'>
-                                <Image placeholder="blur"
-                                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAgAAAwED/2wBDAAYEhMVExcZFhMXGxchHSAhJSImJiUlKSwyLC0yMT8/"
+                                <Image
                                        fill src='/assets/hearts.png' priority quality={75} alt='hearts'/>
                             </div>
                         </div>

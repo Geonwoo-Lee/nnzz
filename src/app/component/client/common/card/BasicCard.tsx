@@ -25,8 +25,6 @@ const BasicCard: React.FC<BasicCardProps> = ({ data }) => {
                                 alt={data.category}
                                 priority
                                 quality={75}
-                                placeholder="blur"
-                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAgAAAwED/2wBDAAYEhMVExcZFhMXGxchHSAhJSImJiUlKSwyLC0yMT8/"
                                 layout="fill"
                                 className="rounded-[16px] object-contain"
                                 draggable={false}

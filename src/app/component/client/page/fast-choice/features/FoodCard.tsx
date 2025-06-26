@@ -15,8 +15,6 @@ const FoodCard = (props: FastChoiceCardProps) => {
                     priority={index > 6}
                     className='object-contain p-4'
                     alt='detail-image'
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAgAAAwED/2wBDAAYEhMVExcZFhMXGxchHSAhJSImJiUlKSwyLC0yMT8/"
                 />
             </div>
         </div>
