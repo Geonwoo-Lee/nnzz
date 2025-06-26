@@ -2,7 +2,8 @@ import Image from 'next/image'
 import {FastChoiceCardProps} from "@/src/app/types/page/fast-choice/fast-choice";
 
 const FoodCard = (props: FastChoiceCardProps) => {
-    const {selected, setSelected, data} = props
+    const {selected, setSelected, data, index} = props
+    console.log(data)
 
     return <div className={`flex flex-col gap-3 cursor-pointer transition-opacity ${!selected ? 'opacity-40' : 'opacity-100'}`} onClick={() => {
         setSelected(data)
@@ -12,8 +13,11 @@ const FoodCard = (props: FastChoiceCardProps) => {
                 <Image
                     src={data.imageUrl}
                     fill
+                    priority={false}
                     className='object-contain p-4'
                     alt='detail-image'
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAgAAAwED/2wBDAAYEhMVExcZFhMXGxchHSAhJSImJiUlKSwyLC0yMT8/"
                 />
             </div>
         </div>

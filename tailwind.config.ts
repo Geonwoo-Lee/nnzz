@@ -193,6 +193,14 @@ const config: Config = {
         'display2': ['51px', { lineHeight: '3.643rem' }],     // 51px
         'display1': ['58px', { lineHeight: '4.143rem' }],      // 58px
       },
+      screens: {
+        'xs': '420px',    // 추가
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+      },
       colors: {
         ...colors,
         "static-white": "rgba(255, 255, 255, 1)",

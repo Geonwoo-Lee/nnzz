@@ -7,7 +7,13 @@ import {FindStoreType} from "@/src/app/types/models/find";
 import Image from "next/image";
 
 
-const RoundFinishCard = ({store, day, type, categoryImage, handleOpenNaverMap}: { store: FindStoreType, day: string, type: string, categoryImage: string, handleOpenNaverMap: (store: FindStoreType) => void}) => {
+const RoundFinishCard = ({store, day, type, categoryImage, handleOpenNaverMap}: {
+    store: FindStoreType,
+    day: string,
+    type: string,
+    categoryImage: string,
+    handleOpenNaverMap: (store: FindStoreType) => void
+}) => {
     return (
         <div className='w-full max-w-full sm:max-w-md mx-auto px-4 sm:px-8'>
             <div className='w-full flex flex-col shadow-top-sides gap-2 rounded-t-[12px] bg-bg-0 px-2 sm:px-4'>
@@ -15,7 +21,9 @@ const RoundFinishCard = ({store, day, type, categoryImage, handleOpenNaverMap}: 
                     <div className='w-[80px] sm:w-[118px] relative' style={{
                         aspectRatio: '1/1'
                     }}>
-                        <Image src={categoryImage} alt='category' fill/>
+                        <Image priority placeholder="blur"
+                               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAgAAAwED/2wBDAAYEhMVExcZFhMXGxchHSAhJSImJiUlKSwyLC0yMT8/"
+                               src={categoryImage} alt='category' fill/>
                     </div>
                 </div>
                 <div className='py-2 flex items-center justify-center text-text-1 text-title2 font-bold'>

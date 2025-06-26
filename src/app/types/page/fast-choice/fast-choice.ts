@@ -11,6 +11,7 @@ export interface FastChoiceCardProps {
     selected: boolean;
     data: FoodItem;
     setSelected: (card: FoodItem) => void;
+    index: number
 }
 
 export interface FastChoiceButtonProps {

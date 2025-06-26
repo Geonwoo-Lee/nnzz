@@ -37,7 +37,7 @@ const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCar
             )}
             {
                 deleted ? <div onClick={handleDelete}
-                               className="bg-common-white z-40 rounded-full w-[24px] h-[24px] absolute flex justify-center items-center top-6 right-6 " >
+                               className="bg-common-white z-40 rounded-full w-[24px] h-[24px] absolute flex justify-center items-center top-6 right-6 ">
                     <Plus/>
                 </div> : <div
                     onClick={handleDelete}
@@ -46,34 +46,34 @@ const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCar
                         className="cursor-pointer text-common-white h-[2px] w-[10px] border border-common-white rounded-large "></div>
                 </div>
             }
-            <div className='p-4'>
-            <div
-                className={` relative card-image-size ${className ? className : ""} rounded-[16px] overflow-hidden`}
-            >
-                <div className="w-fulle rounded-[16px] overflow-hidden">
-                    <Image
-                        src={`/images/bg/${data.bgType}.png`}
-                        alt="background"
-                        layout="fill"
-                        className=" object-cover"
-                        draggable={false}
-                    />
-                    <div className="absolute inset-0">
-                        <div className="relative w-full h-full pt-4 px-8 flex items-center justify-center">
-                            <Image
-                                src={data.imageUrl}
-                                alt={`${data.categoryId} image`}
-                                layout="fill"
-                                className="rounded-[16px] object-contain"
-                                draggable={false}
-                            />
+            <div className='xs:p-4 p-2'>
+                <div
+                    className={` relative card-image-size ${className ? className : ""} rounded-[16px] overflow-hidden`}
+                >
+                    <div className="w-fulle rounded-[16px] overflow-hidden">
+                        <Image
+                            src={`/images/bg/${data.bgType}.png`}
+                            alt="background"
+                            layout="fill"
+                            className=" object-cover"
+                            draggable={false}
+                        />
+                        <div className="absolute inset-0">
+                            <div className="relative w-full h-full pt-4 px-8 flex items-center justify-center">
+                                <Image
+                                    src={data.imageUrl}
+                                    alt={`${data.categoryId} image`}
+                                    layout="fill"
+                                    className="rounded-[16px] object-contain"
+                                    draggable={false}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <div className="text-common flex flex-col gap-3  px-4 py-4 h-[120px] overflow-y-auto">
-                <h2 className="text-title2 font-medium">{data.category}</h2>
+            <div className="text-common flex flex-col xs:gap-3 gap-1  px-4 py-4 xs:h-[120px] h-[110px] overflow-y-auto">
+                <h2 className="text-text-body1 xs:text-title2 font-medium">{data.category}</h2>
                 <div className="flex flex-row items-center">
                     <LocationPin/>
                     <div className='truncate text-caption2 font-medium'>가까운 식당 {data.distance}m</div>

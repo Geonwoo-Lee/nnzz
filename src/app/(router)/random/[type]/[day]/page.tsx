@@ -37,7 +37,6 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
                 return;
             }
 
-            // 수동으로 이미지를 그리기 위한 데이터 준비
             const cardData = {
                 imageUrl: foodItem.imageUrl,
                 category: randomData.category || '카테고리',
@@ -46,11 +45,9 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
                 categoryId: randomData.categoryId
             };
 
-            // 이미지가 미리 로드되었는지 확인
             const img = new Image();
             img.crossOrigin = 'anonymous';
             img.onload = () => {
-                // 이미지가 로드된 후 수동으로 카드 생성
                 createCardImage(cardData);
             };
             img.onerror = () => {
@@ -63,9 +60,7 @@ const RandomPage = ({params}: { params: { type: string, day: string } }) => {
         }
     };
 
-// 카드 이미지를 직접 생성
     const createCardImage = (cardData: CardImageModal) => {
-        // 기존에 보이는 UI 컴포넌트와 동일한 스타일의 임시 DOM 요소 생성
         const tempDiv = document.createElement('div');
         tempDiv.style.position = 'absolute';
         tempDiv.style.left = '-9999px';
