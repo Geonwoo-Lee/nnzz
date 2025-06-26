@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Script from "next/script";
-import {usePathname} from "next/navigation";
-import {useNaverMapLoaded} from "@/src/app/hooks/useNaverMapLoaded";
+import { usePathname } from "next/navigation";
+import { useNaverMapLoaded } from "@/src/app/hooks/useNaverMapLoaded";
 
 export interface MapPlace {
     name: string;
@@ -17,14 +17,14 @@ interface Props {
     onPinUpdated?: (lat: number, lng: number) => void
 }
 
-
 const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     const mapRef = useRef<HTMLDivElement>(null);
-    const path = usePathname()
-    const [mapError, setMapError] = useState<string | null>(null);
+    const path = usePathname();
     const [map, setMap] = useState<any>(null);
     const [marker, setMarker] = useState<any>(null);
+    const [scriptLoaded, setScriptLoaded] = useState(false);
     const { isLoaded } = useNaverMapLoaded();
+
 
     const initializeMap = useCallback(() => {
         if (!mapRef.current || places.length === 0 || !window.naver) return;
@@ -74,7 +74,6 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
                 map.fitBounds(bounds);
             }
         } catch (error) {
-            setMapError(`Failed to initialize map: ${(error as Error).message}`);
         }
     }, [map, marker, places, pinAble, onPinUpdated]);
 
@@ -85,27 +84,31 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     }, [isLoaded, places, path, initializeMap]);
 
     const handleScriptLoad = () => {
+        setScriptLoaded(true);
         initializeMap();
     };
 
-    if (mapError) {
-        return <div>Error: {mapError}</div>;
-    }
 
     return (
         <div>
-            {!isLoaded && (
+            {!isLoaded &&  (
                 <Script
                     src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
                     onLoad={handleScriptLoad}
                     strategy="afterInteractive"
-                    onError={() => {
-                        setMapError('Failed to load Naver Maps script');
-                    }}
                 />
             )}
             <div className="flex items-center justify-center w-[100vw] h-[100vh]">
-                <div ref={mapRef} style={{width: "100%", height: "100%"}}/>
+                {/* 스크립트 로딩 중 표시 */}
+                {!scriptLoaded && !isLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+                        <div className="text-center">
+                            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-500 mx-auto"></div>
+                            <p className="mt-4 text-gray-600">네이버 지도를 불러오는 중...</p>
+                        </div>
+                    </div>
+                )}
+                <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
             </div>
         </div>
     );

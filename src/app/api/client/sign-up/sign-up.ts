@@ -4,7 +4,7 @@ import {JoinParams, JoinRes} from "@/src/app/types/models/user";
 
 
 class SignUpApi extends BaseApi {
-    private static readonly BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+    private static readonly BASE_URL = process.env.BASE_URL;
     private static readonly ENDPOINTS = {
         JOIN: '/api/user/join'
     } as const;
