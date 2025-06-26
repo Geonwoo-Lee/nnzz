@@ -21,8 +21,7 @@ const RoundFinishCard = ({store, day, type, categoryImage, handleOpenNaverMap}: 
                     <div className='w-[80px] sm:w-[118px] relative' style={{
                         aspectRatio: '1/1'
                     }}>
-                        <Image priority placeholder="blur"
-                               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAgAAAwED/2wBDAAYEhMVExcZFhMXGxchHSAhJSImJiUlKSwyLC0yMT8/"
+                        <Image priority
                                src={categoryImage} alt='category' fill/>
                     </div>
                 </div>
