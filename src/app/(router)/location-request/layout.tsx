@@ -1,7 +1,5 @@
 import {Metadata} from "next";
 import {ReactNode} from "react";
-import BasicLayout from "@/src/app/component/layout/BasicLayout";
-import {HeaderTypes} from "@/src/app/types/common/header";
 
 
 export const metadata: Metadata = {
