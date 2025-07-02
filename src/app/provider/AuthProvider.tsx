@@ -28,19 +28,17 @@ const AuthProvider = ({ children }: {
             const isPublicPath = publicPaths.includes(path);
             const storageUserData = window.localStorage.getItem("nnzz_user");
 
-            // localStorage에 유저 데이터가 있는 경우
             if (storageUserData) {
                 try {
                     const userData = JSON.parse(storageUserData);
                     setUser(userData);
                     setLoading(false);
-                    return; // 유저 데이터가 있으면 여기서 종료
+                    return;
                 } catch (e) {
                     console.error('Failed to parse user data:', e);
                 }
             }
 
-            // localStorage에 유저 데이터가 없고 public path가 아닌 경우
             if (!isPublicPath && !storageUserData) {
                 router.push("/");
             }
