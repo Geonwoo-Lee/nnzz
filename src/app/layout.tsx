@@ -128,6 +128,7 @@ export default function RootLayout({
             />
             <meta name="naver-site-verification" content="dde16215ae14b67451a5c33bbb6bf1f4491cabad"/>
             <meta name="google-site-verification" content="YMuxFpB_F05-z5Qnkz3P__CZUTm8JTXHXi3qkXdqtWM"/>
+            <meta name="google-adsense-account" content="ca-pub-7391340913390710"/>
             <noscript>
                 <img
                     height="1"
