@@ -17,13 +17,27 @@ const ga4Id = process.env.GA_ID;
 
 export const metadata: Metadata = {
     manifest: "/manifest.json",
-    title: "nnzz",
-    description: "맛있는 솔루션",
+    title: '냠냠쩝쩝 - 직장인 점심 저녁 메뉴 고민 해결',
+    description: '냠냠쩝쩝에서 직장인들의 점심, 저녁 메뉴 고민을 함께 해결해드려요! 매일 다양한 메뉴 추천으로 식사 고민 끝! 🧚‍♀️',
+    keywords: [
+        '냠냠쩝쩝',
+        '점심 메뉴',
+        '저녁 메뉴',
+        '직장인 식사',
+        '메뉴 추천',
+        '오늘 뭐먹지',
+        '식사 고민',
+        'NNZZ',
+        '메뉴 고민',
+        '점심 추천',
+        '저녁 추천'
+    ],
     openGraph: {
-        title: "nnzz",
+        title: "냠냠쩝쩝",
         description: "맛있는 솔루션",
-        url: "https://www.nnzz.today",
-        siteName: "nnzz",
+        url: 'https://www.nnzz.today',
+        type: 'website',
+        siteName: "냠냠쩝쩝",
         images: [
             {
                 url: "/icon/app-icon-512x512.png",
@@ -32,6 +46,12 @@ export const metadata: Metadata = {
                 alt: "nnzz 로고",
             },
         ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: '냠냠쩝쩝 - 직장인 점심 저녁 메뉴 고민 해결',
+        description: '냠냠쩝쩝에서 직장인들의 점심, 저녁 메뉴 고민을 함께 해결해드려요! 🧚‍♀️',
+        images: ["/icon/app-icon-512x512.png"],
     },
     robots: {
         index: true,
@@ -43,6 +63,9 @@ export const metadata: Metadata = {
             'max-image-preview': 'large',
             'max-snippet': -1,
         },
+    },
+    alternates: {
+        canonical: 'https://www.nnzz.today',
     },
     icons: {
         icon: [
@@ -61,13 +84,12 @@ export const metadata: Metadata = {
         ],
     },
     appleWebApp: {
-        title: "nnzz",
+        title: "냠냠쩝쩝",
         statusBarStyle: "default",
         capable: true,
     },
 
-    applicationName: "nnzz",
-    keywords: ["맛있는", "솔루션", "점심", "저녁", "메뉴", "고민"],
+    applicationName: "냠냠쩝쩝",
     formatDetection: {
         telephone: false,
     },
