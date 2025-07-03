@@ -19,7 +19,6 @@ export default function AdBanner({ slot, format = "auto", style, className }: Ad
 
     return (
         <div className={className}>
-            <div className="text-center text-xs text-gray-400">광고</div>
             <ins
                 className="adsbygoogle"
                 style={{ display: 'block', ...style }}
