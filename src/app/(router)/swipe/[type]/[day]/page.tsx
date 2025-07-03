@@ -9,6 +9,8 @@ import SwipeComponent from "@/src/app/component/client/page/swIpe/features/Swipe
 import FindApi from "@/src/app/api/client/find/find";
 import RestaurantResult from "@/src/app/component/client/common/restaurantResult/RestaurantResult";
 import {getUserLocation} from "@/src/app/func/common/geo.utils";
+import Script from "next/script";
+import AdBanner from "@/src/app/component/client/common/adSense/AdBanner";
 
 interface PageProps {
     params: {
@@ -20,7 +22,7 @@ interface PageProps {
 const SwapPage = ({ params }: PageProps) => {
     const { type, day } = params;
     const {  requestGeolocation } = useGeolocation();
-    const [Funnel, setStep] = useFunnel(["0", "1", "2", "3"], "0");
+    const [Funnel, setStep, step] = useFunnel(["0", "1", "2", "3"], "0");
     const [likeCards, setLikeCards] = useState<FoodItem[]>([]);
     const [deletedList, setDeletedList] = useState<FoodItem[]>([]);
     const [cardData, setCardData] = useState<FoodItem[]>([]);
@@ -104,20 +106,52 @@ const SwapPage = ({ params }: PageProps) => {
 
 
 
-    return   <Funnel>
-        <Funnel.Step name="0">
-            <SwipeClientPage day={day} type={type} likedCards={likeCards} setLikeCards={controlLikeCard} cards={cardData} isLoading={isLoading} setStep={setStep}/>
-        </Funnel.Step>
-        <Funnel.Step name="1">
-           <SwipeComponent.CompletePage day={day} type={type} setStep={nextStep} deletedList={deletedList} setDeletedCards={controlDeleteList} likeCards={likeCards}/>
-        </Funnel.Step>
-        <Funnel.Step name="2">
-            <SwipeComponent.NoChoice day={day} type={type} />
-        </Funnel.Step>
-        <Funnel.Step name="3">
-            <RestaurantResult name={getUserLocation()?.name || ''} address={getUserLocation()?.address || ''} day={day} type={type} lat={ getUserLocation()?.latitude || 0} lng={ getUserLocation()?.longitude || 0} categoryList={categoryList()} />
-        </Funnel.Step>
-    </Funnel>
+    return   <>
+        {step === "3" && (
+            <Script
+                id="auto-ads-step3"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        setTimeout(function() {
+                            if (!window.__step3AutoAdsLoaded) {
+                                try {
+                                    (adsbygoogle = window.adsbygoogle || []).push({
+                                        google_ad_client: "ca-pub-7391340913390710",
+                                        enable_page_level_ads: true
+                                    });
+                                    window.__step3AutoAdsLoaded = true;
+                                    console.log('결과 화면 자동 광고 활성화!');
+                                } catch (err) {
+                                    console.error('자동 광고 에러:', err);
+                                }
+                            }
+                        }, 500);
+                    `
+                }}
+            />
+        )}
+        <Funnel>
+            <Funnel.Step name="0">
+                <SwipeClientPage day={day} type={type} likedCards={likeCards} setLikeCards={controlLikeCard}
+                                 cards={cardData} isLoading={isLoading} setStep={setStep}/>
+            </Funnel.Step>
+            <Funnel.Step name="1">
+                <SwipeComponent.CompletePage day={day} type={type} setStep={nextStep} deletedList={deletedList}
+                                             setDeletedCards={controlDeleteList} likeCards={likeCards}/>
+            </Funnel.Step>
+            <Funnel.Step name="2">
+                <SwipeComponent.NoChoice day={day} type={type}/>
+            </Funnel.Step>
+            <Funnel.Step name="3">
+                <AdBanner  slot="1022048370" />
+                <RestaurantResult name={getUserLocation()?.name || ''} address={getUserLocation()?.address || ''}
+                                  day={day} type={type} lat={getUserLocation()?.latitude || 0}
+                                  lng={getUserLocation()?.longitude || 0} categoryList={categoryList()}/>
+            </Funnel.Step>
+        </Funnel>
+    </>
+
 }
 
 
