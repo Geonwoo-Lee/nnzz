@@ -121,9 +121,7 @@ const SwapPage = ({ params }: PageProps) => {
                                         enable_page_level_ads: true
                                     });
                                     window.__step3AutoAdsLoaded = true;
-                                    console.log('결과 화면 자동 광고 활성화!');
                                 } catch (err) {
-                                    console.error('자동 광고 에러:', err);
                                 }
                             }
                         }, 500);
