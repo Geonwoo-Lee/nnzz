@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Script from "next/script";
-import { usePathname } from "next/navigation";
 import {FindStore} from "@/src/app/types/models/find";
 import ResultCard from "@/src/app/component/client/common/restaurantResult/component/ResultCard";
 import Menu from '../../../../../../public/svg/header/Menu.svg'
@@ -16,9 +15,8 @@ interface Props {
     step: 'map' | 'list' | 'result'
 }
 
-const RestaurantMap: React.FC<Props> = ({ places, step, selectedStore, onStoreSelect, isUp, setStep }) => {
+const RestaurantMap: React.FC<Props> = ({ places, selectedStore, onStoreSelect, isUp, setStep }) => {
     const mapRef = useRef<HTMLDivElement>(null);
-    const path = usePathname();
     const [mapError, setMapError] = useState<string | null>(null);
     const [map, setMap] = useState<any>(null);
     const markersRef = useRef<{ [key: string]: any }>({});
