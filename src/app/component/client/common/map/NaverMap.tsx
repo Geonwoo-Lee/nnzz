@@ -58,7 +58,6 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
                     });
                 }
             } else {
-                // 기존 지도 객체가 있으면 중심점만 업데이트
                 const newPosition = new window.naver.maps.LatLng(places[0].lat, places[0].lng);
                 map.setCenter(newPosition);
                 if (marker) {

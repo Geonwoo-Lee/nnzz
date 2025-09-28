@@ -105,7 +105,6 @@ const SwapPage = ({ params }: PageProps) => {
     }, [type, day]);
 
 
-
     return   <>
         {step === "3" && (
             <Script

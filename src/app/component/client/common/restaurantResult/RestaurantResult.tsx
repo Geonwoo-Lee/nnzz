@@ -21,7 +21,7 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
     const [isUp, setIsUp] = useState(false)
     const [defaultDistance, setDefaultDistance] = useState(750)
     const [Funnel, setStep, step] = useFunnel(["list", "map", "result"], "list");
-    const [selectedStore, setSelectedStore] = useState<FindStore >(restaurants[0]);
+    const [selectedStore, setSelectedStore] = useState<FindStore | null >(restaurants[0]);
     const [filteredRestaurants, setFilteredRestaurants] = useState<FindStore[]>(restaurants);
 
     const changeDistance = (distance: number) => {
@@ -45,7 +45,7 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
         })
     }
 
-    const changeSelectedStore = (store: FindStore) => {
+    const changeSelectedStore = (store: FindStore | null) => {
         setSelectedStore(store)
     }
 

@@ -7,18 +7,16 @@ import ResultCard from "@/src/app/component/client/common/restaurantResult/compo
 import Menu from '../../../../../../public/svg/header/Menu.svg'
 import {useNaverMapLoaded} from "@/src/app/hooks/useNaverMapLoaded";
 
-
 interface Props {
     places: FindStore[];
-    selectedStore?: FindStore;
-    onStoreSelect: (storeId: FindStore) => void;
+    selectedStore: FindStore | null;
+    onStoreSelect: (storeId: FindStore | null) => void;
     isUp?: boolean
     setStep: (step: 'map' | 'list' | 'result') => void
     step: 'map' | 'list' | 'result'
 }
 
-
-const RestaurantMap: React.FC<Props> = ({ places,step, selectedStore, onStoreSelect, isUp, setStep }) => {
+const RestaurantMap: React.FC<Props> = ({ places, step, selectedStore, onStoreSelect, isUp, setStep }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const path = usePathname();
     const [mapError, setMapError] = useState<string | null>(null);
@@ -26,131 +24,140 @@ const RestaurantMap: React.FC<Props> = ({ places,step, selectedStore, onStoreSel
     const markersRef = useRef<{ [key: string]: any }>({});
     const { isLoaded, mapScriptError } = useNaverMapLoaded();
 
-    useEffect(() => {
-        if (places.length > 0 && !selectedStore?.storeId && onStoreSelect) {
-            onStoreSelect(places[0]);
-        }
-    }, [places, selectedStore, onStoreSelect]);
+    const isMapInitializedRef = useRef<boolean>(false);
+    const isBoundsSetRef = useRef<boolean>(false);
 
     useEffect(() => {
-        if (map && places.length > 0) {
-            const bounds = new window.naver.maps.LatLngBounds();
-            places.forEach(place => {
-                bounds.extend(new window.naver.maps.LatLng(place.lat, place.lng));
-            });
-            map.fitBounds(bounds);
+        if (places.length > 0 && !selectedStore) {
+            onStoreSelect?.(places[0]);
         }
-    }, [map, places, step]);
+    }, [places.length]);
 
     const initializeMap = useCallback(() => {
-        if (!mapRef.current || places.length === 0 || !window.naver) return;
+        if (!mapRef.current || places.length === 0 || !window.naver || isMapInitializedRef.current) {
+            return;
+        }
 
         try {
-            if (!map) {
-                const options = {
-                    center: new window.naver.maps.LatLng(
-                        selectedStore?.lat || places[0].lat,
-                        selectedStore?.lng || places[0].lng
-                    ),
-                    zoom: 20,
-                    scaleControl: false,
-                    logoControl: true,
-                    mapDataControl: false,
-                    zoomControl: false,
-                    mapTypeControl: false,
-                    logoControlOptions: {
-                        position: window.naver.maps.Position.TOP_LEFT
-                    }
-                };
-                const newMap = new window.naver.maps.Map(mapRef.current, options);
-                setMap(newMap);
+            const options = {
+                center: new window.naver.maps.LatLng(
+                    places[0].lat,
+                    places[0].lng
+                ),
+                zoom: 16,
+                scaleControl: false,
+                logoControl: true,
+                mapDataControl: false,
+                zoomControl: false,
+                mapTypeControl: false,
+                logoControlOptions: {
+                    position: window.naver.maps.Position.TOP_LEFT
+                }
+            };
 
-                // 초기 bounds 설정
-                const bounds = new window.naver.maps.LatLngBounds();
-                places.forEach(place => {
-                    bounds.extend(new window.naver.maps.LatLng(place.lat, place.lng));
-                });
-                newMap.fitBounds(bounds);
-            }
+            const mapInstance = new window.naver.maps.Map(mapRef.current, options);
+            setMap(mapInstance);
 
-            Object.values(markersRef.current).forEach(marker => marker.setMap(null));
-            markersRef.current = {};
-
-            places.forEach(place => {
-                const isSelected = selectedStore
-                    ? place.storeId === selectedStore.storeId
-                    : place.storeId === places[0].storeId;
-
-                const marker = new window.naver.maps.Marker({
-                    position: new window.naver.maps.LatLng(place.lat, place.lng),
-                    map: map || null,
-                    zIndex: isSelected ? 100 : 1,  // 선택된 마커는 더 높은 zIndex
-                    icon: isSelected ? {
-                        content: '<img src="/assets/mapPinColored.png" alt="Selected Pin" style="width:38px; height:50px; -webkit-user-drag: none; user-select: none;" />',
-                        anchor: new window.naver.maps.Point(20, 40),
-                    } : {
-                        content: '<div class="cs_mapbridge"><div class="map_marker"><img class="marker_thumb_img" src="/assets/mapPinRed.png" alt="기본 마커" style="-webkit-user-drag: none; user-select: none;"></div></div>',
-                        anchor: new window.naver.maps.Point(12, 38),
-                    },
-                });
-
-                window.naver.maps.Event.addListener(marker, 'click', () => {
-                    if (onStoreSelect) {
-                        onStoreSelect(place);
-                        map.setZoom(17);
-                        map.setCenter(new window.naver.maps.LatLng(place.lat, place.lng));
-                    }
-                });
-
-                markersRef.current[place.storeId] = marker;
+            window.naver.maps.Event.addListener(mapInstance, 'click', () => {
+                if (onStoreSelect) {
+                    onStoreSelect(null);
+                }
             });
-            if (selectedStore) {
-                map?.setZoom(17);
-                map?.setCenter(new window.naver.maps.LatLng(selectedStore.lat, selectedStore.lng));
-            }
+
+            isMapInitializedRef.current = true;
+
         } catch (error) {
             setMapError(`Failed to initialize map: ${(error as Error).message}`);
         }
-    }, [map, places, selectedStore, onStoreSelect]);
+    }, [places, onStoreSelect]);
 
-// 선택된 가게가 변경될 때 마커 스타일 업데이트
-    useEffect(() => {
+    const setBoundsForAllPlaces = useCallback((mapInstance: any) => {
+        if (!mapInstance || places.length === 0 || isBoundsSetRef.current) return;
+
+        const bounds = new window.naver.maps.LatLngBounds();
+        places.forEach(place => {
+            bounds.extend(new window.naver.maps.LatLng(place.lat, place.lng));
+        });
+
+        mapInstance.fitBounds(bounds);
+        isBoundsSetRef.current = true;
+    }, [places]);
+
+    const createMarkers = useCallback(() => {
+        if (!map || !window.naver || places.length === 0) return;
+
+        Object.values(markersRef.current).forEach(marker => marker.setMap(null));
+        markersRef.current = {};
+
+        places.forEach(place => {
+            const marker = new window.naver.maps.Marker({
+                position: new window.naver.maps.LatLng(place.lat, place.lng),
+                map: map,
+                zIndex: 1,
+                icon: {
+                    content: '<div class="cs_mapbridge"><div class="map_marker"><img class="marker_thumb_img" src="/assets/mapPinRed.png" alt="기본 마커" style="-webkit-user-drag: none; user-select: none;"></div></div>',
+                    anchor: new window.naver.maps.Point(12, 38),
+                },
+            });
+
+            window.naver.maps.Event.addListener(marker, 'click', (e: any) => {
+                e.pointerEvent?.stopPropagation?.();
+                if (onStoreSelect) {
+                    onStoreSelect(place);
+                }
+            });
+
+            markersRef.current[place.storeId] = marker;
+        });
+
+        setBoundsForAllPlaces(map);
+
+    }, [map, places]);
+
+    const updateMarkerIcons = useCallback(() => {
         if (!map || !window.naver) return;
 
         Object.entries(markersRef.current).forEach(([storeId, marker]) => {
             const isSelected = storeId === selectedStore?.storeId;
             marker.setZIndex(isSelected ? 100 : 1);
             marker.setIcon(isSelected ? {
-                content: '<img src="/assets/mapPinColored.png" alt="Selected Pin" style="width:38px; height:50px;" />',
+                content: '<img src="/assets/mapPin.png" alt="Selected Pin" style="width:38px; height:50px;  min-width:38px;" />',
                 anchor: new window.naver.maps.Point(20, 40),
             } : {
-                content: '<div class="cs_mapbridge"><div class="map_marker"><img style="width:38px; height:50px;"  src="/assets/mapPinRed.png" alt="기본 마커"></div></div>',
+                content: '<div class="cs_mapbridge"><div class="map_marker"><img style="width:23px; height:28px;" src="/assets/mapPinRed.png" alt="기본 마커"></div></div>',
                 anchor: new window.naver.maps.Point(12, 38),
             });
         });
-
-        if (selectedStore) {
-            const selectedPlace = places.find(place => place.storeId === selectedStore?.storeId);
-            if (selectedPlace) {
-                map.setCenter(new window.naver.maps.LatLng(selectedPlace.lat, selectedPlace.lng));
-            }
-        }
-    }, [selectedStore, places, map]);
+    }, [map, selectedStore]);
 
     useEffect(() => {
-        if (isLoaded && window.naver && places.length > 0) {
+        if (isLoaded && window.naver && places.length > 0 && !isMapInitializedRef.current) {
             initializeMap();
         }
-    }, [isLoaded, places, path, initializeMap]);
+    }, [isLoaded, initializeMap]);
+
+    useEffect(() => {
+        if (map && places.length > 0) {
+            createMarkers();
+        }
+    }, [map, places, createMarkers]);
+
+    useEffect(() => {
+        if (map && Object.keys(markersRef.current).length > 0) {
+            updateMarkerIcons();
+        }
+    }, [selectedStore, updateMarkerIcons]);
+
 
     const handleScriptLoad = () => {
-        initializeMap();
+        if (places.length > 0 && !isMapInitializedRef.current) {
+            initializeMap();
+        }
     };
 
     if (mapError || mapScriptError) {
         return <div>Error: {mapError}</div>;
     }
-
 
     return (
         <div className='relative'>

@@ -39,7 +39,7 @@ const SwipeClientPage = (props :DeckProps ) => {
                                 <div className='font-medium text-common text-body2'>선택 할 수 있는 카드가 없어요 😭</div> :
                                 <ProgressBar leftCount minRequired={3} beforeMinText="최소 3개 카드를 고르면 메뉴 추천 받을 수 있어요 🙂"
                                              afterMinText={`이제 ${DateUtils.mealRenderer(type)} 메뉴를 추천 받을 수 있어요!`}
-                                             currentStep={likedCards.length} totalStep={15}/>
+                                             currentStep={likedCards.length} totalStep={cards.length}/>
                         }
                     </div>
                 </div>
