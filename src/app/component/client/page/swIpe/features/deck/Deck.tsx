@@ -40,6 +40,7 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep,setLikeCards }) =
 
 
 
+
     return (
         <div className="flex w-full flex-col gap-6  bg-common-white">
             <div ref={deckRef} className="w-full relative ">

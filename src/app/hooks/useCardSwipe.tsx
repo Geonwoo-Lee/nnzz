@@ -25,7 +25,7 @@ export function useCardSwipe(cards: FoodItem[],) {
         if(cards.length === 0) {
             return
         }
-        if (currentIndex >= 15) {
+        if (currentIndex >= cards.length) {
             setIsFinished(true)
         }
     }, [currentIndex, cards.length])
