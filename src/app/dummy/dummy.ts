@@ -660,6 +660,40 @@ export const categoryNames = {
     "Salad.png": "샐러드"
 };
 
+export const restaurantCategoryNames = {
+    "Bibim.png": "한식",
+    "Seolungtang.png": "탕과 국",
+    "Zzigae.png": "찌개",
+    "Samgyetang.png": "삼계탕",
+    "Nengmyun.png": "냉면",
+    "Kalgooksu.png": "칼국수",
+    "Shabu.png": "샤브샤브",
+    "Jook.png": "죽",
+    "Suyook.png": "수육",
+    "Jeon.png": "전",
+    "Jjajang.png": "중식",
+    "Ramen.png": "일식",
+    "Sushi.png": "초밥",
+    "Donkats.png": "돈까스",
+    "Curry.png": "카레",
+    "RiceNoodle.png": "아시아 음식",
+    "Tteockbokki.png": "분식",
+    "Pasta.png": "양식",
+    "Taco.png": "멕시코,남미음식",
+    "Fusion.png": "퓨전",
+    "Beef.png": "소고기",
+    "Chicken.png": "닭",
+    "Gobchang.png": "곱창",
+    "Shrimp.png": "해물",
+    "Hoi.png": "생선 회",
+    "Pizza.png": "피자",
+    "Hamburger.png": "햄버거",
+    "Sandwich.png": "빵",
+    "Beer.png": "술집",
+    "Buffet.png": "뷔페",
+    "Salad.png": "샐러드"
+}
+
 
 export const groupedCategories = {
     "Bibim.png": [1, 2, 3, 4, 5, 6],

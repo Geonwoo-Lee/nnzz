@@ -11,9 +11,7 @@ export function useGeolocation() {
 
         if (pinedLocation) {
             setLocation(JSON.parse(pinedLocation));
-            console.log('pined');
         } else if (storedLocation) {
-            console.log('user');
             setLocation(JSON.parse(storedLocation));
         }
     };
@@ -37,7 +35,6 @@ export function useGeolocation() {
         if (pinedLocation) {
             const parsedPinedLocation = JSON.parse(pinedLocation);
             setLocation(parsedPinedLocation);
-            console.log('Using pined location');
             return;
         }
 
@@ -55,7 +52,6 @@ export function useGeolocation() {
                         name: address.name,
                     };
                     setLocation(newLocation);
-                    console.log(newLocation)
                     localStorage.setItem('userLocation', JSON.stringify(newLocation));
                 },
                 (error) => {

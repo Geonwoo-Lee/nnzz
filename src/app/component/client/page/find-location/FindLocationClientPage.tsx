@@ -45,8 +45,7 @@ const FindLocationClientPage = () => {
                 address: location.address!,
                 latitude: location.lat,
                 longitude: location.lng
-            }).then((res) => {
-                console.log(res)
+            }).then(() => {
                     window.localStorage.setItem('pinedLocation', JSON.stringify(location));
                     router.push('/home')
             }).catch(() => {

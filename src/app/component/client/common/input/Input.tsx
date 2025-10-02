@@ -48,7 +48,6 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleFocusClick = () => {
-        console.log(rightFocus, leftFocus)
         if(rightFocus || leftFocus) {
             inputRef.current?.focus();
         }

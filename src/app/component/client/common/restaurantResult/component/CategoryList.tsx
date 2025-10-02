@@ -1,4 +1,4 @@
-import { categoryNames, groupedCategories } from "@/src/app/dummy/dummy";
+import {categoryNames, groupedCategories, restaurantCategoryNames} from "@/src/app/dummy/dummy";
 import { FindStore } from "@/src/app/types/models/find";
 
 interface CategoryListProps {
@@ -33,14 +33,16 @@ const CategoryList: React.FC<CategoryListProps> = ({
         }
     };
 
+
     return (
         <div className="w-full overflow-x-auto pb-2">
             <div className="flex gap-4 px-4">
                 {Object.entries(groupedCategories).map(([categoryKey, ids]) => {
                     const hasRestaurants = restaurants.some(r => ids.includes(r.categoryId));
                     if (!hasRestaurants) return null;
-                    const isExcluded = !filteredRestaurants.some(r =>
+                    const isExcluded = !filteredRestaurants.some(r =>{
                         ids.includes(r.categoryId)
+                    }
                     );
 
                     return (
@@ -59,7 +61,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
                                 />
                             </div>
                             <span className={`mt-2 text-sm text-center font-medium ${isExcluded ? 'opacity-40' : ''}`}>
-                                {categoryNames[categoryKey as CategoryKey]}
+                                {restaurantCategoryNames[categoryKey as CategoryKey]}
                             </span>
                         </div>
                     );
