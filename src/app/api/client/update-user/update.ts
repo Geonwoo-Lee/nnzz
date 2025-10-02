@@ -18,7 +18,6 @@ class UpdateUserApi {
         const data = await response.json();
 
         if (!response.ok) {
-            console.log(response,'@@')
             throw {
                 status: response.status,
                 message: data.message,

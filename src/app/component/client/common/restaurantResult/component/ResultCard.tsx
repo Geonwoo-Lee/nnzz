@@ -11,21 +11,21 @@ const ResultCard = ({data, isMap, setStep, setSelectedStore}: {data: FindStore, 
                     <div className='flex flex-col gap-3'>
                         <div className='flex flex-row justify-between items-center'>
                             <div className='flex flex-row gap-2 items-center'>
-                                <div className='text-title2 font-bold text-text-1 antialiased'>
+                                <div className='text-title2 font-bold text-text-1 antialiased max-w-[400px] truncate overflow-hidden'>
                                     {name}
                                 </div>
                                 <div className='text-text-3 text-caption2 font-regular'>
                                     {distance}m
                                 </div>
                             </div>
-                            <div className='inline-flex justify-center px-3 py-2 items-center rounded-[1200px] bg-amber-50 text-caption2 font-medium text-amber-600'>
+                            <div className='inline-flex justify-center whitespace-nowrap px-3 py-2 items-center rounded-[1200px] bg-amber-50 text-caption2 font-medium text-amber-600'>
                                 {category}
                             </div>
                         </div>
                         <div className='text-caption2 font-medium text-text-2 truncate'>
                             {address}
                         </div>
-                        <div className='flex flex-row'>
+                        <div className='flex flex-row flex-wrap gap-1'>
                             {
                                 broadcasts && (
                                     broadcasts.map((el, index) => (
