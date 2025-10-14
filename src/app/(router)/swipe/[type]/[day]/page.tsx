@@ -68,6 +68,7 @@ const SwapPage = ({ params }: PageProps) => {
             setShouldMoveToNext(false);
         }
     }, [likeCards, shouldMoveToNext]);
+
     useEffect(() => {
         setIsLoading(true);
         FindApi.findCategories({

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect  } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useSpring } from '@react-spring/web'
 import {FoodItem} from "@/src/app/types/models/food";
 import {BindType} from "@/src/app/types/hook/cardSwipte";
@@ -6,7 +6,7 @@ import {ImagePreloader} from "@/src/app/func/common/image.utils";
 
 export type DragStatus = 'like' | 'dislike' | 'neutral';
 
-export function useCardSwipe(cards: FoodItem[],) {
+export function useCardSwipe(cards: FoodItem[]) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [props, api] = useSpring(() => ({ x: 0, y: 0, rotation: 0 }))
     const [likedCards, setLikedCards] = useState<FoodItem[]>([])
@@ -14,6 +14,7 @@ export function useCardSwipe(cards: FoodItem[],) {
     const [isFinished, setIsFinished] = useState(false)
     const [dragStatus, setDragStatus] = useState<DragStatus>('neutral')
     const [cardCounts, setCardCounts] = useState({ liked: 0, disliked: 0 })
+    const [imagesLoaded, setImagesLoaded] = useState(false)
 
     useEffect(() => {
         setCardCounts({
@@ -34,8 +35,25 @@ export function useCardSwipe(cards: FoodItem[],) {
     useEffect(() => {
         if (cards && cards.length > 0) {
             ImagePreloader.preloadNearbyImages(cards, currentIndex, 5);
+
+            if (currentIndex === 0 && !imagesLoaded) {
+                const imagesToLoad = cards.slice(0, 5);
+
+                Promise.all(
+                    imagesToLoad.map(card => {
+                        return new Promise<void>((resolve) => {
+                            const img = new Image();
+                            img.onload = () => resolve();
+                            img.onerror = () => resolve();
+                            img.src = card.imageUrl;
+                        });
+                    })
+                ).then(() => {
+                    setImagesLoaded(true);
+                });
+            }
         }
-    }, [currentIndex, cards]);
+    }, [currentIndex, cards, imagesLoaded]);
 
     const handleSwipe = useCallback((direction: number) => {
         const currentCard = cards[currentIndex]
@@ -73,7 +91,6 @@ export function useCardSwipe(cards: FoodItem[],) {
 
     const updateDragStatus = useCallback((x: number) => {
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
         const threshold = isMobile ? 30 : 50;
 
         if (x > threshold) {
@@ -198,6 +215,7 @@ export function useCardSwipe(cards: FoodItem[],) {
         dislikedCards,
         dragStatus,
         handleButtonSwipe,
-        cardCounts
+        cardCounts,
+        imagesLoaded
     }
 }

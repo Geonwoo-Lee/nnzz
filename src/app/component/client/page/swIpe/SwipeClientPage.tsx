@@ -44,7 +44,7 @@ const SwipeClientPage = (props :DeckProps ) => {
                     </div>
                 </div>
                 <div className='bg-common-white flex flex-col pb-10  gap-4 '>
-                    <SwipeComponent.Deck type={type} day={day} likedCards={likedCards} setLikeCards={setLikeCards}
+                    <SwipeComponent.Deck isLoading={isLoading} type={type} day={day} likedCards={likedCards} setLikeCards={setLikeCards}
                                          cards={cards} setStep={setStep}/>
                     <div className='flex w-full items-center justify-center px-4'>
                         <Button fullRound type='muted' size='ml' style='w-[80%]' disabled={likedCards.length < 3}
