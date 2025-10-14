@@ -16,8 +16,8 @@ export default function Home() {
                             직장인들 점심 저녁 메뉴 고민을 함께 해요🧚‍
                         </div>
                     </div>
-                    <HomeCarousel/>
                 </div>
+            <HomeCarousel/>
             <footer className="w-full px-4 pt-4 pb-8 bg-white">
                 <KakaoButton/>
             </footer>

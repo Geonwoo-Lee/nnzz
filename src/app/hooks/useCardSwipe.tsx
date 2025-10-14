@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect  } from 'react'
 import { useSpring } from '@react-spring/web'
 import {FoodItem} from "@/src/app/types/models/food";
 import {BindType} from "@/src/app/types/hook/cardSwipte";
+import {ImagePreloader} from "@/src/app/func/common/image.utils";
 
 export type DragStatus = 'like' | 'dislike' | 'neutral';
 
@@ -29,6 +30,12 @@ export function useCardSwipe(cards: FoodItem[],) {
             setIsFinished(true)
         }
     }, [currentIndex, cards.length])
+
+    useEffect(() => {
+        if (cards && cards.length > 0) {
+            ImagePreloader.preloadNearbyImages(cards, currentIndex, 5);
+        }
+    }, [currentIndex, cards]);
 
     const handleSwipe = useCallback((direction: number) => {
         const currentCard = cards[currentIndex]
