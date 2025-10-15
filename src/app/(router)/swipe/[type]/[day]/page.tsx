@@ -1,5 +1,6 @@
 'use client'
 import freeFoodData from "@/src/app/dummy/dummy";
+import { use } from 'react'
 import {useFunnel} from "@/src/app/hooks/useFunnel";
 import {useEffect, useState} from "react";
 import {useGeolocation} from "@/src/app/hooks/useGeoloaction";
@@ -13,13 +14,15 @@ import Script from "next/script";
 import AdBanner from "@/src/app/component/client/common/adSense/AdBanner";
 
 interface PageProps {
-    params: {
+    params: Promise<{
         type: string;
         day: string;
-    }
+    }>
 }
 
-const SwapPage = ({ params }: PageProps) => {
+
+const SwapPage = (props: PageProps) => {
+    const params = use(props.params);
     const { type, day } = params;
     const {  requestGeolocation } = useGeolocation();
     const [Funnel, setStep, step] = useFunnel(["0", "1", "2", "3"], "0");

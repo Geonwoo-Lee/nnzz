@@ -5,17 +5,19 @@ import {useRouter} from "next/navigation";
 import RequestLocationApi from "@/src/app/api/client/requestLocation/requestLocationApi";
 import {useToast} from "@/src/app/core/ToastProvider";
 import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
+import {use} from "react";
 
-const NotServicePage = ({params}: { params: { address: string, lat: string, lan: string } }) => {
+const NotServicePage = ({params}: { params: Promise<{ address: string, lat: string, lan: string }> }) => {
     const router = useRouter()
-    const decodedAddress = decodeURIComponent(params.address)
+    const {address, lat, lan} = use(params)
+    const decodedAddress = decodeURIComponent(address)
     const showToast = useToast()
 
     const requestOpen = () => {
         RequestLocationApi.requestLocation({
-            address: params.address,
-            lat: params.lat,
-            lng: params.lan
+            address: address,
+            lat: lat,
+            lng: lan
         }).then(() => {
             router.push('/location-request')
         }).catch((error) => {

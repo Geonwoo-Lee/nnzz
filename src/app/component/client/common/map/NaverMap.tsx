@@ -92,13 +92,12 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
         <div>
             {!isLoaded &&  (
                 <Script
-                    src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
+                    src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
                     onLoad={handleScriptLoad}
                     strategy="afterInteractive"
                 />
             )}
             <div className="flex items-center justify-center w-[100vw] h-[100vh]">
-                {/* 스크립트 로딩 중 표시 */}
                 {!scriptLoaded && !isLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
                         <div className="text-center">

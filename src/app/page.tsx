@@ -1,11 +1,10 @@
 import Nnzz from '../../public/svg/logo/Nnzzsvg.svg'
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import HeightUnitWrapper from "@/src/app/component/client/common/heightWrapper/HeightWrapper";
+import HomeCarousel from "@/src/app/component/client/page/landing/features/carousel/HomeCarousel";
+import KakaoButton from "./component/client/common/button/KakaoButton";
 
 export default function Home() {
-    const KakaoButton = dynamic(() => import('@/src/app/component/client/common/button/KakaoButton'), { ssr: false });
-    const HomeCarousel = dynamic(() => import('@/src/app/component/client/page/landing/features/carousel/HomeCarousel'), {ssr: false});
     return (
         <HeightUnitWrapper className="flex flex-col flex-grow  items-center justify-between bg-white max-w-[640px] pt-8 overflow-y-hidden mx-auto">
                 <div className="w-full flex flex-col items-center justify-center">
@@ -19,7 +18,7 @@ export default function Home() {
                 </div>
             <HomeCarousel/>
             <footer className="w-full px-4 pt-4 pb-8 bg-white">
-                <KakaoButton/>
+                <KakaoButton />
             </footer>
         </HeightUnitWrapper>
     );

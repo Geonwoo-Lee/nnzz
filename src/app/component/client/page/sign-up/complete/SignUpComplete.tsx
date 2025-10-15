@@ -1,14 +1,11 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
+import MoveButton from "@/src/app/component/client/page/sign-up/complete/features/MoveButton";
+import UserName from "@/src/app/component/client/page/sign-up/complete/features/UserName";
 
 
 const SignUpComplete = () => {
 
-    const MoveButton = dynamic(() => import('./features/MoveButton'), {ssr: false})
-    const UserName = dynamic(() => import('./features/UserName'), {
-        ssr: false
-    })
 
     return (
         <div className='p-4 flex flex-col justify-between h-[100vh]'>

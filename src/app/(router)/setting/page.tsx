@@ -2,22 +2,24 @@
 import ProfileImageServer from "@/src/app/component/server/common/ProfileImage/ProfileImage";
 import AuthUtils from "@/src/app/func/common/auth.utils";
 import SettingList from "@/src/app/component/server/page/setting/settingList/SettingList";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {FoodProfileType, SignInType} from "@/src/app/types/page/sign-up/sign-up";
 import Link from "next/link";
 import LogoutApi from "@/src/app/api/client/logout/logout";
 
 const SettingPage = () => {
-    const userInfo: SignInType = AuthUtils.getUserInfo() || {} as SignInType;
+    const userInfo = useMemo<SignInType>(() => {
+        return AuthUtils.getUserInfo() || {} as SignInType;
+    }, []);
+
     const token = AuthUtils.getToken();
     const [profileInfo, setProfileInfo] = useState<FoodProfileType | null>(null);
 
     useEffect(() => {
-        if ( userInfo?.profileImage) {
+        if (userInfo?.profileImage) {
             setProfileInfo(userInfo.profileImage);
         }
-    }, []);
-
+    }, [userInfo.profileImage]);
 
     const getProfileImage = () => {
         if (userInfo?.profileImage && profileInfo?.src) {
@@ -27,7 +29,7 @@ const SettingPage = () => {
     };
 
     const logout = () => {
-        if(userInfo && token) {
+        if (userInfo && token) {
             LogoutApi.logout(token.accessToken).then(() => {
                 AuthUtils.removeToken();
                 AuthUtils.removeUserInfo();

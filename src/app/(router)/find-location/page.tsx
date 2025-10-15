@@ -1,11 +1,8 @@
 import {Suspense} from "react";
 import FindLocationClientPage from "@/src/app/component/client/page/find-location/FindLocationClientPage";
-import dynamic from "next/dynamic";
+import Loading from "@/src/app/component/client/common/loading/Loading";
 
 
-const Loading = dynamic(() => import('../../component/client/common/loading/Loading'), {
-    ssr: false
-})
 
 const FindLocation = () => {
     return <Suspense fallback={<Loading/>}>
