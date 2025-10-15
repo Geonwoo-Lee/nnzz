@@ -1,12 +1,12 @@
-// src/app/layout.tsx
 import type {Metadata, Viewport} from "next";
 import "./globals.css";
 import {GoogleAnalytics} from '@next/third-parties/google'
 import Script from "next/script";
-import dynamic from "next/dynamic";
 import React from "react";
 import {pretendard} from "@/src/app/utils/font/font";
 import process from "process";
+import ClientProviders from "@/src/app/provider/ClientProvider";
+import SplashScreen from "@/src/app/component/client/page/splash/SplashScreen";
 
 export const viewport: Viewport = {
     themeColor: '#fff',
@@ -32,6 +32,10 @@ export const metadata: Metadata = {
         '점심 추천',
         '저녁 추천'
     ],
+    metadataBase: new URL(
+        process.env.NEXT_PUBLIC_SITE_URL ||
+            'http://localhost:3000'
+    ),
     openGraph: {
         title: "냠냠쩝쩝",
         description: "맛있는 솔루션",
@@ -99,24 +103,12 @@ export const metadata: Metadata = {
     },
 };
 
-const ToastProvider = dynamic(() => import('./core/ToastProvider'))
 
 export default function RootLayout({
                                        children,
                                    }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const ReactQueryProvider = dynamic(
-        () => import("../app/provider/ReactQueryProvider"),
-        {ssr: false}
-    );
-    const SplashScreen = dynamic(
-        () => import("@/src/app/component/client/page/splash/SplashScreen"),
-        {ssr: false}
-    );
-
-
-    const AuthProvider = dynamic(() => import('@/src/app/provider/AuthProvider'), {ssr: false});
 
     return (
         <html lang="ko">
@@ -165,13 +157,10 @@ export default function RootLayout({
             data-theme="light"
             className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}
         >
-        <ReactQueryProvider>
-            <ToastProvider>
-                <AuthProvider>
+        <ClientProviders>
                     <SplashScreen>{children}</SplashScreen>
-                </AuthProvider>
-            </ToastProvider>
-        </ReactQueryProvider>
+        </ClientProviders>
+
         <Script
             src="https://developers.kakao.com/sdk/js/kakao.js"
             strategy="lazyOnload"

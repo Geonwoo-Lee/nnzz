@@ -148,7 +148,7 @@ const HomeMealSettingClient = () => {
             setWayBottomSheet(true);
         }
     }, [selectedLocation, selectedMealTime, mealTiming, wayToFind, mealTimingBottomSheet]);
-// 선택 위치 변경 감지 useEffect는 그대로 유지
+
     useEffect(() => {
         if(location) {
             const locationData = JSON.parse(location);

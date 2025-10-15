@@ -21,7 +21,6 @@ import Button from '@/src/app/component/client/common/button/Button'
 import DeleteApi from "@/src/app/api/client/delete/delete";
 import UpdateUserApi from "@/src/app/api/client/update-user/update";
 
-
 const DEFAULT_IMAGE: FoodProfileType = {
     id: 0,
     name: 'default',
@@ -29,17 +28,21 @@ const DEFAULT_IMAGE: FoodProfileType = {
 } as const;
 
 const EditPage = () => {
-    const userInfo = AuthUtils.getUserInfo() || {} as SignInType;
+    const userInfo = useMemo(() => {
+        return AuthUtils.getUserInfo() || {} as SignInType;
+    }, []);
+
+    const [isInitialized, setIsInitialized] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [open, setOpen] = useState(false)
     const [focused, setFocused] = useState(false);
-    const {control,watch, setValue} = useForm<SignUpController>({
+    const {control, watch, setValue} = useForm<SignUpController>({
         defaultValues: {
             nickname: '',
-                genderAge: {
-                    gender: '',
-                    age: '',
-                },
+            genderAge: {
+                gender: '',
+                age: '',
+            },
             profileImage: {} as FoodProfileType
         }
     });
@@ -88,7 +91,6 @@ const EditPage = () => {
     const deleteUser = () => {
         const accessToken = AuthUtils.getToken()?.accessToken;
         if (!accessToken) {
-            // 토큰이 없는 경우 처리
             return;
         }
 
@@ -98,8 +100,6 @@ const EditPage = () => {
             window.location.href = '/';
         });
     }
-
-
 
     const upDateUserInfo = async (type: 'nickname' | 'profileImage' | 'gender', profile?: FoodProfileType) => {
         if (profile) {
@@ -114,12 +114,11 @@ const EditPage = () => {
             profileImage: watch('profileImage').id.toString()
         }
 
-
         closeModal();
         try {
             switch (type) {
                 case "nickname":
-                     await UpdateUserApi.updateUser(params, 'nickname');
+                    await UpdateUserApi.updateUser(params, 'nickname');
                     break;
                 case "profileImage":
                     await UpdateUserApi.updateUser(params, 'profile-image');
@@ -145,7 +144,7 @@ const EditPage = () => {
                     showToast('프로필 이미지 변경이 완료됐어요', ToastPosition.BOTTOM, ToastAlign.CENTER);
                     break;
             }
-        }  catch (error: any) {
+        } catch (error: any) {
             const errorMessage = error.message || '업데이트에 실패했습니다';
             console.log('Error:', error);
             showToast(errorMessage, ToastPosition.BOTTOM, ToastAlign.CENTER);
@@ -156,33 +155,32 @@ const EditPage = () => {
         upDateUserInfo('profileImage', image);
     };
 
-
     const profileInfo = useMemo(() => {
         if (!userInfo?.profileImage) return DEFAULT_IMAGE;
         return userInfo.profileImage;
     }, [userInfo.profileImage]);
 
     const rightRenderer = (value: string, callback: () => void) => {
-        if(!focused) {
+        if (!focused) {
             return <Edit/>
-        }else {
-            if(value.length > 0) {
-                return  <Close onClick={callback}/>
+        } else {
+            if (value.length > 0) {
+                return <Close onClick={callback}/>
             }
         }
     }
 
     useEffect(() => {
-        if(userInfo) {
+        if (!isInitialized && userInfo) {
             setValue('nickname', userInfo.nickname);
             setValue('genderAge', {
                 gender: userInfo.gender || '',
                 age: userInfo.age || ''
             });
             setValue('profileImage', profileInfo);
+            setIsInitialized(true);
         }
-    }, []);
-
+    }, [userInfo, profileInfo, setValue, isInitialized]);
 
     return (
         <div className='h-basic-body-with-header relative'>
@@ -196,7 +194,7 @@ const EditPage = () => {
                         />
                     </div>
                 </div>
-                <div className='pt-6' />
+                <div className='pt-6'/>
                 <div>
                     <div className='flex flex-col gap-6'>
                         <div>
@@ -214,7 +212,7 @@ const EditPage = () => {
                                         style="w-full"
                                         onBlur={() => {
                                             validateNickname(nicknameValue)
-                                            if(validateNickname(nicknameValue)) {
+                                            if (validateNickname(nicknameValue)) {
                                                 upDateUserInfo('nickname')
                                             }
                                             setFocused(false)
@@ -226,11 +224,10 @@ const EditPage = () => {
                                         label='닉네임'
                                         right={rightRenderer(nicknameValue, () => field.onChange(''))}
                                         onSubmit={() => {
-                                            if(validateNickname(nicknameValue)) {
+                                            if (validateNickname(nicknameValue)) {
                                                 upDateUserInfo('nickname')
                                             }
                                         }}
-
                                         error={fieldState.error || errorMessage.length > 0}
                                         errorMessage={errorMessage || fieldState.error?.message}
                                     />
@@ -269,7 +266,8 @@ const EditPage = () => {
                 </div>
             </div>
             <div className='absolute bottom-0 pb-20 w-full '>
-                <Button type='transparent' onClick={deleteUser} size='md' style='w-full text-text-4 font-medium text-body2' >
+                <Button type='transparent' onClick={deleteUser} size='md'
+                        style='w-full text-text-4 font-medium text-body2'>
                     회원탈퇴
                 </Button>
             </div>

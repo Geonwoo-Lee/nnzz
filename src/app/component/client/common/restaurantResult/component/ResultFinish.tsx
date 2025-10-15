@@ -63,30 +63,47 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
         }, 2500);
     };
 
-    const token = localStorage.getItem('nnzz_token')
-
     useEffect(() => {
-        if (storeIdx && storeIdx !== '1') {
-            FindApi.FindStores({
-                storeId: storeIdx,
-                lng: lng,
-                lat: lat
-            }).then((res) => {
-                setStore(res)
-                const image = foodData.find((item) => item.categoryId === res.categoryId)
-                setCategoryImage(image!.imageUrl!)
-                setTimeout(() => {
-                    setIsLoading(false)
+        console.log(storeIdx, day, type)
+        if (!storeIdx || storeIdx === '1' || !day || !type) {
+            console.error('Missing required parameters:', { storeIdx, day, type });
+            setIsLoading(false);
+            return;
+        }
+
+        const token = localStorage.getItem('nnzz_token');
+
+        FindApi.FindStores({
+            storeId: storeIdx,
+            lng: lng,
+            lat: lat
+        }).then((res) => {
+            setStore(res)
+            const image = foodData.find((item) => item.categoryId === res.categoryId)
+            setCategoryImage(image!.imageUrl!)
+
+            setTimeout(() => {
+                setIsLoading(false)
+
+                if (token && storeIdx && day && type) {
                     CardApi.SaveLocation({
                         id: storeIdx,
                         date: day,
                         day: DateUtils.mealRenderer(type),
-                        authorization: token!
-                    })
-                }, 500)
-            })
-        }
-    }, [storeIdx]);
+                        authorization: token
+                    }).catch(error => {
+                        console.error('SaveLocation failed:', error);
+                    });
+                } else {
+                    console.warn('Cannot save location: missing token or params');
+                }
+            }, 500)
+        }).catch(error => {
+            console.error('FindStores failed:', error);
+            setIsLoading(false);
+        })
+    }, [storeIdx, day, type, lng, lat]);
+
     return (
         <div className='h-basic-menu-body bg-bg-1 flex flex-col'>
             {
@@ -125,7 +142,7 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
                         <div className='absolute w-full bottom-0 z-0'>
                             <div className='w-full h-[122px] relative'>
                                 <Image
-                                       fill src='/assets/hearts.png' priority quality={75} alt='hearts'/>
+                                    fill src='/assets/hearts.png' priority quality={75} alt='hearts'/>
                             </div>
                         </div>
                     </>
