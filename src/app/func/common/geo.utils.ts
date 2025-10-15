@@ -80,7 +80,6 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
     }
 }
 
-// 이 함수는 로컬스토리지만 사용하므로 변경 필요 없음
 export const getUserLocation = () => {
     const locationString = localStorage.getItem('userLocation');
     const pinedLocation = localStorage.getItem('pinedLocation');
@@ -100,7 +99,6 @@ export const getUserLocation = () => {
 
 export async function getAddressFromCoords(latitude: number, longitude: number): Promise<Place> {
     try {
-        // 좌표를 주소로 변환 API 호출 (서버 API 사용)
         const response = await fetch('/api/kakao/coord-to-address', {
             method: 'POST',
             headers: {
