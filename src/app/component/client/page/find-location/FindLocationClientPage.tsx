@@ -28,14 +28,10 @@ const FindLocationClientPage = () => {
     const getLocation = localStorage.getItem('userLocation');
 
     const locationRenderer = () => {
-        if(currentLocation?.lng && currentLocation.lng) {
-            const location = getAddressFromCoords(currentLocation.lat, currentLocation.lng).then((res) => {
-                return `${res?.address} ${res?.name}`
-            })
-            return location
-        }else {
-            return '위치를 설정해주세요'
+        if(currentLocation?.address) {
+            return `${currentLocation.address} ${currentLocation.name || ''}`.trim()
         }
+        return '위치를 설정해주세요'
     }
 
     const setLocation = (location: MapPlace) => {
@@ -66,7 +62,7 @@ const FindLocationClientPage = () => {
                 lng: location.longitude
             });
         }
-    }, [getLocation]);
+    }, []);
 
     return (
         <div>
