@@ -1,18 +1,18 @@
 'use client'
-import Header from "@/src/app/component/server/common/header/Header";
-import {HeaderTypes} from "@/src/app/types/common/header";
-import RandomCard from "@/src/app/component/client/common/card/RandomCard";
-import Button from "@/src/app/component/client/common/button/Button";
+import Header from "@/src/component/server/common/header/Header";
+import {HeaderTypes} from "@/src/types/common/header";
+import RandomCard from "@/src/component/client/common/card/RandomCard";
+import Button from "@/src/component/client/common/button/Button";
 import {use, useEffect, useRef, useState} from "react";
-import FindApi from "@/src/app/api/client/find/find";
-import {getUserLocation} from "@/src/app/func/common/geo.utils";
-import { RandomStore} from "@/src/app/types/models/find";
-import foodData from "@/src/app/dummy/dummy";
-import Loading from "@/src/app/component/client/common/loading/Loading";
-import {useFunnel} from "@/src/app/hooks/useFunnel";
-import RestaurantResult from "@/src/app/component/client/common/restaurantResult/RestaurantResult";
+import FindApi from "@/src/api/client/find/find";
+import {getUserLocation} from "@/src/func/common/geo.utils";
+import { RandomStore} from "@/src/types/models/find";
+import foodData from "@/src/dummy/dummy";
+import Loading from "@/src/component/client/common/loading/Loading";
+import {useFunnel} from "@/src/hooks/useFunnel";
+import RestaurantResult from "@/src/component/client/common/restaurantResult/RestaurantResult";
 import * as htmlToImage from 'html-to-image';
-import HeightUnitWrapper from "@/src/app/component/client/common/heightWrapper/HeightWrapper";
+import HeightUnitWrapper from "@/src/component/client/common/heightWrapper/HeightWrapper";
 
 const RandomPage = (props: { params: Promise<{ type: string, day: string }> }) => {
     const params = use(props.params);

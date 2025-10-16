@@ -1,11 +1,11 @@
 'use client'
-import ProfileImageServer from "@/src/app/component/server/common/ProfileImage/ProfileImage";
-import AuthUtils from "@/src/app/func/common/auth.utils";
-import SettingList from "@/src/app/component/server/page/setting/settingList/SettingList";
+import ProfileImageServer from "@/src/component/server/common/ProfileImage/ProfileImage";
+import AuthUtils from "@/src/func/common/auth.utils";
+import SettingList from "@/src/component/server/page/setting/settingList/SettingList";
 import { useEffect, useMemo, useState } from "react";
-import {FoodProfileType, SignInType} from "@/src/app/types/page/sign-up/sign-up";
+import {FoodProfileType, SignInType} from "@/src/types/page/sign-up/sign-up";
 import Link from "next/link";
-import LogoutApi from "@/src/app/api/client/logout/logout";
+import LogoutApi from "@/src/api/client/logout/logout";
 
 const SettingPage = () => {
     const userInfo = useMemo<SignInType>(() => {

@@ -1,4 +1,4 @@
-import HomeMealSettingServer from "@/src/app/component/server/page/home/homeMealSettingServer/HomeMealSettingServer";
+import HomeMealSettingServer from "@/src/component/server/page/home/homeMealSettingServer/HomeMealSettingServer";
 
 
 

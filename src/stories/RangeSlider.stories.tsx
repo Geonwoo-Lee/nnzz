@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import {RangeSliderProps} from "@/src/app/types/common/rangeSlider";
-import RangeSlider from "@/src/app/component/client/common/rangeSlider/RangeSlider";
+import {RangeSliderProps} from "@/src/types/common/rangeSlider";
+import RangeSlider from "@/src/component/client/common/rangeSlider/RangeSlider";
 
 const meta: Meta<RangeSliderProps> = {
     title: 'Components/RangeSlider',

@@ -1,7 +1,7 @@
 'use client'
 import { use } from 'react'
-import FastChoiceClientPage from "@/src/app/component/client/page/fast-choice/FastChoiceClientPage";
-import DateUtils from "@/src/app/func/common/date.utils";
+import FastChoiceClientPage from "@/src/component/client/page/fast-choice/FastChoiceClientPage";
+import DateUtils from "@/src/func/common/date.utils";
 
 const FastChoicePage = ({
                             params,

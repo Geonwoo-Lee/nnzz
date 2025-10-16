@@ -1,25 +1,25 @@
 'use client'
-import AuthUtils from "@/src/app/func/common/auth.utils";
+import AuthUtils from "@/src/func/common/auth.utils";
 import React, {useEffect, useMemo, useState} from "react";
 import {
     FoodProfileType,
     genderAgeType,
     SignInType,
     SignUpController
-} from "@/src/app/types/page/sign-up/sign-up";
-import ProfileImageComponent from "@/src/app/component/client/page/sign-up/features/ProfileComponet/ProfileImageComponent";
+} from "@/src/types/page/sign-up/sign-up";
+import ProfileImageComponent from "@/src/component/client/page/sign-up/features/ProfileComponet/ProfileImageComponent";
 import {Controller, useForm} from "react-hook-form";
-import Input from "@/src/app/component/client/common/input/Input";
+import Input from "@/src/component/client/common/input/Input";
 import Close from "@/public/svg/header/InputClose.svg";
 import DownArrow from "@/public/svg/items/common/DownArrow.svg";
 import GenderAgeBottomSheet
-    from "@/src/app/component/client/page/sign-up/features/genderAgeComponent/GenderAgeBottomSheet";
-import {useToast} from "@/src/app/core/ToastProvider";
-import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
+    from "@/src/component/client/page/sign-up/features/genderAgeComponent/GenderAgeBottomSheet";
+import {useToast} from "@/src/core/ToastProvider";
+import {ToastAlign, ToastPosition} from "@/src/types/common/toast";
 import Edit from '../../../../public/svg/items/common/Edit.svg'
-import Button from '@/src/app/component/client/common/button/Button'
-import DeleteApi from "@/src/app/api/client/delete/delete";
-import UpdateUserApi from "@/src/app/api/client/update-user/update";
+import Button from '@/src/component/client/common/button/Button'
+import DeleteApi from "@/src/api/client/delete/delete";
+import UpdateUserApi from "@/src/api/client/update-user/update";
 
 const DEFAULT_IMAGE: FoodProfileType = {
     id: 0,

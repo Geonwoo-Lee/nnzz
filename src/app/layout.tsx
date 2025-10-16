@@ -3,10 +3,10 @@ import "./globals.css";
 import {GoogleAnalytics} from '@next/third-parties/google'
 import Script from "next/script";
 import React from "react";
-import {pretendard} from "@/src/app/utils/font/font";
+import {pretendard} from "@/src/utils/font/font";
 import process from "process";
-import ClientProviders from "@/src/app/provider/ClientProvider";
-import SplashScreen from "@/src/app/component/client/page/splash/SplashScreen";
+import ClientProviders from "@/src/provider/ClientProvider";
+import SplashScreen from "@/src/component/client/page/splash/SplashScreen";
 
 export const viewport: Viewport = {
     themeColor: '#fff',
@@ -158,7 +158,7 @@ export default function RootLayout({
             className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}
         >
         <ClientProviders>
-                    <SplashScreen>{children}</SplashScreen>
+                    {children}
         </ClientProviders>
 
         <Script

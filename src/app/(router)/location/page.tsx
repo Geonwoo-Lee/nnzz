@@ -1,4 +1,4 @@
-import LocationSelect from "@/src/app/component/server/page/location/LocationSelect";
+import LocationSelect from "@/src/component/server/page/location/LocationSelect";
 
 
 const LocationPage = () => {

@@ -1,8 +1,8 @@
 import Nnzz from '../../public/svg/logo/Nnzzsvg.svg'
 import Image from "next/image";
-import HeightUnitWrapper from "@/src/app/component/client/common/heightWrapper/HeightWrapper";
-import HomeCarousel from "@/src/app/component/client/page/landing/features/carousel/HomeCarousel";
-import KakaoButton from "./component/client/common/button/KakaoButton";
+import HeightUnitWrapper from "@/src/component/client/common/heightWrapper/HeightWrapper";
+import HomeCarousel from "@/src/component/client/page/landing/features/carousel/HomeCarousel";
+import KakaoButton from "@/src/component/client/common/button/KakaoButton";
 
 export default function Home() {
     return (
