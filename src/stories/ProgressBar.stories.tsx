@@ -1,6 +1,6 @@
-import {ProgressBarProps} from "@/src/app/types/common/progressBar";
+import {ProgressBarProps} from "@/src/types/common/progressBar";
 import type {Meta, StoryObj} from "@storybook/react";
-import ProgressBar from "@/src/app/component/client/common/progressBar/ProgressBar";
+import ProgressBar from "@/src/component/client/common/progressBar/ProgressBar";
 
 
 

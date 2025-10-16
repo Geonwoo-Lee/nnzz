@@ -1,10 +1,10 @@
 'use client'
-import Button from "@/src/app/component/client/common/button/Button";
+import Button from "@/src/component/client/common/button/Button";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
-import RequestLocationApi from "@/src/app/api/client/requestLocation/requestLocationApi";
-import {useToast} from "@/src/app/core/ToastProvider";
-import {ToastAlign, ToastPosition} from "@/src/app/types/common/toast";
+import RequestLocationApi from "@/src/api/client/requestLocation/requestLocationApi";
+import {useToast} from "@/src/core/ToastProvider";
+import {ToastAlign, ToastPosition} from "@/src/types/common/toast";
 import {use} from "react";
 
 const NotServicePage = ({params}: { params: Promise<{ address: string, lat: string, lan: string }> }) => {

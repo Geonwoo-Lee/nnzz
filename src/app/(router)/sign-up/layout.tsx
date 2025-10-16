@@ -1,5 +1,5 @@
-import BasicLayout from "@/src/app/component/layout/BasicLayout";
-import {HeaderTypes} from "@/src/app/types/common/header";
+import BasicLayout from "@/src/component/layout/BasicLayout";
+import {HeaderTypes} from "@/src/types/common/header";
 import {ReactNode} from "react";
 
 

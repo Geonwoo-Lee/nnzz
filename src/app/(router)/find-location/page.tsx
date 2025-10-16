@@ -1,6 +1,6 @@
 import {Suspense} from "react";
-import FindLocationClientPage from "@/src/app/component/client/page/find-location/FindLocationClientPage";
-import Loading from "@/src/app/component/client/common/loading/Loading";
+import FindLocationClientPage from "@/src/component/client/page/find-location/FindLocationClientPage";
+import Loading from "@/src/component/client/common/loading/Loading";
 
 
 

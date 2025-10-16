@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from "@storybook/react";
-import {BasicCardProps} from "@/src/app/types/page/swape/card";
-import BasicCard from "@/src/app/component/client/common/card/BasicCard";
+import {BasicCardProps} from "@/src/types/page/swape/card";
+import BasicCard from "@/src/component/client/common/card/BasicCard";
 
 
 const meta: Meta<BasicCardProps> = {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import Button from '@/src/app/component/client/common/button/Button';
-import { ButtonProps } from '../app/types/common/button';
+import Button from '@/src/component/client/common/button/Button';
+import { ButtonProps } from '@/src/types/common/button';
 
 const meta: Meta<ButtonProps> = {
   title: 'Components/Button',

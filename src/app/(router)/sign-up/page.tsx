@@ -1,6 +1,6 @@
 import {Suspense} from "react";
-import SignUpClientPage from "@/src/app/component/client/page/sign-up/SignUpClientPage";
-import Loading from "@/src/app/component/client/common/loading/Loading";
+import SignUpClientPage from "@/src/component/client/page/sign-up/SignUpClientPage";
+import Loading from "@/src/component/client/common/loading/Loading";
 
 const SignupPage = () => {
     return <Suspense fallback={<Loading/>}>

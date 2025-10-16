@@ -1,17 +1,17 @@
 'use client'
-import freeFoodData from "@/src/app/dummy/dummy";
+import freeFoodData from "@/src/dummy/dummy";
 import { use } from 'react'
-import {useFunnel} from "@/src/app/hooks/useFunnel";
+import {useFunnel} from "@/src/hooks/useFunnel";
 import {useEffect, useState} from "react";
-import {useGeolocation} from "@/src/app/hooks/useGeoloaction";
-import SwipeClientPage from "@/src/app/component/client/page/swIpe/SwipeClientPage";
-import {FoodItem} from "@/src/app/types/models/food";
-import SwipeComponent from "@/src/app/component/client/page/swIpe/features/SwipeComponent";
-import FindApi from "@/src/app/api/client/find/find";
-import RestaurantResult from "@/src/app/component/client/common/restaurantResult/RestaurantResult";
-import {getUserLocation} from "@/src/app/func/common/geo.utils";
+import {useGeolocation} from "@/src/hooks/useGeoloaction";
+import SwipeClientPage from "@/src/component/client/page/swIpe/SwipeClientPage";
+import {FoodItem} from "@/src/types/models/food";
+import SwipeComponent from "@/src/component/client/page/swIpe/features/SwipeComponent";
+import FindApi from "@/src/api/client/find/find";
+import RestaurantResult from "@/src/component/client/common/restaurantResult/RestaurantResult";
+import {getUserLocation} from "@/src/func/common/geo.utils";
 import Script from "next/script";
-import AdBanner from "@/src/app/component/client/common/adSense/AdBanner";
+import AdBanner from "@/src/component/client/common/adSense/AdBanner";
 
 interface PageProps {
     params: Promise<{
