@@ -6,7 +6,6 @@ import React from "react";
 import {pretendard} from "@/src/utils/font/font";
 import process from "process";
 import ClientProviders from "@/src/provider/ClientProvider";
-import SplashScreen from "@/src/component/client/page/splash/SplashScreen";
 
 export const viewport: Viewport = {
     themeColor: '#fff',
