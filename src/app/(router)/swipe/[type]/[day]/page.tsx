@@ -7,7 +7,7 @@ import {useGeolocation} from "@/src/hooks/useGeoloaction";
 import SwipeClientPage from "@/src/component/client/page/swIpe/SwipeClientPage";
 import {FoodItem} from "@/src/types/models/food";
 import SwipeComponent from "@/src/component/client/page/swIpe/features/SwipeComponent";
-import FindApi from "@/src/api/client/find/find";
+import FindApi from "@/src/app/api/client/find/find";
 import RestaurantResult from "@/src/component/client/common/restaurantResult/RestaurantResult";
 import {getUserLocation} from "@/src/func/common/geo.utils";
 import Script from "next/script";

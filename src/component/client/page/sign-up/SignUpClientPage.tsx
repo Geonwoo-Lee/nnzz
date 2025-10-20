@@ -8,7 +8,7 @@ import React, {useState} from "react";
 import Button from "@/src/component/client/common/button/Button";
 import {useRouter} from "next/navigation";
 import AuthUtils from "@/src/func/common/auth.utils";
-import SignUpApi from "@/src/api/client/sign-up/sign-up";
+import SignUpApi from "@/src/app/api/client/sign-up/sign-up";
 import {useToast} from "@/src/core/ToastProvider";
 import {ToastAlign, ToastPosition} from "@/src/types/common/toast";
 

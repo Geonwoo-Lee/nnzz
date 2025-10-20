@@ -4,7 +4,7 @@ import {HeaderTypes} from "@/src/types/common/header";
 import RandomCard from "@/src/component/client/common/card/RandomCard";
 import Button from "@/src/component/client/common/button/Button";
 import {use, useEffect, useRef, useState} from "react";
-import FindApi from "@/src/api/client/find/find";
+import FindApi from "@/src/app/api/client/find/find";
 import {getUserLocation} from "@/src/func/common/geo.utils";
 import { RandomStore} from "@/src/types/models/find";
 import foodData from "@/src/dummy/dummy";

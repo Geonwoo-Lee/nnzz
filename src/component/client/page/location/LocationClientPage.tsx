@@ -16,7 +16,7 @@ import useLocationBasedNavigation from "@/src/hooks/useLocationBasedNavigation";
 import {MapPlace} from "@/src/component/client/common/map/NaverMap";
 import {useRouter} from "next/navigation";
 import Loading from "@/src/component/client/common/loading/Loading";
-import SaveApi from "@/src/api/client/save/save";
+import SaveApi from "@/src/app/api/client/save/save";
 
 const LocationClientPage = () => {
     const router = useRouter()

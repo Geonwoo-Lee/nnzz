@@ -2,7 +2,7 @@
 import {useEffect} from 'react'
 import KakaoLogo from '../../../../../public/svg/logo/KakaoLogo.svg'
 import {useRouter} from "next/navigation";
-import SignInApi from "@/src/api/client/sign-in/sign-in";
+import SignInApi from "@/src/app/api/client/sign-in/sign-in";
 import FoodProfileDummy from "@/src/dummy/sign-up";
 import AuthUtils from "@/src/func/common/auth.utils";
 

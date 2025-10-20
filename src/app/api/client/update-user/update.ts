@@ -1,5 +1,5 @@
 import {JoinParams} from "@/src/types/models/user";
-import {fetchWithToken} from "@/src/api/client/fetch/fetch";
+import {fetchWithToken} from "@/src/app/api/client/fetch/fetch";
 
 class UpdateUserApi {
     private static readonly BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;

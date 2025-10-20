@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import Lottie from "lottie-react";
 import heartBoom from '@/src/lib/lotties/heart-boom.json'
-import FindApi from "@/src/api/client/find/find";
+import FindApi from "@/src/app/api/client/find/find";
 import Image from 'next/image'
 import Close from "@/public/svg/header/Close.svg";
 import {FindStoreType} from "@/src/types/models/find";
 import foodData from "@/src/dummy/dummy";
 import RoundFinishCard from "@/src/component/client/common/restaurantResult/component/RoundFinishCard";
 import MoveToNaverMap from "@/src/component/client/common/restaurantResult/component/MoveToNaverMap";
-import CardApi from "@/src/api/client/card/card";
+import CardApi from "@/src/app/api/client/card/card";
 import DateUtils from "@/src/func/common/date.utils";
 import {useRouter} from "next/navigation";
 

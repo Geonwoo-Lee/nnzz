@@ -1,5 +1,5 @@
-import BaseApi from "@/src/api/client/base/base-api";
-import { fetchWithToken} from "@/src/api/client/fetch/fetch";
+import BaseApi from "@/src/app/api/client/base/base-api";
+import { fetchWithToken} from "@/src/app/api/client/fetch/fetch";
 import {
     FindCategoryReq,
     FindFinalRestaurantReq,

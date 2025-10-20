@@ -5,7 +5,7 @@ import SettingList from "@/src/component/server/page/setting/settingList/Setting
 import { useEffect, useMemo, useState } from "react";
 import {FoodProfileType, SignInType} from "@/src/types/page/sign-up/sign-up";
 import Link from "next/link";
-import LogoutApi from "@/src/api/client/logout/logout";
+import LogoutApi from "@/src/app/api/client/logout/logout";
 
 const SettingPage = () => {
     const userInfo = useMemo<SignInType>(() => {

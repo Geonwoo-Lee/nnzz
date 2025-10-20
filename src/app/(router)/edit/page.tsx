@@ -18,8 +18,8 @@ import {useToast} from "@/src/core/ToastProvider";
 import {ToastAlign, ToastPosition} from "@/src/types/common/toast";
 import Edit from '../../../../public/svg/items/common/Edit.svg'
 import Button from '@/src/component/client/common/button/Button'
-import DeleteApi from "@/src/api/client/delete/delete";
-import UpdateUserApi from "@/src/api/client/update-user/update";
+import DeleteApi from "@/src/app/api/client/delete/delete";
+import UpdateUserApi from "@/src/app/api/client/update-user/update";
 
 const DEFAULT_IMAGE: FoodProfileType = {
     id: 0,
