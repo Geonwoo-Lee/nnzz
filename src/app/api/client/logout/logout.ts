@@ -1,5 +1,5 @@
-import {fetchWithoutToken} from "@/src/api/client/fetch/fetch";
-import BaseApi from "@/src/api/client/base/base-api";
+import {fetchWithoutToken} from "@/src/app/api/client/fetch/fetch";
+import BaseApi from "@/src/app/api/client/base/base-api";
 import { logoutRes} from "@/src/types/page/sign-up/sign-up";
 
 

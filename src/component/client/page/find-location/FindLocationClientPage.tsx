@@ -7,7 +7,7 @@ import {getAddressFromCoords} from "@/src/func/common/geo.utils";
 import BottomSheet from "@/src/component/client/common/bottomSheet/BottomSheet";
 import Button from '../../common/button/Button'
 import {useRouter} from "next/navigation";
-import SaveApi from "@/src/api/client/save/save";
+import SaveApi from "@/src/app/api/client/save/save";
 
 const FindLocationClientPage = () => {
     const router = useRouter();
@@ -62,7 +62,9 @@ const FindLocationClientPage = () => {
                 lng: location.longitude
             });
         }
-    }, []);
+    }, [getLocation]);
+
+
 
     return (
         <div>

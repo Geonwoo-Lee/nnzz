@@ -4,7 +4,7 @@ import freeFoodData from "@/src/dummy/dummy";
 import React, { useEffect, useState} from "react";
 import {useToast} from "@/src/core/ToastProvider";
 import {ToastAlign, ToastPosition} from "@/src/types/common/toast";
-import FindApi from "@/src/api/client/find/find";
+import FindApi from "@/src/app/api/client/find/find";
 import {FoodItem} from "@/src/types/models/food";
 import {useFunnel} from "@/src/hooks/useFunnel";
 import FastCardChoice from "@/src/component/client/page/fast-choice/features/FastCardChoice";

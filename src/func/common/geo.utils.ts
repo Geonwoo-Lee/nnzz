@@ -30,7 +30,6 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
             }));
         }
 
-        // 키워드 검색 결과가 없으면 주소 검색 API도 시도
         if (results.length === 0) {
             const addressResponse = await fetch('/api/kakao/search-address', {
                 method: 'POST',

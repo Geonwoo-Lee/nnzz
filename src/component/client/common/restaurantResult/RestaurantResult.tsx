@@ -2,7 +2,7 @@
 
 import {RestaurantDefaultProps} from "@/src/types/page/restaurant/restaurant";
 import React, {useEffect, useState} from "react";
-import FindApi from "@/src/api/client/find/find";
+import FindApi from "@/src/app/api/client/find/find";
 import {FindStore} from "@/src/types/models/find";
 import NnzzSmall from '../../../../../public/svg/logo/NnzzSmallCharactor.svg'
 import UpArrowSmall from '../../../../../public/svg/items/common/UpArrowSmall.svg'
