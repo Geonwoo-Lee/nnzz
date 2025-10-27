@@ -58,6 +58,14 @@ class DateUtils {
         }
     }
 
+    public static formatDate(date: any, local: any) {
+        const d = new Date(date)
+        const options: any = { year: 'numeric', month: 'short', day: 'numeric' }
+        const res = d.toLocaleDateString(local, options)
+        return res
+    }
+
+
     public static getWeekdayWithTimezone = (dateString: string) => {
         if (!dateString) return '';
 

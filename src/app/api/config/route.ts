@@ -1,4 +1,3 @@
-// src/app/api/config/route.ts (깔끔하게 정리)
 import { NextResponse } from "next/server";
 import { getClientSafeConfig } from "@/src/lib/server-config";
 

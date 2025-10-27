@@ -19,7 +19,19 @@
     text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
   }
+
 }
+
+    .notion-collection-page-properties {
+        display: none !important;
+    }
+    .notion-page {
+        padding: 0 !important;
+    }
+
+    .notion-list {
+        width: 100% !important;
+    }
 
 html, body {
   overscroll-behavior: none;

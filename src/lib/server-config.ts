@@ -1,4 +1,3 @@
-// src/app/lib/server-config.ts (새로 생성)
 interface ServerConfig {
     kakaoRestKey: string;
     naverSecretKey: string;

@@ -64,7 +64,6 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
     };
 
     useEffect(() => {
-        console.log(storeIdx, day, type)
         if (!storeIdx || storeIdx === '1' || !day || !type) {
             console.error('Missing required parameters:', { storeIdx, day, type });
             setIsLoading(false);

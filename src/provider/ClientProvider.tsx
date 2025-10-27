@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic'
 import React from 'react'
 
-// 클라이언트 컴포넌트에서는 ssr: false 사용 가능!
 const ReactQueryProvider = dynamic(
     () => import("./ReactQueryProvider"),
     { ssr: false }
