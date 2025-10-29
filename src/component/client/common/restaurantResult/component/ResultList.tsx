@@ -28,10 +28,10 @@ const ResultList = (props: { restaurants: FindStore[],filteredRestaurants: FindS
                     처음으로
                 </div>
             </header>
-          <AdBanner
-            slot="1022048370"
-            style={{ width: '100%', height: '70px' }}
-          />
+          {/*<AdBanner*/}
+          {/*  slot="1022048370"*/}
+          {/*  style={{ width: '100%', height: '70px' }}*/}
+          {/*/>*/}
             <CategoryList
                 restaurants={restaurants}
                 filteredRestaurants={filteredRestaurants}
