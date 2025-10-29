@@ -11,7 +11,6 @@ import FindApi from "@/src/app/api/client/find/find";
 import RestaurantResult from "@/src/component/client/common/restaurantResult/RestaurantResult";
 import {getUserLocation} from "@/src/func/common/geo.utils";
 import Script from "next/script";
-import AdBanner from "@/src/component/client/common/adSense/AdBanner";
 
 interface PageProps {
     params: Promise<{
