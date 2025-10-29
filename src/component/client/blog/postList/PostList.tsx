@@ -44,7 +44,7 @@ const PostList: React.FC = () => {
                 <p className="text-slate-500">Nothing! 😺</p>
             )}
             {filteredPosts.map((post) => (
-                <PostCard key={post.id} data={post} />
+                <PostCard key={post.id} data={post}  mode='vertical'/>
             ))}
         </div>
     )
