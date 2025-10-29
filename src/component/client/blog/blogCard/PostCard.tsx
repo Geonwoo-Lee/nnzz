@@ -7,9 +7,10 @@ import Tag from "../blogTag/BlogTag";
 
 type Props = {
   data: TPost;
+  mode?: "vertical" | "horizon";
 };
 
-const PostCard: React.FC<Props> = ({ data }) => {
+const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
   const category = (data.category && data.category?.[0]) || undefined;
 
   return (
@@ -22,7 +23,11 @@ const PostCard: React.FC<Props> = ({ data }) => {
         )}
 
         {data.thumbnail && (
-          <div className="relative w-full bg-slate-200 pb-[66%] lg:pb-[50%]">
+          <div className={`relative w-full bg-slate-200 ${
+            mode === "horizon"
+              ? "pb-[50%] lg:pb-[70%]"
+              : "pb-[66%] lg:pb-[50%]"
+          }`}>
             <Image
               src={data.thumbnail}
               fill
@@ -35,8 +40,8 @@ const PostCard: React.FC<Props> = ({ data }) => {
         <div
           className={`p-5 ${!data.thumbnail ? "pt-14" : ""} ${!category ? "pt-6" : ""}`}
         >
-          <div className="flex flex-col gap-2 ">
-            <h2 className="text-body1 font-bold cursor-pointer">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-body1 font-bold cursor-pointer line-clamp-2 h-[2.5rem]">
               {data.title}
             </h2>
             <div className="flex items-center gap-2">
@@ -47,7 +52,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                 )}
               </div>
             </div>
-            <p className=" text-caption1 font-regular text-slate-700">
+            <p className="text-caption1 font-regular text-slate-700 line-clamp-2 h-[2.5rem]">
               {data.summary}
             </p>
             <div className="flex gap-2 flex-wrap">

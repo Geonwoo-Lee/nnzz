@@ -2,7 +2,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query
 import { queryKey } from "@/src/types/hook/postQuery";
 import { NotionAPI } from "notion-client";
 import getPageProperties, { filterPosts, getAllPageIds } from "@/src/func/common/notion.utills";
-import TestPageClient from "@/src/app/(router)/blog/list/BlogListClient";
+import Feed from "@/src/app/(router)/blog/list/BlogListClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -55,7 +55,7 @@ export default async function BlogPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <TestPageClient />
+      <Feed />
     </HydrationBoundary>
   );
 }
