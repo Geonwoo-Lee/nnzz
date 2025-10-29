@@ -145,7 +145,6 @@ const SwapPage = (props: PageProps) => {
                 <SwipeComponent.NoChoice day={day} type={type}/>
             </Funnel.Step>
             <Funnel.Step name="3">
-                <AdBanner  slot="1022048370" />
                 <RestaurantResult name={getUserLocation()?.name || ''} address={getUserLocation()?.address || ''}
                                   day={day} type={type} lat={getUserLocation()?.latitude || 0}
                                   lng={getUserLocation()?.longitude || 0} categoryList={categoryList()}/>
