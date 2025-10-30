@@ -51,6 +51,7 @@ const PostList: React.FC = () => {
             {filteredPosts.map((post) => (
                 <PostCard key={post.id} data={post}  mode='vertical'/>
             ))}
+          <AdBanner slot="0987654321" />
         </div>
     )
 }
