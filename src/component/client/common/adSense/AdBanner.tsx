@@ -12,7 +12,7 @@ export default function AdBanner({ slot, format = "auto", style, className }: Ad
   const isDevelopment = process.env.NODE_ENV === 'development';
   const [shouldShow, setShouldShow] = useState(!isDevelopment);
   const adRef = useRef<HTMLDivElement>(null);
-  const isAdPushed = useRef(false); // 광고가 이미 푸시되었는지 추적
+  const isAdPushed = useRef(false);
 
   useEffect(() => {
     if (isDevelopment) {
@@ -34,6 +34,18 @@ export default function AdBanner({ slot, format = "auto", style, className }: Ad
 
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         isAdPushed.current = true;
+
+        const checkTimer = setTimeout(() => {
+          const ins = adRef.current?.querySelector('ins');
+          const status = ins?.getAttribute('data-adsbygoogle-status');
+
+          if (!status || status === 'unfilled') {
+            console.log('Ad failed to load, hiding banner');
+            setShouldShow(false);
+          }
+        }, 3000);
+
+        return () => clearTimeout(checkTimer);
       } else {
         setShouldShow(false);
       }
