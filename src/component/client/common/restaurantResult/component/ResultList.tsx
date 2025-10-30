@@ -4,7 +4,7 @@ import React from "react";
 import {FindStore} from "@/src/types/models/find";
 import {useRouter} from "next/navigation";
 import CategoryList from "@/src/component/client/common/restaurantResult/component/CategoryList";
-// import AdBanner from "@/src/component/client/common/adSense/AdBanner";
+import AdBanner from "@/src/component/client/common/adSense/AdBanner";
 
 const ResultList = (props: { restaurants: FindStore[],filteredRestaurants: FindStore[], isUp: boolean, isLoading: boolean, setStep: (step: 'map' | 'list' | 'result') => void, setSelectedStore: (storeId: FindStore) => void, setFilteredRestaurants: (restaurants: FindStore[]) => void }) => {
     const {restaurants, isUp, isLoading, setStep, setSelectedStore, setFilteredRestaurants, filteredRestaurants} = props
@@ -28,10 +28,10 @@ const ResultList = (props: { restaurants: FindStore[],filteredRestaurants: FindS
                     처음으로
                 </div>
             </header>
-          {/*<AdBanner*/}
-          {/*  slot="1022048370"*/}
-          {/*  style={{ width: '100%', height: '70px' }}*/}
-          {/*/>*/}
+          <AdBanner
+            slot="1022048370"
+            style={{ width: '100%', height: '70px' }}
+          />
             <CategoryList
                 restaurants={restaurants}
                 filteredRestaurants={filteredRestaurants}
