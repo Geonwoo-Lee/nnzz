@@ -4,7 +4,6 @@ import PostCard from "@/src/component/client/blog/blogCard/PostCard"
 import { DEFAULT_CATEGORY } from "@/src/types/common/blog"
 import usePostsQuery from "@/src/hooks/usePostsQuery"
 import {  useSearchParams } from "next/navigation"
-import AdBanner from "@/src/component/client/common/adSense/AdBanner";
 
 const PostList: React.FC = () => {
     const searchParams = useSearchParams()
@@ -41,17 +40,12 @@ const PostList: React.FC = () => {
 
     return (
         <div className="my-2">
-          <AdBanner
-            slot="1022048370"
-            style={{ width: '100%', height: '70px' }}
-          />
             {!filteredPosts.length && (
                 <p className="text-slate-500">Nothing! 😺</p>
             )}
             {filteredPosts.map((post) => (
                 <PostCard key={post.id} data={post}  mode='vertical'/>
             ))}
-          <AdBanner slot="0987654321" />
         </div>
     )
 }
