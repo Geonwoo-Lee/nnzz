@@ -9,7 +9,7 @@ const Feed = () => {
       <div className="mb-4">
         <TagList />
       </div>
-      <PostList  />
+      <PostList />
     </div>
   )
 }
