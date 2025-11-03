@@ -23,7 +23,9 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
         )}
 
         {data.thumbnail && (
-          <div className="relative w-full h-auto aspect-[640/440] bg-slate-200">
+          <div className={`relative w-full bg-slate-200 ${
+            mode === "horizon" ? "aspect-[640/440]" : "pb-[66%]"
+          }`}>
             <Image
               src={data.thumbnail}
               fill
