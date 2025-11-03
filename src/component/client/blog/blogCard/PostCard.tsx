@@ -14,7 +14,7 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
   const category = (data.category && data.category?.[0]) || undefined;
 
   return (
-    <Link href={`/blog/${data.slug}`} className="block mb-6 md:mb-8">
+    <Link href={`/blog/${data.slug}`} className="block mb-6">
       <article className="relative overflow-hidden rounded-2xl bg-white transition-shadow duration-300 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-2px_rgba(0,0,0,0.05)]">
         {category && (
           <div className="absolute top-4 left-4 z-10">
@@ -23,11 +23,7 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
         )}
 
         {data.thumbnail && (
-          <div className={`relative w-full bg-slate-200 ${
-            mode === "horizon"
-              ? "pb-[50%] lg:pb-[70%]"
-              : "pb-[66%] lg:pb-[50%]"
-          }`}>
+          <div className="relative w-full h-auto aspect-[640/440] bg-slate-200">
             <Image
               src={data.thumbnail}
               fill
