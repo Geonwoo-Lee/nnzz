@@ -52,6 +52,19 @@ html {
 }
 
 
+html, body {
+    height: 100%;
+    height: -webkit-fill-available;
+}
+
+@supports (padding: max(0px)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
+
+
 body {
   color: var(--foreground);
   background: var(--background);

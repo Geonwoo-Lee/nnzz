@@ -12,16 +12,14 @@ export type AppPropsWithLayout = AppProps & {
 }
 
 export type TPostStatus = "Private" | "Public" | "PublicOnDetail"
-export type TPostType = "Post" | "Paper" | "Page"
+export type TPostType = "Post" | "Shorts"
 
-export type TPost = {
+type TContentBase = {
   id: string
   date: { start_date: string }
-  type: TPostType[]
   slug: string
   tags?: string[]
   category?: string[]
-  summary?: string
   author?: {
     id: string
     name: string
@@ -30,15 +28,35 @@ export type TPost = {
   title: string
   status: TPostStatus[]
   createdTime: string
-  fullWidth: boolean
   thumbnail?: string
+  summary?: string
 }
+
+export type TPost = TContentBase & {
+  type: ["Post"]
+  fullWidth: boolean
+}
+
+export type TShorts = TContentBase & {
+  type: ["Shorts"]
+  videoUrl?: string
+}
+
+export type TContent = TPost | TShorts
 
 export type PostDetail = TPost & {
   recordMap: ExtendedRecordMap
 }
 
+export type ShortsDetail = TShorts & {
+  recordMap: ExtendedRecordMap
+}
+
+export type ContentDetail = PostDetail | ShortsDetail
+
 export type TPosts = TPost[]
+export type TShortsList = TShorts[]
+export type TContents = TContent[]
 
 export type TTags = {
   [tagName: string]: number
@@ -48,3 +66,11 @@ export type TCategories = {
 }
 
 export type SchemeType = "light" | "dark"
+
+export function isPost(content: TContent): content is TPost {
+  return content.type[0] === "Post"
+}
+
+export function isShorts(content: TContent): content is TShorts {
+  return content.type[0] === "Shorts"
+}
