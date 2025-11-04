@@ -16,7 +16,7 @@ const BlogHeader: React.FC<Props> = ({ data }) => {
       <h1 className="text-3xl font-bold leading-9">
         {data.title}
       </h1>
-      {data.type[0] !== "Paper" && (
+
         <nav className="mt-6 text-slate-700">
           <div className="flex items-center gap-3 mb-3">
             {data.author?.[0]?.name && (
@@ -56,7 +56,6 @@ const BlogHeader: React.FC<Props> = ({ data }) => {
             </div>
           )}
         </nav>
-      )}
     </div>
   )
 }
