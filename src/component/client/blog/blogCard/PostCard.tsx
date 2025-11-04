@@ -3,7 +3,6 @@ import Image from "next/image";
 import { TPost } from "@/src/types/common/notion";
 import DateUtils from "@/src/func/common/date.utils";
 import BlogCategory from "@/src/component/client/blog/blogCategory/BlogCategory";
-import Tag from "../blogTag/BlogTag";
 
 type Props = {
   data: TPost;
