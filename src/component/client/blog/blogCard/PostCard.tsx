@@ -53,12 +53,6 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
             <p className="text-caption1 font-regular text-slate-700 line-clamp-2 h-[2.5rem]">
               {data.summary}
             </p>
-            <div className="flex gap-2 flex-wrap">
-              {data.tags &&
-                data.tags.map((tag: string, idx: number) => (
-                  <Tag key={idx}>{tag}</Tag>
-                ))}
-            </div>
           </div>
         </div>
       </article>

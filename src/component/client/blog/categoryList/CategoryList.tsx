@@ -2,22 +2,21 @@
 
 import { useRouter, useSearchParams } from "next/navigation"
 import React from "react"
-import { useTagsQuery } from "@/src/hooks/useTagsQuery"
+import { useCategoriesQuery } from "@/src/hooks/useCategoriesQuery"
 
-const TagList = () => {
+const CategoryList = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const currentTag = searchParams.get('tag') || undefined
-  const data = useTagsQuery()
+  const currentCategory = searchParams.get('category') || undefined
+  const data = useCategoriesQuery()
 
-  const handleClickTag = (value: string | undefined) => {
+  const handleClickCategory = (value: string | undefined) => {
     const params = new URLSearchParams(searchParams.toString())
 
-    if (!value || currentTag === value) {
-      params.delete('tag')
-    }
-    else {
-      params.set('tag', value)
+    if (!value || currentCategory === value) {
+      params.delete('category')
+    } else {
+      params.set('category', value)
     }
 
     const query = params.toString()
@@ -31,11 +30,11 @@ const TagList = () => {
       </div>
       <div className="flex gap-1 overflow-x-auto scrollbar-hide">
         <button
-          onClick={() => handleClickTag(undefined)}
+          onClick={() => handleClickCategory(undefined)}
           className={`
             px-3 py-2 rounded-[1000px] text-caption2 font-medium shrink-0 cursor-pointer
             transition-colors
-            ${!currentTag
+            ${!currentCategory
             ? 'text-text-7 bg-bg-9'
             : 'text-text-2 bg-bg-1'
           }
@@ -47,11 +46,11 @@ const TagList = () => {
         {Object.keys(data).map((key) => (
           <button
             key={key}
-            onClick={() => handleClickTag(key)}
+            onClick={() => handleClickCategory(key)}
             className={`
               px-3 py-2 rounded-[1000px] text-caption2 font-medium shrink-0 cursor-pointer
               transition-colors
-              ${currentTag === key
+              ${currentCategory === key
               ? 'text-text-7 bg-bg-9'
               : 'text-text-2 bg-bg-1'
             }
@@ -65,4 +64,4 @@ const TagList = () => {
   )
 }
 
-export default TagList
+export default CategoryList

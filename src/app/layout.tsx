@@ -10,6 +10,7 @@ import ClientProviders from "@/src/provider/ClientProvider";
 export const viewport: Viewport = {
   themeColor: "#fff",
   userScalable: false,
+  viewportFit: 'cover',
 };
 
 const ga4Id = process.env.GA_ID;
