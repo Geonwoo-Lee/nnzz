@@ -52,6 +52,18 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
             <p className="text-caption1 font-regular text-slate-700 line-clamp-2 h-[2.5rem]">
               {data.summary}
             </p>
+            <p className="text-caption1 font-regular text-slate-700 line-clamp-2 h-[2.5rem]">
+              {data.slug}
+            </p>
+            <p className="text-caption1 font-regular text-slate-700 line-clamp-2 h-[2.5rem]">
+              {data.category}
+            </p>
+            <p className="text-caption1 font-regular text-slate-700 line-clamp-2 h-[2.5rem]">
+              {data.createdTime}
+            </p>
+            <p className="text-caption1 font-regular text-slate-700 line-clamp-2 h-[2.5rem]">
+              {data.id}
+            </p>
           </div>
         </div>
       </article>
