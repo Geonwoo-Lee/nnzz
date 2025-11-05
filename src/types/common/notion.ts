@@ -40,6 +40,7 @@ export type TPost = TContentBase & {
 export type TShorts = TContentBase & {
   type: ["Shorts"]
   videoUrl?: string
+  idx: string;
 }
 
 export type TContent = TPost | TShorts

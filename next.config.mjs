@@ -32,6 +32,7 @@ const nextConfig = withPWA({
       "s3-us-west-2.amazonaws.com",
       "s3.us-west-2.amazonaws.com",
       "prod-files-secure.s3.us-west-2.amazonaws.com",
+      "img.youtube.com"
     ],
     minimumCacheTTL: 300,
   },

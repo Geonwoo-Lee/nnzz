@@ -266,6 +266,10 @@ const config: Config = {
           '0%': { opacity: "0" },
           '100%': { opacity: "1" },
         },
+        fadeOut: {
+          '0%': { opacity: "1" },
+          '100%': { opacity: "0" },
+        },
       },
       boxShadow: {
         'bottom-sheet-top': '0 20px 92px 6px rgba(0, 0, 0, 0.1)',
@@ -275,7 +279,8 @@ const config: Config = {
       animation: {
         wiggle: 'wiggle 0.15s linear infinite',
         fadeInPage: 'fadeIn 0.8s  forwards',
-        flyIn: 'fly-in 0.8s forwards'
+        flyIn: 'fly-in 0.8s forwards',
+        fadeOut: 'fadeOut 0.3s ease-in-out',
       }
     },
   },
