@@ -1,12 +1,21 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { queryKey } from "@/src/types/hook/postQuery";
-import ShortsListView from "@/src/app/(router)/shorts/list/ShortsListView";
+import { notFound } from "next/navigation";
+import ShortsListClient from "@/src/app/(router)/shorts/[idx]/ShortsListClient";
 import { fetchShorts } from "@/src/lib/shorts";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function ShortsListPage() {
+interface ShortsPageProps {
+  params: Promise<{
+    idx: string;
+  }>;
+}
+
+export default async function ShortsPage({ params }: ShortsPageProps) {
+  const { idx } = await params;
+
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -24,14 +33,26 @@ export default async function ShortsListPage() {
     return idxA - idxB;
   });
 
+  const targetIndex = sortedShorts.findIndex(short => short.idx === idx);
+
+  if (targetIndex === -1) {
+    notFound();
+  }
+
+  const reorderedShorts = [
+    sortedShorts[targetIndex],
+    ...sortedShorts.slice(0, targetIndex),
+    ...sortedShorts.slice(targetIndex + 1),
+  ];
+
   await queryClient.prefetchQuery({
     queryKey: queryKey.shorts(),
-    queryFn: () => sortedShorts,
+    queryFn: () => reorderedShorts,
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ShortsListView />
+      <ShortsListClient />
     </HydrationBoundary>
   );
 }

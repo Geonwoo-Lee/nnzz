@@ -18,7 +18,7 @@ const Left = ({type, logo, back}: {
 
     const leftIRenderer = () => {
         if(logo) {
-            return <NnzzHeaderLogo/>
+            return <NnzzHeaderLogo className='cursor-pointer' onClick={() => router.push('/home')}/>
         }
         if(back) {
           return <div onClick={historyBack} className='font-medium font-pretendard text-[rgba(126,126,126,1)] cursor-pointer'>

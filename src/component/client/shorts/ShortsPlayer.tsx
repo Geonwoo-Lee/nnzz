@@ -1,9 +1,8 @@
-// component/client/shorts/ShortsPlayer.tsx
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
 import { TShorts } from '@/src/types/common/notion'
-import { Play, Pause, Volume2, VolumeX, Heart, MessageCircle, Share2 } from 'lucide-react'
+import { Play, Pause, Volume2, VolumeX, Share2 } from 'lucide-react'
 
 interface ShortsPlayerProps {
   data: TShorts
@@ -28,7 +27,6 @@ function getVideoType(url?: string): 'youtube' | 'other' {
   return url.includes('youtube.com') || url.includes('youtu.be') ? 'youtube' : 'other'
 }
 
-// 모바일 감지 함수
 function checkMobile(): boolean {
   if (typeof window === 'undefined') return false
 
@@ -44,24 +42,24 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
   const containerRef = useRef<HTMLDivElement>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const playPauseTimerRef = useRef<NodeJS.Timeout>()
+
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
-  const [showControls, setShowControls] = useState(false)
+  const [showPlayPauseIcon, setShowPlayPauseIcon] = useState(false)
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
   const videoType = getVideoType(data.videoUrl)
   const youtubeVideoId = videoType === 'youtube' ? getYouTubeVideoId(data.videoUrl || '') : null
 
-  // 모바일 감지
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(checkMobile())
     }
 
-    // 초기 설정
     handleResize()
 
-    // 리사이즈 이벤트 (방향 전환 대응)
     window.addEventListener('resize', handleResize)
     window.addEventListener('orientationchange', handleResize)
 
@@ -142,6 +140,21 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
         setIsPlaying(true)
       }
     }
+
+    setShowPlayPauseIcon(true)
+    setIsAnimatingOut(false)
+
+    if (playPauseTimerRef.current) {
+      clearTimeout(playPauseTimerRef.current)
+    }
+
+    playPauseTimerRef.current = setTimeout(() => {
+      setIsAnimatingOut(true)
+      setTimeout(() => {
+        setShowPlayPauseIcon(false)
+        setIsAnimatingOut(false)
+      }, 300)
+    }, 700)
   }
 
   const toggleMute = () => {
@@ -173,37 +186,46 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
         height: containerHeight,
         minHeight: containerHeight,
       }}
-      onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
-      onTouchStart={() => setShowControls(true)}
     >
       {videoType === 'youtube' && youtubeVideoId ? (
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-          <iframe
-            ref={iframeRef}
-            className="absolute inset-0 w-full h-full"
+          {/* 9:16 비율 비디오 컨테이너 */}
+          <div
+            className="relative"
             style={{
-              pointerEvents: 'none',
+              aspectRatio: '9 / 16',
+              height: '100%',
+              minWidth: '100%',
             }}
-            src={`https://www.youtube.com/embed/${youtubeVideoId}?
-              enablejsapi=1
-              &autoplay=${isActive ? 1 : 0}
-              &mute=1
-              &controls=0
-              &disablekb=1
-              &fs=0
-              &iv_load_policy=3
-              &modestbranding=1
-              &rel=0
-              &showinfo=0
-              &playsinline=1
-              &loop=1
-              &playlist=${youtubeVideoId}
-              &origin=${typeof window !== 'undefined' ? window.location.origin : ''}
-            `.replace(/\s/g, '')}
-            allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+          >
+            <iframe
+              ref={iframeRef}
+              className="absolute inset-0"
+              style={{
+                pointerEvents: 'none',
+                width: '100%',
+                height: '100%',
+              }}
+              src={`https://www.youtube.com/embed/${youtubeVideoId}?
+                enablejsapi=1
+                &autoplay=${isActive ? 1 : 0}
+                &mute=1
+                &controls=0
+                &disablekb=1
+                &fs=0
+                &iv_load_policy=3
+                &modestbranding=1
+                &rel=0
+                &showinfo=0
+                &playsinline=1
+                &loop=1
+                &playlist=${youtubeVideoId}
+                &origin=${typeof window !== 'undefined' ? window.location.origin : ''}
+              `.replace(/\s/g, '')}
+              allow="autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
       ) : (
         <video
@@ -226,9 +248,9 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
         onClick={togglePlay}
       />
 
-      {showControls && (
-        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-          <div className="w-20 h-20 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center animate-fade-in">
+      {showPlayPauseIcon && (
+        <div className={`absolute inset-0 flex items-center justify-center z-20 pointer-events-none ${isAnimatingOut ? 'animate-fadeOut' : 'animate-fadeIn'}`}>
+          <div className="w-20 h-20 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center">
             {isPlaying ? (
               <Pause className="w-10 h-10 text-white" />
             ) : (
@@ -276,30 +298,6 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
               <Volume2 className="w-6 h-6 text-white" />
             )}
           </div>
-        </button>
-
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-          }}
-          className="flex flex-col items-center gap-1 pointer-events-auto group"
-        >
-          <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center transition-all group-hover:bg-black/60 group-hover:scale-110">
-            <Heart className="w-6 h-6 text-white" />
-          </div>
-          <span className="text-white text-xs font-semibold">123</span>
-        </button>
-
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-          }}
-          className="flex flex-col items-center gap-1 pointer-events-auto group"
-        >
-          <div className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center transition-all group-hover:bg-black/60 group-hover:scale-110">
-            <MessageCircle className="w-6 h-6 text-white" />
-          </div>
-          <span className="text-white text-xs font-semibold">45</span>
         </button>
 
         <button

@@ -1,7 +1,7 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { queryKey } from "@/src/types/hook/postQuery";
-import ShortsListView from "@/src/app/(router)/shorts/list/ShortsListView";
 import { fetchShorts } from "@/src/lib/shorts";
+import ShortsHomeTest from "@/src/app/(router)/shorts-home-test/ShortsListClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -31,7 +31,7 @@ export default async function ShortsListPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ShortsListView />
+      <ShortsHomeTest />
     </HydrationBoundary>
   );
 }
