@@ -58,9 +58,6 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
             <p className="text-caption1 font-regular text-slate-700 line-clamp-2 ">
               {data.category}
             </p>
-            <p className="text-caption1 font-regular text-slate-700 line-clamp-2 ">
-              {data.createdTime}
-            </p>
             <p className="text-caption1 font-regular text-slate-700 line-clamp-2">
               {data.id}-{data.type}
             </p>
