@@ -55,14 +55,6 @@ const PostList: React.FC = () => {
       {filteredPosts.map((post, index) => (
         <React.Fragment key={post.id}>
           <PostCard data={post} mode='vertical'/>
-
-          {(index + 1) % 3 === 0 && index !== filteredPosts.length - 1 && (
-            <AdBanner
-              slot="7457827733"
-              type="in-article"
-              className="my-6"
-            />
-          )}
         </React.Fragment>
       ))}
 
