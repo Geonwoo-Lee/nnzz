@@ -52,7 +52,7 @@ const PostList: React.FC = () => {
         <p className="text-slate-500">Nothing! 😺</p>
       )}
 
-      {filteredPosts.map((post, index) => (
+      {filteredPosts.map((post) => (
         <React.Fragment key={post.id}>
           <PostCard data={post} mode='vertical'/>
         </React.Fragment>
