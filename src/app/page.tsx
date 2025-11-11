@@ -6,7 +6,7 @@ import KakaoButton from "@/src/component/client/common/button/KakaoButton";
 
 export default function Home() {
     return (
-        <HeightUnitWrapper className="flex flex-col flex-grow  items-center justify-between bg-white max-w-[640px] pt-8 overflow-y-hidden mx-auto">
+        <HeightUnitWrapper className="flex flex-col relative flex-grow  items-center  bg-white max-w-[640px] pt-8 overflow-y-hidden mx-auto">
                 <div className="w-full flex flex-col items-center justify-center">
                     <div className='flex flex-col justify-center items-center gap-8 pb-16'>
                         <Image width={128} height={128} src={'/images/logo/nnzz-home-logo.png'} alt='nnzz-logo'/>
@@ -17,7 +17,7 @@ export default function Home() {
                     </div>
                 </div>
             <HomeCarousel/>
-            <footer className="w-full px-4 pt-4 pb-8 bg-white">
+            <footer className="w-full absolute bottom-6 px-4 pt-4 pb-8 bg-white">
                 <KakaoButton />
             </footer>
         </HeightUnitWrapper>
