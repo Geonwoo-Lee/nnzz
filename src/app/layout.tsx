@@ -172,7 +172,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        <meta name="naver-site-verification" content="b8b44acfbf4b794834769776d1b9b8cb37b41721" />
+        <meta name="naver-site-verification" content="0e084f82fcf28a0ec8f2f2ad549dca9f50bde064" />
         <meta name="google-site-verification" content="1QKRvTlM8LTU89RcO5TjN7IrwiUGdj8OT5QFmps9dKU" />
         <meta name="google-adsense-account" content="ca-pub-7391340913390710" />
         <noscript>
