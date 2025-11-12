@@ -1,8 +1,10 @@
-// app/sitemap.ts
 import { MetadataRoute } from 'next'
 import { NotionAPI } from "notion-client"
 import getPageProperties, { filterPosts, getAllPageIds } from "@/src/func/common/notion.utills"
 import { TPost } from "@/src/types/common/notion";
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 1800
 
 async function fetchAllPosts(): Promise<TPost[]> {
   const api = new NotionAPI()
@@ -35,9 +37,13 @@ async function fetchAllPosts(): Promise<TPost[]> {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.nnzz.today'
 
-  const posts = await fetchAllPosts()
+  let posts: TPost[] = []
+  try {
+    posts = await fetchAllPosts()
+  } catch (error) {
+    console.error("Error fetching posts for sitemap:", error)
+  }
 
-  // 블로그 포스트 URL
   const postUrls = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date.start_date),
@@ -45,7 +51,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  // 동적 라우트 설정
   const types = ['점심', '저녁']
   const days = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
 
@@ -89,6 +94,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'daily',
       priority: 1,
     },
+    // 위치 관련
     {
       url: `${baseUrl}/find-location`,
       lastModified: new Date(),
