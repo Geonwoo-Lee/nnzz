@@ -72,7 +72,7 @@ export default async function BlogPage() {
         headline: post.title,
         description: post.summary || post.title,
         image: post.thumbnail || `${baseUrl}//icon/app-icon-192x192.png`,
-        datePublished: post.date.start_date,
+        datePublished: post.date,
         author: {
           '@type': 'Person',
           name: post.author?.[0]?.name || '냠냠쩝쩝',
