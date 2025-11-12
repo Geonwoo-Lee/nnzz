@@ -1,12 +1,21 @@
-// app/robots.ts
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-    return {
-        rules: {
-            userAgent: '*',
-            allow: '/',
-        },
-        sitemap: 'https://www.nnzz.today/sitemap.xml',
-    }
+  const baseUrl = 'https://www.nnzz.today'
+
+  return {
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/admin/', '/setting/', '/edit/'],
+      },
+      {
+        userAgent: 'Yeti', // 네이버 검색봇
+        allow: '/',
+        disallow: ['/api/', '/admin/', '/setting/', '/edit/'],
+      },
+    ],
+    sitemap: `${baseUrl}/sitemap.xml`,
+  }
 }
