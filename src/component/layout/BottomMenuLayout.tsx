@@ -1,0 +1,75 @@
+import { ReactNode } from "react";
+import { HeaderTypes } from "@/src/types/common/header";
+import Header from "@/src/component/server/common/header/Header";
+import BottomMenu from "@/src/component/client/bottomMenu/BottomMenu";
+
+const BottomMenuLayout = ({
+  children,
+  header,
+  headerTitle,
+  headerType,
+  map,
+  setting,
+  menu,
+  square,
+  close,
+  logo,
+  profileImage,
+  back,
+  headerBg,
+  logoBlack,
+}: {
+  children: ReactNode;
+  header: boolean;
+  headerTitle: string;
+  headerType: HeaderTypes;
+  setting?: boolean;
+  map?: boolean;
+  square?: boolean;
+  headerBg?: string;
+  close?: boolean;
+  menu?: boolean;
+  logo?: boolean;
+  back?: boolean;
+  profileImage?: boolean;
+  logoBlack?: boolean;
+}) => {
+  const bodyHeightRenderer = () => {
+    if (header) {
+      return "h-bottom-menu-body-with-header";
+    } else {
+      return "h-bottom-menu-body";
+    }
+  };
+  return (
+    <section>
+      {header && (
+        <div
+          style={headerBg ? { backgroundColor: headerBg } : undefined}
+          className={` pl-4 pr-4`}
+        >
+          <Header.HeaderLayout
+            headerBg={headerBg}
+            back={back}
+            logo={logo}
+            logoBlack={logoBlack}
+            profileImage={profileImage}
+            setting={setting}
+            map={map}
+            close={close}
+            square={square}
+            menu={menu}
+            type={headerType}
+            title={headerTitle}
+          />
+        </div>
+      )}
+      <div className={`${bodyHeightRenderer()} overflow-y-scroll`}>
+        {children}
+      </div>
+      <BottomMenu />
+    </section>
+  );
+};
+
+export default BottomMenuLayout;

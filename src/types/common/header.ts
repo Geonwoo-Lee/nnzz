@@ -18,4 +18,5 @@ export interface HeaderProps {
   logo?: boolean;
   profileImage?: boolean;
   back?: boolean;
+  logoBlack?: boolean;
 }

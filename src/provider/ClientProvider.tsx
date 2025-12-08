@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import React from 'react'
+import LoginBottomSheetProvider from "@/src/core/LoginBottomSheetProvider";
 
 const ReactQueryProvider = dynamic(
     () => import("./ReactQueryProvider"),
@@ -13,10 +14,10 @@ const ToastProvider = dynamic(
     { ssr: false }
 )
 
-const AuthProvider = dynamic(
-    () => import('./AuthProvider'),
-    { ssr: false }
-)
+// const AuthProvider = dynamic(
+//     () => import('./AuthProvider'),
+//     { ssr: false }
+// )
 
 const SplashScreen = dynamic(
     () => import("@/src/component/client/page/splash/SplashScreen"),
@@ -31,11 +32,13 @@ export default function ClientProviders({
     return (
         <ReactQueryProvider>
             <ToastProvider>
-                <AuthProvider>
+              <LoginBottomSheetProvider>
+                {/*<AuthProvider>*/}
                     <SplashScreen>
                         {children}
                     </SplashScreen>
-                </AuthProvider>
+                {/*</AuthProvider>*/}
+              </LoginBottomSheetProvider>
             </ToastProvider>
         </ReactQueryProvider>
     )

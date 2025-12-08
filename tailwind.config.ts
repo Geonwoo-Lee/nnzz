@@ -142,6 +142,8 @@ const generateHeights = () => {
     'header-height': '60px',
     'basic-body-with-header': `calc(100${heightUnit} - 52px)`,
     'basic-menu-body': '100dvh',
+    "bottom-menu-body-with-header": `calc(100${heightUnit} - 44px - 70px)`,
+    "bottom-menu-body": `calc(100${heightUnit} - 70px)`,
     'button-height-sm': '26px',
     'button-height-md': '38px',
     'button-height-ml': '43px',

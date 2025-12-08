@@ -21,7 +21,7 @@ const WayToChoose = ({ type, mealTiming, day }: WayToChooseProps) => {
     const CHOICE_CONFIG: Record<ChoiceType, ChoiceConfig> = {
         reStart: {
             bg: 'bg-[#FFC5CC]',
-            image: '/images/items/SlowFind.png',
+            image: '/images/items/SlowFind2.png',
             title: '맛의 짝 찾기',
             description: '한번 더!',
             callback: () => {window.location.reload()}

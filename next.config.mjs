@@ -41,6 +41,15 @@ const nextConfig = withPWA({
   },
   productionBrowserSourceMaps: true,
   reactStrictMode: false,
+  async rewrites() {
+    const apiKey = process.env.API_KEY || process.env.NEXT_PUBLIC_API_BASE_URL || 'http://13.209.221.99:8080';
+    return [
+      {
+        source: '/api/proxy/:path*',
+        destination: `${apiKey}/:path*`,
+      },
+    ];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

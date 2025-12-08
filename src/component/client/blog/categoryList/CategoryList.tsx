@@ -25,8 +25,9 @@ const CategoryList = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="text-heading4 font-medium text-text-2">
-        쩝쩝박사의 맛집 픽을 확인해보세요
+      <div className="text-title1 font-medium py-5 leading-[1.3] text-text-1 ">
+        쩝쩝박사님들의 <br/>
+        지역별 맛집 리뷰 보기!
       </div>
       <div className="flex gap-1 overflow-x-auto scrollbar-hide">
         <button

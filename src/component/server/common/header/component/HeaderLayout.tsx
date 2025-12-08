@@ -13,13 +13,21 @@ const HeaderLayout = ({
   logo,
   profileImage,
   back,
+  logoBlack,
 }: HeaderProps) => {
   return (
     <header
-      className={`w-full max-w-[640px] flex items-center justify-between relative h-header-height ${headerBg ? `bg-${headerBg}` : "bg-common-white"}`}
+      className={`w-full max-w-[640px] flex items-center justify-between relative h-header-height ${!headerBg && "bg-common-white"}`}
+      style={headerBg ? { backgroundColor: headerBg } : undefined}
     >
       <div className=" flex-shrink-0 ">
-        <Header.Left back={back} type={type} setting={setting} logo={logo} />
+        <Header.Left
+          logoBlack={logoBlack}
+          back={back}
+          type={type}
+          setting={setting}
+          logo={logo}
+        />
       </div>
       <div className="absolute inset-x-0 flex justify-center max-w-[180px] mx-auto whitespace-nowrap">
         {title && <Header.Title title={title} />}
