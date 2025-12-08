@@ -1,12 +1,12 @@
 // app/(route)/blog/[slug]/page.tsx
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { NotionAPI } from "notion-client";
-import { queryKey } from "@/src/types/hook/postQuery";
 import getPageProperties, { filterPosts, getAllPageIds } from "@/src/func/common/notion.utills";
-import PostDetailClient from "./PostDetailClient";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { PostDetail } from "@/src/types/common/notion";
+import BlogCategory from "@/src/component/client/blog/blogCategory/BlogCategory";
+import BlogHeader from "@/src/component/client/blog/blogHeader/BlogHeader";
+import NotionRenderer from "@/src/component/client/blog/notionRenderer/NotionRenderer";
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -140,25 +140,13 @@ export default async function PostPage({
 }) {
   const { slug } = await params
 
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 0,
-        gcTime: 0,
-      },
-    },
-  })
-
   const post = await fetchPostBySlug(slug)
 
   if (!post) {
     notFound()
   }
 
-  await queryClient.prefetchQuery({
-    queryKey: queryKey.post(slug),
-    queryFn: () => post,
-  })
+  const category = (post.category && post.category?.[0]) || undefined
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -189,9 +177,25 @@ export default async function PostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <PostDetailClient />
-      </HydrationBoundary>
+      <div className="max-w-[640px] mx-auto px-6 py-3 rounded-3xl bg-white shadow-md">
+        <article className="mx-auto max-w-full">
+          {category && (
+            <div className="mb-2">
+              <BlogCategory readOnly={post.status?.[0] === "PublicOnDetail"}>
+                {category}
+              </BlogCategory>
+            </div>
+          )}
+
+          {post.type?.[0] === "Post" && <BlogHeader data={post} />}
+
+          {post.recordMap && (
+            <div>
+              <NotionRenderer recordMap={post.recordMap} />
+            </div>
+          )}
+        </article>
+      </div>
     </>
   )
 }

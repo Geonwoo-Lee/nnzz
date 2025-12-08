@@ -1,7 +1,7 @@
-import BasicLayout from "@/src/component/layout/BasicLayout";
 import {HeaderTypes} from "@/src/types/common/header";
 import {ReactNode} from "react";
 import {Metadata} from "next";
+import BottomMenuLayout from "@/src/component/layout/BottomMenuLayout";
 
 export const metadata: Metadata = {
   title: '냠냠쩝쩝',
@@ -60,9 +60,9 @@ export const metadata: Metadata = {
 }
 
 const BlogLayout = ({children}: {children: ReactNode}) => {
-  return <BasicLayout header={true} headerTitle={''}  profileImage={true} logo={true} headerType={HeaderTypes.basic} >
+  return <BottomMenuLayout header={true} headerTitle={''}  profileImage={true} logo={false} logoBlack={true} headerType={HeaderTypes.basic} >
     {children}
-  </BasicLayout>
+  </BottomMenuLayout>
 }
 
 export default BlogLayout

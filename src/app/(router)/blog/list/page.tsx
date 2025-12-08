@@ -3,7 +3,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query
 import { queryKey } from "@/src/types/hook/postQuery";
 import { NotionAPI } from "notion-client";
 import getPageProperties, { filterPosts, getAllPageIds } from "@/src/func/common/notion.utills";
-import Feed from "@/src/app/(router)/blog/list/BlogListClient";
+import Feed from "@/src/component/server/blog/Feed";
 import { TPost } from "@/src/types/common/notion";
 
 export const dynamic = "force-dynamic";

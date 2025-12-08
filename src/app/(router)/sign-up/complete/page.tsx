@@ -1,4 +1,4 @@
-import SignUpComplete from "@/src/component/client/page/sign-up/complete/SignUpComplete";
+import SignUpComplete from "@/src/component/server/page/sign-up/complete/SignUpComplete";
 
 const CompletePage = () => {
     return (

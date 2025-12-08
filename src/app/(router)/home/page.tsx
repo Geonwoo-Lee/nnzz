@@ -1,14 +1,39 @@
 import HomeMealSettingServer from "@/src/component/server/page/home/homeMealSettingServer/HomeMealSettingServer";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import { fetchShorts } from "@/src/lib/shorts";
+import { queryKey } from "@/src/types/hook/postQuery";
 
+const Home = async () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+        gcTime: 5 * 60 * 1000,
+      },
+    },
+  });
 
+  const allShorts = await fetchShorts();
 
-const Home = () => {
+  const sortedShorts = [...allShorts].sort((a, b) => {
+    const idxA = Number(a.idx);
+    const idxB = Number(b.idx);
+    return idxA - idxB;
+  });
 
-    return (
-        <>
-            <HomeMealSettingServer/>
-        </>
-    )
-}
+  await queryClient.prefetchQuery({
+    queryKey: queryKey.shorts(),
+    queryFn: () => sortedShorts,
+  });
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <HomeMealSettingServer />
+    </HydrationBoundary>
+  );
+};
 
-export default Home
+export default Home;
