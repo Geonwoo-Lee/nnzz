@@ -8,8 +8,15 @@ import { useMemo } from "react"
 const usePostsQuery = (category?: string) => {
   const { data: allData } = useQuery({
     queryKey: queryKey.posts(),
+    queryFn: async () => {
+      const response = await fetch('/api/posts');
+      if (!response.ok) {
+        throw new Error('Failed to fetch posts');
+      }
+      return response.json();
+    },
     initialData: [] as TPost[],
-    enabled: false,
+    staleTime: 60 * 1000,
   })
 
   const posts = useMemo(() => {
