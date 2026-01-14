@@ -4,10 +4,10 @@ import MealTarotList from "@/src/component/client/page/meal-tarot/features/MealT
 const MealTarot = () => {
   return (
     <div className="flex flex-col h-bottom-menu-body-with-header">
-      <div className="flex-1 w-full min-h-0">
+      <div className="flex-1 w-full">
         <MealTarotMaster />
       </div>
-      <div className="flex-1 w-full min-h-0">
+      <div className="flex-1 w-full">
         <MealTarotList />
       </div>
     </div>

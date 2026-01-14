@@ -37,10 +37,13 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
             )}
             <div className="flex items-center gap-2">
               <div className="text-caption2 font-regular text-slate-600">
-                {DateUtils.formatDate(
-                  data?.date?.start_date || data.createdTime,
-                  "ko-KR",
-                )}
+                {(data?.date?.start_date || data.createdTime)
+                  ? DateUtils.formatDate(
+                    data?.date?.start_date || data.createdTime,
+                    "ko-KR",
+                  )
+                  : "-"
+                }
               </div>
             </div>
             <h2 className="text-body1 font-bold cursor-pointer line-clamp-2">

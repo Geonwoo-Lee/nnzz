@@ -14,21 +14,24 @@ import { FC } from "react"
 
 const _NotionRenderer = dynamic(
   () => import("react-notion-x").then((m) => m.NotionRenderer),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="animate-pulse h-96 bg-slate-200 rounded"></div> }
 )
 
 const Code = dynamic(() =>
-  import("react-notion-x/build/third-party/code").then(async (m) => m.Code)
+  import("react-notion-x/build/third-party/code").then(async (m) => m.Code),
+  { ssr: false }
 )
 
 const Collection = dynamic(() =>
   import("react-notion-x/build/third-party/collection").then(
     (m) => m.Collection
-  )
+  ),
+  { ssr: false }
 )
 
 const Equation = dynamic(() =>
-  import("react-notion-x/build/third-party/equation").then((m) => m.Equation)
+  import("react-notion-x/build/third-party/equation").then((m) => m.Equation),
+  { ssr: false }
 )
 
 const Pdf = dynamic(

@@ -42,7 +42,7 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
                     position: new window.naver.maps.LatLng(places[0].lat, places[0].lng),
                     map: newMap,
                     icon: {
-                        content: '<img src="/assets/mapPin.png" alt="Map Pin" style="width:40px; height:51px; min-width: 40px;" />',
+                        content: '<img src="/assets/mapPin2.png" alt="Map Pin" style="width:40px; height:51px; min-width: 40px;" />',
                         anchor: new window.naver.maps.Point(20, 40),
                     },
                 });

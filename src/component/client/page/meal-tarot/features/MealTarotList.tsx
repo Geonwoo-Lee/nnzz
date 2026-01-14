@@ -5,6 +5,7 @@ import { useSpring, animated } from "@react-spring/web";
 import { useState, useRef, useEffect } from "react";
 import { useLoginBottomSheet } from "@/src/core/LoginBottomSheetProvider";
 import { useRouter } from "next/navigation";
+import AuthUtils from "@/src/func/common/auth.utils";
 
 const AnimatedCard = ({
   delay,
@@ -49,9 +50,14 @@ const AnimatedCard = ({
     <animated.div
       style={style}
       onClick={() => {
-        showLoginSheet().then(() => {
+        const isLogin = AuthUtils.isLoggedIn()
+        if(isLogin) {
           router.push('/meal-result')
-        })
+        }else {
+          showLoginSheet().then(() => {
+            router.push('/meal-result')
+          })
+        }
       }}
       className="flex-1 min-w-0"
     >
@@ -72,7 +78,7 @@ const MealTarotList = () => {
   };
 
   return (
-    <div className="bg-slate-900 w-full h-full flex items-center overflow-hidden">
+    <div className="bg-slate-900 w-full h-full flex items-center justify-center">
       <div className="flex flex-col gap-8 py-8 justify-center items-center px-8 w-full">
         <div className="text-center text-body1 font-medium text-text-7">
           카드를 골라보세요

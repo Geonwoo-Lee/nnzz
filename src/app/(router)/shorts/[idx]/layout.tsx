@@ -39,9 +39,18 @@ export const metadata: Metadata = {
 }
 
 const BlogLayout = ({children}: {children: ReactNode}) => {
-  return <BasicLayout header={true} headerTitle={''}  profileImage={true} logo={true} headerType={HeaderTypes.basic} >
-    {children}
-  </BasicLayout>
+  return (
+    <BasicLayout
+      header={true}
+      headerTitle={""}
+      profileImage={true}
+      logo={false}
+      logoBlack={true}
+      headerType={HeaderTypes.basic}
+    >
+      {children}
+    </BasicLayout>
+  );
 }
 
 export default BlogLayout

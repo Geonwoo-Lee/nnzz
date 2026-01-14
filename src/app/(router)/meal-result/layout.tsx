@@ -1,7 +1,6 @@
 import {HeaderTypes} from "@/src/types/common/header";
 import {ReactNode} from "react";
-// import {Metadata} from "next";
-import BottomMenuLayout from "@/src/component/layout/BottomMenuLayout";
+import BasicLayout from "@/src/component/layout/BasicLayout";
 
 
 // export const metadata: Metadata = {
@@ -39,9 +38,9 @@ import BottomMenuLayout from "@/src/component/layout/BottomMenuLayout";
 // }
 
 const MealResultLayout = ({children}: {children: ReactNode}) => {
-  return <BottomMenuLayout  header={false} headerTitle={'랜덤 뽑기'}   headerType={HeaderTypes.history} >
+  return <BasicLayout  header={false} headerTitle={'랜덤 뽑기'}   headerType={HeaderTypes.history} bodyBg="linear-gradient(180deg, #FFF1F3 0%, #FFC5CC 100%)" overflow={false} >
     {children}
-  </BottomMenuLayout>
+  </BasicLayout>
 }
 
 export default MealResultLayout

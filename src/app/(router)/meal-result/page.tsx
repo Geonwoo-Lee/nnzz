@@ -11,6 +11,7 @@ import RandomTile from "../../../../public/svg/items/common/RandomTitle.svg";
 import Header from "@/src/component/server/common/header/Header";
 import { HeaderTypes } from "@/src/types/common/header";
 import { useRouter } from "next/navigation";
+import AuthUtils from "@/src/func/common/auth.utils";
 
 const RandomResult = () => {
   const router = useRouter();
@@ -23,7 +24,14 @@ const RandomResult = () => {
     image: string;
   } | null>(null);
 
+  const [userName, setUserName] = useState("냠냠");
+
   useEffect(() => {
+    const userInfo = AuthUtils.getUserInfo();
+    if (userInfo && userInfo.nickname) {
+      setUserName(userInfo.nickname);
+    }
+
     const categoryEntries = Object.entries(categoryNames);
     const randomIndex = Math.floor(Math.random() * categoryEntries.length);
     const [imageFile, categoryName] = categoryEntries[randomIndex];
@@ -58,7 +66,7 @@ const RandomResult = () => {
 
           <div className="text-title1 font-bold text-text-7 text-center animate-pulse">
             두근두근 <br />
-            냠냠님의 오늘의 메뉴는?
+            {userName}님의 오늘의 메뉴는?
           </div>
         </div>
 
@@ -104,7 +112,7 @@ const RandomResult = () => {
 
   return (
     <div
-      className=" inset-0 z-50 flex flex-col max-w-[640px] mx-auto"
+      className="inset-0 z-50 flex flex-col h-basic-menu-body max-w-[640px] mx-auto"
       style={{
         background: "linear-gradient(180deg, #FFF1F3 0%, #FFC5CC 100%)",
       }}
@@ -117,47 +125,44 @@ const RandomResult = () => {
         />
       </div>
 
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <div className="flex-1 overflow-y-auto px-4">
-          <div className="flex flex-col items-center gap-4 w-full py-6 min-h-full justify-center">
-            <div className="flex-shrink-0">
-              <RandomTile />
-            </div>
-
-            {selectedCategory && (
-              <div
-                className="relative bg-gradient-to-b from-red-50 to-red-200 rounded-3xl shadow-2xl border-4 border-white w-full max-w-[296px] flex-shrink-0"
-                style={{ aspectRatio: "296/441" }}
-              >
-                <div className="h-full flex flex-col">
-                  <div className="text-center pt-8 px-6 pb-4">
-                    <p className="text-title1 font-bold text-gray-800">
-                      오늘은
-                    </p>
-                    <p className="text-title1 font-bold text-gray-900">
-                      {selectedCategory.name} 어때요?
-                    </p>
-                  </div>
-
-                  <div
-                    className="flex-1 flex items-center justify-center bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url(/images/bg/RandomBg.png)" }}
-                  >
-                    <img
-                      src={selectedCategory.image}
-                      alt={selectedCategory.name}
-                      className="w-48 h-48 object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+      <div className="flex-1 flex flex-col items-center justify-center gap-4 px-4 py-4 min-h-0">
+        <div className="flex-shrink-0">
+          <RandomTile />
         </div>
 
-        <div className="w-full flex gap-3 px-4 py-4 flex-shrink-0">
+        {selectedCategory && (
+          <div
+            className="relative bg-gradient-to-b from-red-50 to-red-200 rounded-3xl shadow-2xl border-4 border-white w-full max-w-[296px] flex-shrink-0"
+            style={{ aspectRatio: "296/441", maxHeight: "calc(100% - 60px)" }}
+          >
+            <div className="h-full flex flex-col">
+              <div className="text-center pt-8 px-6 pb-4 flex-shrink-0">
+                <p className="text-title1 font-bold text-gray-800">
+                  오늘은
+                </p>
+                <p className="text-title1 font-bold text-gray-900">
+                  {selectedCategory.name} 어때요?
+                </p>
+              </div>
+
+              <div
+                className="flex-1 flex items-center justify-center bg-cover bg-center bg-no-repeat min-h-0"
+                style={{ backgroundImage: "url(/images/bg/RandomBg.png)" }}
+              >
+                <img
+                  src={selectedCategory.image}
+                  alt={selectedCategory.name}
+                  className="w-48 h-48 max-w-[60%] max-h-[60%] object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="w-full flex gap-3 px-4 py-4 flex-shrink-0">
           <button
-            className="flex-1 bg-gray-800 text-white py-4 rounded-lg font-bold text-base"
+            className="flex-1 bg-gray-800 text-white py-4 rounded-[12px] font-bold text-base"
             onClick={() => {
               router.push("/meal-tarot");
             }}
@@ -165,7 +170,7 @@ const RandomResult = () => {
             다시뽑기
           </button>
           <button
-            className="flex-1 bg-red-500 text-white py-4 rounded-lg font-bold text-base"
+            className="flex-1 bg-red-500 text-white py-4 rounded-[12px] font-bold text-base"
             onClick={() => {
               if (!selectedCategory) return;
               const searchQuery = encodeURIComponent(selectedCategory.name);
@@ -185,7 +190,6 @@ const RandomResult = () => {
             지도에서 식당 확인
           </button>
         </div>
-      </div>
 
       <style jsx>{`
         @keyframes fade-in {

@@ -45,7 +45,7 @@ const FindLocationClientPage = () => {
                 window.localStorage.setItem('pinedLocation', JSON.stringify(location));
                 router.push('/home')
             }).catch((err) => {
-                if (err.status === 401) {
+                if (err.status === 400) {
                     window.localStorage.setItem('pinedLocation', JSON.stringify(location));
                     router.push('/home')
                 }

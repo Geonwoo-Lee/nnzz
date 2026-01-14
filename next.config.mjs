@@ -18,6 +18,10 @@ const withPWA = nextPWA({
           maxEntries: 200,
           maxAgeSeconds: 24 * 60 * 60,
         },
+        networkTimeoutSeconds: 10,
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
       },
     },
   ],
@@ -25,14 +29,35 @@ const withPWA = nextPWA({
 
 const nextConfig = withPWA({
   images: {
-    domains: [
-      "images.unsplash.com",
-      "https://nnzzimage.s3.ap-northeast-2.amazonaws.com",
-      "www.notion.so",
-      "s3-us-west-2.amazonaws.com",
-      "s3.us-west-2.amazonaws.com",
-      "prod-files-secure.s3.us-west-2.amazonaws.com",
-      "img.youtube.com"
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'nnzzimage.s3.ap-northeast-2.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.notion.so',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3-us-west-2.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.us-west-2.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
     ],
     minimumCacheTTL: 300,
   },
@@ -41,15 +66,6 @@ const nextConfig = withPWA({
   },
   productionBrowserSourceMaps: true,
   reactStrictMode: false,
-  async rewrites() {
-    const apiKey = process.env.API_KEY || process.env.NEXT_PUBLIC_API_BASE_URL || 'http://13.209.221.99:8080';
-    return [
-      {
-        source: '/api/proxy/:path*',
-        destination: `${apiKey}/:path*`,
-      },
-    ];
-  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

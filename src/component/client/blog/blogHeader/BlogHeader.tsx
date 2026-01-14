@@ -28,10 +28,12 @@ const BlogHeader: React.FC<Props> = ({ data }) => {
               </>
             )}
             <div className="mr-2">
-              {DateUtils.formatDate(
-                data?.date?.start_date || data.createdTime,
-                'ko-KR'
-              )}
+              {data?.date?.start_date || data.createdTime
+                ? DateUtils.formatDate(
+                    data?.date?.start_date || data.createdTime,
+                    'ko-KR'
+                  )
+                : '-'}
             </div>
           </div>
 
