@@ -12,7 +12,6 @@ import FoodieWay from "@/src/component/client/page/home/features/foodieWay/Foodi
 import ShortsListView from "@/src/app/(router)/shorts/list/ShortsListView";
 import { useLoginBottomSheet } from "@/src/core/LoginBottomSheetProvider";
 import NotLogin from "@/src/component/client/page/home/features/notLogin/NotLogin";
-import MyApi from "@/src/app/api/client/my/Home";
 import FoodHistory from "@/src/component/client/page/home/features/foodHistory/FoodHistory";
 import AdBanner from "@/src/component/client/common/adSense/AdBanner";
 
@@ -28,7 +27,7 @@ const HomeMealSettingClient = () => {
   );
   const [mealTiming, setMealTiming] = useState<MealTimingType>();
   const [wayToFind, setWayToFind] = useState("");
-  const [wayBottomSheet, setWayBottomSheet] = useState(false);
+  const [, setWayBottomSheet] = useState(false);
   const [mealTimingBottomSheet, setMealTimingBottomSheet] = useState(false);
   const [initialMealTime, setInitialMealTime] = useState<DayInfo | null>(null);
   const [initialMealTiming, setInitialMealTiming] = useState<
