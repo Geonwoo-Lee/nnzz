@@ -28,9 +28,6 @@ const RoundFinishCard = ({store, day, type, categoryImage, handleOpenNaverMap}: 
                 <div className='py-2 flex items-center justify-center text-text-1 text-title2 font-bold'>
                     {store.category}
                 </div>
-                <div className='text-caption2 font-regular text-text-2 text-center'>
-                    {store.description}
-                </div>
                 <div className='pb-6 sm:pb-8 pt-4 sm:pt-6'>
                     <div className='relative w-full rounded-[12px] border border-red-200'>
                         <LikeIcon className='absolute -top-16 sm:-top-20 left-1/2 -translate-x-1/2'/>

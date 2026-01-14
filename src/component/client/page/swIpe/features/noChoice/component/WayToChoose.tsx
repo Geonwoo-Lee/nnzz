@@ -19,22 +19,24 @@ interface WayToChooseProps {
 
 const WayToChoose = ({ type, mealTiming, day }: WayToChooseProps) => {
     const CHOICE_CONFIG: Record<ChoiceType, ChoiceConfig> = {
-        reStart: {
-            bg: 'bg-[#FFC5CC]',
-            image: '/images/items/SlowFind2.png',
-            title: '맛의 짝 찾기',
-            description: '한번 더!',
-            callback: () => {window.location.reload()}
+      reStart: {
+        bg: "bg-[#FFC5CC]",
+        image: "/images/items/SlowFind3.png",
+        title: "맛의 짝 찾기",
+        description: "한번 더!",
+        callback: () => {
+          window.location.reload();
         },
-        random: {
-            bg: 'bg-[#BFDBFE]',
-            image: '/images/items/RandomFind.png',
-            title: '알아서 골라주세요',
-            description: '랜덤 뽑기',
-            callback: () => {
-                window.location.href = `/random/${mealTiming}/${day}`
-            }
-        }
+      },
+      random: {
+        bg: "bg-[#BFDBFE]",
+        image: "/images/items/RandomFind2.png",
+        title: "알아서 골라주세요",
+        description: "랜덤 뽑기",
+        callback: () => {
+          window.location.href = `/random/${mealTiming}/${day}`;
+        },
+      },
     } as const;
     const config = CHOICE_CONFIG[type];
 
@@ -56,6 +58,7 @@ const WayToChoose = ({ type, mealTiming, day }: WayToChooseProps) => {
                          width={144}
                          height={144}
                          priority
+                         className='w-[52px] h-[52px] sm:w-[74px] sm:h-[74px] md:w-[144px] md:h-[144px]'
                      />
                  </div>
             </div>

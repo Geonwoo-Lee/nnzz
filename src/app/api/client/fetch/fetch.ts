@@ -1,6 +1,6 @@
 import AuthUtils from "@/src/func/common/auth.utils";
 
-const apiKey = process.env.API_KEY || "";
+const apiKey = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_KEY || "http://13.209.221.99:8080";
 
 interface ErrorResponse {
   type: string;
@@ -13,8 +13,6 @@ interface ErrorResponse {
 }
 
 async function customFetch(url: string, options: RequestInit = {}, useToken: boolean = true): Promise<Response> {
-  const isServer = typeof window === 'undefined';
-
   // URL에서 API 경로만 추출 (http://... 제거)
   let apiPath = url;
   if (url.startsWith('http://') || url.startsWith('https://')) {
@@ -26,14 +24,14 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
     }
   }
 
-  // 클라이언트에서는 proxy를 통해 요청, 서버에서는 직접 요청
-  const fullUrl = isServer ? `${apiKey}${apiPath}` : `/api/proxy${apiPath}`;
+  // 직접 API 서버로 요청
+  const fullUrl = `${apiKey}${apiPath}`;
 
   const defaultHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
-  if (!isServer && useToken) {
+  if (useToken) {
     const tokenObj = AuthUtils.getToken();
     if (tokenObj?.accessToken) {
       defaultHeaders['Authorization'] = tokenObj.accessToken;
@@ -71,7 +69,7 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
     // 네트워크 에러 처리
     if (error instanceof Error && error.message === 'Failed to fetch') {
       // 토큰이 있는 요청인데 네트워크 에러면 401로 간주 (임시방편)
-      if (useToken && !isServer) {
+      if (useToken) {
         const customError = new Error('Unauthorized - Network Error');
         (customError as any).status = 401;
         throw customError;

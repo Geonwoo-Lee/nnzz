@@ -6,6 +6,7 @@ import {BottomSheetPropsType} from "@/src/types/common/bottomSheet";
 interface ExtendedBottomSheetPropsType extends BottomSheetPropsType {
     backdrop?: boolean;
     animation?: boolean;
+    disableScroll?: boolean;
 }
 
 const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
@@ -16,6 +17,7 @@ const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
                                                                  backdrop = true,
                                                                  animation = true,
                                                                  noBackdrop = false,
+                                                                 disableScroll = false,
                                                              }) => {
     const [windowWidth, setWindowWidth] = useState(0);
 
@@ -69,7 +71,7 @@ const BottomSheet: React.FC<ExtendedBottomSheetPropsType> = ({
                 className="bg-common-white shadow-bottom-sheet-top rounded-t-[12px] fixed bottom-0 z-[60]"
             >
                 <div
-                    className={`${!nonPadding ? "px-5 py-8" : ""} max-h-[calc(100vh-80px)] overflow-y-auto`}
+                    className={`${!nonPadding ? "px-4 py-8" : ""} max-h-[calc(100vh-80px)] ${disableScroll ? 'overflow-hidden' : 'overflow-y-auto'}`}
                 >
                     {children}
                 </div>

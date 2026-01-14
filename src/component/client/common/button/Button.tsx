@@ -21,7 +21,7 @@ const Button = ({
         },
         type: {
             primary: `${color ? color : "text-common-white"} bg-red-500 active:bg-primary-8 active:scale-95`,
-            secondary: `${color ? color : "text-common"} bg-common-white active:bg-bg-3 active:scale-95`,
+            secondary: `${color ? color : "text-common"} bg-bg-1 active:bg-bg-3 active:scale-95`,
             muted: `${color ? color : "text-common-white"} bg-bg-9 active:bg-bg-7 active:scale-95`,
             outlined: `${color ? color : "text-text-3"} bg-common-white border border-line-3 active:scale-95 active:bg-bg-3`,
             transparent: `${color ? color : 'text-text-2'} bg-common-white active:bg-bg-2 active:scale-95`,

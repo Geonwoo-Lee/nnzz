@@ -97,6 +97,7 @@ const EditPage = () => {
         DeleteApi.DeleteUser(accessToken).then(() => {
             AuthUtils.removeUserInfo();
             AuthUtils.removeToken();
+            AuthUtils.removeLocation();
             window.location.href = '/';
         });
     }

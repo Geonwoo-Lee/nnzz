@@ -49,6 +49,11 @@ public static getToken(): TokenObject | null {
         localStorage.removeItem("nnzz_user");
     }
 
+    public static removeLocation() {
+        localStorage.removeItem("userLocation");
+        localStorage.removeItem("pinedLocation");
+    }
+
     public static async login(loginRes: LoginRes) {
         return new Promise((resolve) => {
             this.setUserInfo({

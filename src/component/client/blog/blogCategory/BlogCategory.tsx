@@ -27,13 +27,13 @@ const BlogCategory: React.FC<Props> = ({ readOnly = false, children }) => {
 
     const handleClick = (value: string) => {
         if (readOnly) return
-        router.push(`/blog/?category=${value}`)
+        router.push(`/blog/list/?category=${value}`)
     }
 
     return (
         <div
             onClick={() => handleClick(children)}
-            className={`py-1 px-2 rounded-full w-fit text-sm opacity-90 text-gray-100 ${
+            className={`py-1 px-2 rounded-full w-fit text-sm text-gray-100 opacity-100 ${
                 readOnly ? "cursor-default" : "cursor-pointer"
             }`}
             style={{

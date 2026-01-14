@@ -135,7 +135,14 @@ export function getAllCategoriesFromPosts(
     }
   })
 
-  return categoryObj
+  // 카테고리를 이름순으로 정렬하여 순서 고정
+  const sortedCategories = Object.keys(categoryObj).sort()
+  const sortedCategoryObj: { [categoryName: string]: number } = {}
+  sortedCategories.forEach(cat => {
+    sortedCategoryObj[cat] = categoryObj[cat]
+  })
+
+  return sortedCategoryObj
 }
 
 

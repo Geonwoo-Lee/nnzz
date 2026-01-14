@@ -7,7 +7,7 @@ import FoodProfileDummy from "@/src/dummy/sign-up";
 import AuthUtils from "@/src/func/common/auth.utils";
 
 interface LoginProps {
-  onLoginSuccess?: () => void; // 추가
+  onLoginSuccess?: () => void;
 }
 
 export default function Login({ onLoginSuccess }: LoginProps) {
@@ -27,6 +27,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
     }
     if (window.Kakao && window.Kakao.Auth) {
       window.Kakao.Auth.login({
+        throughTalk: false, // 이 옵션이 핵심! 카카오톡 앱을 사용하지 않음
         success: function() {
           window.Kakao.API.request({
             url: '/v2/user/me',
@@ -46,7 +47,8 @@ export default function Login({ onLoginSuccess }: LoginProps) {
               SignInApi.login(kakaoAccount.email).then((res) => {
                 const profile = FoodProfileDummy.find(el => el.id === Number(res.user.profileImage))
                 AuthUtils.removeUserInfo();
-                AuthUtils.removeToken()
+                AuthUtils.removeToken();
+                AuthUtils.removeLocation();
                 AuthUtils.setUserInfo({
                   ...res.user,
                   email: kakaoAccount.email,
@@ -84,7 +86,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
   return (
     <button
       onClick={handleLogin}
-      className="flex items-center justify-center w-full py-3 px-4 bg-[#FEE500] rounded-xl text-black font-medium text-sm hover:bg-[#FEE500]/90 transition-colors"
+      className="flex items-center justify-center w-full py-3 px-4 bg-[#FEE500] rounded-xl text-black font-medium text-body2 hover:bg-[#FEE500]/90 transition-colors"
     >
       <KakaoLogo width={20} height={20} className="mr-2" />
       카카오로 계속하기

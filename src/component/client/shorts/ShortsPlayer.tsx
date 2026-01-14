@@ -49,6 +49,7 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
   const [showPlayPauseIcon, setShowPlayPauseIcon] = useState(false)
   const [isAnimatingOut, setIsAnimatingOut] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
 
   const videoType = getVideoType(data.videoUrl)
   const youtubeVideoId = videoType === 'youtube' ? getYouTubeVideoId(data.videoUrl || '') : null
@@ -175,6 +176,27 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
     }
   }
 
+  const handleShare = async () => {
+    const shareData = {
+      title: data.title,
+      text: data.summary || data.title,
+      url: typeof window !== 'undefined' ? window.location.href : ''
+    }
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData)
+      } else {
+        await navigator.clipboard.writeText(shareData.url)
+        alert('링크가 클립보드에 복사되었습니다!')
+      }
+    } catch (error) {
+      if ((error as Error).name !== 'AbortError') {
+        console.error('공유 실패:', error)
+      }
+    }
+  }
+
   const heightUnit = isMobile ? 'dvh' : 'vh'
   const containerHeight = `calc(100${heightUnit} - 60px)`
 
@@ -265,9 +287,20 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
           {data.title}
         </h2>
         {data.summary && (
-          <p className="text-white/90 text-sm line-clamp-2 mb-2">
-            {data.summary}
-          </p>
+          <div className="mb-2">
+            <p className={`text-white/90 text-sm ${isDescriptionExpanded ? '' : 'line-clamp-2'}`}>
+              {data.summary}
+            </p>
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                setIsDescriptionExpanded(!isDescriptionExpanded)
+              }}
+              className="text-white/70 text-xs mt-1 pointer-events-auto hover:text-white/90 transition-colors"
+            >
+              {isDescriptionExpanded ? '접기' : '더보기'}
+            </button>
+          </div>
         )}
         {data.category && data.category.length > 0 && (
           <div className="flex gap-2 flex-wrap">
@@ -303,6 +336,7 @@ export default function ShortsPlayer({ data, isActive, onVisible }: ShortsPlayer
         <button
           onClick={(e) => {
             e.stopPropagation()
+            handleShare()
           }}
           className="flex flex-col items-center gap-1 pointer-events-auto group"
         >

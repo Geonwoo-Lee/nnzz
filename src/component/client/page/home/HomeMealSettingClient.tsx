@@ -10,9 +10,16 @@ import { useToast } from "@/src/core/ToastProvider";
 import { ToastAlign, ToastPosition } from "@/src/types/common/toast";
 import FoodieWay from "@/src/component/client/page/home/features/foodieWay/FoodieWay";
 import ShortsListView from "@/src/app/(router)/shorts/list/ShortsListView";
+import { useLoginBottomSheet } from "@/src/core/LoginBottomSheetProvider";
+import NotLogin from "@/src/component/client/page/home/features/notLogin/NotLogin";
+import MyApi from "@/src/app/api/client/my/Home";
+import FoodHistory from "@/src/component/client/page/home/features/foodHistory/FoodHistory";
+import AdBanner from "@/src/component/client/common/adSense/AdBanner";
 
 const HomeMealSettingClient = () => {
   const router = useRouter();
+  const isLogin = AuthUtils.isLoggedIn();
+  const { showLoginSheet } = useLoginBottomSheet();
   const showToast = useToast();
   const [selectedLocation, setSelectedLocation] = useState("현재 위치");
   const [mealTime] = useState<DayInfo[]>(DateUtils.getWeekDates());
@@ -91,6 +98,18 @@ const HomeMealSettingClient = () => {
     };
   }, []);
 
+  const changeWayRequest = (way: "빠르게" | "꼼꼼히") => {
+    const isLogin = AuthUtils.isLoggedIn();
+
+    if (!isLogin) {
+      showLoginSheet().then(() => {
+        onChangeWay(way);
+      });
+    } else {
+      onChangeWay(way);
+    }
+  };
+
   const onChangeWay = (way: "빠르게" | "꼼꼼히") => {
     setWayToFind(way);
     setWayBottomSheet(false);
@@ -117,7 +136,7 @@ const HomeMealSettingClient = () => {
       if (selectedLocation === "현재 위치") {
         showToast(
           "위치를 선택해주세요",
-          ToastPosition.MIDDLE,
+          ToastPosition.BOTTOM,
           ToastAlign.CENTER,
         );
         return;
@@ -147,7 +166,6 @@ const HomeMealSettingClient = () => {
     }
   }, [selectedMealTime]);
 
-  // selectedMealTime이 변경될 때 mealTiming을 업데이트하는 useEffect 수정
   useEffect(() => {
     if (!selectedMealTime) return;
 
@@ -157,7 +175,6 @@ const HomeMealSettingClient = () => {
 
     const selectedDate = DateUtils.parseDateString(selectedMealTime.date);
 
-    // 선택된 날짜가 오늘인지 확인
     if (selectedDate && selectedDate.getTime() === today.getTime()) {
       setMealTiming(currentHour < 15 ? "점심" : "저녁");
     } else {
@@ -197,8 +214,8 @@ const HomeMealSettingClient = () => {
   }, [location]);
 
   return (
-    <div>
-      <div className="flex flex-col gap-4 p-5 bg-primary-6 rounded-bl-[16px]">
+    <div className="bg-slate-50">
+      <div className="flex flex-col gap-4 p-5 bg-[#FF334C] rounded-bl-[16px]">
         <div className="font-medium text-title1 text-text-7">{userName}님,</div>
         <div className="flex flex-row gap-1 items-center font-medium text-title1 text-text-7 whitespace-nowrap">
           <HomeMealSettingComponent.HomeSelect
@@ -217,8 +234,14 @@ const HomeMealSettingClient = () => {
           메뉴 골라봐요!
         </div>
         <div className="flex flex-row gap-4">
-          <FoodieWay type={"slow"} onChangeWay={() => onChangeWay("꼼꼼히")} />
-          <FoodieWay type={"fast"} onChangeWay={() => onChangeWay("빠르게")} />
+          <FoodieWay
+            type={"slow"}
+            onChangeWay={() => changeWayRequest("꼼꼼히")}
+          />
+          <FoodieWay
+            type={"fast"}
+            onChangeWay={() => changeWayRequest("빠르게")}
+          />
         </div>
         <HomeMealSettingComponent.FoodieScheduleBottomSheet
           closeModal={closeScheduleBottomSheet}
@@ -230,7 +253,15 @@ const HomeMealSettingClient = () => {
           setMealTiming={mealTimingController}
         />
       </div>
-      <ShortsListView/>
+        {isLogin ? <FoodHistory /> : <NotLogin />}
+      <AdBanner
+        slot="1234567890"
+        style={{ minHeight: '100px' }}
+        className="my-4"
+      />
+      <div className="pb-10">
+        <ShortsListView />
+      </div>
     </div>
   );
 };

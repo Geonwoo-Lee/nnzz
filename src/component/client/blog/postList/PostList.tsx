@@ -17,7 +17,8 @@ const PostList: React.FC = () => {
 
   useEffect(() => {
     setFilteredPosts(() => {
-      let newFilteredPosts = data
+      // 원본 배열을 복사하여 불변성 유지
+      let newFilteredPosts = [...data]
 
       if (currentTag) {
         newFilteredPosts = newFilteredPosts.filter(
@@ -31,8 +32,9 @@ const PostList: React.FC = () => {
         )
       }
 
-      if (currentOrder !== "desc") {
-        newFilteredPosts = newFilteredPosts.reverse()
+      // 정렬 순서에 따라 처리 (asc일 때만 reverse)
+      if (currentOrder === "asc") {
+        newFilteredPosts = [...newFilteredPosts].reverse()
       }
 
       return newFilteredPosts
@@ -52,9 +54,16 @@ const PostList: React.FC = () => {
         <p className="text-slate-500">Nothing! 😺</p>
       )}
 
-      {filteredPosts.map((post) => (
+      {filteredPosts.map((post, index) => (
         <React.Fragment key={post.id}>
           <PostCard data={post} mode='vertical'/>
+          {(index + 1) % 3 === 0 && index !== filteredPosts.length - 1 && (
+            <AdBanner
+              slot="2468135790"
+              style={{ minHeight: '100px' }}
+              className="my-4"
+            />
+          )}
         </React.Fragment>
       ))}
 

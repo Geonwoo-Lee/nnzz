@@ -17,7 +17,7 @@ const LoginBottomSheet = ({
   const { unit } = useHeightUnit();
 
   return(
-    <BottomSheet open={open} backdrop animation close={() => { close(); }}>
+    <BottomSheet open={open} backdrop animation close={() => { close(); }} nonPadding disableScroll>
       <div
         className="flex flex-col relative"
         style={{ height: `90${unit}` }}
@@ -26,8 +26,9 @@ const LoginBottomSheet = ({
           <CloseDark onClick={close} className="cursor-pointer" />
         </div>
 
-        <div className='flex-1 w-full flex flex-col justify-center items-center px-4 overflow-y-auto min-h-0'>
-          <div className='flex flex-col items-center py-8'>
+        <div className='flex-1 w-full flex flex-col min-h-0 overflow-hidden'>
+          <div className='flex-1'></div>
+          <div className='flex-[2] flex flex-col items-center justify-center px-4'>
             <Image
               width={144}
               height={144}
@@ -35,7 +36,7 @@ const LoginBottomSheet = ({
               alt={'login-bottomSheet'}
               className="flex-shrink-0"
             />
-            <div className='flex flex-col gap-5 items-center text-center mt-6'>
+            <div className='flex flex-col gap-3 items-center text-center mt-6'>
               <div className='text-title2 font-medium text-text-1'>
                 '진짜' 원하는 메뉴를 찾는 시간
               </div>

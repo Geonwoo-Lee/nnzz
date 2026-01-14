@@ -17,6 +17,8 @@ const BasicLayout = ({
   back,
   headerBg,
   logoBlack,
+  bodyBg,
+  overflow = true,
 }: {
   children: ReactNode;
   header: boolean;
@@ -32,6 +34,8 @@ const BasicLayout = ({
   back?: boolean;
   profileImage?: boolean;
   logoBlack?: boolean;
+  bodyBg?: string;
+  overflow?: boolean;
 }) => {
   const bodyHeightRenderer = () => {
     if (header) {
@@ -63,7 +67,10 @@ const BasicLayout = ({
           />
         </div>
       )}
-      <div className={`${bodyHeightRenderer()} overflow-y-scroll`}>
+      <div
+        className={`${bodyHeightRenderer()} ${overflow ? 'overflow-y-scroll' : 'overflow-hidden'}`}
+        style={bodyBg ? { background: bodyBg } : undefined}
+      >
         {children}
       </div>
     </section>

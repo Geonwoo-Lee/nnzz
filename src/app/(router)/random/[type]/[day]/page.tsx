@@ -21,7 +21,7 @@ const RandomPage = (props: { params: Promise<{ type: string, day: string }> }) =
     const [isLoading, setIsLoading] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
     const [isCapturing, setIsCapturing] = useState(false);
-    const DEFAULT_FOOD_IMAGE = "/images/items/RandomFind.png";
+    const DEFAULT_FOOD_IMAGE = "/images/items/RandomFind2.png";
 
     const handleCardImageShare = async () => {
         if (!cardRef.current) {

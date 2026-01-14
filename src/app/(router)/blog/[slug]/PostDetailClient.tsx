@@ -5,6 +5,7 @@ import usePostQuery from "@/src/hooks/usePostQuery"
 import BlogCategory from "@/src/component/client/blog/blogCategory/BlogCategory"
 import BlogHeader from "@/src/component/client/blog/blogHeader/BlogHeader"
 import NotionRenderer from "@/src/component/client/blog/notionRenderer/NotionRenderer"
+import AdBanner from "@/src/component/client/common/adSense/AdBanner"
 
 const PostDetailClient: React.FC = () => {
   const data = usePostQuery()
@@ -36,11 +37,23 @@ const PostDetailClient: React.FC = () => {
 
         {data.type?.[0] === "Post" && <BlogHeader data={data} />}
 
+        <AdBanner
+          slot="9876543210"
+          type="in-article"
+          className="my-6"
+        />
+
         {data.recordMap && (
           <div>
             <NotionRenderer recordMap={data.recordMap} />
           </div>
         )}
+
+        <AdBanner
+          slot="1357924680"
+          style={{ minHeight: '250px' }}
+          className="my-6"
+        />
       </article>
     </div>
   )

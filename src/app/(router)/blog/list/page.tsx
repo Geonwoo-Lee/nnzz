@@ -34,6 +34,12 @@ async function fetchPosts(): Promise<TPost[]> {
     });
   } catch (error) {
     console.error("Failed to fetch posts:", error);
+    console.error("Error details:", {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      pageId: pageId,
+      env: process.env.NODE_ENV
+    });
     return [];
   }
 }

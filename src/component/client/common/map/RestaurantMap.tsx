@@ -119,7 +119,7 @@ const RestaurantMap: React.FC<Props> = ({ places, selectedStore, onStoreSelect, 
             const isSelected = storeId === selectedStore?.storeId;
             marker.setZIndex(isSelected ? 100 : 1);
             marker.setIcon(isSelected ? {
-                content: '<img src="/assets/mapPin.png" alt="Selected Pin" style="width:38px; height:50px;  min-width:38px;" />',
+                content: '<img src="/assets/mapPin2.png" alt="Selected Pin" style="width:38px; height:50px;  min-width:38px;" />',
                 anchor: new window.naver.maps.Point(20, 40),
             } : {
                 content: '<div class="cs_mapbridge"><div class="map_marker"><img style="width:23px; height:28px;" src="/assets/mapPinRed.png" alt="기본 마커"></div></div>',
