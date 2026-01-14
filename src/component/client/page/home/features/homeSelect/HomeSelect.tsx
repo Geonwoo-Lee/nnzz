@@ -2,7 +2,7 @@ import React from 'react';
 import { HomeSelectProps } from "@/src/types/page/home/homeSelect";
 import ArrowDown from '../../../../../../../public/svg/items/common/ArrowDown.svg'
 
-const HomeSelect = ({ data, callBack, selected }: HomeSelectProps) => {
+const HomeSelect = ({ data, callBack }: HomeSelectProps) => {
     return (
         <div
             className={`bg-bg-1 text-common rounded-[12px] max-w-[400px] w-fit overflow-hidden`}

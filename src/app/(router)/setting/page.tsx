@@ -7,13 +7,11 @@ import {FoodProfileType, SignInType} from "@/src/types/page/sign-up/sign-up";
 import Link from "next/link";
 import LogoutApi from "@/src/app/api/client/logout/logout";
 import { useLoginBottomSheet } from "@/src/core/LoginBottomSheetProvider";
-import { useRouter } from "next/navigation";
 import InstagramIcon from "@/public/svg/items/home/instagramIcon.svg";
 import YoutubeIcon from "@/public/svg/items/home/youtubeIcon.svg";
 
 const SettingPage = () => {
   const { showLoginSheet } = useLoginBottomSheet();
-  const router = useRouter()
     const userInfo = useMemo<SignInType>(() => {
         return AuthUtils.getUserInfo() || {} as SignInType;
     }, []);

@@ -18,7 +18,6 @@ const RandomResult = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [showExplosion, setShowExplosion] = useState(false);
-  const [showResult, setShowResult] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<{
     name: string;
     image: string;
@@ -47,7 +46,6 @@ const RandomResult = () => {
 
       setTimeout(() => {
         setShowExplosion(false);
-        setShowResult(true);
       }, 500);
     }, 2000);
 
@@ -85,9 +83,6 @@ const RandomResult = () => {
             75% {
               transform: translateX(-1px) rotate(-0.3deg);
             }
-          }
-          .animate-subtle-wiggle {
-            animation: subtle-wiggle 0.6s ease-in-out infinite;
           }
         `}</style>
       </div>
@@ -201,9 +196,6 @@ const RandomResult = () => {
             opacity: 1;
             transform: scale(1);
           }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
         }
       `}</style>
     </div>
