@@ -24,44 +24,69 @@ export default function AdBanner({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log(`[AdBanner slot:${slot}] NODE_ENV: ${process.env.NODE_ENV}`);
+    const isProduction = process.env.NODE_ENV === 'production';
+    console.log(`[AdBanner slot:${slot}] NODE_ENV: ${process.env.NODE_ENV}, isProduction: ${isProduction}`);
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (!isProduction) {
       setIsLoading(false);
+      setShouldShow(false);
       return;
     }
 
-    if (isAdPushed.current) return;
+    if (isAdPushed.current) {
+      console.log(`[AdBanner slot:${slot}] 이미 push됨, 스킵`);
+      return;
+    }
 
     let checkInterval: NodeJS.Timeout;
+    let checkCount = 0;
+    const maxChecks = 10; // 최대 5초 체크 (500ms * 10)
 
     const pushAd = () => {
       try {
-        if (typeof window === 'undefined' || !adRef.current) {
-          console.log(`[AdBanner slot:${slot}] window 또는 adRef 없음`);
+        if (typeof window === 'undefined') {
+          console.log(`[AdBanner slot:${slot}] window 없음`);
           setIsLoading(false);
+          setShouldShow(false);
+          return;
+        }
+
+        if (!adRef.current) {
+          console.log(`[AdBanner slot:${slot}] adRef 없음`);
+          setIsLoading(false);
+          setShouldShow(false);
           return;
         }
 
         console.log(`[AdBanner slot:${slot}] 광고 push 시작`);
+        console.log(`[AdBanner slot:${slot}] adRef innerHTML:`, adRef.current.innerHTML.substring(0, 100));
+
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         isAdPushed.current = true;
 
         checkInterval = setInterval(() => {
+          checkCount++;
+
           if (adRef.current) {
             const adStatus = adRef.current.getAttribute('data-adsbygoogle-status');
             const hasContent = adRef.current.innerHTML !== '';
+            const childCount = adRef.current.children.length;
 
-            console.log(`[AdBanner slot:${slot}] status:${adStatus}, hasContent:${hasContent}, innerHTML length:${adRef.current.innerHTML.length}`);
+            console.log(`[AdBanner slot:${slot}] 체크 ${checkCount}/${maxChecks} - status:${adStatus}, hasContent:${hasContent}, childCount:${childCount}, innerHTML length:${adRef.current.innerHTML.length}`);
 
             if (adStatus === 'done') {
-              if (hasContent) {
-                console.log(`[AdBanner slot:${slot}] 광고 로드 성공`);
+              if (hasContent && childCount > 0) {
+                console.log(`[AdBanner slot:${slot}] ✅ 광고 로드 성공`);
                 setShouldShow(true);
               } else {
-                console.log(`[AdBanner slot:${slot}] 광고 로드 실패 - 빈 콘텐츠`);
+                console.log(`[AdBanner slot:${slot}] ❌ 광고 로드 실패 - 빈 콘텐츠 (AdSense가 광고를 채우지 못함)`);
                 setShouldShow(false);
               }
+              setIsLoading(false);
+              clearInterval(checkInterval);
+            } else if (checkCount >= maxChecks) {
+              console.log(`[AdBanner slot:${slot}] ⏱️ 최대 체크 횟수 도달 - 광고 로드 실패`);
+              setShouldShow(false);
               setIsLoading(false);
               clearInterval(checkInterval);
             }
@@ -69,7 +94,7 @@ export default function AdBanner({
         }, 500);
 
       } catch (err) {
-        console.error(`[AdBanner slot:${slot}] error:`, err);
+        console.error(`[AdBanner slot:${slot}] ❌ error:`, err);
         setShouldShow(false);
         setIsLoading(false);
       }
@@ -79,17 +104,17 @@ export default function AdBanner({
 
     const loadTimeout = setTimeout(() => {
       if (isLoading) {
-        console.log(`[AdBanner slot:${slot}] 타임아웃 - 광고 로드 실패`);
+        console.log(`[AdBanner slot:${slot}] ⏱️ 전체 타임아웃 - 광고 로드 실패`);
         setShouldShow(false);
         setIsLoading(false);
-        clearInterval(checkInterval);
+        if (checkInterval) clearInterval(checkInterval);
       }
     }, timeout);
 
     return () => {
       clearTimeout(initTimer);
       clearTimeout(loadTimeout);
-      clearInterval(checkInterval);
+      if (checkInterval) clearInterval(checkInterval);
       isAdPushed.current = false;
     };
   }, [slot, timeout]);
