@@ -28,7 +28,7 @@ export default function AdBanner({
     const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const isProduction = !isDev;
 
-    console.log(`[AdBanner slot:${slot}] hostname: ${window.location.hostname}, isDev: ${isDev}, isProduction: ${isProduction}`);
+    console.log(`[AdBanner v2 slot:${slot}] hostname: ${window.location.hostname}, isDev: ${isDev}, isProduction: ${isProduction}`);
 
     if (!isProduction) {
       console.log(`[AdBanner slot:${slot}] 개발 환경이므로 광고 표시 안함`);
