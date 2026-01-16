@@ -38,8 +38,8 @@ const PostDetailClient: React.FC = () => {
         {data.type?.[0] === "Post" && <BlogHeader data={data} />}
 
         <AdBanner
-          slot="9876543210"
-          type="in-article"
+          slot="2965675659"
+          type="display"
           className="my-6"
         />
 
@@ -50,7 +50,8 @@ const PostDetailClient: React.FC = () => {
         )}
 
         <AdBanner
-          slot="1357924680"
+          slot="1022048370"
+          type="display"
           style={{ minHeight: '250px' }}
           className="my-6"
         />

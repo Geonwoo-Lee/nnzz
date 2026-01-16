@@ -3,6 +3,7 @@ import Image from "next/image";
 import { TPost } from "@/src/types/common/notion";
 import DateUtils from "@/src/func/common/date.utils";
 import BlogColorTag from "@/src/component/client/blog/blogTag/BlogColorTag";
+import { memo } from "react";
 
 type Props = {
   data: TPost;
@@ -24,6 +25,8 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
               fill
               alt={data.title}
               className="object-cover"
+              loading="lazy"
+              sizes="(max-width: 640px) 100vw, 640px"
             />
           </div>
         )}
@@ -59,4 +62,6 @@ const PostCard: React.FC<Props> = ({ data, mode = "vertical" }) => {
   );
 };
 
-export default PostCard;
+export default memo(PostCard, (prevProps, nextProps) => {
+  return prevProps.data.id === nextProps.data.id && prevProps.mode === nextProps.mode;
+});
