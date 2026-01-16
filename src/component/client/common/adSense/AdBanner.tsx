@@ -24,6 +24,8 @@ export default function AdBanner({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log(`[AdBanner slot:${slot}] NODE_ENV: ${process.env.NODE_ENV}`);
+
     if (process.env.NODE_ENV !== 'production') {
       setIsLoading(false);
       return;
@@ -36,25 +38,30 @@ export default function AdBanner({
     const pushAd = () => {
       try {
         if (typeof window === 'undefined' || !adRef.current) {
+          console.log(`[AdBanner slot:${slot}] window 또는 adRef 없음`);
           setIsLoading(false);
           return;
         }
 
+        console.log(`[AdBanner slot:${slot}] 광고 push 시작`);
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         isAdPushed.current = true;
 
         checkInterval = setInterval(() => {
           if (adRef.current) {
             const adStatus = adRef.current.getAttribute('data-adsbygoogle-status');
-            const ins = adRef.current.querySelector('ins');
+            const hasContent = adRef.current.innerHTML !== '';
 
-            if (adStatus === 'done' && ins && ins.innerHTML !== '') {
-              setShouldShow(true);
-              setIsLoading(false);
-              clearInterval(checkInterval);
-            }
-            else if (adStatus === 'done' && (!ins || ins.innerHTML === '')) {
-              setShouldShow(false);
+            console.log(`[AdBanner slot:${slot}] status:${adStatus}, hasContent:${hasContent}, innerHTML length:${adRef.current.innerHTML.length}`);
+
+            if (adStatus === 'done') {
+              if (hasContent) {
+                console.log(`[AdBanner slot:${slot}] 광고 로드 성공`);
+                setShouldShow(true);
+              } else {
+                console.log(`[AdBanner slot:${slot}] 광고 로드 실패 - 빈 콘텐츠`);
+                setShouldShow(false);
+              }
               setIsLoading(false);
               clearInterval(checkInterval);
             }
@@ -62,7 +69,7 @@ export default function AdBanner({
         }, 500);
 
       } catch (err) {
-        console.error('AdSense error:', err);
+        console.error(`[AdBanner slot:${slot}] error:`, err);
         setShouldShow(false);
         setIsLoading(false);
       }
@@ -72,6 +79,7 @@ export default function AdBanner({
 
     const loadTimeout = setTimeout(() => {
       if (isLoading) {
+        console.log(`[AdBanner slot:${slot}] 타임아웃 - 광고 로드 실패`);
         setShouldShow(false);
         setIsLoading(false);
         clearInterval(checkInterval);
@@ -84,9 +92,18 @@ export default function AdBanner({
       clearInterval(checkInterval);
       isAdPushed.current = false;
     };
-  }, [timeout, isLoading]);
+  }, [slot, timeout]);
 
-  if (process.env.NODE_ENV !== 'production' || !shouldShow) {
+  // 로딩 중일 때는 빈 공간만 유지 (레이아웃 시프트 방지)
+  if (isLoading) {
+    return (
+      <div className={`ad-container ${className || ''}`} style={style}>
+        <div style={{ minHeight: style?.minHeight || '100px' }} />
+      </div>
+    );
+  }
+
+  if (!shouldShow) {
     return null;
   }
 
@@ -107,7 +124,7 @@ export default function AdBanner({
   }
 
   return (
-    <div className="ad-container">
+    <div className="ad-container py-4">
       <ins
         ref={adRef}
         className={`adsbygoogle ${className || ''}`}

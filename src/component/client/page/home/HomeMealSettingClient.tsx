@@ -254,7 +254,8 @@ const HomeMealSettingClient = () => {
       </div>
         {isLogin ? <FoodHistory /> : <NotLogin />}
       <AdBanner
-        slot="1234567890"
+        slot="2965675659"
+        type="display"
         style={{ minHeight: '100px' }}
         className="my-4"
       />
