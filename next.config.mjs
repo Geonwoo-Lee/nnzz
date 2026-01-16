@@ -61,6 +61,9 @@ const nextConfig = withPWA({
     ],
     minimumCacheTTL: 300,
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
   productionBrowserSourceMaps: true,
   reactStrictMode: false,
   webpack(config) {

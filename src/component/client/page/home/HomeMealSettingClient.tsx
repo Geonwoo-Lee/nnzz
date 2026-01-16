@@ -13,7 +13,6 @@ import ShortsListView from "@/src/app/(router)/shorts/list/ShortsListView";
 import { useLoginBottomSheet } from "@/src/core/LoginBottomSheetProvider";
 import NotLogin from "@/src/component/client/page/home/features/notLogin/NotLogin";
 import FoodHistory from "@/src/component/client/page/home/features/foodHistory/FoodHistory";
-import AdBanner from "@/src/component/client/common/adSense/AdBanner";
 
 const HomeMealSettingClient = () => {
   const router = useRouter();
@@ -253,12 +252,6 @@ const HomeMealSettingClient = () => {
         />
       </div>
         {isLogin ? <FoodHistory /> : <NotLogin />}
-      <AdBanner
-        slot="2965675659"
-        type="display"
-        style={{ minHeight: '100px' }}
-        className="my-4"
-      />
       <div className="pb-10">
         <ShortsListView />
       </div>
