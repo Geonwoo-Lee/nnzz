@@ -31,13 +31,6 @@ export function useGeolocation() {
     }, []);
 
     const requestGeolocation = async () => {
-        const pinedLocation = localStorage.getItem('pinedLocation');
-        if (pinedLocation) {
-            const parsedPinedLocation = JSON.parse(pinedLocation);
-            setLocation(parsedPinedLocation);
-            return;
-        }
-
         if (typeof window !== 'undefined' && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 async (position) => {

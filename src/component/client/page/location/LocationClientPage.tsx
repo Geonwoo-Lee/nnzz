@@ -38,8 +38,6 @@ const LocationClientPage = () => {
     "tip",
   );
 
-  const userInfo = AuthUtils.getUserInfo();
-
   const onSubmit = handleSubmit((data: locationSearch) => {
     searchAddressByKeyword(data.address).then((results) => {
       if (results.length > 0) {
@@ -58,6 +56,7 @@ const LocationClientPage = () => {
   });
 
   const setLocation = (place: CurrentLocation) => {
+    const userInfo = AuthUtils.getUserInfo();
     const pinnedLocation: MapPlace = {
       name: place.buildingName,
       lat: place.lat,
@@ -93,6 +92,7 @@ const LocationClientPage = () => {
   };
 
   useEffect(() => {
+    const userInfo = AuthUtils.getUserInfo();
     if (!userInfo) {
       setFunnel("tip");
       return;
@@ -104,7 +104,7 @@ const LocationClientPage = () => {
         setCurrentLocation(res);
       });
     }
-  }, [userInfo]);
+  }, []);
 
   useEffect(() => {
     if (searchList.length > 0) {
