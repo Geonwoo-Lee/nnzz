@@ -35,6 +35,16 @@ const useLocationBasedNavigation = () => {
     };
 
     const setDefaultLocation = () => {
+        // GPS가 실패해도 이미 저장된 위치가 있으면 그것을 사용
+        const existingUserLocation = localStorage.getItem('userLocation');
+        if (existingUserLocation) {
+            console.log('GPS failed but using existing saved location');
+            setIsLoading(false);
+            router.push('/find-location');
+            return;
+        }
+
+        // 저장된 위치가 전혀 없을 때만 강남역을 기본값으로 설정
         searchAddressByKeyword('강남역').then((res) => {
             if (res && res.length > 0) {
                 const currentLocations = JSON.parse(localStorage.getItem('currentLocation') || '[]');

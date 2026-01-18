@@ -48,7 +48,7 @@ const FoodHistory = () => {
         </div>
       </div>
       <div className="flex flex-row gap-3 w-full overflow-x-scroll">
-        {cardList.length < 0 ? (
+        {cardList.length > 0 ? (
           cardList.map((item, index) => (
             <div
               key={`food-history-item-${index}`}

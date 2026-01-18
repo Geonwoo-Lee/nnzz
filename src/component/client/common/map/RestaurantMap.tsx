@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import Script from "next/script";
 import {FindStore} from "@/src/types/models/find";
 import ResultCard from "@/src/component/client/common/restaurantResult/component/ResultCard";
 import Menu from '../../../../../public/svg/header/Menu.svg'
@@ -146,27 +145,8 @@ const RestaurantMap: React.FC<Props> = ({ places, selectedStore, onStoreSelect, 
         }
     }, [selectedStore, updateMarkerIcons]);
 
-
-    const handleScriptLoad = () => {
-        if (places.length > 0 && !isMapInitializedRef.current) {
-            initializeMap();
-        }
-    };
-
-    if (mapError || mapScriptError) {
-        return <div>Error: {mapError}</div>;
-    }
-
     return (
         <div className='relative'>
-            {!isLoaded && (
-                <Script
-                    src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}`}
-                    onLoad={handleScriptLoad}
-                    strategy="afterInteractive"
-                    onError={() => setMapError('Failed to load Naver Maps script')}
-                />
-            )}
             <header
                 className={`w-full max-w-[640px] flex items-center justify-between relative h-header-height bg-common-white px-4`}>
                 <div className=" flex-shrink-0 ">
@@ -186,7 +166,28 @@ const RestaurantMap: React.FC<Props> = ({ places, selectedStore, onStoreSelect, 
             }
 
             <div className={`w-full ${isUp ? 'h-restaurant-result-up-height' : 'h-restaurant-result-height'}`}>
-                <div ref={mapRef} style={{width: "100%", height: "100%"}}/>
+                {(mapError || mapScriptError) && (
+                    <div className="flex flex-col items-center justify-center h-full p-4">
+                        <div className="text-center">
+                            <div className="text-title2 font-bold text-text-1 mb-2">지도를 불러올 수 없습니다</div>
+                            <div className="text-body2 text-text-3 mb-4">
+                                {mapScriptError || mapError}
+                            </div>
+                            <button
+                                onClick={() => window.location.reload()}
+                                className="bg-primary-6 text-common-white px-6 py-3 rounded-lg"
+                            >
+                                새로고침
+                            </button>
+                        </div>
+                    </div>
+                )}
+                {!isLoaded && !mapError && !mapScriptError && (
+                    <div className="flex items-center justify-center h-full">
+                        <div className="text-body1 text-text-3">지도를 불러오는 중...</div>
+                    </div>
+                )}
+                <div ref={mapRef} style={{width: "100%", height: "100%", display: (isLoaded && !mapError && !mapScriptError) ? 'block' : 'none'}}/>
             </div>
         </div>
     );

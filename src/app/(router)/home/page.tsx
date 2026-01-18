@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-query";
 import { fetchShorts } from "@/src/lib/shorts";
 import { queryKey } from "@/src/types/hook/postQuery";
+import { isShorts } from "@/src/types/common/notion";
 
 const Home = async () => {
   const queryClient = new QueryClient({
@@ -19,11 +20,13 @@ const Home = async () => {
 
   const allShorts = await fetchShorts();
 
-  const sortedShorts = [...allShorts].sort((a, b) => {
-    const idxA = Number(a.idx);
-    const idxB = Number(b.idx);
-    return idxA - idxB;
-  });
+  const sortedShorts = [...allShorts]
+    .filter(isShorts)
+    .sort((a, b) => {
+      const idxA = Number(a.idx);
+      const idxB = Number(b.idx);
+      return idxA - idxB;
+    });
 
   await queryClient.prefetchQuery({
     queryKey: queryKey.shorts(),

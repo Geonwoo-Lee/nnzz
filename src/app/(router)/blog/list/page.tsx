@@ -5,14 +5,26 @@ import { NotionAPI } from "notion-client";
 import getPageProperties, { filterPosts, getAllPageIds } from "@/src/func/common/notion.utills";
 import Feed from "@/src/component/server/blog/Feed";
 import { TPost } from "@/src/types/common/notion";
+import { memoryCache } from "@/src/lib/cache";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-async function fetchPosts(): Promise<TPost[]> {
+const CACHE_KEY = "posts_list";
+const CACHE_TTL = 5 * 60 * 1000; // 5분
+
+async function fetchPosts(retryCount = 0): Promise<TPost[]> {
+  // 캐시 확인
+  const cached = memoryCache.get<TPost[]>(CACHE_KEY);
+  if (cached) {
+    console.log("Returning cached posts data");
+    return cached;
+  }
+
   const api = new NotionAPI();
   const pageId =
     process.env.NEXT_PUBLIC_NOTION_POST_PAGE_ID!
+  const maxRetries = 3;
 
   try {
     const response = await api.getPage(pageId);
@@ -28,18 +40,40 @@ async function fetchPosts(): Promise<TPost[]> {
       }),
     );
 
-    return filterPosts(allPosts, {
+    const filtered = filterPosts(allPosts, {
       acceptStatus: ["Public"],
       acceptType: ["Post"],
     });
+
+    // 캐시에 저장
+    memoryCache.set(CACHE_KEY, filtered, CACHE_TTL);
+
+    return filtered;
   } catch (error) {
-    console.error("Failed to fetch posts:", error);
+    console.error(`Failed to fetch posts (attempt ${retryCount + 1}/${maxRetries + 1}):`, error);
+
+    if (retryCount < maxRetries) {
+      // Exponential backoff: 2초, 4초, 8초
+      const delay = Math.pow(2, retryCount + 1) * 1000;
+      console.log(`Retrying in ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return fetchPosts(retryCount + 1);
+    }
+
     console.error("Error details:", {
       message: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined,
       pageId: pageId,
       env: process.env.NODE_ENV
     });
+
+    // 재시도 실패 시 캐시에 있는 오래된 데이터라도 반환
+    const staleCache = memoryCache.get<TPost[]>(CACHE_KEY, true);
+    if (staleCache) {
+      console.warn("Returning stale cached data due to API failure");
+      return staleCache;
+    }
+
     return [];
   }
 }

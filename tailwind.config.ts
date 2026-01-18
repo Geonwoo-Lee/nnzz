@@ -167,6 +167,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      scale: {
+        '102': '1.02',
+        '103': '1.03',
+      },
       fontWeight: {
         regular: '400',
         medium: '500',

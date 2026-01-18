@@ -29,7 +29,6 @@ const PostList: React.FC = () => {
       )
     }
 
-    // 정렬 순서에 따라 처리 (asc일 때만 reverse)
     if (currentOrder === "asc") {
       return [...newFilteredPosts].reverse()
     }
@@ -39,38 +38,24 @@ const PostList: React.FC = () => {
 
   return (
     <div className="my-2">
-      <AdBanner
-        slot="1022048370"
-        type="display"
-        style={{ width: '100%', height: '70px' }}
-        className="mb-4"
-      />
-
-      {!filteredPosts.length && (
-        <p className="text-slate-500">Nothing! 😺</p>
-      )}
-
+      {!filteredPosts.length && <p className="text-slate-500">Nothing! 😺</p>}
       {filteredPosts.map((post, index) => (
         <React.Fragment key={post.id}>
-          <PostCard data={post} mode='vertical'/>
+          <PostCard data={post} mode="vertical" />
           {(index + 1) % 3 === 0 && index !== filteredPosts.length - 1 && (
             <AdBanner
-              slot="2965675659"
+              slot="8704662460"
               type="display"
-              style={{ minHeight: '100px' }}
+              style={{ minHeight: "100px" }}
               className="my-4"
             />
           )}
         </React.Fragment>
       ))}
 
-      <AdBanner
-        slot="1022048370"
-        type="display"
-        className="mt-4"
-      />
+      <AdBanner slot="1022048370" type="display" className="mt-4" />
     </div>
-  )
+  );
 }
 
 export default PostList
