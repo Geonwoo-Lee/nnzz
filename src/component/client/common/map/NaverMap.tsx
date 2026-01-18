@@ -24,6 +24,7 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
     const [marker, setMarker] = useState<any>(null);
     const [scriptLoaded, setScriptLoaded] = useState(false);
     const { isLoaded } = useNaverMapLoaded();
+    const isFirstLoadRef = useRef<boolean>(true);
 
 
     const initializeMap = useCallback(() => {
@@ -31,19 +32,20 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
 
         try {
             if (!map) {
+                const initialPosition = new window.naver.maps.LatLng(places[0].lat, places[0].lng);
                 const options = {
-                    center: new window.naver.maps.LatLng(places[0].lat, places[0].lng),
-                    zoom: 13,
+                    center: initialPosition,
+                    zoom: 16,
                 };
                 const newMap = new window.naver.maps.Map(mapRef.current, options);
                 setMap(newMap);
 
                 const initialMarker = new window.naver.maps.Marker({
-                    position: new window.naver.maps.LatLng(places[0].lat, places[0].lng),
+                    position: initialPosition,
                     map: newMap,
                     icon: {
                         content: '<img src="/assets/mapPin2.png" alt="Map Pin" style="width:40px; height:51px; min-width: 40px;" />',
-                        anchor: new window.naver.maps.Point(20, 40),
+                        anchor: new window.naver.maps.Point(20, 51),
                     },
                 });
                 setMarker(initialMarker);
@@ -55,12 +57,13 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
                         if (onPinUpdated) {
                             onPinUpdated(latlng.lat(), latlng.lng());
                         }
+                        isFirstLoadRef.current = false;
                     });
                 }
             } else {
-                const newPosition = new window.naver.maps.LatLng(places[0].lat, places[0].lng);
-                map.setCenter(newPosition);
+                // 지도가 이미 초기화되어 있을 때는 마커 위치만 업데이트 (지도는 고정)
                 if (marker) {
+                    const newPosition = new window.naver.maps.LatLng(places[0].lat, places[0].lng);
                     marker.setPosition(newPosition);
                 }
             }

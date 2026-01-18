@@ -17,7 +17,7 @@ const Tag: React.FC<Props> = ({ children }) => {
   return (
     <div
       onClick={() => handleClick(children)}
-      className="py-1 px-2 rounded-full text-xs leading-4 font-normal text-slate-600 bg-slate-300 cursor-pointer hover:bg-slate-400 transition-colors"
+      className="py-2 px-3 rounded-full text-caption2 font-medium leading-4 text-red-600 bg-red-50 cursor-pointer hover:bg-red-100 transition-colors"
     >
       {children}
     </div>

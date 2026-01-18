@@ -4,16 +4,28 @@ import getPageProperties, { filterPosts, getAllPageIds } from "@/src/func/common
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { PostDetail } from "@/src/types/common/notion";
-import BlogCategory from "@/src/component/client/blog/blogCategory/BlogCategory";
 import BlogHeader from "@/src/component/client/blog/blogHeader/BlogHeader";
 import NotionRenderer from "@/src/component/client/blog/notionRenderer/NotionRenderer";
+import { memoryCache } from "@/src/lib/cache";
+import BlogColorTag from "@/src/component/client/blog/blogTag/BlogColorTag";
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-async function fetchAllPosts() {
+const CACHE_KEY_POSTS = "posts_list";
+const CACHE_TTL = 5 * 60 * 1000; // 5분
+
+async function fetchAllPosts(retryCount = 0) {
+  // 캐시 확인
+  const cached = memoryCache.get<any[]>(CACHE_KEY_POSTS);
+  if (cached) {
+    console.log("Returning cached posts data for detail");
+    return cached;
+  }
+
   const api = new NotionAPI()
   const databaseId = "26eb3b6a7ac28183933cf34239a4b326"
+  const maxRetries = 3;
 
   try {
     const response = await api.getPage(databaseId);
@@ -29,35 +41,85 @@ async function fetchAllPosts() {
       }),
     );
 
-    return filterPosts(allPosts, {
+    const filtered = filterPosts(allPosts, {
       acceptStatus: ["Public"],
       acceptType: ["Post"],
     });
+
+    // 캐시에 저장
+    memoryCache.set(CACHE_KEY_POSTS, filtered, CACHE_TTL);
+
+    return filtered;
   } catch (error) {
-    console.error("Failed to fetch posts:", error)
+    console.error(`Failed to fetch posts (attempt ${retryCount + 1}/${maxRetries + 1}):`, error)
+
+    if (retryCount < maxRetries) {
+      const delay = Math.pow(2, retryCount + 1) * 1000;
+      console.log(`Retrying in ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return fetchAllPosts(retryCount + 1);
+    }
+
+    const staleCache = memoryCache.get<any[]>(CACHE_KEY_POSTS, true);
+    if (staleCache) {
+      console.warn("Returning stale cached data due to API failure");
+      return staleCache;
+    }
+
     return []
   }
 }
 
-async function fetchPostBySlug(slug: string): Promise<PostDetail | null> {
+async function fetchPostBySlug(slug: string, retryCount = 0): Promise<PostDetail | null> {
   const api = new NotionAPI()
+  const maxRetries = 3;
+  const CACHE_KEY_POST = `post_detail_${slug}`;
 
   try {
+    // 개별 포스트 캐시 확인
+    const cachedPost = memoryCache.get<PostDetail>(CACHE_KEY_POST);
+    if (cachedPost) {
+      console.log(`Returning cached post detail for slug: ${slug}`);
+      return cachedPost;
+    }
+
     const allPosts = await fetchAllPosts()
     const post = allPosts.find(p => p.slug === slug)
 
     if (!post) {
+      console.error(`Post not found for slug: ${slug}`)
       return null
     }
 
     const recordMap = await api.getPage(post.id)
 
-    return {
+    const postDetail = {
       ...post,
       recordMap,
-    }
+    };
+
+    // 개별 포스트 캐시에 저장
+    memoryCache.set(CACHE_KEY_POST, postDetail, CACHE_TTL);
+
+    return postDetail;
   } catch (error) {
-    console.error("Failed to fetch post:", error)
+    console.error(`Failed to fetch post (attempt ${retryCount + 1}/${maxRetries + 1}):`, error)
+
+    if (retryCount < maxRetries) {
+      // Exponential backoff: 2초, 4초, 8초
+      const delay = Math.pow(2, retryCount + 1) * 1000;
+      console.log(`Retrying in ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return fetchPostBySlug(slug, retryCount + 1);
+    }
+
+    // 재시도 실패 시 캐시에 있는 오래된 데이터라도 반환
+    const staleCache = memoryCache.get<PostDetail>(CACHE_KEY_POST, true);
+    if (staleCache) {
+      console.warn(`Returning stale cached post detail for slug: ${slug}`);
+      return staleCache;
+    }
+
     return null
   }
 }
@@ -181,9 +243,9 @@ export default async function PostPage({
         <article className="mx-auto max-w-full">
           {category && (
             <div className="mb-2">
-              <BlogCategory readOnly={post.status?.[0] === "PublicOnDetail"}>
+              <BlogColorTag>
                 {category}
-              </BlogCategory>
+              </BlogColorTag>
             </div>
           )}
 
@@ -197,5 +259,5 @@ export default async function PostPage({
         </article>
       </div>
     </>
-  )
+  );
 }

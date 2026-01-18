@@ -25,8 +25,6 @@ const FindLocationClientPage = () => {
         }
     };
 
-    const getLocation = localStorage.getItem('userLocation');
-
     const locationRenderer = () => {
         if(currentLocation?.address) {
             return `${currentLocation.address} ${currentLocation.name || ''}`.trim()
@@ -56,8 +54,9 @@ const FindLocationClientPage = () => {
     }
 
     useEffect(() => {
-        if (getLocation) {
-            const location = JSON.parse(getLocation) as Place;
+        const storedLocation = localStorage.getItem('userLocation');
+        if (storedLocation) {
+            const location = JSON.parse(storedLocation) as Place;
             setCurrentLocation({
                 name: location.name,
                 address: location.address,
@@ -65,7 +64,7 @@ const FindLocationClientPage = () => {
                 lng: location.longitude
             });
         }
-    }, [getLocation]);
+    }, []);
 
 
 

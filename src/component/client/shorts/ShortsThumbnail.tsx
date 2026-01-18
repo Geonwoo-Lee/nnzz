@@ -22,19 +22,21 @@ function getYouTubeVideoId(url: string): string | null {
 }
 
 export default function ShortsThumbnailCard({ short }: ShortsThumbnailCardProps) {
+  const videoId = getYouTubeVideoId(short.videoUrl || '')
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+
   return (
     <Link
       href={`/shorts/${short.idx}`}
-      className="group block relative w-full rounded-xl overflow-hidden"
+      className="group block relative w-full rounded-xl overflow-hidden bg-slate-100 border-0"
       style={{ aspectRatio: '9/16' }}
     >
-      {/* 썸네일 */}
       {short.videoUrl?.includes('youtube') && (
         <Image
-          src={`https://img.youtube.com/vi/${getYouTubeVideoId(short.videoUrl)}/maxresdefault.jpg`}
+          src={thumbnailUrl}
           alt={short.title}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          className="object-cover scale-102 group-hover:scale-105 transition-transform duration-300 border-0"
         />
       )}
     </Link>
