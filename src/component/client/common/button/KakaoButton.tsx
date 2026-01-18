@@ -27,7 +27,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
     }
     if (window.Kakao && window.Kakao.Auth) {
       window.Kakao.Auth.login({
-        throughTalk: false, // 이 옵션이 핵심! 카카오톡 앱을 사용하지 않음
+        throughTalk: false,
         success: function() {
           window.Kakao.API.request({
             url: '/v2/user/me',
