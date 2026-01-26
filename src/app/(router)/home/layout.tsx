@@ -25,12 +25,23 @@ export const metadata: Metadata = {
         description: '날짜, 시간, 장소를 선택하고 완벽한 메뉴를 추천받아보세요! 냠냠쩝쩝에서 맞춤형 식사 추천을 경험해보세요.',
         url: 'https://www.nnzz.today/home',
         type: 'website',
+        siteName: '냠냠쩝쩝',
+        locale: 'ko_KR',
+        images: [
+            {
+                url: '/icon/OgImage.png',
+                width: 1200,
+                height: 630,
+                alt: '냠냠쩝쩝 메뉴 선택',
+            }
+        ],
     },
 
     twitter: {
         card: 'summary_large_image',
         title: '메뉴 선택하기 - 냠냠쩝쩝',
         description: '날짜, 시간, 장소를 선택하고 완벽한 메뉴를 추천받아보세요! 🍽️',
+        images: ['/icon/OgImage.png'],
     },
 
     alternates: {
