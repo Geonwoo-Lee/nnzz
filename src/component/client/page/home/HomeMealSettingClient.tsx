@@ -181,7 +181,6 @@ const HomeMealSettingClient = () => {
   }, [selectedMealTime]);
 
   useEffect(() => {
-    // 이미 바텀시트가 열려있지 않을 때만 고려
     if (
       !mealTimingBottomSheet &&
       selectedLocation !== "현재 위치" &&

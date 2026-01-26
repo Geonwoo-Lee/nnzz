@@ -4,9 +4,12 @@ import React from "react";
 import {FindStore} from "@/src/types/models/find";
 import {useRouter} from "next/navigation";
 import CategoryList from "@/src/component/client/common/restaurantResult/component/CategoryList";
+import {groupedCategories} from "@/src/dummy/dummy";
 
-const ResultList = (props: { restaurants: FindStore[],filteredRestaurants: FindStore[], isUp: boolean, isLoading: boolean, setStep: (step: 'map' | 'list' | 'result') => void, setSelectedStore: (storeId: FindStore) => void, setFilteredRestaurants: (restaurants: FindStore[]) => void }) => {
-    const {restaurants, isUp, isLoading, setStep, setSelectedStore, setFilteredRestaurants, filteredRestaurants} = props
+type CategoryKey = keyof typeof groupedCategories;
+
+const ResultList = (props: { restaurants: FindStore[],filteredRestaurants: FindStore[], isUp: boolean, isLoading: boolean, setStep: (step: 'map' | 'list' | 'result') => void, setSelectedStore: (storeId: FindStore) => void, setFilteredRestaurants: (restaurants: FindStore[]) => void, excludedCategories: Set<CategoryKey>, setExcludedCategories: React.Dispatch<React.SetStateAction<Set<CategoryKey>>> }) => {
+    const {restaurants, isUp, isLoading, setStep, setSelectedStore, setFilteredRestaurants, filteredRestaurants, excludedCategories, setExcludedCategories} = props
     const router = useRouter()
 
 
@@ -31,6 +34,8 @@ const ResultList = (props: { restaurants: FindStore[],filteredRestaurants: FindS
                 restaurants={restaurants}
                 filteredRestaurants={filteredRestaurants}
                 setFilteredRestaurants={setFilteredRestaurants}
+                excludedCategories={excludedCategories}
+                setExcludedCategories={setExcludedCategories}
             />
 
             {

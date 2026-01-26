@@ -25,7 +25,7 @@ const FoodHistoryCard = ({ data }: { data: FoodCard }) => {
             <div>{data.mealtime}</div>
           </div>
         </div>
-        <Button onClick={handleOpenNaverMap} type="secondary" size="md">
+        <Button onClick={handleOpenNaverMap} type="outlined" size="md">
           지도 확인하기
         </Button>
       </div>

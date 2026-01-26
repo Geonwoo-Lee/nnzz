@@ -1,3 +1,4 @@
+import React from "react";
 import {
   categoryNames,
   groupedCategories,
@@ -5,35 +6,47 @@ import {
 } from "@/src/dummy/dummy";
 import { FindStore } from "@/src/types/models/find";
 
+type CategoryKey = keyof typeof groupedCategories;
+
 interface CategoryListProps {
   restaurants: FindStore[];
   setFilteredRestaurants: (restaurants: FindStore[]) => void;
   filteredRestaurants: FindStore[];
+  excludedCategories: Set<CategoryKey>;
+  setExcludedCategories: React.Dispatch<React.SetStateAction<Set<CategoryKey>>>;
 }
-
-type CategoryKey = keyof typeof groupedCategories;
 
 const CategoryList: React.FC<CategoryListProps> = ({
                                                      restaurants,
                                                      setFilteredRestaurants,
                                                      filteredRestaurants,
+                                                     excludedCategories,
+                                                     setExcludedCategories,
                                                    }) => {
   const handleCategoryClick = (categoryKey: CategoryKey) => {
     const categoryIds = groupedCategories[categoryKey];
-    const categoryExists = filteredRestaurants.some((restaurant) =>
-      categoryIds.includes(restaurant.categoryId),
-    );
+    const isCurrentlyExcluded = excludedCategories.has(categoryKey);
 
-    if (categoryExists) {
-      const filtered = filteredRestaurants.filter(
-        (restaurant) => !categoryIds.includes(restaurant.categoryId),
-      );
-      setFilteredRestaurants(filtered);
-    } else {
+    if (isCurrentlyExcluded) {
+      // 제외 해제: excludedCategories에서 제거하고 해당 카테고리 식당 추가
+      const newExcluded = new Set(excludedCategories);
+      newExcluded.delete(categoryKey);
+      setExcludedCategories(newExcluded);
+
       const categoryRestaurants = restaurants.filter((restaurant) =>
         categoryIds.includes(restaurant.categoryId),
       );
       setFilteredRestaurants([...filteredRestaurants, ...categoryRestaurants]);
+    } else {
+      // 제외: excludedCategories에 추가하고 해당 카테고리 식당 제거
+      const newExcluded = new Set(excludedCategories);
+      newExcluded.add(categoryKey);
+      setExcludedCategories(newExcluded);
+
+      const filtered = filteredRestaurants.filter(
+        (restaurant) => !categoryIds.includes(restaurant.categoryId),
+      );
+      setFilteredRestaurants(filtered);
     }
   };
 
@@ -47,9 +60,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
 
           if (!hasRestaurants) return null;
 
-          const isExcluded = !filteredRestaurants.some((r) =>
-            ids.includes(r.categoryId)
-          );
+          const isExcluded = excludedCategories.has(categoryKey as CategoryKey);
 
           return (
             <div

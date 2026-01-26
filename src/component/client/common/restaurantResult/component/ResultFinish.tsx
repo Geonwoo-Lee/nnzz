@@ -10,8 +10,6 @@ import RoundFinishCard from "@/src/component/client/common/restaurantResult/comp
 import MoveToNaverMap from "@/src/component/client/common/restaurantResult/component/MoveToNaverMap";
 import CardApi from "@/src/app/api/client/card/card";
 import DateUtils from "@/src/func/common/date.utils";
-import {useRouter} from "next/navigation";
-
 const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
     storeIdx?: string,
     lng: number,
@@ -20,7 +18,6 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
     type: string,
     setStep: (step: 'map' | 'list' | 'result') => void
 }) => {
-    const router = useRouter()
     const [isLoading, setIsLoading] = useState(true)
     const [store, setStore] = useState<FindStoreType>({} as FindStoreType)
     const [categoryImage, setCategoryImage] = useState('')
@@ -57,10 +54,6 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
         }
 
         setNaverMapLoading(false);
-
-        setTimeout(() => {
-            router.push('/home');
-        }, 2500);
     };
 
     useEffect(() => {
