@@ -37,26 +37,27 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
   openGraph: {
-    title: "냠냠쩝쩝",
-    description: "맛있는 솔루션",
+    title: "NNZZ | 냠냠쩝쩝 오늘 뭐먹지?",
+    description:
+      "냠냠쩝쩝에서 직장인들의 점심, 저녁 메뉴 고민을 함께 해결해드려요!",
     url: "https://www.nnzz.today",
     type: "website",
     siteName: "냠냠쩝쩝",
     images: [
       {
-        url: "/icon/app-icon-512x512.png",
-        width: 512,
-        height: 512,
+        url: "/icon/OgImage.png",
+        width: 1200,
+        height: 630,
         alt: "nnzz 로고",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "냠냠쩝쩝 - 직장인 점심 저녁 메뉴 고민 해결",
+    title: "NNZZ | 냠냠쩝쩝 오늘 뭐먹지?",
     description:
-      "냠냠쩝쩝에서 직장인들의 점심, 저녁 메뉴 고민을 함께 해결해드려요! 🧚‍♀️",
-    images: ["/icon/app-icon-512x512.png"],
+      "냠냠쩝쩝에서 직장인들의 점심, 저녁 메뉴 고민을 함께 해결해드려요!",
+    images: ["/icon/OgImage.png"],
   },
   robots: {
     index: true,
@@ -123,12 +124,11 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
   },
   verification: {
-    google: process.env.GOOGLE_SEARCH_CONSOLE_KEY || '',
+    google: process.env.GOOGLE_SEARCH_CONSOLE_KEY || "",
     other: {
-      'naver-site-verification': process.env.NAVER_SEARCH_ADVISOR_KEY || '',
+      "naver-site-verification": process.env.NAVER_SEARCH_ADVISOR_KEY || "",
     },
   },
-
 };
 
 export default function RootLayout({
@@ -162,7 +162,8 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "nnzz",
               url: "https://www.nnzz.today",
-              description: "맛있는 솔루션",
+              description:
+                "냠냠쩝쩝에서 직장인들의 점심, 저녁 메뉴 고민을 함께 해결해드려요!",
             }),
           }}
         />
@@ -171,8 +172,14 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7391340913390710"
           crossOrigin="anonymous"
         />
-        <meta name="naver-site-verification" content="0e084f82fcf28a0ec8f2f2ad549dca9f50bde064" />
-        <meta name="google-site-verification" content="1QKRvTlM8LTU89RcO5TjN7IrwiUGdj8OT5QFmps9dKU" />
+        <meta
+          name="naver-site-verification"
+          content="0e084f82fcf28a0ec8f2f2ad549dca9f50bde064"
+        />
+        <meta
+          name="google-site-verification"
+          content="1QKRvTlM8LTU89RcO5TjN7IrwiUGdj8OT5QFmps9dKU"
+        />
         <meta name="google-adsense-account" content="ca-pub-7391340913390710" />
         <noscript>
           <img

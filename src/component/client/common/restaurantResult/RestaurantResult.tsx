@@ -13,6 +13,9 @@ import {useFunnel} from "@/src/hooks/useFunnel";
 import ResultList from "@/src/component/client/common/restaurantResult/component/ResultList";
 import RestaurantMap from "@/src/component/client/common/map/RestaurantMap";
 import ResultFinish from "@/src/component/client/common/restaurantResult/component/ResultFinish";
+import {groupedCategories} from "@/src/dummy/dummy";
+
+type CategoryKey = keyof typeof groupedCategories;
 
 const RestaurantResult = (props: RestaurantDefaultProps) => {
     const {lat, lng, day, categoryList, name, type, address} = props
@@ -23,6 +26,7 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
     const [Funnel, setStep, step] = useFunnel(["list", "map", "result"], "list");
     const [selectedStore, setSelectedStore] = useState<FindStore | null >(restaurants[0]);
     const [filteredRestaurants, setFilteredRestaurants] = useState<FindStore[]>(restaurants);
+    const [excludedCategories, setExcludedCategories] = useState<Set<CategoryKey>>(new Set());
 
     const changeDistance = (distance: number) => {
         setDefaultDistance(distance)
@@ -55,7 +59,17 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
 
     useEffect(() => {
         if(restaurants.length > 0) {
-            setFilteredRestaurants(restaurants)
+            if(excludedCategories.size > 0) {
+                const excludedCategoryIds = Array.from(excludedCategories).flatMap(
+                    (categoryKey) => groupedCategories[categoryKey]
+                );
+                const filtered = restaurants.filter(
+                    (restaurant) => !excludedCategoryIds.includes(restaurant.categoryId)
+                );
+                setFilteredRestaurants(filtered);
+            } else {
+                setFilteredRestaurants(restaurants);
+            }
         }
     }, [restaurants]);
 
@@ -65,7 +79,7 @@ const RestaurantResult = (props: RestaurantDefaultProps) => {
         <div className='absolute w-full max-w-[640px]'>
             <Funnel>
                 <Funnel.Step name='list'>
-                    <ResultList setFilteredRestaurants={setFilteredRestaurants} setSelectedStore={changeSelectedStore} setStep={setStep} restaurants={restaurants} filteredRestaurants={filteredRestaurants} isUp={isUp} isLoading={isLoading}/>
+                    <ResultList setFilteredRestaurants={setFilteredRestaurants} setSelectedStore={changeSelectedStore} setStep={setStep} restaurants={restaurants} filteredRestaurants={filteredRestaurants} isUp={isUp} isLoading={isLoading} excludedCategories={excludedCategories} setExcludedCategories={setExcludedCategories}/>
                 </Funnel.Step>
                 <Funnel.Step name='map'>
                     <div >

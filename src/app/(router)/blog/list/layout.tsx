@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     images: [
       {
-        url: 'https://www.nnzz.today/og-blog-image.png',
+        url: '/icon/OgImage.png',
         width: 1200,
         height: 630,
         alt: '냠냠쩝쩝 맛집 리뷰',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '맛집 리뷰 - 냠냠쩝쩝',
     description: '직장인을 위한 진짜 맛집 리뷰! 오늘 점심 뭐 먹지? 🍽️',
-    images: ['https://www.nnzz.today/og-blog-image.png'],
+    images: ['/icon/OgImage.png'],
   },
   alternates: {
     canonical: 'https://www.nnzz.today/blog/list',

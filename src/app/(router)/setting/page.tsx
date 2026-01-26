@@ -97,9 +97,11 @@ const SettingPage = () => {
                         </a>
                     </div>
                 </div>
-                <div onClick={logout} className='h-[56px] flex items-center text-body1 font-medium text-primary-6 w-full cursor-pointer'>
-                    로그아웃
-                </div>
+{isLogin && (
+                    <div onClick={logout} className='h-[56px] flex items-center text-body1 font-medium text-primary-6 w-full cursor-pointer'>
+                        로그아웃
+                    </div>
+                )}
             </div>
         </div>
     );
