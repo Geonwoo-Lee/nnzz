@@ -61,11 +61,11 @@ export default function Login({ onLoginSuccess }: LoginProps) {
 
                 router.push('/home');
               }).catch(() => {
-                // router.push('/sign-up');
+                router.push('/sign-up');
               })
             },
             fail: function() {
-              // router.push('/sign-up');
+              router.push('/sign-up');
             },
           });
         },

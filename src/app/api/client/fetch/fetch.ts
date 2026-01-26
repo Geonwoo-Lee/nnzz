@@ -1,6 +1,7 @@
 import AuthUtils from "@/src/func/common/auth.utils";
 
-const apiKey = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_KEY || "http://13.209.221.99:8080";
+const apiKeyRaw = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_KEY || "";
+const apiKey = apiKeyRaw.endsWith('/') ? apiKeyRaw.slice(0, -1) : apiKeyRaw;
 
 interface ErrorResponse {
   type: string;
