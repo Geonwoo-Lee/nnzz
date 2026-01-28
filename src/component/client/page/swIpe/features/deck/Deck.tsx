@@ -41,9 +41,9 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep, setLikeCards, is
     }, [likedCards]);
 
     return (
-        <div className="flex w-full flex-col gap-6 bg-common-white">
-            <div ref={deckRef} className="w-full relative">
-                <div className="grid grid-cols-1 grid-rows-1 w-full">
+        <div className="flex w-full flex-col flex-1 min-h-0 gap-4 bg-common-white">
+            <div ref={deckRef} className="w-full flex-1 min-h-0 relative">
+                <div className="grid grid-cols-1 grid-rows-1 w-full h-full">
                     {
                         (isLoading || !imagesLoaded) && (
                            <ImageSkeleton/>
@@ -88,7 +88,7 @@ const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep, setLikeCards, is
                     }
                 </div>
             </div>
-            <div className="flex justify-center space-x-4">
+            <div className="flex justify-center space-x-4 shrink-0">
                 <DisLikeButton className="active:scale-95" onClick={() => handleButtonSwipe('left')}/>
                 <LikeButton className="active:scale-95" onClick={() => handleButtonSwipe('right')}/>
             </div>

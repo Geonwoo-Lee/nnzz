@@ -15,7 +15,7 @@ const SwipeClientPage = (props :DeckProps ) => {
     const {cards, setStep, setLikeCards, isLoading, likedCards, day, type} = props
 
     return (
-        <HeightUnitWrapper className='flex flex-col overflow-y-scroll '>
+        <HeightUnitWrapper className='flex flex-col overflow-hidden'>
             {
                 isLoading && (
                     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -30,12 +30,12 @@ const SwipeClientPage = (props :DeckProps ) => {
                     title={''}
                 />
             </div>
-            <div className='flex flex-col gap-4 h-basic-body-with-header'>
-                <div className='flex flex-col gap-8'>
+            <div className='flex flex-col gap-8 flex-1 min-h-0'>
+                <div className='flex flex-col gap-8 shrink-0'>
                     <SwipeComponent.SwipeDescription type={type}/>
                     <div className='px-4'>
                         {
-                            cards.length === 0 ?
+                            !isLoading && cards.length === 0 ?
                                 <div className='font-medium text-common text-body2'>선택 할 수 있는 카드가 없어요 😭</div> :
                                 <ProgressBar leftCount minRequired={3} beforeMinText="최소 3개 카드를 고르면 메뉴 추천 받을 수 있어요 🙂"
                                              afterMinText={`이제 ${DateUtils.mealRenderer(type)} 메뉴를 추천 받을 수 있어요!`}
@@ -43,10 +43,10 @@ const SwipeClientPage = (props :DeckProps ) => {
                         }
                     </div>
                 </div>
-                <div className='bg-common-white flex flex-col pb-10  gap-4 '>
+                <div className='bg-common-white flex flex-col flex-1 min-h-0 pb-4 gap-4'>
                     <SwipeComponent.Deck isLoading={isLoading} type={type} day={day} likedCards={likedCards} setLikeCards={setLikeCards}
                                          cards={cards} setStep={setStep}/>
-                    <div className='flex w-full items-center justify-center px-4'>
+                    <div className='flex w-full items-center justify-center px-4 shrink-0'>
                         <Button fullRound type='muted' size='ml' style='w-[80%]' disabled={likedCards.length < 3}
                                 onClick={() => {
                                     setTimeout(() => {
