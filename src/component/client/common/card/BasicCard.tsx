@@ -5,9 +5,9 @@ import {BasicCardProps} from "@/src/types/page/swape/card";
 
 const BasicCard: React.FC<BasicCardProps> = ({ data }) => {
     return (
-        <>
-            <div className="w-full p-4 relative" >
-                <div className="w-full h-full relative rounded-[16px] overflow-hidden aspect-[49/50]"  >
+        <div className="flex flex-col h-full">
+            <div className="w-full p-4 relative flex-1 min-h-0">
+                <div className="w-full h-full relative rounded-[16px] overflow-hidden">
                     {
                         data.bgType &&
                         <Image
@@ -33,7 +33,7 @@ const BasicCard: React.FC<BasicCardProps> = ({ data }) => {
                     </div>
                 </div>
             </div>
-            <div className="text-common px-4 flex flex-col gap-2 pb-4">
+            <div className="text-common px-4 flex flex-col gap-2 pb-4 shrink-0">
                 <div className="text-heading3 xs:text-heading1 font-medium">{data.category}</div>
                 <div className='flex flex-row items-center'>
                     <LocationPin/>
@@ -45,7 +45,7 @@ const BasicCard: React.FC<BasicCardProps> = ({ data }) => {
                     {data.represent}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
