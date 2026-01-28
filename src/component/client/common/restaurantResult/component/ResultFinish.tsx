@@ -52,7 +52,9 @@ const ResultFinish = ({storeIdx, lng, lat, day, type, setStep}: {
         } else {
             window.open(`https://map.naver.com/p/entry/place/${storeIdx}`, '_blank');
         }
-
+        setTimeout(() => {
+          setStep("list");
+        }, 500)
         setNaverMapLoading(false);
     };
 

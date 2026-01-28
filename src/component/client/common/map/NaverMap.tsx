@@ -100,7 +100,7 @@ const NaverMap: React.FC<Props> = ({ places, pinAble, onPinUpdated }) => {
                     strategy="afterInteractive"
                 />
             )}
-            <div className="flex items-center justify-center w-[100vw] h-[100vh]">
+            <div className="flex items-center justify-center w-full h-[100vh]">
                 {!scriptLoaded && !isLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
                         <div className="text-center">
