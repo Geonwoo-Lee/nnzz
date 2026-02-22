@@ -124,9 +124,9 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
   },
   verification: {
-    google: process.env.GOOGLE_SEARCH_CONSOLE_KEY || "",
+    google: "YMuxFpB_F05-z5Qnkz3P__CZUTm8JTXHXi3qkXdqtWM",
     other: {
-      "naver-site-verification": process.env.NAVER_SEARCH_ADVISOR_KEY || "",
+      "naver-site-verification": "dde16215ae14b67451a5c33bbb6bf1f4491cabad",
     },
   },
 };
@@ -174,11 +174,11 @@ export default function RootLayout({
         />
         <meta
           name="naver-site-verification"
-          content="0e084f82fcf28a0ec8f2f2ad549dca9f50bde064"
+          content="dde16215ae14b67451a5c33bbb6bf1f4491cabad"
         />
         <meta
           name="google-site-verification"
-          content="1QKRvTlM8LTU89RcO5TjN7IrwiUGdj8OT5QFmps9dKU"
+          content="YMuxFpB_F05-z5Qnkz3P__CZUTm8JTXHXi3qkXdqtWM"
         />
         <meta name="google-adsense-account" content="ca-pub-7391340913390710" />
         <noscript>
