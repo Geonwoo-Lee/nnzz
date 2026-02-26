@@ -19,7 +19,6 @@ async function fetchAllPosts(retryCount = 0) {
   // 캐시 확인
   const cached = memoryCache.get<any[]>(CACHE_KEY_POSTS);
   if (cached) {
-    console.log("Returning cached posts data for detail");
     return cached;
   }
 
@@ -36,7 +35,7 @@ async function fetchAllPosts(retryCount = 0) {
         return await getPageProperties(
           id,
           response.block,
-          Object.values(response.collection)[0]?.value?.schema || {},
+          Object.values(response.collection)[0]?.value?.value?.schema || {},
         );
       }),
     );
@@ -55,14 +54,12 @@ async function fetchAllPosts(retryCount = 0) {
 
     if (retryCount < maxRetries) {
       const delay = Math.pow(2, retryCount + 1) * 1000;
-      console.log(`Retrying in ${delay}ms...`);
       await new Promise(resolve => setTimeout(resolve, delay));
       return fetchAllPosts(retryCount + 1);
     }
 
     const staleCache = memoryCache.get<any[]>(CACHE_KEY_POSTS, true);
     if (staleCache) {
-      console.warn("Returning stale cached data due to API failure");
       return staleCache;
     }
 
@@ -79,7 +76,6 @@ async function fetchPostBySlug(slug: string, retryCount = 0): Promise<PostDetail
     // 개별 포스트 캐시 확인
     const cachedPost = memoryCache.get<PostDetail>(CACHE_KEY_POST);
     if (cachedPost) {
-      console.log(`Returning cached post detail for slug: ${slug}`);
       return cachedPost;
     }
 
@@ -87,7 +83,6 @@ async function fetchPostBySlug(slug: string, retryCount = 0): Promise<PostDetail
     const post = allPosts.find(p => p.slug === slug)
 
     if (!post) {
-      console.error(`Post not found for slug: ${slug}`)
       return null
     }
 
@@ -103,12 +98,10 @@ async function fetchPostBySlug(slug: string, retryCount = 0): Promise<PostDetail
 
     return postDetail;
   } catch (error) {
-    console.error(`Failed to fetch post (attempt ${retryCount + 1}/${maxRetries + 1}):`, error)
 
     if (retryCount < maxRetries) {
       // Exponential backoff: 2초, 4초, 8초
       const delay = Math.pow(2, retryCount + 1) * 1000;
-      console.log(`Retrying in ${delay}ms...`);
       await new Promise(resolve => setTimeout(resolve, delay));
       return fetchPostBySlug(slug, retryCount + 1);
     }

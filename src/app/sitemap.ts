@@ -19,7 +19,7 @@ async function fetchAllPosts(): Promise<TPost[]> {
         return await getPageProperties(
           id,
           response.block,
-          Object.values(response.collection)[0]?.value?.schema || {},
+          Object.values(response.collection)[0]?.value?.value?.schema || {},
         )
       }),
     )

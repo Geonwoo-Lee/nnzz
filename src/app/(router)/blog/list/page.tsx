@@ -17,7 +17,6 @@ async function fetchPosts(retryCount = 0): Promise<TPost[]> {
   // 캐시 확인
   const cached = memoryCache.get<TPost[]>(CACHE_KEY);
   if (cached) {
-    console.log("Returning cached posts data");
     return cached;
   }
 
@@ -35,7 +34,7 @@ async function fetchPosts(retryCount = 0): Promise<TPost[]> {
         return await getPageProperties(
           id,
           response.block,
-          Object.values(response.collection)[0]?.value?.schema || {},
+          Object.values(response.collection)[0]?.value?.value?.schema || {},
         );
       }),
     );
@@ -53,9 +52,7 @@ async function fetchPosts(retryCount = 0): Promise<TPost[]> {
     console.error(`Failed to fetch posts (attempt ${retryCount + 1}/${maxRetries + 1}):`, error);
 
     if (retryCount < maxRetries) {
-      // Exponential backoff: 2초, 4초, 8초
       const delay = Math.pow(2, retryCount + 1) * 1000;
-      console.log(`Retrying in ${delay}ms...`);
       await new Promise(resolve => setTimeout(resolve, delay));
       return fetchPosts(retryCount + 1);
     }

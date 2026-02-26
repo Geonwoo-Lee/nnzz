@@ -57,7 +57,6 @@ async function customFetch(url: string, options: RequestInit = {}, useToken: boo
         const errorData: ErrorResponse = await response.json();
         errorMessage = errorData.detail || errorMessage;
       } catch (e) {
-        console.log('Failed to parse error response:', e);
       }
 
       const error = new Error(errorMessage);

@@ -10,7 +10,6 @@ export async function fetchShorts(retryCount = 0) {
   // 캐시 확인
   const cached = memoryCache.get<TContent[]>(CACHE_KEY);
   if (cached) {
-    console.log("Returning cached shorts data");
     return cached;
   }
 
@@ -29,7 +28,7 @@ export async function fetchShorts(retryCount = 0) {
         return await getPageProperties(
           id,
           response.block,
-          Object.values(response.collection)[0]?.value?.schema || {},
+          Object.values(response.collection)[0]?.value?.value?.schema || {},
         );
       }),
     );
@@ -49,7 +48,6 @@ export async function fetchShorts(retryCount = 0) {
     if (retryCount < maxRetries) {
       // Exponential backoff: 2초, 4초, 8초
       const delay = Math.pow(2, retryCount + 1) * 1000;
-      console.log(`Retrying in ${delay}ms...`);
       await new Promise(resolve => setTimeout(resolve, delay));
       return fetchShorts(retryCount + 1);
     }
