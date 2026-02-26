@@ -27,16 +27,13 @@ export default function AdBanner({
     const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const isProduction = !isDev;
 
-    console.log(`[AdBanner v3 slot:${slot}] hostname: ${window.location.hostname}, isDev: ${isDev}, isProduction: ${isProduction}`);
 
     if (!isProduction) {
-      console.log(`[AdBanner v3 slot:${slot}] 개발 환경이므로 광고 표시 안함`);
       setShouldShow(false);
       return;
     }
 
     if (isAdPushed.current) {
-      console.log(`[AdBanner v3 slot:${slot}] 이미 push됨, 스킵`);
       return;
     }
 
@@ -47,19 +44,15 @@ export default function AdBanner({
     const pushAd = () => {
       try {
         if (typeof window === 'undefined') {
-          console.log(`[AdBanner v3 slot:${slot}] window 없음`);
           setShouldShow(false);
           return;
         }
 
         if (!adRef.current) {
-          console.log(`[AdBanner v3 slot:${slot}] adRef 없음`);
           setShouldShow(false);
           return;
         }
 
-        console.log(`[AdBanner v3 slot:${slot}] 광고 push 시작`);
-        console.log(`[AdBanner v3 slot:${slot}] adRef innerHTML:`, adRef.current.innerHTML.substring(0, 100));
 
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         isAdPushed.current = true;

@@ -147,7 +147,6 @@ const EditPage = () => {
             }
         } catch (error: any) {
             const errorMessage = error.message || '업데이트에 실패했습니다';
-            console.log('Error:', error);
             showToast(errorMessage, ToastPosition.BOTTOM, ToastAlign.CENTER);
         }
     }
