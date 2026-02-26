@@ -2,7 +2,7 @@ import BottomSheet from "@/src/component/client/common/bottomSheet/BottomSheet";
 import CloseDark from "../../../../../public/svg/header/CloseDark.svg";
 import { useHeightUnit } from "@/src/hooks/useHeightUnit";
 import Image from "next/image";
-import Login from "@/src/component/client/common/button/KakaoButton";
+import KakaoButton from "@/src/component/client/common/button/KakaoButton";
 import Button from "@/src/component/client/common/button/Button";
 
 const LoginBottomSheet = ({
@@ -56,7 +56,7 @@ const LoginBottomSheet = ({
         </div>
 
         <div className="w-full py-6 px-4 flex flex-col gap-2 flex-shrink-0 bg-white">
-          <Login onLoginSuccess={onLoginSuccess} />
+          <KakaoButton onLoginSuccess={onLoginSuccess} />
           <Button size="lg" type="muted" onClick={close}>
             닫기
           </Button>

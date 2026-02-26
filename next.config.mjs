@@ -28,6 +28,14 @@ const withPWA = nextPWA({
 });
 
 const nextConfig = withPWA({
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
   images: {
     remotePatterns: [
       {
