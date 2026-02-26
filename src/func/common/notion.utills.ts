@@ -1,5 +1,5 @@
 import { idToUuid } from "notion-utils"
-import { ExtendedRecordMap, ID } from "notion-types"
+import { ExtendedRecordMap, ID, Block } from "notion-types"
 import { getTextContent, getDateValue } from "notion-utils"
 import { NotionAPI } from "notion-client"
 import { BlockMap, CollectionPropertySchemaMap } from "notion-types"
@@ -13,6 +13,15 @@ import {
   TPostType,
   TShorts,
 } from "@/src/types/common/notion";
+
+// Notion API의 실제 응답 구조를 반영한 타입
+type BlockWithValue = {
+  value: {
+    value: Block & {
+      properties?: Record<string, any>;
+    };
+  };
+};
 
 
 export function getAllPageIds(
@@ -45,7 +54,8 @@ async function getPageProperties(
   schema: CollectionPropertySchemaMap
 ) {
   const api = new NotionAPI()
-  const rawProperties = Object.entries(block?.[id]?.value?.value?.properties || [])
+  const blockWithValue = block?.[id] as unknown as BlockWithValue;
+  const rawProperties = Object.entries(blockWithValue?.value?.value?.properties || [])
   const excludeProperties = ["date", "select", "multi_select", "person", "file"]
   const properties: any = {}
   for (let i = 0; i < rawProperties.length; i++) {
@@ -57,7 +67,8 @@ async function getPageProperties(
       switch (schema[key]?.type) {
         case "file": {
           try {
-            const Block = block?.[id].value?.value
+            const blockWithValue = block?.[id] as unknown as BlockWithValue;
+            const Block = blockWithValue.value?.value
             const url: string = val[0][1][0][1]
             const newurl = customMapImageUrl(url, Block)
             properties[schema[key].name] = newurl

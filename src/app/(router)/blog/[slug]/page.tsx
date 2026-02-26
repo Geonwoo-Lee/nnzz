@@ -30,12 +30,15 @@ async function fetchAllPosts(retryCount = 0) {
     const response = await api.getPage(databaseId);
     const pageIds = getAllPageIds(response);
 
+    const collectionValue = Object.values(response.collection)[0] as unknown as { value: { value: { schema: Record<string, any> } } };
+    const schema = collectionValue?.value?.value?.schema || {};
+
     const allPosts = await Promise.all(
       pageIds.map(async (id) => {
         return await getPageProperties(
           id,
           response.block,
-          Object.values(response.collection)[0]?.value?.value?.schema || {},
+          schema,
         );
       }),
     );
