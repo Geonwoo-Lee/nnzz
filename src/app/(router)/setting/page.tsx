@@ -7,8 +7,8 @@ import {FoodProfileType, SignInType} from "@/src/types/page/sign-up/sign-up";
 import Link from "next/link";
 import LogoutApi from "@/src/app/api/client/logout/logout";
 import { useLoginBottomSheet } from "@/src/core/LoginBottomSheetProvider";
-import InstagramIcon from "@/public/svg/items/home/instagramIcon.svg";
-import YoutubeIcon from "@/public/svg/items/home/youtubeIcon.svg";
+import InstagramIcon from "@/src/svg/items/home/InstagramIcon";
+import YoutubeIcon from "@/src/svg/items/home/YoutubeIcon";
 
 const SettingPage = () => {
   const { showLoginSheet } = useLoginBottomSheet();

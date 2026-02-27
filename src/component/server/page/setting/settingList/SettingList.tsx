@@ -1,5 +1,5 @@
 import Link from "next/link";
-import RightArrow from "../../../../../../public/svg/items/common/RightArrow.svg";
+import RightArrow from "@/src/svg/items/common/RightArrow";
 
 interface SettingListProps {
   isLogin: boolean;

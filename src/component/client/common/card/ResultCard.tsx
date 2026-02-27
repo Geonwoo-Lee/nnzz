@@ -2,8 +2,8 @@
 import Image from "next/image";
 import React, {useState} from "react";
 import {ResultCardProps} from "@/src/types/page/swape/card";
-import LocationPin from "@/public/svg/items/deck/LocationPin.svg";
-import Plus from '@/public/svg/items/common/Plus.svg'
+import LocationPin from "@/src/svg/items/deck/LocationPin";
+import Plus from '@/src/svg/items/common/Plus'
 
 const ResultCard: React.FC<ResultCardProps> = ({data, className, handleDeleteCard, deleted}) => {
     const [showSadzz, setShowSadzz] = useState(false);

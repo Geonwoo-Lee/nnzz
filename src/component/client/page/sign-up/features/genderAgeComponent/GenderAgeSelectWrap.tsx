@@ -1,5 +1,5 @@
 import {GenderAgeSelectWrapProps} from "@/src/types/page/sign-up/sign-up";
-import Checked from '../../../../../../../public/svg/items/common/Checked.svg'
+import Checked from '@/src/svg/items/common/Checked'
 
 
 const GenderAgeSelectWrap = (props: GenderAgeSelectWrapProps) => {

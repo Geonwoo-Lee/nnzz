@@ -1,7 +1,7 @@
 import BottomSheet from "@/src/component/client/common/bottomSheet/BottomSheet";
 import {GenderAgeBottomSheetProps} from "@/src/types/page/sign-up/sign-up";
 import GenderAgeSelectWrap from "@/src/component/client/page/sign-up/features/genderAgeComponent/GenderAgeSelectWrap";
-import Close from "@/public/svg/header/Close.svg";
+import Close from "@/src/svg/header/Close";
 import Button from "../../../../common/button/Button";
 
 const GenderAgeBottomSheet = (props: GenderAgeBottomSheetProps) => {

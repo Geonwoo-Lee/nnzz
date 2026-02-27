@@ -5,9 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 
-import Home from '../../../../public/svg/bottomMenu/home.svg'
-import Feed from '../../../../public/svg/bottomMenu/feed.svg'
-import Random from '../../../../public/svg/bottomMenu/random.svg'
+import Home from '@/src/svg/bottomMenu/Home'
+import Feed from '@/src/svg/bottomMenu/Feed'
+import Random from '@/src/svg/bottomMenu/Random'
 
 const BottomMenu = () => {
   const pathname = usePathname();

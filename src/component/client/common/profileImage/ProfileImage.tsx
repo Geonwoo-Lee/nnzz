@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Add from "@/public/svg/items/sign-up/Add.svg";
-import Selected from "@/public/svg/items/sign-up/Selected.svg";
+import Add from "@/src/svg/items/sign-up/Add";
+import Selected from "@/src/svg/items/sign-up/Selected";
 import { ProfileImageType } from "@/src/types/common/profileImage";
 
 const ProfileImage = (props: ProfileImageType) => {

@@ -6,8 +6,8 @@ import React, { useEffect, useState } from "react";
 import Input from "../../common/input/Input";
 import Button from "../../common/button/Button";
 
-import Location from "../../../../../public/svg/items/common/Location.svg";
-import Search from "../../../../../public/svg/items/common/Search.svg";
+import Location from "@/src/svg/items/common/Location";
+import Search from "@/src/svg/items/common/Search";
 import { searchAddressByKeyword } from "@/src/func/common/geo.utils";
 import {
   CurrentLocation,

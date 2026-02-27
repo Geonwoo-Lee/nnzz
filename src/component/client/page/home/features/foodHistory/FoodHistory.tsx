@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MyApi from "@/src/app/api/client/my/Home";
 import { FoodHistoryGroup, FoodCard } from "@/src/types/page/home/mypick";
 import FoodHistoryCard from "@/src/component/client/page/home/features/foodHistory/FoodHistoryCard";
-import PickIcon from "../../../../../../../public/svg/items/home/pick.svg";
+import PickIcon from "@/src/svg/items/home/Pick";
 import AuthUtils from "@/src/func/common/auth.utils";
 import { useRouter } from "next/navigation";
 import NoList from "@/src/component/client/page/home/features/foodHistory/NoList";

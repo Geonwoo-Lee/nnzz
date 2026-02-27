@@ -2,10 +2,10 @@
 
 import React, { useMemo } from 'react';
 import {MealTimingSquareProps, MealType} from "@/src/types/page/home/mealTimingSquare";
-import LunchIcon from '../../../../../../../public/svg/items/home/Lunch.svg'
-import DinnerIcon from '../../../../../../../public/svg/items/home/Dinner.svg'
-import DinnerDeActivateIcon from '../../../../../../../public/svg/items/home/DinnerDeactivate.svg'
-import LunchDeActivateIcon from '../../../../../../../public/svg/items/home/LunchDeactivate.svg'
+import LunchIcon from '@/src/svg/items/home/Lunch'
+import DinnerIcon from '@/src/svg/items/home/Dinner'
+import DinnerDeActivateIcon from '@/src/svg/items/home/DinnerDeactivate'
+import LunchDeActivateIcon from '@/src/svg/items/home/LunchDeactivate'
 
 const mealConfig: Record<MealType, {
     activeIcon: React.FC,

@@ -1,5 +1,5 @@
 import BottomSheet from "@/src/component/client/common/bottomSheet/BottomSheet";
-import CloseDark from "../../../../../public/svg/header/CloseDark.svg";
+import CloseDark from "@/src/svg/header/CloseDark";
 import { useHeightUnit } from "@/src/hooks/useHeightUnit";
 import Image from "next/image";
 import KakaoButton from "@/src/component/client/common/button/KakaoButton";

@@ -1,6 +1,6 @@
 'use client'
 import {useEffect} from 'react'
-import KakaoLogo from '../../../../../public/svg/logo/KakaoLogo.svg'
+import KakaoLogo from '@/src/svg/logo/KakaoLogo'
 import {useRouter} from "next/navigation";
 import SignInApi from "@/src/app/api/client/sign-in/sign-in";
 import FoodProfileDummy from "@/src/dummy/sign-up";

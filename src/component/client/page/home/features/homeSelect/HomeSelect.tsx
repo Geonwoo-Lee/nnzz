@@ -1,6 +1,6 @@
 import React from 'react';
 import { HomeSelectProps } from "@/src/types/page/home/homeSelect";
-import ArrowDown from '../../../../../../../public/svg/items/common/ArrowDown.svg'
+import ArrowDown from '@/src/svg/items/common/ArrowDown'
 
 const HomeSelect = ({ data, callBack }: HomeSelectProps) => {
     return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import {CardProps} from "@/src/types/page/swape/card";
-import LikeButton from '../../../../../public/svg/items/deck/LikeButton.svg'
-import DisLikeButton from '../../../../../public/svg/items/deck/DisLikeButton.svg'
+import LikeButton from '@/src/svg/items/deck/LikeButton'
+import DisLikeButton from '@/src/svg/items/deck/DisLikeButton'
 import BasicCard from "@/src/component/client/common/card/BasicCard";
 
 const DeckCard: React.FC<CardProps> = ({ data,  bind, dragStatus, className }) => {

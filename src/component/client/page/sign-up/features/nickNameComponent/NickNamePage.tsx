@@ -1,7 +1,7 @@
 import {NickNamePageProps} from "@/src/types/page/sign-up/sign-up";
 import {Controller} from "react-hook-form";
 import Input from "@/src/component/client/common/input/Input";
-import Close from "../../../../../../../public/svg/header/InputClose.svg"
+import Close from "@/src/svg/header/InputClose"
 import React  from "react";
 
 const NickNamePage = (props: NickNamePageProps) => {

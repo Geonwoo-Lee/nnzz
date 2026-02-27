@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import Star from "../../../lib/lotties/star.json";
 import TarotCard from "@/src/component/client/page/meal-tarot/features/TarotCard";
-import Twinkle from "../../../../public/svg/items/common/Twinkle.svg";
+import Twinkle from "@/src/svg/items/common/Twinkle";
 import { categoryNames } from "@/src/dummy/dummy";
 
-import RandomTile from "../../../../public/svg/items/common/RandomTitle.svg";
+import RandomTile from "@/src/svg/items/common/RandomTitle";
 import Header from "@/src/component/server/common/header/Header";
 import { HeaderTypes } from "@/src/types/common/header";
 import { useRouter } from "next/navigation";
