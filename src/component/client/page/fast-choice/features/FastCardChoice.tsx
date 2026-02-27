@@ -3,7 +3,7 @@ import { FastChoiceComponent } from "@/src/component/client/page/fast-choice/fea
 import FastChoiceButton from "@/src/component/client/page/fast-choice/features/FastChoiceButton";
 import UserName from "@/src/component/client/common/userName/UserName";
 import { FastChoicePageProps } from "@/src/types/page/fast-choice/fast-choice";
-import ArrowLeft from "@/public/svg/header/LeftArrow.svg";
+import ArrowLeft from "@/src/svg/header/LeftArrow";
 import React from "react";
 import { useRouter } from "next/navigation";
 

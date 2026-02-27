@@ -2,7 +2,7 @@
 
 import useShortsQuery from '@/src/hooks/useShortsQuery'
 import ShortsThumbnailCard from "@/src/component/client/shorts/ShortsThumbnail";
-import YoutubeIcon from "../../../../../public/svg/items/home/youtubeIcon.svg"
+import YoutubeIcon from "@/src/svg/items/home/YoutubeIcon"
 import { useMemo } from 'react'
 
 export default function ShortsListView() {

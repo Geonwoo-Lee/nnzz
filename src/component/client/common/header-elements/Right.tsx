@@ -1,13 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Setting from "../../../../../public/svg/header/Settings.svg";
+import Setting from "@/src/svg/header/Settings";
 import { HeaderTypes } from "@/src/types/common/header";
 import Image from "next/image";
-import Menu from "../../../../../public/svg/header/Menu.svg";
-import Close from "../../../../../public/svg/header/Close.svg";
-import Map from "../../../../../public/svg/header/Map.svg";
-import Square from "../../../../../public/svg/header/Square.svg";
+import Menu from "@/src/svg/header/Menu";
+import Close from "@/src/svg/header/Close";
+import Map from "@/src/svg/header/Map";
+import Square from "@/src/svg/header/Square";
 import Link from "next/link";
 import AuthUtils from "@/src/func/common/auth.utils";
 import { FoodProfileType } from "@/src/types/page/sign-up/sign-up";

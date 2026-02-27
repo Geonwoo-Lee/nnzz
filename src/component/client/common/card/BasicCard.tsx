@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LocationPin from "@/public/svg/items/deck/LocationPin.svg";
+import LocationPin from "@/src/svg/items/deck/LocationPin";
 import React from "react";
 import {BasicCardProps} from "@/src/types/page/swape/card";
 

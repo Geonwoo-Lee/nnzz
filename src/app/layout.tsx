@@ -6,6 +6,7 @@ import React from "react";
 import { pretendard } from "@/src/utils/font/font";
 import process from "process";
 import ClientProviders from "@/src/provider/ClientProvider";
+import { SerwistProvider } from "@/src/app/serwist";
 
 export const viewport: Viewport = {
   themeColor: "#fff",
@@ -195,7 +196,9 @@ export default function RootLayout({
         data-theme="light"
         className={`${pretendard.variable} font-pretendard bg-common-white w-full max-w-[640px] mx-auto overflow-hidden"`}
       >
-        <ClientProviders>{children}</ClientProviders>
+        <SerwistProvider swUrl="/sw.js">
+          <ClientProviders>{children}</ClientProviders>
+        </SerwistProvider>
 
         <Script
           src="https://developers.kakao.com/sdk/js/kakao.js"

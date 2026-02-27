@@ -2,7 +2,7 @@ import BottomSheet from "@/src/component/client/common/bottomSheet/BottomSheet";
 import {useState} from "react";
 import {FoodProfileType, ProfileSelectBottomSheetProps} from "@/src/types/page/sign-up/sign-up";
 import FoodProfileDummy from "@/src/dummy/sign-up";
-import Close from "@/public/svg/header/Close.svg";
+import Close from "@/src/svg/header/Close";
 import Button from "@/src/component/client/common/button/Button";
 import ProfileImage from "@/src/component/client/common/profileImage/ProfileImage";
 

@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import {FindStore} from "@/src/types/models/find";
 import ResultCard from "@/src/component/client/common/restaurantResult/component/ResultCard";
-import Menu from '../../../../../public/svg/header/Menu.svg'
+import Menu from '@/src/svg/header/Menu'
 import {useNaverMapLoaded} from "@/src/hooks/useNaverMapLoaded";
 
 interface Props {

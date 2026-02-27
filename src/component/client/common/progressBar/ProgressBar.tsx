@@ -1,5 +1,5 @@
 import {ProgressBarProps} from "@/src/types/common/progressBar";
-import NnzzPin from '../../../../../public/svg/logo/nnzz_pin.svg'
+import NnzzPin from '@/src/svg/logo/NnzzPin'
 const ProgressBar = (props: ProgressBarProps) => {
     const {
         currentStep,

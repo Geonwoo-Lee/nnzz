@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 import heartBoom from '@/src/lib/lotties/heart-boom.json'
 import FindApi from "@/src/app/api/client/find/find";
 import Image from 'next/image'
-import Close from "@/public/svg/header/Close.svg";
+import Close from "@/src/svg/header/Close";
 import {FindStoreType} from "@/src/types/models/find";
 import foodData from "@/src/dummy/dummy";
 import RoundFinishCard from "@/src/component/client/common/restaurantResult/component/RoundFinishCard";

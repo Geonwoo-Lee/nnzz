@@ -4,9 +4,9 @@ import {RestaurantDefaultProps} from "@/src/types/page/restaurant/restaurant";
 import React, {useEffect, useState} from "react";
 import FindApi from "@/src/app/api/client/find/find";
 import {FindStore} from "@/src/types/models/find";
-import NnzzSmall from '../../../../../public/svg/logo/NnzzSmallCharactor.svg'
-import UpArrowSmall from '../../../../../public/svg/items/common/UpArrowSmall.svg'
-import DownArrowSmall from '../../../../../public/svg/items/common/DownArrowSmall.svg'
+import NnzzSmall from '@/src/svg/logo/NnzzSmallCharactor'
+import UpArrowSmall from '@/src/svg/items/common/UpArrowSmall'
+import DownArrowSmall from '@/src/svg/items/common/DownArrowSmall'
 import RangeSlider from "@/src/component/client/common/rangeSlider/RangeSlider";
 import Button from "../button/Button";
 import {useFunnel} from "@/src/hooks/useFunnel";

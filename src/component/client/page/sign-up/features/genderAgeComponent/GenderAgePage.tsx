@@ -1,7 +1,7 @@
 import {Controller} from "react-hook-form";
 import Input from "@/src/component/client/common/input/Input";
 import React, {useState} from "react";
-import DownArrow from '../../../../../../../public/svg/items/common/DownArrow.svg'
+import DownArrow from '@/src/svg/items/common/DownArrow'
 import {GenderAgePageProps, genderAgeType} from "@/src/types/page/sign-up/sign-up";
 import GenderAgeBottomSheet from "@/src/component/client/page/sign-up/features/genderAgeComponent/GenderAgeBottomSheet";
 

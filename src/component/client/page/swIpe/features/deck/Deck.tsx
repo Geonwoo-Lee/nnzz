@@ -4,8 +4,8 @@ import DeckCard from "@/src/component/client/common/card/DeckCard";
 import { useCardSwipe } from "@/src/hooks/useCardSwipe";
 import { animated, to } from '@react-spring/web'
 import { DeckProps } from "@/src/types/page/swape/deck";
-import LikeButton from '../../../../../../../public/svg/items/deck/LikeButton.svg'
-import DisLikeButton from '../../../../../../../public/svg/items/deck/DisLikeButton.svg'
+import LikeButton from '@/src/svg/items/deck/LikeButton'
+import DisLikeButton from '@/src/svg/items/deck/DisLikeButton'
 import ImageSkeleton from "@/src/component/client/page/swIpe/features/ImageSkeleton";
 
 const Deck: React.FC<DeckProps> = React.memo(({ cards, setStep, setLikeCards, isLoading }) => {

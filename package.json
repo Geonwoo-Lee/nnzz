@@ -3,17 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "concurrently -p none \"serwist build --watch\" \"next dev\"",
+    "build": "next build && serwist build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "chromatic": "chromatic"
+    "chromatic": "chromatic",
+    "svg": "@svgr/cli --out-dir src/svg --typescript --jsx-runtime automatic public/svg"
   },
   "dependencies": {
     "@react-spring/web": "^9.7.4",
+    "@serwist/cli": "^9.5.6",
+    "@serwist/next": "^9.5.6",
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-query-devtools": "^5.56.2",
     "@types/html2canvas": "^1.0.0",
@@ -23,7 +26,6 @@
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.552.0",
     "next": "16.1.5",
-    "next-pwa": "^5.6.0",
     "notion-client": "^7.7.1",
     "notion-types": "^7.7.1",
     "notion-utils": "^7.7.1",
@@ -32,7 +34,8 @@
     "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.51.1",
     "react-notion-x": "^7.7.1",
-    "react-spring": "^9.7.4"
+    "react-spring": "^9.7.4",
+    "serwist": "^9.5.6"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",
@@ -51,13 +54,14 @@
     "@storybook/react-webpack5": "^8.4.7",
     "@storybook/test": "^8.4.7",
     "@storybook/testing-library": "^0.2.2",
+    "@svgr/cli": "^8.1.0",
     "@svgr/webpack": "^8.1.0",
     "@types/jest": "^29.5.13",
-    "@types/next-pwa": "^5.6.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "chromatic": "^11.22.2",
+    "concurrently": "^9.2.1",
     "cross-env": "^7.0.3",
     "daisyui": "^4.12.12",
     "eslint": "^8",

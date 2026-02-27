@@ -1,8 +1,8 @@
 "use client";
 
-import HistoryBack from "../../../../../public/svg/header/LeftArrow.svg";
-import NnzzHeaderLogo from "../../../../../public/svg/header/NnzzHeaderLogo.svg";
-import NnzzHeaderLogoBlack from "../../../../../public/svg/header/NnzzHeaderLogoBlack.svg";
+import HistoryBack from "@/src/svg/header/LeftArrow";
+import NnzzHeaderLogo from "@/src/svg/header/NnzzHeaderLogo";
+import NnzzHeaderLogoBlack from "@/src/svg/header/NnzzHeaderLogoBlack";
 import { useRouter } from "next/navigation";
 import { HeaderTypes } from "@/src/types/common/header";
 
