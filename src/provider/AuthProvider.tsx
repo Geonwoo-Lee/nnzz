@@ -27,8 +27,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       "/blog/list",
       "/blog",
       "/shorts",
-      "/shorts/list",
-      "/shorts-home-test"
+      "/shorts/list"
     ];
 
     if (publicPaths.includes(pathname)) {
