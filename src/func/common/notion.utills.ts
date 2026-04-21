@@ -24,27 +24,59 @@ type BlockWithValue = {
 };
 
 
-export function getAllPageIds(
+export async function getAllPageIds(
   response: ExtendedRecordMap,
+  api: NotionAPI,
   viewId?: string
-) {
+): Promise<ID[]> {
   const collectionQuery = response.collection_query
-  const views = Object.values(collectionQuery)[0]
+  const views = collectionQuery ? Object.values(collectionQuery)[0] : undefined
 
-  let pageIds: ID[] = []
-  if (viewId) {
-    const vId = idToUuid(viewId)
-    pageIds = views[vId]?.blockIds
-  } else {
-    const pageSet = new Set<ID>()
-    Object.values(views).forEach((view: any) => {
-      view?.collection_group_results?.blockIds?.forEach((id: ID) =>
-        pageSet.add(id)
-      )
-    })
-    pageIds = [...pageSet]
+  if (views) {
+    let pageIds: ID[] = []
+    if (viewId) {
+      const vId = idToUuid(viewId)
+      pageIds = views[vId]?.blockIds
+    } else {
+      const pageSet = new Set<ID>()
+      Object.values(views).forEach((view: any) => {
+        view?.collection_group_results?.blockIds?.forEach((id: ID) =>
+          pageSet.add(id)
+        )
+      })
+      pageIds = [...pageSet]
+    }
+    if (pageIds?.length) return pageIds
   }
-  return pageIds
+
+  // Fallback: notion-client didn't populate collection_query.
+  // Fetch collection data manually and merge into response.
+  const collectionId = Object.keys(response.collection || {})[0]
+  const collectionViewId = viewId
+    ? idToUuid(viewId)
+    : Object.keys(response.collection_view || {})[0]
+  if (!collectionId || !collectionViewId) return []
+
+  const collectionView = (response.collection_view as any)?.[collectionViewId]
+    ?.value
+  const result: any = await api.getCollectionData(
+    collectionId,
+    collectionViewId,
+    collectionView
+  )
+
+  if (result?.recordMap?.block) {
+    Object.assign(response.block as any, result.recordMap.block)
+  }
+  if (result?.recordMap?.collection) {
+    Object.assign(response.collection as any, result.recordMap.collection)
+  }
+
+  return (
+    result?.result?.blockIds ||
+    result?.result?.reducerResults?.collection_group_results?.blockIds ||
+    []
+  )
 }
 
 
@@ -104,18 +136,22 @@ async function getPageProperties(
           for (let i = 0; i < rawUsers.length; i++) {
             if (rawUsers[i][0][1]) {
               const userId = rawUsers[i][0]
-              const res: any = await api.getUsers(userId)
-              const resValue =
-                res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value
-              const user = {
-                id: resValue?.id,
-                name:
-                  resValue?.name ||
-                  `${resValue?.family_name}${resValue?.given_name}` ||
-                  undefined,
-                profile_photo: resValue?.profile_photo || null,
+              try {
+                const res: any = await api.getUsers(userId)
+                const resValue =
+                  res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value
+                const user = {
+                  id: resValue?.id,
+                  name:
+                    resValue?.name ||
+                    `${resValue?.family_name}${resValue?.given_name}` ||
+                    undefined,
+                  profile_photo: resValue?.profile_photo || null,
+                }
+                users.push(user)
+              } catch (err) {
+                console.warn("[getPageProperties] getUsers failed, skipping", err)
               }
-              users.push(user)
             }
           }
           properties[schema[key].name] = users
@@ -127,6 +163,31 @@ async function getPageProperties(
     }
   }
   return properties
+}
+
+// notion-client 7.7.1이 Notion 새 응답 포맷({ spaceId, value: { role, value } })을
+// 언래핑하지 않고 리턴해서, react-notion-x가 기대하는 { role, value } 형태로 평탄화.
+export function normalizeRecordMap(recordMap: any): ExtendedRecordMap {
+  const normalizeMap = (map: any) => {
+    if (!map) return map
+    const out: any = {}
+    for (const [k, v] of Object.entries<any>(map)) {
+      const inner = v?.value
+      if (inner && inner.value !== undefined) {
+        out[k] = { role: inner.role ?? "reader", value: inner.value }
+      } else {
+        out[k] = v
+      }
+    }
+    return out
+  }
+  return {
+    ...recordMap,
+    block: normalizeMap(recordMap?.block),
+    collection: normalizeMap(recordMap?.collection),
+    collection_view: normalizeMap(recordMap?.collection_view),
+    notion_user: normalizeMap(recordMap?.notion_user),
+  }
 }
 
 export { getPageProperties as default }

@@ -1,6 +1,6 @@
 // app/(route)/blog/[slug]/page.tsx
 import { NotionAPI } from "notion-client";
-import getPageProperties, { filterPosts, getAllPageIds } from "@/src/func/common/notion.utills";
+import getPageProperties, { filterPosts, getAllPageIds, normalizeRecordMap } from "@/src/func/common/notion.utills";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { PostDetail } from "@/src/types/common/notion";
@@ -28,20 +28,17 @@ async function fetchAllPosts(retryCount = 0) {
 
   try {
     const response = await api.getPage(databaseId);
-    const pageIds = getAllPageIds(response);
+    const pageIds = await getAllPageIds(response, api);
 
     const collectionValue = Object.values(response.collection)[0] as unknown as { value: { value: { schema: Record<string, any> } } };
     const schema = collectionValue?.value?.value?.schema || {};
 
-    const allPosts = await Promise.all(
-      pageIds.map(async (id) => {
-        return await getPageProperties(
-          id,
-          response.block,
-          schema,
-        );
-      }),
+    const settled = await Promise.allSettled(
+      pageIds.map((id) => getPageProperties(id, response.block, schema)),
     );
+    const allPosts = settled
+      .filter((r): r is PromiseFulfilledResult<any> => r.status === "fulfilled")
+      .map((r) => r.value);
 
     const filtered = filterPosts(allPosts, {
       acceptStatus: ["Public"],
@@ -89,7 +86,7 @@ async function fetchPostBySlug(slug: string, retryCount = 0): Promise<PostDetail
       return null
     }
 
-    const recordMap = await api.getPage(post.id)
+    const recordMap = normalizeRecordMap(await api.getPage(post.id))
 
     const postDetail = {
       ...post,

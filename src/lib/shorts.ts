@@ -21,20 +21,17 @@ export async function fetchShorts(retryCount = 0) {
 
   try {
     const response = await api.getPage(pageId);
-    const pageIds = getAllPageIds(response);
+    const pageIds = await getAllPageIds(response, api);
 
     const collectionValue = Object.values(response.collection)[0] as unknown as { value: { value: { schema: Record<string, any> } } };
     const schema = collectionValue?.value?.value?.schema || {};
 
-    const allContent = await Promise.all(
-      pageIds.map(async (id) => {
-        return await getPageProperties(
-          id,
-          response.block,
-          schema,
-        );
-      }),
+    const settled = await Promise.allSettled(
+      pageIds.map((id) => getPageProperties(id, response.block, schema)),
     );
+    const allContent = settled
+      .filter((r): r is PromiseFulfilledResult<any> => r.status === "fulfilled")
+      .map((r) => r.value);
 
     const filtered = filterShorts(allContent as TContent[], {
       acceptStatus: ["Public"],

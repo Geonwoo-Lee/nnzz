@@ -8,20 +8,17 @@ export async function GET() {
 
   try {
     const response = await api.getPage(pageId);
-    const pageIds = getAllPageIds(response);
+    const pageIds = await getAllPageIds(response, api);
 
     const collectionValue = Object.values(response.collection)[0] as unknown as { value: { value: { schema: Record<string, any> } } };
     const schema = collectionValue?.value?.value?.schema || {};
 
-    const allPosts = await Promise.all(
-      pageIds.map(async (id) => {
-        return await getPageProperties(
-          id,
-          response.block,
-          schema,
-        );
-      }),
+    const results = await Promise.allSettled(
+      pageIds.map((id) => getPageProperties(id, response.block, schema)),
     );
+    const allPosts = results
+      .filter((r): r is PromiseFulfilledResult<any> => r.status === "fulfilled")
+      .map((r) => r.value);
 
     const posts = filterPosts(allPosts, {
       acceptStatus: ["Public"],
