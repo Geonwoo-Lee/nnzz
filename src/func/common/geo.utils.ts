@@ -1,6 +1,7 @@
 import {KakaoResult} from "@/src/types/models/kakao";
 import {KakaoKeywordSearchResult} from "@/src/func/common/kakao";
 import {Place} from "@/src/types/page/location/location";
+import {useLocationStore} from "@/src/stores/locationStore";
 
 export async function searchAddressByKeyword(keyword: string): Promise<Array<Place>> {
     try {
@@ -80,20 +81,18 @@ export async function searchAddressByKeyword(keyword: string): Promise<Array<Pla
 }
 
 export const getUserLocation = () => {
-    const locationString = localStorage.getItem('userLocation');
-    const pinedLocation = localStorage.getItem('pinedLocation');
+    const { pinedLocation, userLocation } = useLocationStore.getState();
 
     if (pinedLocation) {
-        const pinedData = JSON.parse(pinedLocation);
         return {
-            latitude: pinedData.lat,
-            longitude: pinedData.lng,
-            address: pinedData.address,
-            name: pinedData.name
+            latitude: pinedLocation.lat,
+            longitude: pinedLocation.lng,
+            address: pinedLocation.address,
+            name: pinedLocation.name,
         };
     }
 
-    return locationString ? JSON.parse(locationString) : null;
+    return userLocation ?? null;
 }
 
 export async function getAddressFromCoords(latitude: number, longitude: number): Promise<Place> {

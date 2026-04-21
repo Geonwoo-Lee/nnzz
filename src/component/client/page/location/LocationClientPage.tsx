@@ -16,14 +16,12 @@ import {
 import { useFunnel } from "@/src/hooks/useFunnel";
 import LocationComponent from "@/src/component/client/page/location/features/LocationComponent";
 import useLocationBasedNavigation from "@/src/hooks/useLocationBasedNavigation";
-import { MapPlace } from "@/src/component/client/common/map/NaverMap";
-import { useRouter } from "next/navigation";
 import Loading from "@/src/component/client/common/loading/Loading";
 import SaveApi from "@/src/app/api/client/save/save";
 import AuthUtils from "@/src/func/common/auth.utils";
+import { useLocationStore } from "@/src/stores/locationStore";
 
 const LocationClientPage = () => {
-  const router = useRouter();
   const { control, handleSubmit } = useForm<locationSearch>({
     defaultValues: {
       address: "",
@@ -55,64 +53,27 @@ const LocationClientPage = () => {
     });
   });
 
-  const setLocation = (place: CurrentLocation) => {
-    const userInfo = AuthUtils.getUserInfo();
-    const pinnedLocation: MapPlace = {
-      name: place.buildingName,
-      lat: place.lat,
-      lng: place.lng,
-      address: place.address,
-    };
-    if (!userInfo) {
-      window.localStorage.setItem(
-        "pinedLocation",
-        JSON.stringify(pinnedLocation),
-      );
-      router.push("/home");
-    } else {
-      SaveApi.SaveLocation({
-        name: pinnedLocation.name,
-        address: pinnedLocation.address!,
-        latitude: pinnedLocation.lat,
-        longitude: pinnedLocation.lng,
-      })
-        .then(() => {
-          window.localStorage.setItem(
-            "pinedLocation",
-            JSON.stringify(pinnedLocation),
-          );
-          router.push("/home");
-        })
-        .catch(() => {
-          router.push(
-            `/not-service/${encodeURIComponent(pinnedLocation.address!.replace(/\s+/g, ""))}/${pinnedLocation.lat}/${pinnedLocation.lng}`,
-          );
-        });
-    }
-  };
-
   useEffect(() => {
     const userInfo = AuthUtils.getUserInfo();
     if (!userInfo) {
-      setFunnel("tip");
+      const history = useLocationStore.getState().currentLocationList;
+      setCurrentLocation(history);
+      setFunnel(history.length > 0 ? "current" : "tip");
       return;
-    } else {
-      SaveApi.GetSavedLocation().then((res) => {
-        if (res.length > 0) {
-          setFunnel("current");
-        }
-        setCurrentLocation(res);
-      });
     }
+    SaveApi.GetSavedLocation().then((res) => {
+      if (res.length > 0) {
+        setFunnel("current");
+      }
+      setCurrentLocation(res);
+    });
   }, []);
 
   useEffect(() => {
     if (searchList.length > 0) {
       setFunnel("list");
     } else {
-      const getLocation = JSON.parse(
-        window.localStorage.getItem("currentLocation") || "[]",
-      );
+      const getLocation = useLocationStore.getState().currentLocationList;
       if (getLocation.length > 0) {
         setFunnel("current");
       } else {
@@ -161,16 +122,10 @@ const LocationClientPage = () => {
             <LocationComponent.SearchTip />
           </Funnel.Step>
           <Funnel.Step name="current">
-            <LocationComponent.CurrentLocation
-              setLocation={setLocation}
-              place={currentLocation}
-            />
+            <LocationComponent.CurrentLocation place={currentLocation} />
           </Funnel.Step>
           <Funnel.Step name="list">
-            <LocationComponent.SearchList
-              setLocation={setLocation}
-              places={searchList}
-            />
+            <LocationComponent.SearchList places={searchList} />
           </Funnel.Step>
           <Funnel.Step name="notFound">
             <LocationComponent.NoSearch />

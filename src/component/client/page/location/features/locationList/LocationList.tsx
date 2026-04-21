@@ -1,22 +1,30 @@
+"use client";
+
 import React from "react";
-import {CurrentLocation} from "@/src/types/page/location/location";
+import { CurrentLocation } from "@/src/types/page/location/location";
+import { useSetPinedLocation } from "@/src/hooks/useSetPinedLocation";
 
-
-const LocationList = ({isLast, place, setLocation} : {isLast: boolean, place: CurrentLocation , setLocation?: (place: CurrentLocation) => void}) => {
-    return <div onClick={() => {
-        if(setLocation) {
-            setLocation(place)
-        }
-        return
-    }}
-                className={`${isLast ? '' : 'border-b border-line-1'} h-[65px] flex flex-col gap-3 justify-center p-4`}>
-        <div className='text-body2 font-regular text-text-2'>
-            {place.buildingName}
-        </div>
-        <div className='text-text-3 text-caption1 font-regular'>
-            {place.address}
-        </div>
+const LocationList = ({
+  isLast,
+  place,
+}: {
+  isLast: boolean;
+  place: CurrentLocation;
+}) => {
+  const setLocation = useSetPinedLocation();
+  return (
+    <div
+      onClick={() => setLocation(place)}
+      className={`${isLast ? "" : "border-b border-line-1"} h-[65px] flex flex-col gap-3 justify-center p-4`}
+    >
+      <div className="text-body2 font-regular text-text-2">
+        {place.buildingName}
+      </div>
+      <div className="text-text-3 text-caption1 font-regular">
+        {place.address}
+      </div>
     </div>
-}
+  );
+};
 
-export default LocationList
+export default LocationList;

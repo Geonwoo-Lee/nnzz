@@ -9,10 +9,15 @@ import { CacheableResponsePlugin, ExpirationPlugin, NetworkFirst, Serwist } from
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
     __SW_MANIFEST: (PrecacheEntry | string)[] | undefined;
+    __WB_DISABLE_DEV_LOGS: boolean;
   }
 }
 
-declare const self: ServiceWorkerGlobalScope;
+declare const self: ServiceWorkerGlobalScope & {
+  __WB_DISABLE_DEV_LOGS: boolean;
+};
+
+self.__WB_DISABLE_DEV_LOGS = true;
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,

@@ -13,6 +13,7 @@ import ShortsListView from "@/src/app/(router)/shorts/list/ShortsListView";
 import { useLoginBottomSheet } from "@/src/core/LoginBottomSheetProvider";
 import NotLogin from "@/src/component/client/page/home/features/notLogin/NotLogin";
 import FoodHistory from "@/src/component/client/page/home/features/foodHistory/FoodHistory";
+import { useLocationStore } from "@/src/stores/locationStore";
 
 const HomeMealSettingClient = () => {
   const router = useRouter();
@@ -32,7 +33,7 @@ const HomeMealSettingClient = () => {
   const [initialMealTiming, setInitialMealTiming] = useState<
     string | undefined
   >("");
-  const location = localStorage.getItem("pinedLocation");
+  const location = useLocationStore((s) => s.pinedLocation);
   const userName = AuthUtils.getUserInfo()?.nickname
     ? AuthUtils.getUserInfo()?.nickname
     : "냠냠";
@@ -201,11 +202,10 @@ const HomeMealSettingClient = () => {
 
   useEffect(() => {
     if (location) {
-      const locationData = JSON.parse(location);
-      if (!locationData.name) {
-        setSelectedLocation(locationData.address);
+      if (!location.name) {
+        setSelectedLocation(location.address);
       } else {
-        setSelectedLocation(locationData.name);
+        setSelectedLocation(location.name);
       }
     }
   }, [location]);

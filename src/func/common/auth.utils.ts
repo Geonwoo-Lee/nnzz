@@ -1,65 +1,42 @@
-import {LoginRes} from "@/src/types/models/user";
-import {LoginToken, SignInType} from "@/src/types/page/sign-up/sign-up";
-interface TokenObject {
-    accessToken: string;
-    refreshToken: string;
-}
+import { LoginRes } from "@/src/types/models/user";
+import { LoginToken, SignInType } from "@/src/types/page/sign-up/sign-up";
+import { useAuthStore } from "@/src/stores/authStore";
+import { useLocationStore } from "@/src/stores/locationStore";
+
 export default class AuthUtils {
-    public static isLoggedIn() {
-        return this.getToken() != null && this.getUserInfo() != null;
-    }
+  public static isLoggedIn() {
+    return useAuthStore.getState().isLoggedIn();
+  }
 
-    private static TOKEN_KEY = "nnzz_token";
+  public static setToken(token: LoginToken) {
+    useAuthStore.getState().setToken(token);
+  }
 
-    public static setToken(token: LoginToken) {
-        localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
-    }
+  public static getToken(): LoginToken | null {
+    return useAuthStore.getState().token;
+  }
 
+  public static removeToken() {
+    useAuthStore.getState().clearToken();
+  }
 
-public static getToken(): TokenObject | null {
-    const tokenStr = localStorage.getItem(this.TOKEN_KEY);
-    return tokenStr ? JSON.parse(tokenStr) : null;
-}
+  public static setUserInfo(userInfo: SignInType) {
+    useAuthStore.getState().setUserInfo(userInfo);
+  }
 
-    public static removeToken() {
-        localStorage.removeItem(this.TOKEN_KEY);
-    }
+  public static getUserInfo(): SignInType | null {
+    return useAuthStore.getState().user;
+  }
 
+  public static removeUserInfo() {
+    useAuthStore.getState().clearUser();
+  }
 
+  public static removeLocation() {
+    useLocationStore.getState().clearLocation();
+  }
 
-    public static setUserInfo(UserInfo: SignInType) {
-        //todo userInfo 설정
-        localStorage.setItem("nnzz_user", JSON.stringify(UserInfo));
-    }
-
-    public static getUserInfo(): SignInType | null {
-        //todo 토큰명 설정
-        const storedUserInfo = localStorage.getItem("nnzz_user");
-        if (!storedUserInfo) {
-            return null;
-        }
-        try {
-            return JSON.parse(storedUserInfo);
-        } catch (e) {
-            return null;
-        }
-    }
-
-    public static removeUserInfo() {
-        localStorage.removeItem("nnzz_user");
-    }
-
-    public static removeLocation() {
-        localStorage.removeItem("userLocation");
-        localStorage.removeItem("pinedLocation");
-    }
-
-    public static async login(loginRes: LoginRes) {
-        return new Promise((resolve) => {
-            this.setUserInfo({
-                ...loginRes.member,
-            });
-            resolve(true);
-        });
-    }
+  public static async login(loginRes: LoginRes) {
+    return useAuthStore.getState().login(loginRes);
+  }
 }

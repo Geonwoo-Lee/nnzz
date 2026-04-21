@@ -1,60 +1,57 @@
-import { useState, useEffect } from 'react';
+"use client";
+
+import { useMemo } from "react";
 import { getAddressFromCoords } from "@/src/func/common/geo.utils";
 import { LocationType } from "@/src/types/models/geo";
+import { useLocationStore } from "@/src/stores/locationStore";
+
+const toLocationType = (raw: any): LocationType | null => {
+  if (!raw) return null;
+  if (raw.latitude != null && raw.longitude != null) return raw as LocationType;
+  if (raw.lat != null && raw.lng != null) {
+    return {
+      latitude: raw.lat,
+      longitude: raw.lng,
+      address: raw.address ?? "",
+      name: raw.name ?? "",
+    };
+  }
+  return raw as LocationType;
+};
 
 export function useGeolocation() {
-    const [location, setLocation] = useState<LocationType | null>(null);
+  const pined = useLocationStore((s) => s.pinedLocation);
+  const user = useLocationStore((s) => s.userLocation);
+  const setUserLocation = useLocationStore((s) => s.setUserLocation);
 
-    const checkStoredLocations = () => {
-        const pinedLocation = localStorage.getItem('pinedLocation');
-        const storedLocation = localStorage.getItem('userLocation');
+  const location = useMemo<LocationType | null>(
+    () => toLocationType(pined) ?? toLocationType(user),
+    [pined, user],
+  );
 
-        if (pinedLocation) {
-            setLocation(JSON.parse(pinedLocation));
-        } else if (storedLocation) {
-            setLocation(JSON.parse(storedLocation));
-        }
-    };
-
-    useEffect(() => {
-        checkStoredLocations();
-
-        // localStorage 변경 이벤트 감지
-        const handleStorageChange = () => {
-            checkStoredLocations();
+  const requestGeolocation = async () => {
+    if (typeof window === "undefined" || !navigator.geolocation) {
+      console.error("Geolocation is not supported by this browser.");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const address = await getAddressFromCoords(latitude, longitude);
+        const newLocation: LocationType = {
+          latitude,
+          longitude,
+          address: address?.address || "",
+          name: address.name,
         };
+        setUserLocation(newLocation);
+      },
+      (error) => {
+        console.error("Geolocation error:", error);
+      },
+    );
+  };
 
-        window.addEventListener('storage', handleStorageChange);
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, []);
-
-    const requestGeolocation = async () => {
-        if (typeof window !== 'undefined' && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                async (position) => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    const address = await getAddressFromCoords(latitude, longitude);
-
-                    const newLocation: LocationType = {
-                        latitude,
-                        longitude,
-                        address: address?.address || '',
-                        name: address.name,
-                    };
-                    setLocation(newLocation);
-                    localStorage.setItem('userLocation', JSON.stringify(newLocation));
-                },
-                (error) => {
-                    console.error('Geolocation error:', error);
-                }
-            );
-        } else {
-            console.error('Geolocation is not supported by this browser.');
-        }
-    };
-
-    return { location, requestGeolocation };
+  return { location, requestGeolocation };
 }

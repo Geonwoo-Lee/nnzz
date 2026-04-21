@@ -6,12 +6,12 @@ import {Place} from "@/src/types/page/location/location";
 import {getAddressFromCoords} from "@/src/func/common/geo.utils";
 import BottomSheet from "@/src/component/client/common/bottomSheet/BottomSheet";
 import Button from '../../common/button/Button'
-import {useRouter} from "next/navigation";
-import SaveApi from "@/src/app/api/client/save/save";
+import {useLocationStore} from "@/src/stores/locationStore";
+import {useSetPinedLocation} from "@/src/hooks/useSetPinedLocation";
 
 const FindLocationClientPage = () => {
-    const router = useRouter();
     const [currentLocation, setCurrentLocation] = useState<MapPlace | null>(null);
+    const setLocation = useSetPinedLocation();
 
     const upDatePin = async (lat: number, lng: number) => {
         const userLocation = await getAddressFromCoords(lat, lng);
@@ -32,36 +32,23 @@ const FindLocationClientPage = () => {
         return '위치를 설정해주세요'
     }
 
-    const setLocation = (location: MapPlace) => {
-        if(location) {
-            SaveApi.SaveLocation({
-                name: location.name,
-                address: location.address!,
-                latitude: location.lat,
-                longitude: location.lng
-            }).then(() => {
-                window.localStorage.setItem('pinedLocation', JSON.stringify(location));
-                router.push('/home')
-            }).catch((err) => {
-                if (err.status === 400) {
-                    window.localStorage.setItem('pinedLocation', JSON.stringify(location));
-                    router.push('/home')
-                }
-            })
-        }else {
-            return
-        }
+    const onRegister = (location: MapPlace) => {
+        setLocation({
+            buildingName: location.name,
+            lat: location.lat,
+            lng: location.lng,
+            address: location.address ?? "",
+        });
     }
 
     useEffect(() => {
-        const storedLocation = localStorage.getItem('userLocation');
+        const storedLocation = useLocationStore.getState().userLocation as Place | null;
         if (storedLocation) {
-            const location = JSON.parse(storedLocation) as Place;
             setCurrentLocation({
-                name: location.name,
-                address: location.address,
-                lat: location.latitude,
-                lng: location.longitude
+                name: storedLocation.name,
+                address: storedLocation.address,
+                lat: storedLocation.latitude,
+                lng: storedLocation.longitude,
             });
         }
     }, []);
@@ -84,7 +71,7 @@ const FindLocationClientPage = () => {
                     </div>
                     <div>
                         <Button style='w-full' onClick={() => {
-                            setLocation(currentLocation as MapPlace)
+                            if (currentLocation) onRegister(currentLocation);
                         }} size='lg' type={'primary'}>
                             이 위치로 등록
                         </Button>

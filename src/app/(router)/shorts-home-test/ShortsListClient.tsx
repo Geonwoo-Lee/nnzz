@@ -7,6 +7,7 @@ import {useRouter} from "next/navigation";
 import HomeMealSettingComponent from "@/src/component/client/page/home/features/HomeMealSettingComponent";
 import AuthUtils from "@/src/func/common/auth.utils";
 import ShortsListView from "@/src/app/(router)/shorts/list/ShortsListView";
+import {useLocationStore} from "@/src/stores/locationStore";
 
 const ShortsHomeTest = () => {
   const router = useRouter()
@@ -15,7 +16,7 @@ const ShortsHomeTest = () => {
   const [selectedMealTime] = useState<DayInfo>(mealTime[0]);
   const [mealTiming, setMealTiming] = useState<MealTimingType>();
   const [wayToFind] = useState('');
-  const location = localStorage.getItem('pinedLocation');
+  const location = useLocationStore((s) => s.pinedLocation);
   const userName = AuthUtils.getUserInfo()?.nickname
 
   const moveToMap = () => {
@@ -58,11 +59,10 @@ const ShortsHomeTest = () => {
 
   useEffect(() => {
     if(location) {
-      const locationData = JSON.parse(location);
-      if(!locationData.name) {
-        setSelectedLocation(locationData.address);
+      if(!location.name) {
+        setSelectedLocation(location.address);
       } else {
-        setSelectedLocation(locationData.name);
+        setSelectedLocation(location.name);
       }
     }
   }, [location]);

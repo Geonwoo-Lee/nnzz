@@ -3,7 +3,7 @@ import React from "react";
 import {CurrentLocation} from "@/src/types/page/location/location";
 import LocationComponent from "@/src/component/client/page/location/features/LocationComponent";
 
-const CurrentLocationList = ({place, setLocation}: {place: CurrentLocation[], setLocation: (place: CurrentLocation) => void}) => {
+const CurrentLocationList = ({place}: {place: CurrentLocation[]}) => {
 
     return <div >
         <div className='text-body2 font-bold text-text-2 px-4'>
@@ -12,7 +12,7 @@ const CurrentLocationList = ({place, setLocation}: {place: CurrentLocation[], se
         <div>
             {
                 place.map((el, index) =>
-                    <LocationComponent.LocationList setLocation={setLocation} isLast={index === place.length - 1} place={el}
+                    <LocationComponent.LocationList isLast={index === place.length - 1} place={el}
                                                     key={`location-list-${index}`}/>)
             }
         </div>

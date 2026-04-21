@@ -1,10 +1,9 @@
 import {Dispatch, SetStateAction} from "react";
-import {LocationType} from "@/src/types/models/geo";
+import {useLocationStore} from "@/src/stores/locationStore";
 
 
 const ButtonSelect = ({selectData, setStep} : {selectData: (length: number) => void , setStep:  Dispatch<SetStateAction<"0" | "1" | "2">>}) => {
-    const locationString = localStorage.getItem('userLocation');
-    const location: LocationType | null = locationString ? JSON.parse(locationString) : null;
+    const location = useLocationStore((s) => s.userLocation);
 
     return <div className="flex flex-col gap-3 h-[100vh] items-center justify-center">
         {location ? location.address : '위치 못찾았음'}

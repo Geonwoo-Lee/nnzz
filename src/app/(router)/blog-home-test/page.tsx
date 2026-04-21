@@ -9,6 +9,7 @@ import AuthUtils from "@/src/func/common/auth.utils";
 import {useToast} from "@/src/core/ToastProvider";
 import {ToastAlign, ToastPosition} from "@/src/types/common/toast";
 import PostList from "@/src/app/(router)/blog-home-test/TestPageClient";
+import {useLocationStore} from "@/src/stores/locationStore";
 
 const BlogHomeTest = () => {
   const router = useRouter()
@@ -22,7 +23,7 @@ const BlogHomeTest = () => {
   const [mealTimingBottomSheet, setMealTimingBottomSheet] = useState(false);
   const [initialMealTime, setInitialMealTime] = useState<DayInfo | null>(null);
   const [initialMealTiming, setInitialMealTiming] = useState<string | undefined>('');
-  const location = localStorage.getItem('pinedLocation');
+  const location = useLocationStore((s) => s.pinedLocation);
   const userName = AuthUtils.getUserInfo()?.nickname
 
   const moveToMap = () => {
@@ -152,11 +153,10 @@ const BlogHomeTest = () => {
 
   useEffect(() => {
     if(location) {
-      const locationData = JSON.parse(location);
-      if(!locationData.name) {
-        setSelectedLocation(locationData.address);
+      if(!location.name) {
+        setSelectedLocation(location.address);
       } else {
-        setSelectedLocation(locationData.name);
+        setSelectedLocation(location.name);
       }
     }
   }, [location]);
